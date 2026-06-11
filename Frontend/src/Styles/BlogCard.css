@@ -1,0 +1,218 @@
+/* =========================
+   SECTION
+========================= */
+
+.latest-blogs {
+  padding: 50px 20px;
+  background: #fff;
+}
+
+.blogs-container {
+  max-width: 1300px;
+  margin: auto;
+}
+
+/* =========================
+   HEADING
+========================= */
+
+.blogs-heading {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.blogs-heading h2 {
+  font-size: 38px;
+  font-weight: 500;
+  color: #ea8215;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.blogs-line {
+  width: 55px;
+  height: 4px;
+  background: #ea8215;
+  margin: 0 auto 20px;
+  border-radius: 20px;
+}
+
+.blogs-heading h6 {
+  font-size: 25px;
+  font-weight: 600;
+  color: #ea8215;
+  margin-bottom: 25px;
+  line-height: 1.5;
+}
+
+.view-blog-btn {
+  border: 2px solid #222;
+  background: white;
+  padding: 12px 28px;
+  border-radius: 30px;
+  font-size: 15px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.view-blog-btn:hover {
+  background: #000000;
+  color: white;
+}
+
+/* =========================
+   BLOG GRID
+========================= */
+
+.blogs-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 35px;
+}
+
+/* =========================
+   CARD
+========================= */
+
+.blog-card {
+  background: white;
+  border: 1px solid #ccc;
+  overflow: hidden;
+  transition: 0.35s ease;
+}
+ 
+
+/* =========================
+   TOP BLUE SECTION
+========================= */
+
+.blog-top {
+  background: #1f1978;
+  padding: 20px;
+}
+
+.blog-img-border {
+  border: 1px solid #f4a300;
+  padding: 25px;
+  text-align: center;
+}
+
+.blog-img-border img {
+  width: 100%;
+  max-width: 220px;
+  display: block;
+  margin: auto;
+}
+
+.blog-title {
+  margin-top: 15px;
+  text-align: center;
+}
+
+.blog-title h5 {
+  color: #f4a300;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+/* =========================
+   CONTENT
+========================= */
+
+.blog-content {
+  padding: 20px;
+}
+
+.blog-content p {
+  color: #555;
+  font-size: 15px;
+  line-height: 1.9;
+  margin-bottom: 20px;
+}
+
+.read-more-btn {
+  background: #1f1978;
+  color: white;
+  border: none;
+  padding: 12px 22px;
+  border-radius: 30px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: 0.3s;
+}
+
+.read-more-btn:hover {
+  background: #000000;
+  color: white;
+}
+
+/* =========================
+   TABLET
+========================= */
+
+@media (max-width: 992px) {
+
+  .blogs-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .blogs-heading h2 {
+    font-size: 38px;
+  }
+
+  .blogs-heading h6 {
+    font-size: 22px;
+  }
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 768px) {
+
+  .latest-blogs {
+    padding: 50px 15px;
+  }
+
+  .blogs-grid {
+    grid-template-columns: 1fr;
+    gap: 25px;
+  }
+
+  .blogs-heading h2 {
+    font-size: 30px;
+  }
+
+  .blogs-heading h6 {
+    font-size: 18px;
+    line-height: 1.6;
+  }
+
+  .view-blog-btn {
+    padding: 10px 22px;
+    font-size: 14px;
+  }
+
+  .blog-img-border {
+    padding: 15px;
+  }
+
+  .blog-img-border img {
+    max-width: 180px;
+  }
+
+  .blog-title h5 {
+    font-size: 14px;
+  }
+
+  .blog-content p {
+    font-size: 14px;
+    line-height: 1.8;
+  }
+
+  .read-more-btn {
+    width: 100%;
+  }
+}

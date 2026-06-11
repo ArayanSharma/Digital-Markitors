@@ -1,0 +1,293 @@
+/* =========================
+   HEADING
+========================= */
+
+.testimonial-heading {
+  background: #f4f4f4;
+  text-align: center;
+  padding: 40px 0 50px;
+}
+
+.testimonial-heading h2 {
+  font-size: 42px;
+  font-weight: 600;
+  color: #ea8215;
+  margin-bottom: 15px;
+  text-transform: uppercase;
+}
+
+.testimonial-heading span {
+  display: block;
+  width: 60px;
+  height: 5px;
+  background: #ea8215;
+  margin: auto;
+  border-radius: 30px;
+}
+
+/* =========================
+   SECTION
+========================= */
+
+.testimonial-section {
+  position: relative;
+  min-height: 650px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 80px 0;
+
+  background:
+    url("https://www.transparenttextures.com/patterns/stardust.png"),
+    #f58220;
+}
+
+/* =========================
+   CARD
+========================= */
+
+.testimonial-card {
+  position: relative;
+
+  width: 650px;
+  max-width: 90%;
+
+  min-height: 420px;
+  height: auto;
+
+  background: #404040;
+
+  border-radius: 40px;
+
+  padding: 90px 70px 80px;
+
+  text-align: center;
+
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+
+  z-index: 2;
+}
+
+/* =========================
+   PROFILE IMAGE
+========================= */
+
+.profile-img {
+  position: absolute;
+
+  top: -40px;
+  left: 50%;
+
+  transform: translateX(-50%);
+
+  width: 85px;
+  height: 85px;
+
+  border-radius: 50%;
+  overflow: hidden;
+
+  background: white;
+  border: 5px solid white;
+}
+
+.profile-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* =========================
+   NAME
+========================= */
+
+.testimonial-card h3 {
+  color: #ea8215;
+  font-size: 28px;
+  font-weight: 700;
+  text-transform: uppercase;
+
+  margin-bottom: 8px;
+}
+
+/* =========================
+   ROLE
+========================= */
+
+.testimonial-card h5 {
+  color: white;
+  font-size: 15px;
+  font-weight: 500;
+
+  margin-bottom: 30px;
+}
+
+/* =========================
+   REVIEW
+========================= */
+
+.testimonial-card p {
+  color: #fff;
+
+  font-size: 14px;
+  line-height: 1.5;
+
+  max-width: 650px;
+  margin: 0 auto;
+}
+
+/* =========================
+   STARS
+========================= */
+
+.stars {
+  margin-top: 30px;
+
+  color: #ff9d43;
+
+  font-size: 24px;
+  letter-spacing: 4px;
+}
+
+/* =========================
+   BOTTOM POINTER
+========================= */
+
+.card-pointer {
+  position: absolute;
+
+  bottom: -40px;
+  left: 50%;
+
+  transform: translateX(-50%);
+
+  width: 0;
+  height: 0;
+
+  border-left: 35px solid transparent;
+  border-right: 35px solid transparent;
+  border-top: 45px solid #404040;
+}
+
+/* =========================
+   ARROWS
+========================= */
+
+.nav-btn,
+.testimonial-btn {
+  position: absolute;
+  top: 50%;
+
+  transform: translateY(-50%);
+
+  width: 60px;
+  height: 60px;
+
+  border-radius: 50%;
+  border: 2px solid #333;
+
+  background: #f7e3d0;
+
+  font-size: 24px;
+  cursor: pointer;
+
+  z-index: 10;
+}
+
+.nav-btn.left,
+.testimonial-btn.left {
+  left: 10%;
+}
+
+.nav-btn.right,
+.testimonial-btn.right {
+  right: 10%;
+}
+
+.nav-btn:hover,
+.testimonial-btn:hover {
+  background: white;
+}
+
+/* =========================
+   SWIPER
+========================= */
+
+.testimonialSwiper {
+  width: 100%;
+}
+
+.swiper-slide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 50px 0;
+}
+@media (max-width: 768px) {
+
+  .testimonial-heading h2 {
+    font-size: 32px;
+  }
+
+  .testimonial-section {
+    min-height: auto;
+    padding: 80px 20px;
+  }
+
+  .testimonial-card {
+    width: 100%;
+    max-width: 100%;
+    min-height: auto;
+
+    padding: 70px 25px 60px;
+
+    border-radius: 30px;
+  }
+
+  .profile-img {
+    width: 70px;
+    height: 70px;
+    top: -35px;
+  }
+
+  .testimonial-card h3 {
+    font-size: 22px;
+  }
+
+  .testimonial-card h5 {
+    font-size: 14px;
+    margin-bottom: 20px;
+  }
+
+  .testimonial-card p {
+    font-size: 14px;
+    line-height: 1.8;
+  }
+
+  .stars {
+    font-size: 20px;
+  }
+
+  .card-pointer {
+    border-left: 25px solid transparent;
+    border-right: 25px solid transparent;
+    border-top: 30px solid #404040;
+    bottom: -28px;
+  }
+
+  .nav-btn {
+    width: 50px;
+    height: 50px;
+    font-size: 20px;
+  }
+
+  .nav-btn.left {
+    left: 10px;
+  }
+
+  .nav-btn.right {
+    right: 10px;
+  }
+}
