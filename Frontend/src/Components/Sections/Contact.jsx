@@ -21,6 +21,8 @@ const Contact = () => {
     });
   };
 const [isChecked, setIsChecked] = useState(false);
+const [message, setMessage] = useState("");
+const [messageType, setMessageType] = useState("");
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -30,7 +32,12 @@ const [isChecked, setIsChecked] = useState(false);
         formData,
       );
 
-      alert("Contact submitted successfully!");
+   setMessage("✅ Contact submitted successfully!");
+setMessageType("success");
+
+setTimeout(() => {
+  setMessage("");
+}, 3000);
 
       console.log(res.data);
 
@@ -45,7 +52,12 @@ const [isChecked, setIsChecked] = useState(false);
       });
     } catch (error) {
       console.error(error);
-      alert("Submission failed");
+   setMessage("❌ Submission failed");
+setMessageType("error");
+
+setTimeout(() => {
+  setMessage("");
+}, 3000);
     }
   };
 
@@ -92,7 +104,11 @@ const [isChecked, setIsChecked] = useState(false);
           </div>
 
           <div className="dm-contact-right">
-             
+             {message && (
+  <div className={`form-message ${messageType}`}>
+    {message}
+  </div>
+)}
 
             <form className="dm-contact-form" onSubmit={handleSubmit}>
               <div className="dm-form-grid">

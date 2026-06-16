@@ -14,6 +14,10 @@ const Contact = () => {
     message: "",
   });
 const [isChecked, setIsChecked] = useState(false);
+
+const [message, setMessage] = useState("");
+const [messageType, setMessageType] = useState("");
+
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -30,7 +34,12 @@ const [isChecked, setIsChecked] = useState(false);
         formData,
       );
 
-      alert("Contact submitted successfully!");
+     setMessage("✅ Contact submitted successfully!");
+setMessageType("success");
+
+setTimeout(() => {
+  setMessage("");
+}, 3000);
 
       console.log(res.data);
 
@@ -45,7 +54,12 @@ const [isChecked, setIsChecked] = useState(false);
       });
     } catch (error) {
       console.error(error);
-      alert("Submission failed");
+     setMessage("❌ Submission failed");
+setMessageType("error");
+
+setTimeout(() => {
+  setMessage("");
+}, 3000);
     }
   };
 
@@ -125,7 +139,11 @@ const [isChecked, setIsChecked] = useState(false);
               <h4>It's time</h4>
               <h1>LET'S TALK</h1>
             </div>
-
+{message && (
+  <div className={`form-message ${messageType}`}>
+    {message}
+  </div>
+)}
             <form className="dm-contact-form" onSubmit={handleSubmit}>
               <div className="dm-form-grid">
                 <div className="dm-form-group">

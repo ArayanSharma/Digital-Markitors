@@ -4,7 +4,7 @@ import cors from "cors";
 
 import connectDB from "./Config/db.js";
 import contactRoutes from "./routes/contactRoutes.js";
-
+import careerRoutes from "./routes/careerRoutes.js";
 dotenv.config();
 
 connectDB();
@@ -17,7 +17,11 @@ app.use(express.json());
 
 
 app.use("/api/contact", contactRoutes);
-
+app.use("/api/career", careerRoutes);
+app.use(
+  "/uploads",
+  express.static("uploads")
+);
 
 
 app.get("/", (req, res) => {

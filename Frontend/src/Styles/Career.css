@@ -218,3 +218,21 @@
     grid-template-columns: 1fr;
   }
 }
+
+.form-message {
+  padding: 12px;
+  margin-bottom: 15px;
+  border-radius: 6px;
+  text-align: center;
+  font-weight: 600;
+}
+
+.form-message.success {
+  background: #d4edda;
+  color: #155724;
+}
+
+.form-message.error {
+  background: #f8d7da;
+  color: #721c24;
+}
