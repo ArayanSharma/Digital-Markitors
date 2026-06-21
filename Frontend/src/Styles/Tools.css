@@ -13,7 +13,7 @@
 .tools-header h2 {
   font-size: 38px;
   font-weight: 450;
-  color: #e67e22;
+  color: #003366;
   text-transform: uppercase;
   margin-bottom: 20px;
   letter-spacing: 1px;
@@ -23,7 +23,7 @@
   display: inline-block;
   width: 70px;
   height: 5px;
-  background: #e67e22;
+  background: #003366;
   border-radius: 10px;
 }
 

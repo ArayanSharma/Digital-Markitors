@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 
 import Button from "../Button";
 
-import heroImg from "../../assets/a.png";
+import heroImg from "../../assets/a.jpeg";
 import graphImg from "../../assets/graph-l.webp";
 import seoRimg from "../../assets/real-seo-result.webp";
 
@@ -43,9 +43,15 @@ const Hero = () => {
 
   return (
     <>
-<section className="banner-section">
-  <div className="banner-container">
+<section
+  className="banner-section"
+  style={{
+    backgroundImage: `url(${heroImg})`,
+  }}
+>
+  <div className="banner-overlay"></div>
 
+  <div className="banner-container">
     <div className="banner-content">
       <p className="banner-subtitle">
         TOP RATED AND TRUSTED BY OUR PARTNERS
@@ -56,9 +62,7 @@ const Hero = () => {
       </h1>
 
       <p className="banner-description">
-        Boost your business with our trusted full-service digital
-        marketing agency in Kanpur NCR, delivering client-first
-        solutions focused on measurable growth—not just noise.
+        Boost your business with our trusted full-service digital marketing agency in Kanpur NCR.
       </p>
 
       <div className="banner-buttons">
@@ -71,11 +75,6 @@ const Hero = () => {
         </button>
       </div>
     </div>
-
-    <div className="banner-image">
-      <img src={heroImg} alt="Digital Marketing" />
-    </div>
-
   </div>
 </section>
       <section className="about-section">
@@ -185,7 +184,7 @@ const Hero = () => {
               <span className="counter">
                 {counts.count1}
               </span>
-            <span style={{ color: "#f57c14"}}>
+            <span style={{ color: "#2E75B6 "}}>
               %
               </span>
             </h5>
@@ -202,7 +201,7 @@ const Hero = () => {
               <span className="counter">
                 {counts.count2}
               </span>
-            <span style={{ color: "#f57c14"}}>
+            <span style={{ color: "#2E75B6 "}}>
               %
               </span>
             </h5>
@@ -220,7 +219,7 @@ const Hero = () => {
               <span className="counter">
                 {counts.count3}
               </span>
-             <span style={{ color: "#f57c14"}}>
+             <span style={{ color: "#2E75B6 "}}>
               %
               </span>
             </h5>
@@ -238,7 +237,7 @@ const Hero = () => {
               <span className="counter">
                 {counts.count4}
               </span>
-             <span style={{ color: "#f57c14"}}>
+             <span style={{ color: "#2E75B6 "}}>
               %
               </span>
             </h5>

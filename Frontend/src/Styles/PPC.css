@@ -53,7 +53,7 @@
 .seo-line {
   width: 80px;
   height: 4px;
-  background: #f5821f;
+  background: #003366;
   margin: 0 auto 15px;
   border-radius: 20px;
 }
@@ -61,7 +61,7 @@
 .seo-heading h2 {
   font-size: 45px;
   font-weight: 500;
-  color: #f5821f;
+  color: #003366;
   margin-bottom: 20px;
   text-transform: uppercase;
   
@@ -82,7 +82,7 @@
 }
 
 .seo-left h3 {
-  color: #f5821f;
+  color: #003366;
   font-size: 32px;
   margin-bottom: 15px;
   font-weight: 500;

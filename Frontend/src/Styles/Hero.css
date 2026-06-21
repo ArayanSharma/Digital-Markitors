@@ -185,7 +185,7 @@ body {
     font-weight: 410;
   font-size: 50px;
   line-height: 48px;
-  color: rgb(233, 126, 27); /* #E97E1B */
+  color: #1B3A6B; /* #E97E1B */
   margin: 0;
   padding-bottom: 20px;
 }
@@ -203,7 +203,7 @@ body {
 .divider-s {
   width: 120px;
   height: 4px;
-  background: #ff8c1a;
+  background: #1B3A6B;
   margin: 0 auto 40px;
   border-radius: 30px;
   position: relative;
@@ -258,7 +258,7 @@ body {
    font-weight: 500;
   font-size: 24px;
   line-height: 26px;
-  color: rgb(233, 126, 27); /* #E97E1B */
+  color: #1B3A6B; /* #E97E1B */
   margin: 0;
   padding-bottom: 10px;
 }
@@ -290,7 +290,7 @@ body {
 .orange-line {
   width: 120px;
   height: 4px;
-  background: #f5821f;
+  background: #003366;
   margin-top: 40px;
 }
 
@@ -453,7 +453,7 @@ body {
 
 .discover-container h4 {
   font-size: 34px;
-  color: #f57c14;
+  color: #003366;
   font-weight: 600;
       margin: 0;
     padding: 0;
@@ -462,7 +462,7 @@ body {
 .discover-container h2 {
   text-transform: uppercase;
   font-size: 60px;
-  color: #f1781d;
+  color: #003366;
   font-weight: 700;
   margin-bottom: 40px;
   line-height: 1.2;
@@ -482,7 +482,7 @@ body {
 @media (max-width: 992px) {
 
   .discover-container h2 {
-    color: #f1781d;
+    color: #003366;
     font-size: 42px;
   }
 
@@ -559,7 +559,7 @@ body {
 
   background-color: #fff;
 
-  color: #e97e1b;
+  color: #1B3A6B;
 
   padding: 14px 28px;
 
@@ -1273,7 +1273,7 @@ body {
 }
 
 .performance-left {
-  background: #ef7d17;
+  background: #003366;
   min-height: 290px;
 
   display: flex;
@@ -1436,7 +1436,7 @@ body {
 .seo-line {
   width: 55px;
   height: 4px;
-  background: #e67e22;
+  background: #003366;
   margin: 0 auto 18px;
   border-radius: 10px;
 }
@@ -1444,7 +1444,7 @@ body {
 .seo-heading h2 {
   font-size: 2.8rem;
   font-weight: 700;
-  color: #e67e22;
+  color: #003366;
   text-transform: uppercase;
   line-height: 1.2;
   margin-bottom: 30px;
@@ -1546,4 +1546,31 @@ body {
   .seo-right {
     padding-top: 0;
   }
+}
+.banner-section {
+  width: 100%;
+  min-height: 550px;
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  position: relative;
+  overflow: hidden;
+
+  display: flex;
+  align-items: center;
+}
+ 
+.banner-container {
+  width: 90%;
+  max-width: 1400px;
+
+  margin: auto;
+
+  position: relative;
+  z-index: 2;
+}
+.banner-section {
+  background-size: 100% 100%;
 }

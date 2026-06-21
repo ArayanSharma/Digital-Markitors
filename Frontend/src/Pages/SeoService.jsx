@@ -479,7 +479,7 @@ Our AI-focused SEO team crafts fresh, keyword-optimized web pages and blog posts
               <span className="counter">
                 {counts.count1}
               </span>
-                <span style={{ color: "#f57c14"}}>
+                <span style={{ color: "#2E75B6"}}>
               %
               </span>
             </h5>
@@ -497,7 +497,7 @@ of all website traffic comes from organic search
               <span className="counter">
                 {counts.count2}
               </span>
-              <span style={{ color: "#f57c14"}}>
+              <span style={{ color: "#2E75B6"}}>
               %
               </span>
             </h5>
@@ -515,7 +515,7 @@ of users never go beyond the first page of search results
               <span className="counter">
                 {counts.count3}
               </span>
-              <span style={{ color: "#f57c14"}}>
+              <span style={{ color: "#2E75B6"}}>
               %
               </span>
             </h5>
@@ -533,7 +533,7 @@ of users rely on Google search for finding local businesses
               <span className="counter">
                 {counts.count4}
               </span>
-               <span style={{ color: "#f57c14"}}>
+               <span style={{ color: "#2E75B6"}}>
               %
               </span>
             </h5>

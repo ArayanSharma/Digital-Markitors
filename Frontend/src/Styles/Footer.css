@@ -122,7 +122,7 @@
 
 
 .footer-bottom {
-  background: #ec7215;
+  background: #0c0142;
   text-align: center;
   padding: 19px 15px;
 }
@@ -226,7 +226,7 @@ font-style: normal;
 
   .footer-links > div {
     width: calc(50% - 8px);
-    background: #111;
+    background: #003366;
     border-radius: 10px;
     padding: 15px;
   }
@@ -234,7 +234,7 @@ font-style: normal;
   .footer-links h3 {
     font-size: 16px;
     margin-bottom: 12px;
-    color: #f0791d;
+    color: #003366;
   }
 
   .footer-links ul {

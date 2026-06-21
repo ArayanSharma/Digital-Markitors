@@ -3,7 +3,7 @@
 ========================= */
 
 .testimonial-heading {
-  background: #f4f4f4;
+  background: #F8FAFC;
   text-align: center;
   padding: 40px 0 50px;
 }
@@ -11,7 +11,7 @@
 .testimonial-heading h2 {
   font-size: 42px;
   font-weight: 600;
-  color: #ea8215;
+  color: #1B3A6B;
   margin-bottom: 15px;
   text-transform: uppercase;
 }
@@ -20,7 +20,7 @@
   display: block;
   width: 60px;
   height: 5px;
-  background: #ea8215;
+  background: #2563EB;
   margin: auto;
   border-radius: 30px;
 }
@@ -40,8 +40,7 @@
   padding: 80px 0;
 
   background:
-    url("https://www.transparenttextures.com/patterns/stardust.png"),
-    #f58220;
+    #F8FAFC;
 }
 
 /* =========================
@@ -57,15 +56,16 @@
   min-height: 420px;
   height: auto;
 
-  background: #404040;
+  background: #FFFFFF;
 
   border-radius: 40px;
 
   padding: 90px 70px 80px;
 
   text-align: center;
+  border-top: 5px solid #2563EB;
 
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+  box-shadow:0 15px 40px rgba(37, 99, 235, 0.12);
 
   z-index: 2;
 }
@@ -88,8 +88,8 @@
   border-radius: 50%;
   overflow: hidden;
 
-  background: white;
-  border: 5px solid white;
+  background: EEF4FF;
+  border: 5px solid #FFFFFF;
 }
 
 .profile-img img {
@@ -103,7 +103,7 @@
 ========================= */
 
 .testimonial-card h3 {
-  color: #ea8215;
+  color: #1B3A6B;
   font-size: 28px;
   font-weight: 700;
   text-transform: uppercase;
@@ -116,7 +116,7 @@
 ========================= */
 
 .testimonial-card h5 {
-  color: white;
+  color: #6B7280;
   font-size: 15px;
   font-weight: 500;
 
@@ -128,7 +128,7 @@
 ========================= */
 
 .testimonial-card p {
-  color: #fff;
+  color: #4B5563;
 
   font-size: 14px;
   line-height: 1.5;
@@ -144,7 +144,7 @@
 .stars {
   margin-top: 30px;
 
-  color: #ff9d43;
+  color: #F59E0B;
 
   font-size: 24px;
   letter-spacing: 4px;
@@ -167,7 +167,7 @@
 
   border-left: 35px solid transparent;
   border-right: 35px solid transparent;
-  border-top: 45px solid #404040;
+  border-top: 45px solid #FFFFFF;
 }
 
 /* =========================
@@ -181,14 +181,19 @@
 
   transform: translateY(-50%);
 
-  width: 60px;
-  height: 60px;
+  transition: all 0.3s ease;
 
-  border-radius: 50%;
-  border: 2px solid #333;
+ width: 64px;
+  height: 64px;
 
-  background: #f7e3d0;
+   color: #2563EB;
 
+border-radius: 50%;
+border: 2px solid #2563EB;
+
+ box-shadow: 0 8px 20px rgba(37, 99, 235, 0.12);
+
+ background: #FFFFFF;
   font-size: 24px;
   cursor: pointer;
 
@@ -207,7 +212,8 @@
 
 .nav-btn:hover,
 .testimonial-btn:hover {
-  background: white;
+   background: #2563EB;
+  color: #FFFFFF;
 }
 
 /* =========================
@@ -290,4 +296,12 @@
   .nav-btn.right {
     right: 10px;
   }
+}
+
+.testimonial-card:hover {
+  transform: translateY(-8px);
+
+  box-shadow: 0 25px 50px rgba(37, 99, 235, 0.18);
+
+  transition: all 0.35s ease;
 }

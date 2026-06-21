@@ -24,7 +24,7 @@
 .blogs-heading h2 {
   font-size: 38px;
   font-weight: 500;
-  color: #ea8215;
+  color: #003366;
   text-transform: uppercase;
   margin-bottom: 10px;
 }
@@ -40,7 +40,7 @@
 .blogs-heading h6 {
   font-size: 25px;
   font-weight: 600;
-  color: #ea8215;
+  color: #003366;
   margin-bottom: 25px;
   line-height: 1.5;
 }
@@ -92,7 +92,7 @@
 }
 
 .blog-img-border {
-  border: 1px solid #f4a300;
+  border: 1px solid #003366;
   padding: 25px;
   text-align: center;
 }

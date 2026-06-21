@@ -13,14 +13,14 @@
 .faq-header h2 {
   font-size: 48px;
   font-weight: 700;
-  color: #f57c00;
+  color: #003366;
   margin-bottom: 14px;
 }
 
 .faq-line {
   width: 60px;
   height: 5px;
-  background: #f57c00;
+  background: #003366;
   margin: auto;
   border-radius: 10px;
 }
@@ -115,14 +115,14 @@
 .faq-header h2 {
   font-size: 42px;
   font-weight: 700;
-  color: #f0791d;
+  color: #003366;
   margin-bottom: 12px;
 }
 
 .faq-line {
   width: 48px;
   height: 6px;
-  background: #f0791d;
+  background: #003366;
   margin: auto;
   border-radius: 50px;
 }

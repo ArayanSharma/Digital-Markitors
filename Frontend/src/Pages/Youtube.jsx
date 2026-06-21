@@ -8,6 +8,8 @@ import ServiceCard from "../Components/Cards/ServiceCard";
  import i1 from "../assets/i1.png";
  import i2 from "../assets/i2.png";
  import i3 from "../assets/i3.png";
+
+ import bgIcon from "../assets/bg-iconnew.webp";
  
 
 import impact from "../assets/impact.webp";
@@ -432,7 +434,8 @@ At  Digicore Inc, apart from offering just PPC services—we intend to become a 
 
 
   
-      <section className="why-choose-sec">
+      <section className="why-choose-sec"  style={{
+          backgroundImage: `url(${bgIcon})`}}>
 
         <div className="div-content">
 
