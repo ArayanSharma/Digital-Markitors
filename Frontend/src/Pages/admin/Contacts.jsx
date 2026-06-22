@@ -8,7 +8,7 @@ import {
   MoreVertical,
 } from "lucide-react";
 
-import "../../Styles/Contact.css";
+import "../../Styles/AdContact.css";
 
 export default function Contacts() {
   const [contacts, setContacts] = useState([]);
