@@ -149,7 +149,7 @@
 .benefit-card:hover h4,
 .benefit-card.active .icon,
 .benefit-card.active h4 {
-  color: #fff;
+  color: #010101;
 }
 
 /* Tablet */
