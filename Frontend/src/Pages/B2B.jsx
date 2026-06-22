@@ -34,7 +34,7 @@ import Icon1 from "../assets/h1.png";
 import Icon2 from "../assets/h2.png";
 import Icon3 from "../assets/h3.png";
 import Icon4 from "../assets/h4.png";
-import eimage from "../assets/Dimage/4.png";
+import eimage from "../assets/BannerImg/b2b.png";
  
 
 const B2B = () => {

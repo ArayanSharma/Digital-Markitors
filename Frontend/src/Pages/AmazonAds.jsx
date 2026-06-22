@@ -15,7 +15,7 @@ import impact from "../assets/impact.webp";
 import seoRimg from "../assets/real-seo-result.webp";
 import heroImg from "../assets/a.png";
 import graphImg from "../assets/graph-l.webp";
- import eimage from "../assets/Dimage/0.png";
+ import eimage from "../assets/BannerImg/AmazonAds.png";
 import seoIcon from "../assets/seo-o.webp";
 import socialIcon from "../assets/social-o.webp";
 import ppcIcon from "../assets/finger-up-o.webp";

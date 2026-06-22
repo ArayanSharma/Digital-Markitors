@@ -34,7 +34,7 @@ import Icon1 from "../assets/h1.png";
 import Icon2 from "../assets/h2.png";
 import Icon3 from "../assets/h3.png";
 import Icon4 from "../assets/h4.png";
-import eimage from "../assets/Dimage/0.png";
+import eimage from "../assets/BannerImg/SocialMediaListening&ResponseManagement.png";
   import i1 from "../assets/i1.png";
  import i2 from "../assets/i2.png";
  import i3 from "../assets/i3.png";

@@ -17,7 +17,7 @@ import video from "../assets/video.webp";
 import Gursimran from "../assets/gursimran-jassal.webp";
 import Pawandeep from "../assets/pawandeep-singh.webp";
 import Dheeraj from "../assets/dheeraj-kumar-director-cepl.webp";
-import eimage from "../assets/Dimage/0.png";
+import eimage from "../assets/BannerImg/seoreseller.png";
 
 // Logos
 import logo1 from "../assets/skittles-productions.webp";

@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import "./../Styles/WebsiteDev.css";
 import webdesign1 from "../assets/webdesign1.png";
@@ -13,7 +14,7 @@ import logo from "../assets/logo.webp";
 import faqImg from "../assets/faq2.webp";
 import Banner from "../Components/Cards/Seohero";
 import heroImg from "../assets/a.png";
-import eimage from "../assets/Dimage/0.png";
+import eimage from "../assets/BannerImg/SocialMediaListening&ResponseManagement.png"
  
 import Icon1 from "../assets/h1.png";
 import Icon2 from "../assets/h2.png";

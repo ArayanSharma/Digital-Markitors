@@ -13,7 +13,7 @@ import ServiceCard from "../Components/Cards/ServiceCard";
  
 
 import impact from "../assets/impact.webp";
- import eimage from "../assets/Dimage/0.png";
+ import eimage from "../assets/BannerImg/YouTubeAds.png";
 import seoRimg from "../assets/real-seo-result.webp";
 
 import heroImg from "../assets/a.png";

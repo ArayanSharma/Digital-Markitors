@@ -1136,26 +1136,29 @@ body {
   }
 }
 .services-card {
-  background: #fff;
+  background: #FFFFFF;
   border-radius: 28px;
   padding: 35px 30px;
-  min-height: 360px;
+  min-height: 340px;
 
   position: relative;
   overflow: hidden;
 
-  box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.05);
 
-  transition: all 0.4s ease;
+  transition: all 0.35s ease;
 
   cursor: pointer;
 }
 
 /* Icon */
 .services-card .service-icon {
+    width: 60px;
+  height: 60px;
   font-size: 20px;
+ margin-bottom: 24px;
   color: #ea8215;
-  margin-bottom: 8px;
+
  left: 25px;
   transition: all 0.4s ease;
 }
@@ -1207,7 +1210,7 @@ padding-left: 32px;
 
 .services-card:hover h3,
 .services-card:hover p {
-  color: #fff;
+  color: #FFFFFF;
 }
 
 .services-card:hover .service-icon {
@@ -1215,9 +1218,9 @@ padding-left: 32px;
 }
 
 .services-card:hover .service-arrow {
-  background: #ea8215;
-  color: #fff;
-  border-color: #ea8215;
+  background: #FFFFFF;
+  color: #1B3A6B;
+  border-color: #1B3A6B;
 }
 
 /* Optional smooth overlay effect */
@@ -1268,8 +1271,15 @@ padding-left: 32px;
 }
 
 .services-card:hover {
+   transform: translateY(-8px);
+
+     background: linear-gradient(
+    135deg,
+    #1B3A6B 0%,
+    #2563EB 100%
+  );
  
-  background: #241d7a;
+  box-shadow: 0 20px 40px rgba(37,99,235,0.18);
 }
 
 .services-card:hover h3,
@@ -1278,8 +1288,9 @@ padding-left: 32px;
 }
 
 .services-card:hover .service-arrow {
-  background: #f07f1a;
-  color: #fff;
+  background: #FFFFFF;
+  color: #1B3A6B;
+
 }
 
 /* ICON */
@@ -1294,56 +1305,61 @@ padding-left: 32px;
 /* TITLE */
 
 .services-card h3 {
-  font-size: 19px;
+  font-size: 24px;
   font-weight: 700;
-  color: #111111e0;
+  color: #1B3A6B;
   margin-bottom: 18px;
-  line-height: 1.35;
-  transition: .3s;
+  line-height: 1.4;
+  transition: all 0.35s ease;
 }
 
 /* DESCRIPTION */
 
 .services-card p {
   font-size: 16px;
-  line-height: 1.5;
-  color: #59626f;
+  line-height: 1.8;
+  color: #4B5563;
   margin-bottom: 35px;
-  transition: .3s;
+  transition: all 0.35s ease;
 }
 
 /* ARROW */
 
 .service-arrow {
-  width: 32px;
-  height: 32px; 
+  width: 52px;
+  height: 52px;
+  background: #EEF4FF;
+  color: #2563EB;
   border-radius: 50%;
 
   display: flex;
-  align-items: left;
+  align-items: center;
   justify-content: center;
 
-  font-size: 24px;
- 
+  font-size: 22px;
 
-  transition: .3s;
+  transition: all 0.35s ease;
 }
 
 /* ACTIVE CARD LIKE DIGITAL MARKITORS */
 
 .active-card {
-  background: #241d7a;
+ background: linear-gradient(
+    135deg,
+    #1B3A6B 0%,
+    #2563EB 100%
+  );
 }
 
 .active-card h3,
 .active-card p {
-  color: #fff;
+  color: #FFFFFF;
 }
 
 .active-card .service-arrow {
-  background: #f07f1a;
-  color: #fff;
-  border-color: #f07f1a;
+  background: #FFFFFF;
+  color: #1B3A6B;
+  border-color: #1B3A6B;
 }
 .services-card {
   background: #fff;
@@ -1390,7 +1406,7 @@ padding-left: 32px;
 .services-card:hover {
   background: #241d7a;
  
-  box-shadow: 0 18px 35px rgba(0,0,0,0.18);
+  box-shadow: 0 20px 40px rgba(37,99,235,0.18);
 }
 
 .services-card:hover h3,
@@ -1572,9 +1588,10 @@ padding-left: 32px;
   }
 
   .services-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 20px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-top: 60px;
   }
 
   .services-card {

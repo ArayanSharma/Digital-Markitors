@@ -42,7 +42,7 @@ import seocase1 from "../assets/case1.png";
 import seocase2 from "../assets/case2.png";
 import seocase3 from "../assets/case3.png";
 
- import eimage from "../assets/Dimage/0.png";
+ import eimage from "../assets/BannerImg/PPC.png";
  
 const PPC  = () => {
 

@@ -17,7 +17,7 @@
             ? `url(${backgroundImage})`
             : "none",
           backgroundSize: "cover",
-          backgroundPosition: "center",
+          backgroundPosition: "center 60%",
           backgroundRepeat: "no-repeat",
         }}
       >

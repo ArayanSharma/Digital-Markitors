@@ -37,7 +37,7 @@ import Icon1 from "../assets/h1.png";
 import Icon2 from "../assets/h2.png";
 import Icon3 from "../assets/h3.png";
 import Icon4 from "../assets/h4.png";
-  import eimage from "../assets/Dimage/0.png";
+  import eimage from "../assets/BannerImg/DisplayAds.png";
  import seocase1 from "../assets/case1.png";
 import seocase2 from "../assets/case2.png";
 import seocase3 from "../assets/case3.png";
