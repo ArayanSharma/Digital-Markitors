@@ -12,7 +12,7 @@ import dm2 from "../assets/dm2.webp";
 import dm3 from "../assets/dm3.webp";
 import dm4 from "../assets/dm4.webp";
 import contactImg from "../assets/contact.webp";
-import logo from "../assets/logo.webp"; 
+import logo from "../assets/logo.png"
 import seoIcon from "../assets/seo1.webp";
 import missionImg from "../assets/mission.webp";
 import visionImg from "../assets/vision.webp";

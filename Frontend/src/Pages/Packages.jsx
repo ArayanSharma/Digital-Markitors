@@ -2,7 +2,7 @@ import React from "react";
 import { useState } from "react";
 import "../Styles/Packages.css";
 
-import logo from "../assets/logo.webp";
+import logo from "../assets/logo.png"
 import { FaPhoneAlt, FaEnvelope } from "react-icons/fa";
 
 

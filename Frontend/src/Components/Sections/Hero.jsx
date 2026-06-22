@@ -6,6 +6,7 @@ import Button from "../Button";
 import heroImg from "../../assets/a.png";
 import graphImg from "../../assets/graph-l.webp";
 import seoRimg from "../../assets/real-seo-result.webp";
+import { Link } from "react-router-dom";
 
 const Hero = () => {
 
@@ -66,13 +67,17 @@ const Hero = () => {
       </p>
 
       <div className="banner-buttons">
+        <Link to="/contact">
         <button className="banner-btn banner-primary">
           Speak to Our Experts
         </button>
+        </Link>
 
-        <button className="banner-btn banner-secondary">
-          Our Services
-        </button>
+        
+          <button className="banner-btn banner-secondary">
+            Our Services
+          </button>
+        
       </div>
     </div>
   </div>
