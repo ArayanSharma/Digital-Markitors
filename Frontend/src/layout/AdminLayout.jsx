@@ -1,22 +1,27 @@
-import { Outlet } from "react-router-dom";
-import Navbar from "../Components/Navbar";
 import Sidebar from "../Components/Sidebar";
-import "../layout/AdminLayout.css";
+import Navbar from "../Components/Navbar";
+import Dashboard from "../Pages/admin/Dashboard";
 
-function AdminLayout() {
+
+import { Contact } from "lucide-react";
+
+export default function DashboardLayout() {
   return (
-    <div className="layout">
+    <>
       <Sidebar />
 
-      <div className="content">
+      <div
+        style={{
+          marginLeft: "260px",
+          minHeight: "100vh",
+          background: "#f8fafc",
+        }}
+      >
         <Navbar />
 
-        <div className="page-content">
-          <Outlet />
-        </div>
+        {/* page content */}
+      
       </div>
-    </div>
+    </>
   );
 }
-
-export default AdminLayout;

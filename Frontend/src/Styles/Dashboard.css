@@ -1,21 +1,233 @@
-.dashboard {
-  background: #1e293b;
-  padding: 30px;
-  border-radius: 15px;
-  min-height: 250px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+.dashboard-page {
+min-height: 100vh;
+background: #f8fafc;
+padding: 30px;
 }
 
-.dashboard h1 {
-  color: #ffffff;
-  font-size: 36px;
-  margin-bottom: 15px;
-  font-weight: 700;
+/* =========================
+HEADER
+========================= */
+
+.dashboard-header {
+margin-bottom: 35px;
 }
 
-.dashboard p {
-  color: #cbd5e1;
-  font-size: 17px;
-  line-height: 1.8;
-  max-width: 800px;
+.dashboard-header h1 {
+font-size: 34px;
+font-weight: 700;
+color: #0f172a;
+margin-bottom: 10px;
+}
+
+.dashboard-header p {
+font-size: 16px;
+color: #64748b;
+}
+
+/* =========================
+STATS
+========================= */
+
+.dashboard-stats {
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+gap: 24px;
+
+margin-bottom: 35px;
+}
+
+.dashboard-card {
+background: #ffffff;
+
+border-radius: 24px;
+
+padding: 28px;
+
+display: flex;
+align-items: center;
+gap: 18px;
+
+border: 1px solid #e5e7eb;
+
+box-shadow: 0 10px 30px rgba(0,0,0,.04);
+
+transition: .3s ease;
+}
+
+.dashboard-card:hover {
+transform: translateY(-6px);
+
+box-shadow: 0 20px 40px rgba(37,99,235,.12);
+}
+
+.dashboard-card-icon {
+width: 65px;
+height: 65px;
+
+border-radius: 18px;
+
+display: flex;
+align-items: center;
+justify-content: center;
+
+color: white;
+}
+
+.blue {
+background: linear-gradient(
+135deg,
+#2563eb,
+#3b82f6
+);
+}
+
+.green {
+background: linear-gradient(
+135deg,
+#10b981,
+#34d399
+);
+}
+
+.orange {
+background: linear-gradient(
+135deg,
+#f97316,
+#fb923c
+);
+}
+
+.dashboard-card span {
+font-size: 14px;
+color: #64748b;
+}
+
+.dashboard-card h2 {
+margin-top: 6px;
+
+font-size: 32px;
+font-weight: 700;
+
+color: #0f172a;
+}
+
+/* =========================
+ACTIONS
+========================= */
+
+.dashboard-actions {
+display: grid;
+grid-template-columns: repeat(2, 1fr);
+gap: 24px;
+
+margin-bottom: 35px;
+}
+
+.action-card {
+background: white;
+
+border-radius: 24px;
+
+padding: 30px;
+
+border: 1px solid #e5e7eb;
+
+box-shadow: 0 10px 25px rgba(0,0,0,.04);
+}
+
+.action-card h3 {
+font-size: 22px;
+font-weight: 700;
+
+color: #1b3a6b;
+
+margin-bottom: 12px;
+}
+
+.action-card p {
+color: #64748b;
+line-height: 1.8;
+
+margin-bottom: 20px;
+}
+
+.action-card button {
+height: 46px;
+padding: 0 24px;
+
+border: none;
+border-radius: 12px;
+
+background: #2563eb;
+color: white;
+
+font-weight: 600;
+
+cursor: pointer;
+
+transition: .3s ease;
+}
+
+.action-card button:hover {
+background: #1d4ed8;
+}
+
+/* =========================
+RECENT ACTIVITY
+========================= */
+
+.recent-activity {
+background: white;
+
+border-radius: 24px;
+
+padding: 30px;
+
+border: 1px solid #e5e7eb;
+
+box-shadow: 0 10px 25px rgba(0,0,0,.04);
+}
+
+.recent-activity h3 {
+font-size: 22px;
+color: #1b3a6b;
+
+margin-bottom: 20px;
+}
+
+.recent-activity ul {
+list-style: none;
+padding: 0;
+margin: 0;
+}
+
+.recent-activity li {
+padding: 16px 0;
+
+border-bottom: 1px solid #f1f5f9;
+
+color: #475569;
+}
+
+.recent-activity li:last-child {
+border-bottom: none;
+}
+
+/* =========================
+RESPONSIVE
+========================= */
+
+@media (max-width: 992px) {
+
+.dashboard-stats {
+grid-template-columns: 1fr;
+}
+
+.dashboard-actions {
+grid-template-columns: 1fr;
+}
+
+.dashboard-page {
+padding: 20px;
+}
 }

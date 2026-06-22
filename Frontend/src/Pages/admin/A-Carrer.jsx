@@ -2,108 +2,108 @@ import { useEffect, useState } from "react";
 import {
   Search,
   Trash2,
-  Mail,
-  Phone,
+  Briefcase,
   User,
-  MoreVertical,
+  Mail,
 } from "lucide-react";
 
-import "../../Styles/Contact.css";
+import "../../Styles/A-Career.css"
 
-export default function Contacts() {
-  const [contacts, setContacts] = useState([]);
-  const [filteredContacts, setFilteredContacts] = useState([]);
-  const [loading, setLoading] = useState(true);
+export default function Career() {
+  const [careers, setCareers] = useState([]);
+  const [filteredCareers, setFilteredCareers] =
+    useState([]);
+
   const [search, setSearch] = useState("");
+  const [loading, setLoading] = useState(true);
 
-  const fetchContacts = async () => {
+  useEffect(() => {
+    fetchCareers();
+  }, []);
+
+  const fetchCareers = async () => {
     try {
       const res = await fetch(
-        "http://localhost:5000/api/contact"
+        "http://localhost:5000/api/career"
       );
 
       const data = await res.json();
-      console.log("CONTACT API:", data);
 
-
-      setContacts(data);
-      setFilteredContacts(data);
-    } catch (err) {
-      console.error(err);
+      setCareers(data);
+      setFilteredCareers(data);
+    } catch (error) {
+      console.error(error);
     } finally {
       setLoading(false);
     }
   };
 
   useEffect(() => {
-    fetchContacts();
-  }, []);
-
-  useEffect(() => {
-    const filtered = contacts.filter((contact) =>
-      `${contact.name} ${contact.email} ${contact.phone}`
+    const filtered = careers.filter((item) =>
+      `${item.name} ${item.email} ${item.position}`
         .toLowerCase()
         .includes(search.toLowerCase())
     );
 
-    setFilteredContacts(filtered);
-  }, [search, contacts]);
+    setFilteredCareers(filtered);
+  }, [search, careers]);
 
-  const deleteContact = async (id) => {
-    const confirmDelete = window.confirm(
-      "Delete this enquiry?"
-    );
+  const deleteCareer = async (id) => {
+    const confirmDelete =
+      window.confirm(
+        "Delete this application?"
+      );
 
     if (!confirmDelete) return;
 
     try {
       const res = await fetch(
-        `http://localhost:5000/api/contact/${id}`,
+        `http://localhost:5000/api/career/${id}`,
         {
           method: "DELETE",
         }
       );
 
       if (res.ok) {
-        setContacts((prev) =>
+        setCareers((prev) =>
           prev.filter((item) => item._id !== id)
         );
       }
-    } catch (err) {
-      console.error(err);
+    } catch (error) {
+      console.error(error);
     }
   };
 
   return (
-    <div className="contacts-page">
+    <div className="career-page">
 
-      <div className="contacts-header">
-        <h1>Contact Enquiries</h1>
+      <div className="career-header">
+        <h1>Career Applications</h1>
         <p>
-          {contacts.length} Total Contacts
+          {careers.length} Total Applications
         </p>
       </div>
 
-      <div className="contact-stat-card">
+      <div className="career-stat-card">
 
-        <div className="contact-stat-icon">
-          <Mail size={22} />
+        <div className="career-stat-icon">
+          <Briefcase size={22} />
         </div>
 
         <div>
-          <span>Total Enquiries</span>
-          <h2>{contacts.length}</h2>
+          <span>Total Applications</span>
+          <h2>{careers.length}</h2>
         </div>
 
       </div>
 
-      <div className="contact-search">
+      <div className="career-search">
 
         <Search size={18} />
 
         <input
           type="text"
-          placeholder="Search by name, email or phone..."
+          placeholder="Search candidate..."
           value={search}
           onChange={(e) =>
             setSearch(e.target.value)
@@ -112,32 +112,33 @@ export default function Contacts() {
 
       </div>
 
-      <div className="contact-table-card">
+      <div className="career-table-card">
 
         {loading ? (
           <div className="empty-state">
-            Loading Contacts...
+            Loading Applications...
           </div>
-        ) : filteredContacts.length === 0 ? (
+        ) : filteredCareers.length === 0 ? (
           <div className="empty-state">
-            No Contacts Found
+            No Applications Found
           </div>
         ) : (
           <table>
+
             <thead>
               <tr>
                 <th>NAME</th>
                 <th>EMAIL</th>
-                <th>PHONE</th>
-                <th>SERVICE</th>
+                <th>POSITION</th>
                 <th>DATE</th>
                 <th>ACTION</th>
               </tr>
             </thead>
 
             <tbody>
-              {filteredContacts.map((contact) => (
-                <tr key={contact._id}>
+
+              {filteredCareers.map((item) => (
+                <tr key={item._id}>
 
                   <td>
                     <div className="user-cell">
@@ -145,42 +146,47 @@ export default function Contacts() {
                         <User size={16} />
                       </div>
 
-                      {contact.name}
+                      {item.name}
                     </div>
                   </td>
 
-                  <td>{contact.email}</td>
-
-                  <td>{contact.phone}</td>
+                  <td>
+                    <div className="email-cell">
+                      <Mail size={14} />
+                      {item.email}
+                    </div>
+                  </td>
 
                   <td>
-                    <span className="service-badge">
-                      {contact.service}
+                    <span className="position-badge">
+                      {item.position}
                     </span>
                   </td>
 
                   <td>
                     {new Date(
-                      contact.createdAt
+                      item.createdAt
                     ).toLocaleDateString()}
                   </td>
 
                   <td>
+
                     <button
                       className="delete-btn"
                       onClick={() =>
-                        deleteContact(
-                          contact._id
-                        )
+                        deleteCareer(item._id)
                       }
                     >
                       <Trash2 size={16} />
                     </button>
+
                   </td>
 
                 </tr>
               ))}
+
             </tbody>
+
           </table>
         )}
 

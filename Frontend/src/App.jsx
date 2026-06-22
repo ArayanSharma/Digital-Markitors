@@ -47,6 +47,7 @@ import WebsiteDev from "./Pages/WebsiteDev"
 import Login from "./Pages/admin/Login";
 import Dashboard from "./Pages/admin/Dashboard";
 import Contacts from "./Pages/admin/Contacts";
+import CareerAdmin from "./Pages/admin/A-Carrer";
 import Banner from "./Pages/admin/Banner";
 
 import Reseller from "./Pages/Reseller"
@@ -101,14 +102,10 @@ function App() {
 
         <Route path="Reseller" element={<Reseller />} />
         
-
-
-
-
-
-
-
       </Route>
+
+
+      
 
       {/* Login */}
       <Route path="/login" element={<Login />} />
@@ -118,6 +115,7 @@ function App() {
         <Route index element={<Dashboard />} />
         <Route path="contacts" element={<Contacts />} />
         <Route path="banner" element={<Banner />} />
+        <Route path="career" element={<CareerAdmin />} />
       </Route>
 
     </Routes>
