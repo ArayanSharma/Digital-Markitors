@@ -16,38 +16,39 @@ export default function Contacts() {
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState("");
 
-  const fetchContacts = async () => {
-    try {
-      const res = await fetch(
-        "http://localhost:5000/api/contact"
-      );
+const fetchContacts = async () => {
+  try {
+    const res = await fetch(
+      "http://localhost:5000/api/contact"
+    );
 
-      const data = await res.json();
-      console.log("CONTACT API:", data);
+    const data = await res.json();
 
+    console.log("CONTACT API:", data);
 
-      setContacts(data);
-      setFilteredContacts(data);
-    } catch (err) {
-      console.error(err);
-    } finally {
-      setLoading(false);
-    }
-  };
+    setContacts(data.contacts || []);
+    setFilteredContacts(data.contacts || []);
+
+  } catch (err) {
+    console.error(err);
+  } finally {
+    setLoading(false);
+  }
+};
 
   useEffect(() => {
     fetchContacts();
   }, []);
 
-  useEffect(() => {
-    const filtered = contacts.filter((contact) =>
-      `${contact.name} ${contact.email} ${contact.phone}`
-        .toLowerCase()
-        .includes(search.toLowerCase())
-    );
+useEffect(() => {
+  const filtered = contacts.filter((contact) =>
+    `${contact.name} ${contact.email} ${contact.phone}`
+      .toLowerCase()
+      .includes(search.toLowerCase())
+  );
 
-    setFilteredContacts(filtered);
-  }, [search, contacts]);
+  setFilteredContacts(filtered);
+}, [search, contacts]);
 
   const deleteContact = async (id) => {
     const confirmDelete = window.confirm(
@@ -136,7 +137,9 @@ export default function Contacts() {
             </thead>
 
             <tbody>
-              {filteredContacts.map((contact) => (
+              {Array.isArray(filteredContacts) &&
+              filteredContacts.map((contact) => (
+              
                 <tr key={contact._id}>
 
                   <td>

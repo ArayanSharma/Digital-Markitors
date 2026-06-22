@@ -1,9 +1,6 @@
+import { Outlet } from "react-router-dom";
 import Sidebar from "../Components/Sidebar";
 import Navbar from "../Components/Navbar";
-import Dashboard from "../Pages/admin/Dashboard";
-
-
-import { Contact } from "lucide-react";
 
 export default function DashboardLayout() {
   return (
@@ -19,8 +16,10 @@ export default function DashboardLayout() {
       >
         <Navbar />
 
-        {/* page content */}
-      
+        <div style={{ padding: "24px" }}>
+          <Outlet />
+        </div>
+
       </div>
     </>
   );

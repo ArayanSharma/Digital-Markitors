@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 
 import Button from "../Button";
 
-import heroImg from "../../assets/a.jpeg";
+import heroImg from "../../assets/a.png";
 import graphImg from "../../assets/graph-l.webp";
 import seoRimg from "../../assets/real-seo-result.webp";
 

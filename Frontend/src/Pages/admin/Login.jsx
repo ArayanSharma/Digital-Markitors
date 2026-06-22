@@ -2,65 +2,98 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../../Styles/Login.css";
 
-function Login() {
+export default function Login() {
   const navigate = useNavigate();
 
-  const [formData, setFormData] = useState({
-    email: "",
-    password: "",
-  });
-
-  const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
-  };
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    
-    if (
-      formData.email === "admin@gmail.com" &&
-      formData.password === "123456"
-    ) {
-      localStorage.setItem("adminToken", "loggedin");
-      navigate("/admin");
-    } else {
-      alert("Invalid Credentials");
-    }
+    // Your API login here
+
+    navigate("/admin");
   };
 
   return (
-    <div className="login-page">
-      <div className="login-card">
-        <h1>Admin Login</h1>
+    <div className="login-container">
+      <div className="login-left">
+        <div className="overlay"></div>
 
-        <form onSubmit={handleSubmit}>
-          <input
-            type="email"
-            name="email"
-            placeholder="Enter Email"
-            value={formData.email}
-            onChange={handleChange}
-          />
+        <div className="left-content">
+          <div className="brand">
+            <div className="logo">D</div>
 
-          <input
-            type="password"
-            name="password"
-            placeholder="Enter Password"
-            value={formData.password}
-            onChange={handleChange}
-          />
+            <div>
+              <h1>Digicore</h1>
+              <p>Digital Marketing Agency</p>
+            </div>
+          </div>
 
-          <button type="submit">
-            Login
-          </button>
-        </form>
+          <h2>
+            Grow Brands With
+            <span> Smart Marketing</span>
+          </h2>
+
+          <p>
+            Manage SEO campaigns, social media,
+            analytics, leads and clients from
+            one powerful dashboard.
+          </p>
+
+          <div className="stats">
+            <div>
+              <h3>250+</h3>
+              <span>Projects</span>
+            </div>
+
+            <div>
+              <h3>98%</h3>
+              <span>Success Rate</span>
+            </div>
+
+            <div>
+              <h3>50K+</h3>
+              <span>Leads Generated</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="login-right">
+        <div className="login-card">
+          <h2>Admin Login</h2>
+
+          <p>
+            Welcome back to Digicore Dashboard
+          </p>
+
+          <form onSubmit={handleSubmit}>
+            <input
+              type="email"
+              placeholder="Email Address"
+              value={email}
+              onChange={(e) =>
+                setEmail(e.target.value)
+              }
+            />
+
+            <input
+              type="password"
+              placeholder="Password"
+              value={password}
+              onChange={(e) =>
+                setPassword(e.target.value)
+              }
+            />
+
+            <button type="submit">
+              Login to Dashboard
+            </button>
+          </form>
+        </div>
       </div>
     </div>
   );
 }
-
-export default Login;

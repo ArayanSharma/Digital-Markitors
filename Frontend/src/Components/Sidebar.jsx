@@ -34,11 +34,7 @@ icon: <Mail size={18} />,
 },
 
 
-{
-label: "Settings",
-path: "/admin/settings",
-icon: <Settings size={18} />,
-},
+
 ];
 
 export default function Sidebar() {
@@ -87,25 +83,7 @@ return ( <aside className="sidebar">
 
   <div className="sidebar-bottom">
 
-    <div className="upgrade-card">
-
-      <img
-        src="/upgrade.png"
-        alt="upgrade"
-      />
-
-      <h4>Upgrade to Pro</h4>
-
-      <p>
-        Unlock more features and
-        get maximum control.
-      </p>
-
-      <button>
-        Upgrade Now
-      </button>
-
-    </div>
+  
 
     <div className="sidebar-footer">
 

@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 
 import Button from "../Button";
 
-import heroImg from "../../assets/a.png";
+import heroImg from "../../assets/BannerImg/SEOResults.png";
 
 
 const Hero2 = () => {

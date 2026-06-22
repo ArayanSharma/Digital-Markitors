@@ -21,22 +21,24 @@ export default function Career() {
     fetchCareers();
   }, []);
 
-  const fetchCareers = async () => {
-    try {
-      const res = await fetch(
-        "http://localhost:5000/api/career"
-      );
+const fetchCareers = async () => {
+  try {
+    const res = await fetch(
+      "http://localhost:5000/api/career"
+    );
 
-      const data = await res.json();
+    const data = await res.json();
 
-      setCareers(data);
-      setFilteredCareers(data);
-    } catch (error) {
-      console.error(error);
-    } finally {
-      setLoading(false);
-    }
-  };
+    console.log("CAREER API:", data);
+
+    setCareers(data.careers || []);
+    setFilteredCareers(data.careers || []);
+  } catch (error) {
+    console.error(error);
+  } finally {
+    setLoading(false);
+  }
+};
 
   useEffect(() => {
     const filtered = careers.filter((item) =>

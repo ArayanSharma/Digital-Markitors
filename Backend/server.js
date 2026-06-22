@@ -17,11 +17,11 @@ app.use(express.json());
 
 
 app.use("/api/contact", contactRoutes);
+
+
+
 app.use("/api/career", careerRoutes);
-app.use(
-  "/uploads",
-  express.static("uploads")
-);
+app.use("/uploads", express.static("uploads"));
 
 
 app.get("/", (req, res) => {

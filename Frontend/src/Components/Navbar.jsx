@@ -1,7 +1,5 @@
 import { useState, useRef, useEffect } from "react";
 import {
-Search,
-Bell,
 ChevronDown,
 LogOut,
 User,
@@ -59,21 +57,6 @@ return ( <header className="navbar">
 
   <div className="navbar-right">
 
-    <div className="search-box">
-      <Search size={18} />
-      <input
-        type="text"
-        placeholder="Search here..."
-      />
-    </div>
-
-    <button className="notification-btn">
-      <Bell size={20} />
-
-      <span className="notification-badge">
-        3
-      </span>
-    </button>
 
     <div
       className="user-dropdown"
