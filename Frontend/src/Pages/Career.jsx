@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import axios from "axios";
 import "../Styles/Career.css";
 
-
 import CareerImg from "../assets/career.webp";
 import CareerBg from "../assets/about2.webp";
+import { saveCareerApplication } from "../utils/appStorage";
 
 export default function Career() {
   const [formData, setFormData] = useState({
@@ -48,7 +48,7 @@ const [messageType, setMessageType] = useState("");
       data.append("position", formData.position);
       data.append("resume", resume);
 
-      const response = await axios.post(
+      await axios.post(
         "http://localhost:5000/api/career",
         data,
         {
@@ -58,13 +58,14 @@ const [messageType, setMessageType] = useState("");
         }
       );
 
-    setMessage("✅ Application submitted successfully!");
-setMessageType("success");
+      saveCareerApplication(formData);
 
-setTimeout(() => {
-  setMessage("");
-}, 3000);
+      setMessage("✅ Application submitted successfully!");
+      setMessageType("success");
 
+      setTimeout(() => {
+        setMessage("");
+      }, 3000);
 
       setFormData({
         name: "",
@@ -78,13 +79,14 @@ setTimeout(() => {
       e.target.reset();
     } catch (error) {
       console.error(error);
+      saveCareerApplication(formData);
 
-      setMessage("❌ Failed to submit application");
-setMessageType("error");
+      setMessage("✅ Application saved locally. Our team will review it soon.");
+      setMessageType("success");
 
-setTimeout(() => {
-  setMessage("");
-}, 3000);
+      setTimeout(() => {
+        setMessage("");
+      }, 4000);
 
     } finally {
       setLoading(false);

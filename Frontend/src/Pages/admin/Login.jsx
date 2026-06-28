@@ -11,9 +11,16 @@ export default function Login() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Your API login here
+    const normalizedEmail = email.trim().toLowerCase();
+    const normalizedPassword = password.trim();
 
-    navigate("/admin");
+    if (normalizedEmail === "admin@digicore.com" && normalizedPassword === "admin123") {
+      localStorage.setItem("token", "demo-admin-token");
+      navigate("/admin");
+      return;
+    }
+
+    alert("Use admin@digicore.com / admin123 to sign in.");
   };
 
   return (

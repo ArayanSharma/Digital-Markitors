@@ -7,7 +7,8 @@ import {
   Mail,
 } from "lucide-react";
 
-import "../../Styles/A-Career.css"
+import "../../Styles/A-Career.css";
+import { loadStoredCareers } from "../../utils/appStorage";
 
 export default function Career() {
   const [careers, setCareers] = useState([]);
@@ -23,18 +24,25 @@ export default function Career() {
 
 const fetchCareers = async () => {
   try {
+    const localCareers = loadStoredCareers();
     const res = await fetch(
       "http://localhost:5000/api/career"
     );
 
     const data = await res.json();
 
-    console.log("CAREER API:", data);
+    const serverCareers = Array.isArray(data.careers) ? data.careers : [];
+    const mergedCareers = [...localCareers, ...serverCareers].filter(
+      (item, index, self) => self.findIndex((entry) => entry._id === item._id) === index
+    );
 
-    setCareers(data.careers || []);
-    setFilteredCareers(data.careers || []);
+    setCareers(mergedCareers);
+    setFilteredCareers(mergedCareers);
   } catch (error) {
     console.error(error);
+    const localCareers = loadStoredCareers();
+    setCareers(localCareers);
+    setFilteredCareers(localCareers);
   } finally {
     setLoading(false);
   }

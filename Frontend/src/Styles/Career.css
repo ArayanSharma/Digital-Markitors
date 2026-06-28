@@ -206,16 +206,40 @@
     width: 100%;
   }
 
+  .career-left {
+    padding: 40px 24px;
+  }
+
   .career-right {
     min-height: 600px;
   }
 
   .formbg {
-    width: 90%;
+    width: min(92%, 500px);
+    padding: 24px;
   }
 
   .form-row {
     grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 576px) {
+  .career-left h2 {
+    font-size: 28px;
+  }
+
+  .formbg {
+    width: calc(100% - 24px);
+    padding: 20px;
+  }
+
+  .formbg h3 {
+    font-size: 24px;
+  }
+
+  .formbg button {
+    padding: 12px;
   }
 }
 

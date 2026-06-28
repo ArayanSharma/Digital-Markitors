@@ -1,16 +1,121 @@
-# React + Vite
+📦 Digital-Markitors/
+│
+├── 📁 Backend/
+│   ├── 📁 Config/
+│   │   └── 📄 db.js
+│   ├── 📁 Controller/
+│   │   ├── 📄 careerController.js
+│   │   └── 📄 contactController.js
+│   ├── 📁 middleware/
+│   │   └── 📄 upload.js
+│   ├── 📁 Model/
+│   │   ├── 📄 Career.js
+│   │   └── 📄 Contact.js
+│   ├── 📁 routes/
+│   │   ├── 📄 careerRoutes.js
+│   │   └── 📄 contactRoutes.js
+│   ├── 📁 uploads/
+│   ├── 📄 server.js
+│   └── 📄 package.json
+│
+├── 📁 Frontend/
+│   ├── 📁 public/
+│   ├── 📁 src/
+│   │   ├── 📁 assets/
+│   │   ├── 📁 Components/
+│   │   │   ├── 📁 Cards/
+│   │   │   ├── 📁 Sections/
+│   │   │   ├── 🧩 Button.jsx
+│   │   │   ├── 🧩 Footer.jsx
+│   │   │   ├── 🧩 Header.jsx
+│   │   │   ├── 🧩 Navbar.jsx
+│   │   │   └── 🧩 Sidebar.jsx
+│   │   ├── 📁 layout/
+│   │   │   ├── 🧩 AdminLayout.jsx
+│   │   │   └── 🧩 UserLayout.jsx
+│   │   ├── 📁 Pages/
+│   │   │   ├── 📁 admin/
+│   │   │   ├── 📄 About.jsx
+│   │   │   ├── 📄 Career.jsx
+│   │   │   ├── 📄 Contact.jsx
+│   │   │   └── 📄 Home.jsx
+│   │   ├── 📁 Styles/
+│   │   ├── 📄 App.jsx
+│   │   ├── 🎨 App.css
+│   │   ├── 🎨 index.css
+│   │   └── 📄 main.jsx
+│   ├── 📄 package.json
+│   ├── ⚙️ vite.config.js
+│   └── ⚙️ tailwind.config.js
+│
+└── 📘 README.md
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-Currently, two official plugins are available:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+🧭 Project Workflow
 
-## React Compiler
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+The project has two parts that work together:
 
-## Expanding the ESLint configuration
+🎨 1. Frontend – what users see and interact with (the website)
+⚙️ 2. Backend – what handles data behind the scenes (forms, database, admin)
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+
+
+Step 1: Backend goes live first-->
+
+The backend server starts up — this is what stores and processes data (like contact form submissions or job applications).
+
+Step 2: Frontend goes live next -->
+      
+      The website (frontend) starts up and connects to that backend so it can send and receive data.
+
+
+Step 3: Build/update the UI-->
+
+      Any visual changes — new pages, buttons, sections — happen on the frontend side.
+
+Step 4: Connect forms to backend-->
+
+     When a user submits a form (Contact, Career, etc.), the frontend sends that data to the backend, which saves it.
+
+
+Step 5: Test everything--> 
+
+     Before going live, we test the Contact form, Career form, and Admin panel to confirm data flows correctly end-to-end.
+
+
+
+🔄 3. Development Flow
+
+🟢 Run the backend server.
+🟢 Run the frontend development server.
+🎨 Make UI changes in the frontend.
+🔗 Connect frontend forms to backend APIs.
+✅ Test contact, career, and admin flows.
+
+
+📦 4. Typical File Purpose
+
+Folder / File                                   Purpose
+
+📄 Pages/                 -                   Page-level UI
+🧩 Components/            -                Reusable UI blocks
+🎨 Styles/                -                    CSS files
+🌐 routes/                -                   API endpoints
+🧠 Controller/            -                  Business logic
+🗄️ Model/                 -                  Database schema 
+
+
+🧪 Testing Checklist
+
+ 1.Contact form submits and saves to DB
+ 2.Career form submits and saves to DB
+ 3.File uploads work (uploads/ folder)
+ 4.Admin pages load and display data correctly
+
+
+
+💬 Summary-
+
+ The frontend is the visible website, the backend stores and processes the data, and they're connected through APIs. We run both servers together, build/test the UI, and confirm forms (Contact, Career, Admin) properly save data to the backend.

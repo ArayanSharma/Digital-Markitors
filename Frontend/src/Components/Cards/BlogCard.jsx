@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 import "../../Styles/BlogCard.css";
 
@@ -25,6 +26,8 @@ const blogs = [
 ];
 
 const LatestBlogs = () => {
+  const navigate = useNavigate();
+
   return (
     <section className="latest-blogs">
 
@@ -41,7 +44,7 @@ const LatestBlogs = () => {
             Here are some of ours
           </h6>
 
-          <button className="view-blog-btn">
+          <button className="view-blog-btn" onClick={() => navigate("/seo-results")}>
             View All Blogs
           </button>
 
@@ -76,7 +79,7 @@ const LatestBlogs = () => {
 
                 <p>{blog.desc}</p>
 
-                <button className="read-more-btn">
+                <button className="read-more-btn" onClick={() => navigate("/seo-results")}>
                   Read More
                 </button>
 

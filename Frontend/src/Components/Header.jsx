@@ -331,13 +331,13 @@ const [industryOpen, setIndustryOpen] = useState(false);
     </div>
   </div>
 </li>              <li>
-                <Link to="/blog" className="nav-link" onClick={closeMenu}>
+                <Link to="/seo-results" className="nav-link" onClick={closeMenu}>
                   Blog
                 </Link>
               </li>
 
               <li>
-                <Link to="/contact" className="nav-link" onClick={closeMenu}> 
+                <Link to="/contact" className="nav-link" onClick={closeMenu}>
                   Contact
                 </Link>
               </li>

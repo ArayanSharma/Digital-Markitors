@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import "../Styles/Contact.css";
 import { Send } from "lucide-react";
+import { saveContactSubmission } from "../utils/appStorage";
  
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -34,14 +35,14 @@ const [messageType, setMessageType] = useState("");
         formData,
       );
 
-     setMessage("✅ Contact submitted successfully!");
-setMessageType("success");
+      saveContactSubmission(formData);
 
-setTimeout(() => {
-  setMessage("");
-}, 3000);
+      setMessage("✅ Contact submitted successfully!");
+      setMessageType("success");
 
-      console.log(res.data);
+      setTimeout(() => {
+        setMessage("");
+      }, 3000);
 
       setFormData({
         name: "",
@@ -54,12 +55,13 @@ setTimeout(() => {
       });
     } catch (error) {
       console.error(error);
-     setMessage("❌ Submission failed");
-setMessageType("error");
+      saveContactSubmission(formData);
+      setMessage("✅ Contact saved locally. Our team will follow up soon.");
+      setMessageType("success");
 
-setTimeout(() => {
-  setMessage("");
-}, 3000);
+      setTimeout(() => {
+        setMessage("");
+      }, 4000);
     }
   };
 

@@ -235,16 +235,38 @@
 }
 
 @media (max-width: 576px) {
+  .dm-contact-section {
+    padding: 100px 16px 60px;
+  }
+
+  .dm-contact-container {
+    gap: 32px;
+  }
+
   .dm-contact-heading h1 {
-    font-size: 38px;
+    font-size: 32px;
   }
 
   .dm-contact-left h2 {
-    font-size: 38px;
+    font-size: 32px;
   }
 
   .dm-contact-email {
     font-size: 18px;
+  }
+
+  .dm-form-group input,
+  .dm-form-group select,
+  .dm-form-group textarea {
+    padding: 13px 16px;
+  }
+
+  .privacy-box {
+    padding: 16px 18px;
+  }
+
+  .privacy-label {
+    gap: 12px;
   }
 }
 

@@ -3,12 +3,11 @@ import {
   Search,
   Trash2,
   Mail,
-  Phone,
   User,
-  MoreVertical,
 } from "lucide-react";
 
 import "../../Styles/AdContact.css";
+import { loadStoredContacts } from "../../utils/appStorage";
 
 export default function Contacts() {
   const [contacts, setContacts] = useState([]);
@@ -18,19 +17,25 @@ export default function Contacts() {
 
 const fetchContacts = async () => {
   try {
+    const localContacts = loadStoredContacts();
     const res = await fetch(
       "http://localhost:5000/api/contact"
     );
 
     const data = await res.json();
 
-    console.log("CONTACT API:", data);
+    const serverContacts = Array.isArray(data.contacts) ? data.contacts : [];
+    const mergedContacts = [...localContacts, ...serverContacts].filter(
+      (contact, index, self) => self.findIndex((item) => item._id === contact._id) === index
+    );
 
-    setContacts(data.contacts || []);
-    setFilteredContacts(data.contacts || []);
-
+    setContacts(mergedContacts);
+    setFilteredContacts(mergedContacts);
   } catch (err) {
     console.error(err);
+    const localContacts = loadStoredContacts();
+    setContacts(localContacts);
+    setFilteredContacts(localContacts);
   } finally {
     setLoading(false);
   }

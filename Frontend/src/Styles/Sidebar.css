@@ -240,6 +240,10 @@ MOBILE
 
 .sidebar {
 width: 80px;
+position: sticky;
+left: 0;
+top: 0;
+min-height: 100vh;
 }
 
 .sidebar-logo h3,
@@ -257,5 +261,28 @@ justify-content: center;
 
 .logo-box {
 margin: auto;
+}
+}
+
+@media (max-width: 768px) {
+.sidebar {
+width: 100%;
+min-height: auto;
+position: static;
+border-right: none;
+border-bottom: 1px solid rgba(255,255,255,.08);
+}
+
+.sidebar-menu {
+padding: 10px 12px 18px;
+}
+
+.sidebar-link {
+justify-content: flex-start;
+padding: 12px 14px;
+}
+
+.sidebar-logo {
+justify-content: center;
 }
 }
