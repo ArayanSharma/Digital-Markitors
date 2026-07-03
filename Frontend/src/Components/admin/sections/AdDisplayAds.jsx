@@ -34,11 +34,7 @@ export default function AdDisplayAds() {
     backgroundImageUrl: "",
   });
 
-  const [videoSection, setVideoSection] = useState({
-    title: "Optional Video Section",
-    description: "Enter a video URL if you have one for the Display Ads page.",
-    videoUrl: "",
-  });
+
 
   const [aboutSection, setAboutSection] = useState({
     title: "Best Google Display Ads Management Services Agency",
@@ -147,71 +143,7 @@ export default function AdDisplayAds() {
     ],
   });
 
-  const [industriesSection, setIndustriesSection] = useState({
-    heading: "INDUSTRY WE WORK WITH",
-    industries: [
-      {
-        id: uid(),
-        imageUrl: "",
-        title: "Healthcare",
-        desc:
-          "We provide specialized digital marketing solutions to hospitals, clinics and other health institutions to help them build trust and grow their brand.",
-        readMoreLink: "",
-      },
-      {
-        id: uid(),
-        imageUrl: "",
-        title: "E-Commerce",
-        desc:
-          "We help online retailers and marketplaces with robust strategies to elevate their online presence and turn casual browsers into loyal customers.",
-        readMoreLink: "",
-      },
-      {
-        id: uid(),
-        imageUrl: "",
-        title: "Travel",
-        desc:
-          "We offer a complete suite of digital marketing solutions for travel brands, helping them showcase their offerings in a unique way and drive bookings.",
-        readMoreLink: "",
-      },
-    ],
-  });
 
-  const [caseStudiesSection, setCaseStudiesSection] = useState({
-    heading: "Case Studies",
-    caseStudies: [
-      {
-        id: uid(),
-        title: "The Moto Men – High-Intent Google Ads Leads with 12.5% Conversion",
-        imageUrl: "",
-        descriptions: [
-          "For The Moto Men, we executed a Noida-focused PPC campaign to drive high-intent enquiries for premium car detailing services. Nearly 80% of the enquiries were highly relevant, aligned with both location and service intent. From these qualified enquiries, the campaign achieved a conversion rate of up to 12.5%, delivering consistent and measurable business impact. The strategy focused on precise location targeting, intent-driven keywords, and continuous optimisation to maintain lead quality while minimising wasted ad spend.",
-        ],
-        viewCaseStudyLink: "",
-        viewLatestWorkLink: "",
-      },
-      {
-        id: uid(),
-        title: "Trusted Hair Transplant Clinic – PPC Performance Case Study (14.52% Conversion)",
-        imageUrl: "",
-        descriptions: [
-          "We executed a high-intent Google Search Ads campaign for a hair transplant clinic, targeting users actively searching for treatment-related queries. The campaign delivered a conversion rate of 14.52%, indicating strong intent alignment and effective ad optimisation. The strategy focused on quality enquiries and consistent performance rather than inflated traffic, helping the clinic generate relevant leads and measurable growth.",
-        ],
-        viewCaseStudyLink: "",
-        viewLatestWorkLink: "",
-      },
-      {
-        id: uid(),
-        title: "IOD Global – Display Campaign Case Study",
-        imageUrl: "",
-        descriptions: [
-          "For IOD Global, we executed a Google Display Campaign focused on increasing brand visibility and recall among the right audience segments. The campaign was designed to build consistent exposure through targeted placements and audience-based targeting. The strategy prioritised relevant impressions, controlled reach, and brand presence. Continuous optimisation ensured stable performance and efficient delivery aligned with the brand’s objectives while avoiding irrelevant traffic.",
-        ],
-        viewCaseStudyLink: "",
-        viewLatestWorkLink: "",
-      },
-    ],
-  });
 
   const [whyChooseDigicoreSection, setWhyChooseDigicoreSection] = useState({
     title: "Why choose Digicore Inc. for Google Display ad management services?",
@@ -268,34 +200,7 @@ export default function AdDisplayAds() {
     setPerformanceSection({ ...performanceSection, items: next });
   };
 
-  // caseStudiesSection.caseStudies
-  const updateCaseStudy = (id, field, value) =>
-    setCaseStudiesSection({
-      ...caseStudiesSection,
-      caseStudies: caseStudiesSection.caseStudies.map((item) =>
-        item.id === id ? { ...item, [field]: value } : item
-      ),
-    });
-  const addCaseStudy = () =>
-    setCaseStudiesSection({
-      ...caseStudiesSection,
-      caseStudies: [
-        ...caseStudiesSection.caseStudies,
-        {
-          id: uid(),
-          title: "",
-          imageUrl: "",
-          descriptions: [],
-          viewCaseStudyLink: "",
-          viewLatestWorkLink: "",
-        },
-      ],
-    });
-  const removeCaseStudy = (id) =>
-    setCaseStudiesSection({
-      ...caseStudiesSection,
-      caseStudies: caseStudiesSection.caseStudies.filter((item) => item.id !== id),
-    });
+
 
   // whyChooseDigicoreSection.points (plain string array)
   const updatePoint = (index, value) => {
@@ -342,7 +247,6 @@ export default function AdDisplayAds() {
     }
     if (data) {
       if (data.banner) setBanner(data.banner);
-      if (data.videoSection) setVideoSection(data.videoSection);
       if (data.aboutSection) setAboutSection(data.aboutSection);
       if (data.visibilitySection) setVisibilitySection(data.visibilitySection);
       if (data.performanceSection) setPerformanceSection(data.performanceSection);
@@ -350,8 +254,6 @@ export default function AdDisplayAds() {
       if (data.servicesSection) setServicesSection(data.servicesSection);
       if (data.whyChooseSection) setWhyChooseSection(data.whyChooseSection);
       if (data.timelineSection) setTimelineSection(data.timelineSection);
-      if (data.industriesSection) setIndustriesSection(data.industriesSection);
-      if (data.caseStudiesSection) setCaseStudiesSection(data.caseStudiesSection);
       if (data.whyChooseDigicoreSection) setWhyChooseDigicoreSection(data.whyChooseDigicoreSection);
       if (data.faqSection) setFaqSection(data.faqSection);
     }
@@ -368,7 +270,6 @@ export default function AdDisplayAds() {
     e?.preventDefault();
     const payload = {
       banner,
-      videoSection,
       aboutSection,
       visibilitySection,
       performanceSection,
@@ -376,8 +277,6 @@ export default function AdDisplayAds() {
       servicesSection,
       whyChooseSection,
       timelineSection,
-      industriesSection,
-      caseStudiesSection,
       whyChooseDigicoreSection,
       faqSection,
     };
@@ -419,17 +318,6 @@ export default function AdDisplayAds() {
           <ImageInput label="Banner Background Image" value={banner.backgroundImageUrl} onChange={(e) => setBanner({ ...banner, backgroundImageUrl: e.target.value })} />
         </Section>
 
-        <Section title="2. Optional Video Section" open={openSection === "videoSection"} onToggle={() => toggle("videoSection")}>
-          <Field label="Section Title">
-            <TextInput value={videoSection.title} onChange={(e) => setVideoSection({ ...videoSection, title: e.target.value })} />
-          </Field>
-          <Field label="Video URL">
-            <TextInput value={videoSection.videoUrl} onChange={(e) => setVideoSection({ ...videoSection, videoUrl: e.target.value })} />
-          </Field>
-          <Field label="Video Description">
-            <TextArea rows={4} value={videoSection.description} onChange={(e) => setVideoSection({ ...videoSection, description: e.target.value })} />
-          </Field>
-        </Section>
 
         <Section title="3. About Section" open={openSection === "aboutSection"} onToggle={() => toggle("aboutSection")}>
           <Field label="Heading">
@@ -527,59 +415,6 @@ export default function AdDisplayAds() {
           />
         </Section>
 
-        <Section title="10. Industries Section" open={openSection === "industriesSection"} onToggle={() => toggle("industriesSection")}>
-          <Field label="Heading">
-            <TextInput value={industriesSection.heading} onChange={(e) => setIndustriesSection({ ...industriesSection, heading: e.target.value })} />
-          </Field>
-          <LeadForm
-            title="Industry Cards"
-            addLabel="Add Industry"
-            items={industriesSection.industries}
-            onChange={(next) => setIndustriesSection({ ...industriesSection, industries: next })}
-            fields={[
-              { name: "imageUrl", label: "Image", type: "image" },
-              { name: "title", label: "Title", type: "text", required: true },
-              { name: "desc", label: "Description", type: "textarea", rows: 3 },
-              { name: "readMoreLink", label: "Read More Link", type: "text" },
-            ]}
-          />
-        </Section>
-
-        <Section title="11. Case Studies Section" open={openSection === "caseStudiesSection"} onToggle={() => toggle("caseStudiesSection")}>
-          <Field label="Section Heading">
-            <TextInput value={caseStudiesSection.heading} onChange={(e) => setCaseStudiesSection({ ...caseStudiesSection, heading: e.target.value })} />
-          </Field>
-          <div className="md:col-span-2 space-y-3">
-            <CardListHeader title="Case Study Cards" onAdd={addCaseStudy} />
-            {caseStudiesSection.caseStudies.map((item, index) => (
-              <div key={item.id} className="p-4 bg-bg-secondary rounded-2xl border border-brand-primary/15 space-y-3">
-                <div className="flex items-center justify-between gap-3">
-                  <span className="text-xs font-semibold text-text-muted">Case Study {index + 1}</span>
-                  <RemoveBtn onClick={() => removeCaseStudy(item.id)} />
-                </div>
-                <Field label="Title">
-                  <TextInput value={item.title} onChange={(e) => updateCaseStudy(item.id, "title", e.target.value)} />
-                </Field>
-                <ImageInput label="Image" value={item.imageUrl} onChange={(e) => updateCaseStudy(item.id, "imageUrl", e.target.value)} />
-                <Field label="Descriptions (separate paragraphs with a blank line)">
-                  <TextArea
-                    rows={5}
-                    value={item.descriptions.join("\n\n")}
-                    onChange={(e) =>
-                      updateCaseStudy(item.id, "descriptions", e.target.value.split(/\n\s*\n/).filter(Boolean))
-                    }
-                  />
-                </Field>
-                <Field label="View Case Study Link">
-                  <TextInput value={item.viewCaseStudyLink} onChange={(e) => updateCaseStudy(item.id, "viewCaseStudyLink", e.target.value)} />
-                </Field>
-                <Field label="View Our Latest Work Link">
-                  <TextInput value={item.viewLatestWorkLink} onChange={(e) => updateCaseStudy(item.id, "viewLatestWorkLink", e.target.value)} />
-                </Field>
-              </div>
-            ))}
-          </div>
-        </Section>
 
         <Section title="12. Why Choose Digicore Section" open={openSection === "whyChooseDigicoreSection"} onToggle={() => toggle("whyChooseDigicoreSection")}>
           <Field label="Heading">
