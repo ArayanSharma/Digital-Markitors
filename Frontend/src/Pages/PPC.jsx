@@ -734,35 +734,39 @@ Digicore Inc. is the top PPC company in Delhi and our PPC solutions are benefici
       <div className="why-left">
 
         <ul>
-
-          <li>
-            ✔   We have a team of seasoned professionals that tailors and monitors PPC campaigns
-          </li>
-
-          <li>
-            ✔  Our measurable results for all-sized business are aligned with the growth-first mindset
-          </li>
-
-          <li>
-            ✔ Transparency and clarity are maintained in our reporting system to keep clients ahead of their competitors
-          </li>
-
-          <li>
-            ✔ All our PPC strategies are result-driven and customized to ensure client-specific outcome
-          </li>
-
-          <li>
-            ✔ We employ future-ready and growth-driven approach for the success of all the PPC campaigns
-          </li>
-          <li>
-            ✔ We have served multiple industries and known for proven expertise to deliver top results through best PPC services
-          </li>
-          <li>
-            ✔ Our PPC services improve the performance, visibility and engagement rate of brands in a cost-effective manner
-          </li>
-          
-        
- 
+          {whyChooseDigicoreSection?.points && whyChooseDigicoreSection.points.length > 0 ? (
+            whyChooseDigicoreSection.points.map((point, index) => (
+              point && (
+                <li key={index}>
+                  ✔ {point}
+                </li>
+              )
+            ))
+          ) : (
+            <>
+              <li>
+                ✔   We have a team of seasoned professionals that tailors and monitors PPC campaigns
+              </li>
+              <li>
+                ✔  Our measurable results for all-sized business are aligned with the growth-first mindset
+              </li>
+              <li>
+                ✔ Transparency and clarity are maintained in our reporting system to keep clients ahead of their competitors
+              </li>
+              <li>
+                ✔ All our PPC strategies are result-driven and customized to ensure client-specific outcome
+              </li>
+              <li>
+                ✔ We employ future-ready and growth-driven approach for the success of all the PPC campaigns
+              </li>
+              <li>
+                ✔ We have served multiple industries and known for proven expertise to deliver top results through best PPC services
+              </li>
+              <li>
+                ✔ Our PPC services improve the performance, visibility and engagement rate of brands in a cost-effective manner
+              </li>
+            </>
+          )}
         </ul>
 
       </div>
@@ -771,7 +775,7 @@ Digicore Inc. is the top PPC company in Delhi and our PPC solutions are benefici
       <div className="why-right">
 
         <img
-          src={graphImg}
+          src={whyChooseDigicoreSection?.imageUrl || whyChooseDigicoreSection?.image || graphImg}
           alt="Graph"
         />
 

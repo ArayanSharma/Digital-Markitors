@@ -56,11 +56,6 @@ const initialData = {
     secondaryBtn: { text: "Our Services", link: "/services" },
     backgroundImageUrl: "",
   },
-  videoSection: {
-    title: "Optional Video Section",
-    description: "Enter a video URL if you have one for the PPC page.",
-    videoUrl: "",
-  },
   aboutSection: {
     title: "Best PPC Company in Delhi NCR",
     description: "",
@@ -105,21 +100,6 @@ const initialData = {
     ],
     imageUrl: "",
   },
-  industriesSection: {
-    heading: "Industry we work with",
-    industries: [
-      { imageUrl: "", title: "Healthcare", desc: "", readMoreLink: "" },
-    ],
-  },
-  caseStudies: [
-    {
-      title: "",
-      imageUrl: "",
-      descriptions: [""],
-      viewCaseStudyLink: "",
-      viewLatestWorkLink: "",
-    },
-  ],
   ppcManagementSection: {
     title: "HOW DO WE MANAGE PPC CAMPAIGNS",
     description: "",
@@ -135,6 +115,8 @@ const initialData = {
   whyChooseDigicoreSection: {
     title: "Why Choose Digicore Inc. as YOUR PPC AGENCY IN DELHI",
     description: "",
+    imageUrl: "",
+    points: [""],
   },
   faqSection: {
     title: "SEO AGENCY DELHI FAQS",
@@ -193,7 +175,6 @@ export default function AdPPC() {
     }
     if (d) {
       if (d.banner) setTop("banner", d.banner);
-      if (d.videoSection) setTop("videoSection", d.videoSection);
       if (d.aboutSection) setTop("aboutSection", d.aboutSection);
       if (d.visibilitySection) setTop("visibilitySection", d.visibilitySection);
       if (d.performanceSection) setTop("performanceSection", d.performanceSection);
@@ -201,8 +182,6 @@ export default function AdPPC() {
       if (d.services) setTop("services", d.services);
       if (d.whyChooseSection) setTop("whyChooseSection", d.whyChooseSection);
       if (d.timelineSection) setTop("timelineSection", d.timelineSection);
-      if (d.industriesSection) setTop("industriesSection", d.industriesSection);
-      if (d.caseStudies) setTop("caseStudies", d.caseStudies);
       if (d.ppcManagementSection) setTop("ppcManagementSection", d.ppcManagementSection);
       if (d.helpCardsSection) setTop("helpCardsSection", d.helpCardsSection);
       if (d.whyChooseDigicoreSection) setTop("whyChooseDigicoreSection", d.whyChooseDigicoreSection);
@@ -256,17 +235,6 @@ export default function AdPPC() {
           <ImageInput label="Banner Background Image" value={pageData.banner.backgroundImageUrl} onChange={(e) => updateSection("banner", "backgroundImageUrl", e.target.value)} />
         </Section>
 
-        <Section title="Optional Video Section" open={openSection === "video"} onToggle={() => toggle("video")}>
-          <Field label="Section Title">
-            <TextInput value={pageData.videoSection.title} onChange={(e) => updateSection("videoSection", "title", e.target.value)} />
-          </Field>
-          <Field label="Video URL">
-            <TextInput value={pageData.videoSection.videoUrl} onChange={(e) => updateSection("videoSection", "videoUrl", e.target.value)} placeholder="Enter video URL if available" />
-          </Field>
-          <Field label="Video Description">
-            <TextArea rows={4} value={pageData.videoSection.description} onChange={(e) => updateSection("videoSection", "description", e.target.value)} />
-          </Field>
-        </Section>
 
         <Section title="About Section" open={openSection === "about"} onToggle={() => toggle("about")}>
           <Field label="Heading">
@@ -377,39 +345,6 @@ export default function AdPPC() {
           />
         </Section>
 
-        <Section title="Industries Section" open={openSection === "industries"} onToggle={() => toggle("industries")}>
-          <Field label="Heading">
-            <TextInput value={pageData.industriesSection.heading} onChange={(e) => updateSection("industriesSection", "heading", e.target.value)} />
-          </Field>
-          <LeadForm
-            title="Industry Cards"
-            addLabel="Add Industry"
-            items={pageData.industriesSection.industries}
-            onChange={(next) => setList("industriesSection.industries", next)}
-            fields={[
-              { name: "imageUrl", label: "Image URL", type: "image" },
-              { name: "title", label: "Title", required: true },
-              { name: "desc", label: "Description", type: "textarea" },
-              { name: "readMoreLink", label: "Read More Link", placeholder: "Button link for Read More" },
-            ]}
-          />
-        </Section>
-
-        <Section title="Case Studies Section" open={openSection === "caseStudies"} onToggle={() => toggle("caseStudies")}>
-          <LeadForm
-            title="Case Study Cards"
-            addLabel="Add Case Study"
-            items={pageData.caseStudies}
-            onChange={(next) => setList("caseStudies", next)}
-            fields={[
-              { name: "title", label: "Title", required: true },
-              { name: "imageUrl", label: "Image URL", type: "image" },
-              { name: "descriptions", label: "Descriptions (one per line)", type: "multiline", placeholder: "Enter each paragraph on a new line", rows: 5 },
-              { name: "viewCaseStudyLink", label: "View Case Study Link", placeholder: "Link for View Case Study button" },
-              { name: "viewLatestWorkLink", label: "View Our Latest Work Link", placeholder: "Link for View Our Latest Work button" },
-            ]}
-          />
-        </Section>
 
         <Section title="PPC Management Section" open={openSection === "ppcManagement"} onToggle={() => toggle("ppcManagement")}>
           <Field label="Section Title">
@@ -454,6 +389,12 @@ export default function AdPPC() {
           <Field label="Description">
             <TextArea rows={6} value={pageData.whyChooseDigicoreSection.description} onChange={(e) => updateSection("whyChooseDigicoreSection", "description", e.target.value)} />
           </Field>
+          <ImageInput label="Why Choose Digicore Image" value={pageData.whyChooseDigicoreSection.imageUrl || ""} onChange={(e) => updateSection("whyChooseDigicoreSection", "imageUrl", e.target.value)} />
+          <StringList
+            title="Feature Bullet"
+            items={pageData.whyChooseDigicoreSection.points || []}
+            onChange={(next) => updateSection("whyChooseDigicoreSection", "points", next)}
+          />
         </Section>
 
         <Section title="FAQ Section" open={openSection === "faq"} onToggle={() => toggle("faq")}>
