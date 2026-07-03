@@ -94,6 +94,20 @@ const menuData = [
   },
   {
     type: "dropdown",
+    label: "Web Developement",
+    icon: FiTrendingUp,
+    children: [
+      { label: "Website Development", path: "/admin/page-editor/website-development" },
+      { label: "WordPress Development", path: "/admin/page-editor/wordpress-development" },
+      { label: "Shopify Development", path: "/admin/page-editor/shopify-development" },
+      { label: "Laravel Development", path: "/admin/page-editor/laravel-development" },
+      { label: "Woocommerce Development", path: "/admin/page-editor/woocommerce-development" },
+      { label: " Wix Development", path: "/admin/page-editor/Wix-Development" },
+      { label: "Website Maintenance Services", path: "/admin/page-editor/Website-Maintenance-Services" },
+    ],
+  },
+  {
+    type: "dropdown",
     label: "Industry",
     icon: FiGlobe,
     children: [

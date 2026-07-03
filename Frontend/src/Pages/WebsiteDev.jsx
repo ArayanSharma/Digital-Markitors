@@ -227,7 +227,12 @@ const [activeFAQ, setActiveFAQ] = useState(null);
     : services.map((title) => ({ title, image: webDesignImg }));
   const connectSection = c?.connectSection;
   const processHeader = c?.processHeader;
-  const displayProcessData = c?.processData?.length ? c.processData : processData;
+  const displayProcessData = c?.processData?.length
+    ? c.processData.map((item) => ({
+        ...item,
+        image: item.image ? resolveImage(item.image) : null,
+      }))
+    : processData;
   const testimonialHeader = c?.testimonialHeader;
   const displayTestimonials = c?.testimonials?.length
     ? c.testimonials.map((i) => ({ ...i, image: resolveImage(i.image) }))
@@ -238,6 +243,7 @@ const [activeFAQ, setActiveFAQ] = useState(null);
     ? c.faqData.map((item) => ({
         question: item.question,
         answer: item.isList ? item.answerList || [] : item.answerText,
+        image: item.image ? resolveImage(item.image) : null,
       }))
     : faqData;
 
@@ -434,29 +440,7 @@ const [activeFAQ, setActiveFAQ] = useState(null);
 </section>
 
       
-<section className="connect-section">
-  <div className="connect-overlay">
-    <div className="connect-container">
-      <div className="connect-content">
-        <h2>
-          Let's <span>{connectSection?.title || "connect"}</span>
-        </h2>
 
-        <p>
-          {connectSection?.description || "Need Dynamic Web Designing Solutions? Contact us to discuss your needs and business objectives"}
-        </p>
-      </div>
-
-      <form className="connect-form">
-        <input type="text" placeholder="Name" />
-        <input type="email" placeholder="Email" />
-        <input type="text" placeholder="Phone Number" />
-
-        <button type="submit">{connectSection?.buttonText || "SUBMIT"}</button>
-      </form>
-    </div>
-  </div>
-</section>
 
 <section className="process-section">
   <div className="container">
@@ -472,13 +456,17 @@ const [activeFAQ, setActiveFAQ] = useState(null);
 
     <div className="process-wrapper">
       <div className="process-image">
-        <img src={processImg} alt="Process" />
+        <img src={processHeader?.image ? resolveImage(processHeader.image) : processImg} alt="Process" />
       </div>
 
       <div className="process-content">
         {displayProcessData.map((item, index) => (
           <div className="process-item" key={item.id || index}>
-            <div className="process-icon"></div>
+            <div className="process-icon" style={{ display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden" }}>
+              {item.image ? (
+                <img src={item.image} alt="" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+              ) : null}
+            </div>
 
             <div>
               <h3>{item.title}</h3>
@@ -503,11 +491,30 @@ const [activeFAQ, setActiveFAQ] = useState(null);
 
         <div className="testimonial-wrapper">
 
-          <div className="video-box">
-            <img
-              src={video}
-              alt="Video"
-            />
+          <div className="video-box" style={{ overflow: "hidden" }}>
+            {testimonialHeader?.videoUpload || (testimonialHeader?.videoUrl && !testimonialHeader.videoUrl.includes("youtube.com") && !testimonialHeader.videoUrl.includes("youtu.be")) ? (
+              <video
+                src={testimonialHeader?.videoUpload ? resolveImage(testimonialHeader.videoUpload) : testimonialHeader?.videoUrl}
+                controls
+                className="w-full h-full object-cover"
+                poster={testimonialHeader?.videoImage ? resolveImage(testimonialHeader.videoImage) : video}
+                style={{ width: "100%", height: "100%", borderRadius: "20px", display: "block", minHeight: "280px" }}
+              />
+            ) : testimonialHeader?.videoUrl ? (
+              <iframe
+                src={testimonialHeader.videoUrl.includes("embed") ? testimonialHeader.videoUrl : testimonialHeader.videoUrl.replace("watch?v=", "embed/")}
+                title="Testimonial Video"
+                className="w-full h-full"
+                allowFullScreen
+                style={{ width: "100%", height: "100%", minHeight: "280px", border: "none", borderRadius: "20px" }}
+              />
+            ) : (
+              <img
+                src={testimonialHeader?.videoImage ? resolveImage(testimonialHeader.videoImage) : video}
+                alt="Video"
+                style={{ width: "100%", height: "100%", borderRadius: "20px" }}
+              />
+            )}
           </div>
 
 
@@ -581,7 +588,7 @@ const [activeFAQ, setActiveFAQ] = useState(null);
 
     <div className="custom-faq-wrapper">
       <div className="custom-faq-left">
-        <img src={faqImg} alt="FAQ" />
+        <img src={faqHeader?.image ? resolveImage(faqHeader.image) : faqImg} alt="FAQ" />
       </div>
 
       <div className="custom-faq-right">
@@ -600,6 +607,13 @@ const [activeFAQ, setActiveFAQ] = useState(null);
 
             {activeFAQ === index && (
               <div className="custom-faq-answer">
+                {item.image && (
+                  <img
+                    src={typeof item.image === "string" ? item.image : resolveImage(item.image)}
+                    alt=""
+                    style={{ maxWidth: "100%", height: "auto", borderRadius: "10px", marginBottom: "12px", display: "block" }}
+                  />
+                )}
                 {Array.isArray(item.answer) ? (
                   <ul className="custom-faq-list">
                     {item.answer.map((point, i) => (

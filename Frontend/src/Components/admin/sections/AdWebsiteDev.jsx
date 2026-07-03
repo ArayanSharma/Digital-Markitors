@@ -1,6 +1,6 @@
 import { useEffect, useState, useCallback } from "react";
 import { Plus } from "lucide-react";
-import { loadPageContent, savePageContent } from "../../../utils/pageApi";
+import { loadPageContent, savePageContent, uploadFile } from "../../../utils/pageApi";
 import { uid } from "../../../utils/uid";
 import { useToast } from "../../../context/ToastContext";
 import LeadForm from "../LeadForm";
@@ -79,14 +79,9 @@ export default function AdWebsiteDev() {
 
   const [services, setServices] = useState([]);
 
-  const [connectSection, setConnectSection] = useState({
-    title: "",
-    description: "",
-    buttonText: "",
-    buttonLink: "",
-  });
 
-  const [processHeader, setProcessHeader] = useState({ title: "", description: "" });
+
+  const [processHeader, setProcessHeader] = useState({ title: "", description: "", image: "" });
 
   const [processData, setProcessData] = useState([]);
 
@@ -94,13 +89,15 @@ export default function AdWebsiteDev() {
     title: "",
     subtitle: "",
     videoUrl: "",
+    videoUpload: "",
+    videoImage: "",
   });
 
   const [testimonials, setTestimonials] = useState([]);
 
   const [contactBanner, setContactBanner] = useState({ phone: "", email: "", logo: "" });
 
-  const [faqHeader, setFaqHeader] = useState({ title: "", subtitle: "" });
+  const [faqHeader, setFaqHeader] = useState({ title: "", subtitle: "", image: "" });
 
   const [faqData, setFaqData] = useState([]);
 
@@ -201,13 +198,33 @@ export default function AdWebsiteDev() {
       if (data.ourWork) setOurWork(data.ourWork);
       if (data.builtSection) setBuiltSection(data.builtSection);
       if (data.services) setServices(data.services);
-      if (data.connectSection) setConnectSection(data.connectSection);
-      if (data.processHeader) setProcessHeader(data.processHeader);
+
+      if (data.processHeader) {
+        setProcessHeader({
+          title: data.processHeader.title || "",
+          description: data.processHeader.description || "",
+          image: data.processHeader.image || "",
+        });
+      }
       if (data.processData) setProcessData(data.processData);
-      if (data.testimonialHeader) setTestimonialHeader(data.testimonialHeader);
+      if (data.testimonialHeader) {
+        setTestimonialHeader({
+          title: data.testimonialHeader.title || "",
+          subtitle: data.testimonialHeader.subtitle || "",
+          videoUrl: data.testimonialHeader.videoUrl || "",
+          videoUpload: data.testimonialHeader.videoUpload || "",
+          videoImage: data.testimonialHeader.videoImage || "",
+        });
+      }
       if (data.testimonials) setTestimonials(data.testimonials);
       if (data.contactBanner) setContactBanner(data.contactBanner);
-      if (data.faqHeader) setFaqHeader(data.faqHeader);
+      if (data.faqHeader) {
+        setFaqHeader({
+          title: data.faqHeader.title || "",
+          subtitle: data.faqHeader.subtitle || "",
+          image: data.faqHeader.image || "",
+        });
+      }
       if (data.faqData) setFaqData(data.faqData);
     }
     setLoading(false);
@@ -231,7 +248,6 @@ export default function AdWebsiteDev() {
       ourWork,
       builtSection,
       services,
-      connectSection,
       processHeader,
       processData,
       testimonialHeader,
@@ -461,26 +477,7 @@ export default function AdWebsiteDev() {
           />
         </Section>
 
-        <Section
-          title="Let's Connect (Contact Form Section)"
-          open={openSection === "connectSection"}
-          onToggle={() => toggle("connectSection")}
-        >
-          <Field label="Title">
-            <TextInput value={connectSection.title} onChange={(e) => setConnectSection({ ...connectSection, title: e.target.value })} />
-          </Field>
-          <Field label="Description">
-            <TextArea rows={4} value={connectSection.description} onChange={(e) => setConnectSection({ ...connectSection, description: e.target.value })} />
-          </Field>
-          <ButtonFields
-            label="Submit Button"
-            value={{ text: connectSection.buttonText, link: connectSection.buttonLink }}
-            onChange={(v) => setConnectSection({ ...connectSection, buttonText: v.text, buttonLink: v.link })}
-          />
-          <p className="text-xs text-text-muted">
-            Note: this button submits the contact form. Link is optional and only used if you want it to also navigate somewhere.
-          </p>
-        </Section>
+
 
         <Section
           title="Process Section Header"
@@ -493,6 +490,7 @@ export default function AdWebsiteDev() {
           <Field label="Description">
             <TextArea rows={4} value={processHeader.description} onChange={(e) => setProcessHeader({ ...processHeader, description: e.target.value })} />
           </Field>
+          <ImageInput label="Header Image" value={processHeader.image} onChange={(e) => setProcessHeader({ ...processHeader, image: e.target.value })} />
         </Section>
 
         <Section
@@ -523,14 +521,69 @@ export default function AdWebsiteDev() {
           <Field label="Subtitle">
             <TextInput value={testimonialHeader.subtitle} onChange={(e) => setTestimonialHeader({ ...testimonialHeader, subtitle: e.target.value })} />
           </Field>
-          <Field label="Video URL (YouTube link or direct video file URL)">
+          <Field label="Video URL (YouTube link)">
             <TextInput
               value={testimonialHeader.videoUrl}
               onChange={(e) => setTestimonialHeader({ ...testimonialHeader, videoUrl: e.target.value })}
-              placeholder="https://www.youtube.com/watch?v=... or /uploads/video.mp4"
+              placeholder="https://www.youtube.com/watch?v=..."
             />
           </Field>
-          <p className="text-xs text-text-muted">Leave empty to show the default placeholder video thumbnail.</p>
+          <Field label="Upload Video File">
+            <div className="flex items-center gap-3">
+              <div className="flex items-center gap-2 flex-1">
+                <input
+                  type="file"
+                  accept="video/*"
+                  onChange={async (e) => {
+                    const file = e.target.files?.[0];
+                    if (file) {
+                      try {
+                        const url = await uploadFile(file);
+                        setTestimonialHeader({ ...testimonialHeader, videoUpload: url });
+                        showToast("Video uploaded successfully");
+                      } catch (err) {
+                        showToast(err.message || "Video upload failed", "error");
+                      }
+                    }
+                  }}
+                  className={inputCls}
+                />
+              </div>
+              {testimonialHeader.videoUpload && (
+                <span className="text-xs text-brand-primary truncate max-w-xs">{testimonialHeader.videoUpload}</span>
+              )}
+            </div>
+          </Field>
+          <Field label="Upload Video Thumbnail / Placeholder Image">
+            <div className="flex items-center gap-3">
+              <div className="w-12 h-12 rounded-2xl border border-brand-primary/25 bg-bg-secondary flex items-center justify-center overflow-hidden shrink-0">
+                {testimonialHeader.videoImage ? (
+                  <img src={testimonialHeader.videoImage} alt="" className="w-full h-full object-cover" />
+                ) : (
+                  <span className="text-xs text-text-muted">No Image</span>
+                )}
+              </div>
+              <div className="flex items-center gap-2 flex-1">
+                <input
+                  type="file"
+                  accept="image/*"
+                  onChange={async (e) => {
+                    const file = e.target.files?.[0];
+                    if (file) {
+                      try {
+                        const url = await uploadFile(file);
+                        setTestimonialHeader({ ...testimonialHeader, videoImage: url });
+                        showToast("Thumbnail uploaded successfully");
+                      } catch (err) {
+                        showToast(err.message || "Thumbnail upload failed", "error");
+                      }
+                    }
+                  }}
+                  className={inputCls}
+                />
+              </div>
+            </div>
+          </Field>
         </Section>
 
         <Section
@@ -577,6 +630,7 @@ export default function AdWebsiteDev() {
           <Field label="Subtitle">
             <TextInput value={faqHeader.subtitle} onChange={(e) => setFaqHeader({ ...faqHeader, subtitle: e.target.value })} />
           </Field>
+          <ImageInput label="FAQ Section Left Image" value={faqHeader.image} onChange={(e) => setFaqHeader({ ...faqHeader, image: e.target.value })} />
         </Section>
 
         <Section
@@ -595,6 +649,7 @@ export default function AdWebsiteDev() {
                 <Field label="Question">
                   <TextInput value={item.question} onChange={(e) => updateFaq(item.id, "question", e.target.value)} />
                 </Field>
+
                 <label className="flex items-center gap-2 text-sm text-text-secondary">
                   <input
                     type="checkbox"
