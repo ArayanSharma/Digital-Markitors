@@ -107,6 +107,11 @@ function App() {
         <Route path="social-media-marketing" element={<SocialMediaM />} />
         <Route path="influencer-marketing" element={<InfluencerM />} />
         <Route path="social-listening" element={<SocialListening />} />
+        <Route path="Social-Media-Listening-&-Response-Management" element={<SocialListening />} />
+        <Route path="social-media-listening-&-response-management" element={<SocialListening />} />
+        <Route path="social-media-listening-and-response-management" element={<SocialListening />} />
+        <Route path="Social-Media-Listening-Response-Management" element={<SocialListening />} />
+        <Route path="social-media-listening-response-management" element={<SocialListening />} />
         <Route path="ppc" element={<PPC />} />
         <Route path="google-shopping-ads" element={<GoogleAd />} />
         <Route path="display-ads" element={<DisplayAds />} />

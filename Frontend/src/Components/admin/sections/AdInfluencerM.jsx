@@ -355,42 +355,7 @@ export default function AdInfluencerM() {
           />
         </Section>
 
-        <Section title="Industry Cards Section" open={openSection === "industries"} onToggle={() => toggle("industries")}>
-          <Field label="Section heading">
-            <TextInput value={pageData.industriesSection.heading} onChange={(e) => updateSection("industriesSection", "heading", e.target.value)} placeholder="Heading" />
-          </Field>
-          <LeadForm
-            title="Industries"
-            addLabel="Add Industry"
-            items={pageData.industries}
-            onChange={(next) => updateArray("industries", next)}
-            fields={[
-              { name: "image", label: "Industry image", type: "image" },
-              { name: "title", label: "Industry title", required: true },
-              { name: "desc", label: "Industry description", type: "textarea" },
-              { name: "button", label: "Read More button", type: "button" },
-            ]}
-          />
-        </Section>
 
-        <Section title="Case Studies Section" open={openSection === "caseStudies"} onToggle={() => toggle("caseStudies")}>
-          <Field label="Section heading">
-            <TextInput value={pageData.caseStudies.heading} onChange={(e) => updateSection("caseStudies", "heading", e.target.value)} placeholder="Heading" />
-          </Field>
-          <LeadForm
-            title="Case Studies"
-            addLabel="Add Case Study"
-            items={pageData.caseStudies.items}
-            onChange={(next) => updateSection("caseStudies", "items", next)}
-            fields={[
-              { name: "title", label: "Case study title", required: true },
-              { name: "image", label: "Case study image", type: "image" },
-              { name: "descriptions", label: "Descriptions", type: "multiline", placeholder: "One paragraph per line", rows: 6 },
-              { name: "primaryBtn", label: "Primary button", type: "button" },
-              { name: "secondaryBtn", label: "Secondary button", type: "button" },
-            ]}
-          />
-        </Section>
 
         <Section title="Why Business Section" open={openSection === "whyBusiness"} onToggle={() => toggle("whyBusiness")}>
           <Field label="Heading">

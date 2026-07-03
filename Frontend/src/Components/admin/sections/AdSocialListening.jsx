@@ -406,62 +406,7 @@ export default function AdSocialListening() {
           />
         </Section>
 
-        {/* INDUSTRIES */}
-        <Section title="10. Industry Cards Section" open={openSection === "industries"} onToggle={() => toggle("industries")}>
-          <Field label="Section Heading">
-            <TextInput value={pageData.industriesSection.heading} onChange={(e) => updateSection("industriesSection", "heading", e.target.value)} />
-          </Field>
-          <div className="md:col-span-2 space-y-3">
-            <CardListHeader title="Industry Cards" onAdd={() => addTopItem("industries", { image: "", title: "", desc: "", button: { text: "Read More", link: "" } })} />
-            {pageData.industries.map((it, i) => (
-              <div key={it.id} className="p-3 bg-bg-secondary rounded-2xl border border-brand-primary/25 space-y-3">
-                <div className="flex justify-between items-center">
-                  <span className="text-xs font-semibold text-text-muted">Card {i + 1}</span>
-                  <RemoveBtn onClick={() => removeTopItem("industries", it.id)} />
-                </div>
-                <ImageInput label="Image" value={it.image} onChange={(e) => updateTopItem("industries", it.id, "image", e.target.value)} />
-                <Field label="Title">
-                  <TextInput value={it.title} onChange={(e) => updateTopItem("industries", it.id, "title", e.target.value)} />
-                </Field>
-                <Field label="Description">
-                  <TextArea value={it.desc} onChange={(e) => updateTopItem("industries", it.id, "desc", e.target.value)} />
-                </Field>
-                <ButtonFields label="Read More Button" value={it.button} onChange={(v) => updateTopItem("industries", it.id, "button", v)} />
-              </div>
-            ))}
-          </div>
-        </Section>
 
-        {/* CASE STUDIES */}
-        <Section title="11. Case Studies Section" open={openSection === "caseStudies"} onToggle={() => toggle("caseStudies")}>
-          <Field label="Section Heading">
-            <TextInput value={pageData.caseStudies.heading} onChange={(e) => updateSection("caseStudies", "heading", e.target.value)} />
-          </Field>
-          <div className="md:col-span-2 space-y-3">
-            <CardListHeader title="Case Study Slides" onAdd={() => addNestedItem("caseStudies", "items", { title: "", image: "", descriptions: [], primaryBtn: { text: "View Case Study", link: "" }, secondaryBtn: { text: "View Our Latest Work", link: "" } })} />
-            {pageData.caseStudies.items.map((c, i) => (
-              <div key={c.id} className="p-3 bg-bg-secondary rounded-2xl border border-brand-primary/25 space-y-3">
-                <div className="flex justify-between items-center">
-                  <span className="text-xs font-semibold text-text-muted">Slide {i + 1}</span>
-                  <RemoveBtn onClick={() => removeNestedItem("caseStudies", "items", c.id)} />
-                </div>
-                <Field label="Title">
-                  <TextInput value={c.title} onChange={(e) => updateNestedItem("caseStudies", "items", c.id, "title", e.target.value)} />
-                </Field>
-                <ImageInput label="Image" value={c.image} onChange={(e) => updateNestedItem("caseStudies", "items", c.id, "image", e.target.value)} />
-                <Field label="Descriptions (one paragraph per line)">
-                  <TextArea
-                    rows={6}
-                    value={c.descriptions.join("\n")}
-                    onChange={(e) => updateNestedItem("caseStudies", "items", c.id, "descriptions", e.target.value.split(/\r?\n/).filter(Boolean))}
-                  />
-                </Field>
-                <ButtonFields label="Primary Button" value={c.primaryBtn} onChange={(v) => updateNestedItem("caseStudies", "items", c.id, "primaryBtn", v)} />
-                <ButtonFields label="Secondary Button" value={c.secondaryBtn} onChange={(v) => updateNestedItem("caseStudies", "items", c.id, "secondaryBtn", v)} />
-              </div>
-            ))}
-          </div>
-        </Section>
 
         {/* WHY BUSINESS */}
         <Section title="12. Why Business Section" open={openSection === "whyBusiness"} onToggle={() => toggle("whyBusiness")}>
@@ -505,18 +450,7 @@ export default function AdSocialListening() {
           </div>
         </Section>
 
-        {/* OPTIONAL VIDEO */}
-        <Section title="14. Optional Video Section" open={openSection === "videoSection"} onToggle={() => toggle("videoSection")}>
-          <Field label="Video Heading">
-            <TextInput value={pageData.videoSection.heading} onChange={(e) => updateSection("videoSection", "heading", e.target.value)} />
-          </Field>
-          <Field label="Video Description">
-            <TextArea rows={6} value={pageData.videoSection.body} onChange={(e) => updateSection("videoSection", "body", e.target.value)} />
-          </Field>
-          <Field label="Video URL">
-            <TextInput value={pageData.videoSection.videoUrl} onChange={(e) => updateSection("videoSection", "videoUrl", e.target.value)} placeholder="YouTube embed URL or video URL" />
-          </Field>
-        </Section>
+
 
         <SaveBar status={status} onSave={handleSave} />
       </form>

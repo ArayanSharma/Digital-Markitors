@@ -119,12 +119,12 @@ export default function PageEditor() {
         <AdLaraveDevelopment />
       ) : pageId === "woocommerce-development" ? (
         <AdWoocommerce />
-      )  : pageId === "shopify-development" ?(
-            <AdShopifyDev />
-      ): pageId === "Wix-Development" ? (
-            <AdWixDev />
-      ): pageId === "Website-Maintenance-Services" ? (
-            <AdWebsitemain />
+      ) : pageId === "shopify-development" ? (
+        <AdShopifyDev />
+      ) : pageId === "Wix-Development" ? (
+        <AdWixDev />
+      ) : pageId === "Website-Maintenance-Services" ? (
+        <AdWebsitemain />
       ) : (
         <div style={{ marginTop: "24px" }}>
           <p>This page editor is not yet configured for this page.</p>
