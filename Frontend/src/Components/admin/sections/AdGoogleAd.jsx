@@ -130,22 +130,7 @@ const initialData = {
       },
     ].map((i) => ({ id: uid(), ...i })),
   },
-  caseStudies: {
-    heading: "Case Studies",
-    items: [
-      {
-        title: "The Moto Men – High-Intent Google Ads Leads with 12.5% Conversion",
-        image: "",
-        descriptions: [
-          "For The Moto Men, we executed a Noida-focused PPC campaign to drive high-intent enquiries for premium car detailing services. Nearly 80% of the enquiries were highly relevant, aligned with both location and service intent.",
-        ],
-        primaryBtnText: "View Case Study",
-        primaryBtnLink: "",
-        secondaryBtnText: "View Our Latest Work",
-        secondaryBtnLink: "",
-      },
-    ].map((c) => ({ id: uid(), ...c })),
-  },
+
   whyChooseDigicore: {
     heading: "Why Choose Digicore Inc. for Google Shopping Ads Management Services?",
     paragraph:
@@ -239,47 +224,6 @@ export default function AdminGoogleAdForm() {
       [section]: {
         ...prev[section],
         [arrayKey]: prev[section][arrayKey].filter((it) => it.id !== id),
-      },
-    }));
-  };
-
-  /* Case study descriptions (nested array of plain strings inside an array item) */
-  const updateCaseDescription = (caseId, descIndex, value) => {
-    setData((prev) => ({
-      ...prev,
-      caseStudies: {
-        ...prev.caseStudies,
-        items: prev.caseStudies.items.map((it) =>
-          it.id === caseId
-            ? { ...it, descriptions: it.descriptions.map((d, i) => (i === descIndex ? value : d)) }
-            : it
-        ),
-      },
-    }));
-  };
-
-  const addCaseDescription = (caseId) => {
-    setData((prev) => ({
-      ...prev,
-      caseStudies: {
-        ...prev.caseStudies,
-        items: prev.caseStudies.items.map((it) =>
-          it.id === caseId ? { ...it, descriptions: [...it.descriptions, ""] } : it
-        ),
-      },
-    }));
-  };
-
-  const removeCaseDescription = (caseId, descIndex) => {
-    setData((prev) => ({
-      ...prev,
-      caseStudies: {
-        ...prev.caseStudies,
-        items: prev.caseStudies.items.map((it) =>
-          it.id === caseId
-            ? { ...it, descriptions: it.descriptions.filter((_, i) => i !== descIndex) }
-            : it
-        ),
       },
     }));
   };
@@ -501,69 +445,6 @@ export default function AdminGoogleAdForm() {
           />
         </Section>
 
-        {/* CASE STUDIES */}
-        <Section title="10. Case Studies" open={openSection === "caseStudies"} onToggle={() => toggle("caseStudies")}>
-          <Field label="Heading">
-            <TextInput value={data.caseStudies.heading} onChange={(e) => updateField("caseStudies", "heading", e.target.value)} />
-          </Field>
-          <div className="md:col-span-2 space-y-3">
-            <CardListHeader
-              title="Case Study Slides"
-              onAdd={() =>
-                addArrayItem("caseStudies", "items", {
-                  title: "",
-                  image: "",
-                  descriptions: [""],
-                  primaryBtnText: "View Case Study",
-                  primaryBtnLink: "",
-                  secondaryBtnText: "View Our Latest Work",
-                  secondaryBtnLink: "",
-                })
-              }
-            />
-            {data.caseStudies.items.map((item, i) => (
-              <div key={item.id} className="p-3 bg-bg-secondary rounded-2xl border border-brand-primary/15 space-y-3">
-                <div className="flex justify-between items-center">
-                  <span className="text-xs font-semibold text-text-muted">Slide {i + 1}</span>
-                  <RemoveBtn onClick={() => removeArrayItem("caseStudies", "items", item.id)} />
-                </div>
-                <Field label="Title">
-                  <TextInput value={item.title} onChange={(e) => updateArrayItem("caseStudies", "items", item.id, "title", e.target.value)} />
-                </Field>
-                <ImageInput label="Image" value={item.image} onChange={(e) => updateArrayItem("caseStudies", "items", item.id, "image", e.target.value)} />
-
-                <Field label="Description Paragraphs">
-                  <div className="space-y-2">
-                    {item.descriptions.map((desc, di) => (
-                      <div key={di} className="flex gap-2">
-                        <TextArea rows={3} value={desc} onChange={(e) => updateCaseDescription(item.id, di, e.target.value)} />
-                        <RemoveBtn onClick={() => removeCaseDescription(item.id, di)} />
-                      </div>
-                    ))}
-                    <button
-                      type="button"
-                      onClick={() => addCaseDescription(item.id)}
-                      className="flex items-center gap-1 text-xs font-medium text-brand-accent hover:text-brand-accent bg-brand-primary/10 hover:bg-brand-primary/20 px-3 py-1.5 rounded-full transition-colors"
-                    >
-                      + Add Paragraph
-                    </button>
-                  </div>
-                </Field>
-
-                <ButtonFields
-                  label="Primary Button"
-                  value={{ text: item.primaryBtnText, link: item.primaryBtnLink }}
-                  onChange={(v) => updateItemButtonPair("caseStudies", "items", item.id, "primaryBtnText", "primaryBtnLink", v)}
-                />
-                <ButtonFields
-                  label="Secondary Button"
-                  value={{ text: item.secondaryBtnText, link: item.secondaryBtnLink }}
-                  onChange={(v) => updateItemButtonPair("caseStudies", "items", item.id, "secondaryBtnText", "secondaryBtnLink", v)}
-                />
-              </div>
-            ))}
-          </div>
-        </Section>
 
         {/* WHY CHOOSE DIGICORE */}
         <Section title="11. Why Choose Digicore Inc. Section" open={openSection === "whyChooseDigicore"} onToggle={() => toggle("whyChooseDigicore")}>
