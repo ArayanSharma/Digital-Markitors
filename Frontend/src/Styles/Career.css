@@ -1,0 +1,279 @@
+.innerbanner {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+.banner-image {
+  width: 100%;
+  height: 450px;
+  object-fit: cover;
+  display: block;
+}
+
+.abstexttbg {
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.abstextt {
+  text-align: center;
+}
+
+.absheading {
+  font-size: 60px;
+  font-weight: 700;
+  color: #000;
+  margin: 0;
+  text-transform: capitalize;
+  letter-spacing: 1px;
+}
+
+/* Responsive */
+
+@media (max-width: 992px) {
+  .banner-image {
+    height: 350px;
+  }
+
+  .absheading {
+    font-size: 45px;
+  }
+}
+
+@media (max-width: 768px) {
+  .banner-image {
+    height: 280px;
+  }
+
+  .absheading {
+    font-size: 34px;
+  }
+}
+
+@media (max-width: 480px) {
+  .banner-image {
+    height: 220px;
+  }
+
+  .absheading {
+    font-size: 28px;
+  }
+}
+
+
+.careerbgs {
+    width: 100%;
+    margin: 0;
+    padding: 0px 0;
+    overflow: hidden;
+    background: url(../assets/download2.webp) 0 95px no-repeat;
+}
+
+
+.career-container {
+  display: flex;
+  min-height: 700px;
+}
+
+
+.career-left {
+  width: 50%;
+  padding: 70px 60px;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.career-left h2 {
+  font-size: 38px;
+  color: #1f2f46;
+  margin-bottom: 25px;
+  position: relative;
+}
+
+.career-left h2::after {
+  content: "";
+  width: 80px;
+  height: 3px;
+  background: #29b7c8;
+  display: block;
+  margin-top: 10px;
+}
+
+.career-left p {
+  color: #444;
+  font-size: 16px;
+  line-height: 1.9;
+  margin-bottom: 20px;
+}
+
+.career-left a {
+  color: #29b7c8;
+  text-decoration: none;
+}
+
+
+.career-right {
+  width: 50%;
+  position: relative;
+  overflow: hidden;
+}
+
+.career-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  z-index: 1;
+}
+
+
+.formbg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 480px;
+  max-width: 90%;
+  transform: translate(-50%, -50%);
+  background: #ffffff;
+  padding: 32px 28px;
+  border-radius: 8px;
+  z-index: 2;
+  box-shadow: 0 12px 30px rgba(31, 47, 70, 0.08);
+}
+
+.formbg h3 {
+  text-align: center;
+  margin-bottom: 25px;
+  color: #1f2f46;
+  font-size: 32px;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.formbg input[type="text"],
+.formbg input[type="email"] {
+  width: 100%;
+  border: none;
+  border-bottom: 2px solid #e6eef0;
+  padding: 12px 0;
+  outline: none;
+  background: transparent;
+  color: #1f2f46;
+  transition: none;
+}
+
+.formbg input::placeholder,
+.formbg input::-webkit-input-placeholder,
+.formbg input::-ms-input-placeholder {
+  color: #8a99a6;
+  opacity: 1;
+}
+
+.formbg input:focus {
+  border-bottom-color: #28a7bb;
+  box-shadow: none;
+  outline: none;
+}
+
+.formbg input[type="file"] {
+  width: 100%;
+  margin: 20px 0;
+}
+
+.formbg button {
+  width: 100%;
+  border: none;
+  background: #28a7bb;
+  color: #fff;
+  padding: 14px;
+  border-radius: 30px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 15px;
+}
+
+.formbg button:hover {
+  background: #1c91a4;
+}
+
+
+@media (max-width: 992px) {
+  .career-container {
+    flex-direction: column;
+  }
+
+  .career-left,
+  .career-right {
+    width: 100%;
+  }
+
+  .career-left {
+    padding: 40px 24px;
+  }
+
+  .career-right {
+    min-height: 600px;
+  }
+
+  .formbg {
+    width: min(92%, 500px);
+    padding: 24px;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 576px) {
+  .career-left h2 {
+    font-size: 28px;
+  }
+
+  .formbg {
+    width: calc(100% - 24px);
+    padding: 20px;
+  }
+
+  .formbg h3 {
+    font-size: 24px;
+  }
+
+  .formbg button {
+    padding: 12px;
+  }
+}
+
+.form-message {
+  padding: 12px;
+  margin-bottom: 15px;
+  border-radius: 6px;
+  text-align: center;
+  font-weight: 600;
+}
+
+.form-message.success {
+  background: #d4edda;
+  color: #155724;
+}
+
+.form-message.error {
+  background: #f8d7da;
+  color: #721c24;
+}

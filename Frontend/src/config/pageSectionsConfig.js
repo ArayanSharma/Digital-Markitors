@@ -1,0 +1,47 @@
+// Maps each pageId to the ordered list of section TYPES it contains.
+// IMPORTANT: edit this to match what's actually inside each page's
+// "sections" array in MongoDB (the "type" or similar field per section).
+
+const pageSectionsConfig = {
+  home: ["hero", "seo-agency", "about", "visibility", "performance"],
+  about: ["hero", "about", "impact"],
+  contact: ["hero", "contact-form"],
+  "seo-results": ["hero", "case-studies"],
+  packages: ["hero", "pricing"],
+  career: ["hero", "job-listings"],
+  "seo-service": ["hero", "about", "performance"],
+  "ai-seo": ["hero", "about"],
+  GEO: ["hero", "about"],
+  AEO: ["hero", "about"],
+  "Technical-SEO": ["hero", "about"],
+  "Eco-SEO": ["hero", "about"],
+  "social-media-marketing": ["hero", "about"],
+  "influencer-marketing": ["hero", "about"],
+  "social-listening": ["hero", "about"],
+  ppc: ["hero", "about"],
+  "google-shopping-ads": ["hero", "about"],
+  "display-ads": ["hero", "about"],
+  "amazon-ads": ["hero", "about"],
+  "meta-facebook-ads": ["hero", "about"],
+  "instagram-ads": ["hero", "about"],
+  "linkedin-ads": ["hero", "about"],
+  Education: ["hero", "seo-agency", "about", "visibility", "performance", "impact", "industry"],
+  youtube: ["hero", "about"],
+  Seoseller: ["hero", "about"],
+  Healthcare: ["hero", "about", "case-studies"],
+  B2B: ["hero", "about", "case-studies"],
+  Hospitality: ["hero", "about", "case-studies"],
+  "E-Commerce": ["hero", "about", "case-studies"],
+  Travel: ["hero", "about", "case-studies"],
+  "Financial-&-Professional": ["hero", "about", "case-studies"],
+  "website-development": ["hero", "about"],
+  "wordpress-development": ["hero", "about"],
+  "shopify-development": ["hero", "about"],
+  "laravel-development": ["hero", "about"],
+  "woocommerce-development": ["hero", "about"],
+  "Wix-Development": ["hero", "about"],
+  "Website-Maintenance-Services": ["hero", "about"],
+  Reseller: ["hero", "about"],
+};
+
+export default pageSectionsConfig;

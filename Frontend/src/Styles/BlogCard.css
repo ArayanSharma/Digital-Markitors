@@ -1,0 +1,283 @@
+/* =========================
+   SECTION
+========================= */
+
+.latest-blogs {
+  padding: 50px 20px;
+  background: #fff;
+}
+
+.blogs-container {
+  max-width: 1300px;
+  margin: auto;
+}
+
+/* =========================
+   HEADING
+========================= */
+
+.blogs-heading {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.blogs-heading h2 {
+  font-size: 38px;
+  font-weight: 500;
+  color: #003366;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.blogs-line {
+  width: 55px;
+  height: 4px;
+  background: #ea8215;
+  margin: 0 auto 20px;
+  border-radius: 20px;
+}
+
+.blogs-heading h6 {
+  font-size: 25px;
+  font-weight: 600;
+  color: #003366;
+  margin-bottom: 25px;
+  line-height: 1.5;
+  white-space: pre-line;
+}
+
+.view-blog-btn {
+  border: 2px solid #222;
+  background: white;
+  padding: 12px 28px;
+  border-radius: 30px;
+  font-size: 15px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.view-blog-btn:hover {
+  background: #000000;
+  color: white;
+}
+
+/* =========================
+   BLOG GRID
+========================= */
+
+.blogs-grid {
+  /* Use flex so cards keep a fixed width while flowing responsively */
+  display: flex;
+  flex-wrap: wrap;
+  gap: 35px;
+  justify-content: flex-start;
+}
+
+/* =========================
+   CARD
+========================= */
+
+.blog-card {
+  background: white;
+  border: 1px solid #ccc;
+  overflow: hidden;
+  transition: 0.35s ease;
+
+  /* fixed card size */
+  width: 360px;
+  height: 460px;
+  display: flex;
+  flex-direction: column;
+}
+ 
+
+/* =========================
+   TOP BLUE SECTION
+========================= */
+
+.blog-top {
+  position: relative;
+  /* fixed visual height for the image column */
+  height: 220px;
+  padding: 0;
+  overflow: hidden;
+}
+
+.blog-img-border {
+  /* make the image area fill the top column */
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  text-align: center;
+  border: none;
+}
+
+.blog-img-border img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.blog-title {
+  /* place title over the bottom of the image */
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 18px;
+  text-align: center;
+  z-index: 2;
+  margin: 0 20px;
+}
+
+.blog-title h5 {
+  color: #f4a300;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+/* dark overlay / separator between image and content */
+.blog-top::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 60px;
+  background: linear-gradient(transparent, rgba(0,0,0,0.65));
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* =========================
+   CONTENT
+========================= */
+
+.blog-content {
+  padding: 20px;
+  /* ensure content area grows to fill card and keep button at bottom */
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.blog-content p {
+  color: #555;
+  font-size: 15px;
+  line-height: 1.6;
+  margin-bottom: 12px;
+
+  /* multi-line ellipsis: clamp to 4 lines on desktop */
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-break: break-word;
+}
+
+.read-more-btn {
+  background: #1f1978;
+  color: white;
+  border: none;
+  padding: 12px 22px;
+  border-radius: 30px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: 0.3s;
+}
+
+.read-more-btn:hover {
+  background: #000000;
+  color: white;
+}
+
+/* =========================
+   TABLET
+========================= */
+
+@media (max-width: 992px) {
+
+  .blogs-grid {
+    /* keep two columns worth of space but cards are fixed width */
+    justify-content: center;
+  }
+
+  .blogs-heading h2 {
+    font-size: 38px;
+  }
+
+  .blogs-heading h6 {
+    font-size: 22px;
+  }
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 768px) {
+
+  .latest-blogs {
+    padding: 50px 15px;
+  }
+
+  .blogs-grid {
+    justify-content: center;
+    gap: 25px;
+  }
+
+  .blogs-heading h2 {
+    font-size: 30px;
+  }
+
+  .blogs-heading h6 {
+    font-size: 18px;
+    line-height: 1.6;
+  }
+
+  .view-blog-btn {
+    padding: 10px 22px;
+    font-size: 14px;
+  }
+
+  .blog-top {
+    height: 160px;
+  }
+
+  .blog-top {
+    height: 200px;
+  }
+
+  .blog-img-border {
+    padding: 0;
+    height: 100%;
+  }
+
+  .blog-img-border img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* clamp description to 3 lines on mobile */
+  .blog-content p {
+    -webkit-line-clamp: 3;
+  }
+
+  .blog-title h5 {
+    font-size: 14px;
+  }
+
+  .blog-content p {
+    font-size: 14px;
+    line-height: 1.8;
+  }
+
+  .read-more-btn {
+    width: 100%;
+  }
+}

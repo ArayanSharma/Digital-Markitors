@@ -1,0 +1,456 @@
+import { useEffect, useState, useCallback } from "react";
+import { loadPageContent, savePageContent } from "../../../utils/pageApi";
+import { uid } from "../../../utils/uid";
+import { useToast } from "../../../context/ToastContext";
+import LeadForm from "../LeadForm";
+import {
+  Section,
+  Field,
+  TextInput,
+  TextArea,
+  ButtonFields,
+  CardListHeader,
+  RemoveBtn,
+  ImageInput,
+  PageStatusBanner,
+  SaveBar,
+} from "./common/FormKit";
+
+const PAGE_SLUG = "woocommerce-development";
+
+export default function AdWoocommerce() {
+  const showToast = useToast();
+  const [openSection, setOpenSection] = useState("hero");
+  const [status, setStatus] = useState("");
+  const [loading, setLoading] = useState(true);
+  const [loadError, setLoadError] = useState("");
+
+  const [hero, setHero] = useState({
+    title: "",
+    description: "",
+    primaryBtn: { text: "", link: "" },
+    secondaryBtn: { text: "", link: "" },
+    backgroundImage: "",
+  });
+
+  const [topContent, setTopContent] = useState({ title: "", description: "" });
+
+  const [helpCards, setHelpCards] = useState([]);
+
+  const [webDesign, setWebDesign] = useState({
+    title: "",
+    description: "",
+    image: "",
+    heading: "",
+    bodyText1: "",
+    bodyText2: "",
+  });
+
+  const [cmsSection, setCmsSection] = useState({ title: "", description: "" });
+  const [cmsData, setCmsData] = useState([]);
+
+  const [ourWork, setOurWork] = useState({
+    title: "",
+    description: "",
+    image: "",
+    workTitle: "",
+    bullets: [],
+    button: { text: "", link: "" },
+  });
+
+  const [builtSection, setBuiltSection] = useState({ title: "", description: "" });
+  const [services, setServices] = useState([]);
+
+  const [connectSection, setConnectSection] = useState({
+    title: "",
+    description: "",
+    button: { text: "", link: "" },
+  });
+
+  const [processHeader, setProcessHeader] = useState({ title: "", description: "", image: "" });
+  const [processData, setProcessData] = useState([]);
+
+  const [testimonialHeader, setTestimonialHeader] = useState({ title: "", subtitle: "", videoUrl: "" });
+  const [testimonials, setTestimonials] = useState([]);
+
+  const [contactBanner, setContactBanner] = useState({ phone: "", email: "", logo: "" });
+
+  const [faqHeader, setFaqHeader] = useState({ title: "", subtitle: "", image: "" });
+  const [faqData, setFaqData] = useState([]);
+
+  const toggle = (key) => setOpenSection(openSection === key ? "" : key);
+
+  const updateCmsItem = (id, field, value) =>
+    setCmsData(cmsData.map((item) => (item.id === id ? { ...item, [field]: value } : item)));
+  const addCmsItem = () =>
+    setCmsData([...cmsData, { id: uid(), icon: "", title: "", points: [] }]);
+  const removeCmsItem = (id) => setCmsData(cmsData.filter((item) => item.id !== id));
+  const updateCmsPoint = (id, index, value) =>
+    setCmsData(
+      cmsData.map((item) =>
+        item.id === id
+          ? { ...item, points: item.points.map((p, i) => (i === index ? value : p)) }
+          : item
+      )
+    );
+  const addCmsPoint = (id) =>
+    setCmsData(
+      cmsData.map((item) => (item.id === id ? { ...item, points: [...item.points, ""] } : item))
+    );
+  const removeCmsPoint = (id, index) =>
+    setCmsData(
+      cmsData.map((item) =>
+        item.id === id
+          ? { ...item, points: item.points.filter((_, i) => i !== index) }
+          : item
+      )
+    );
+
+  const updateOurWorkBullet = (index, value) =>
+    setOurWork({ ...ourWork, bullets: ourWork.bullets.map((b, i) => (i === index ? value : b)) });
+  const addOurWorkBullet = () => setOurWork({ ...ourWork, bullets: [...ourWork.bullets, ""] });
+  const removeOurWorkBullet = (index) =>
+    setOurWork({ ...ourWork, bullets: ourWork.bullets.filter((_, i) => i !== index) });
+
+  const updateFaqItem = (id, field, value) =>
+    setFaqData(faqData.map((item) => (item.id === id ? { ...item, [field]: value } : item)));
+  const addFaqItem = () =>
+    setFaqData([...faqData, { id: uid(), question: "", answer: "", answerList: [] }]);
+  const removeFaqItem = (id) => setFaqData(faqData.filter((item) => item.id !== id));
+  const updateFaqPoint = (id, index, value) =>
+    setFaqData(
+      faqData.map((item) =>
+        item.id === id
+          ? { ...item, answerList: item.answerList.map((p, i) => (i === index ? value : p)) }
+          : item
+      )
+    );
+  const addFaqPoint = (id) =>
+    setFaqData(
+      faqData.map((item) =>
+        item.id === id ? { ...item, answerList: [...item.answerList, ""] } : item
+      )
+    );
+  const removeFaqPoint = (id, index) =>
+    setFaqData(
+      faqData.map((item) =>
+        item.id === id
+          ? { ...item, answerList: item.answerList.filter((_, i) => i !== index) }
+          : item
+      )
+    );
+
+  const load = useCallback(async () => {
+    setLoading(true);
+    setLoadError("");
+    let data = null;
+    try {
+      data = await loadPageContent(PAGE_SLUG);
+    } catch (err) {
+      setLoadError(err.message);
+    }
+    if (data) {
+      if (data.hero) setHero(data.hero);
+      if (data.topContent) setTopContent(data.topContent);
+      if (data.helpCards) setHelpCards(data.helpCards);
+      if (data.webDesign) setWebDesign(data.webDesign);
+      if (data.cmsSection) setCmsSection(data.cmsSection);
+      if (data.cmsData) setCmsData(data.cmsData);
+      if (data.ourWork) setOurWork(data.ourWork);
+      if (data.builtSection) setBuiltSection(data.builtSection);
+      if (data.services) setServices(data.services);
+      if (data.connectSection) setConnectSection(data.connectSection);
+      if (data.processHeader) setProcessHeader(data.processHeader);
+      if (data.processData) setProcessData(data.processData);
+      if (data.testimonialHeader) setTestimonialHeader(data.testimonialHeader);
+      if (data.testimonials) setTestimonials(data.testimonials);
+      if (data.contactBanner) setContactBanner(data.contactBanner);
+      if (data.faqHeader) setFaqHeader(data.faqHeader);
+      if (data.faqData) setFaqData(data.faqData);
+    }
+    setLoading(false);
+  }, []);
+
+  useEffect(() => {
+    (async () => {
+      await load();
+    })();
+  }, [load]);
+
+  const handleSave = async (e) => {
+    e?.preventDefault();
+    const payload = {
+      hero,
+      topContent,
+      helpCards,
+      webDesign,
+      cmsSection,
+      cmsData,
+      ourWork,
+      builtSection,
+      services,
+      connectSection,
+      processHeader,
+      processData,
+      testimonialHeader,
+      testimonials,
+      contactBanner,
+      faqHeader,
+      faqData,
+    };
+
+    setStatus("saving");
+    try {
+      await savePageContent(PAGE_SLUG, payload);
+      setStatus("saved");
+      showToast("WooCommerce page saved successfully");
+      setTimeout(() => setStatus(""), 2000);
+    } catch (error) {
+      console.error(error);
+      setStatus("error");
+      showToast("Failed to save — please retry", "error");
+    }
+  };
+
+  return (
+    <div className="min-h-screen bg-bg-card py-8 px-4 md:px-8 lg:px-10">
+      <form onSubmit={handleSave} className="w-full">
+        <div className="mb-6">
+          <h1 className="text-xl font-bold text-brand-primary">WooCommerce Page Content — Admin</h1>
+          <p className="text-sm text-text-muted">Edit all WooCommerce Development page sections from the admin panel.</p>
+        </div>
+
+        <PageStatusBanner loading={loading} error={loadError} onRetry={load} />
+
+        <Section title="1. Hero Banner" open={openSection === "hero"} onToggle={() => toggle("hero")}>
+          <Field label="Title">
+            <TextInput value={hero.title} onChange={(e) => setHero({ ...hero, title: e.target.value })} />
+          </Field>
+          <Field label="Description">
+            <TextArea rows={5} value={hero.description} onChange={(e) => setHero({ ...hero, description: e.target.value })} />
+          </Field>
+          <ImageInput label="Background Image" value={hero.backgroundImage} onChange={(e) => setHero({ ...hero, backgroundImage: e.target.value })} />
+          <ButtonFields label="Primary Button" value={hero.primaryBtn} onChange={(v) => setHero({ ...hero, primaryBtn: v })} />
+          <ButtonFields label="Secondary Button" value={hero.secondaryBtn} onChange={(v) => setHero({ ...hero, secondaryBtn: v })} />
+        </Section>
+
+        <Section title="2. Top Content" open={openSection === "topContent"} onToggle={() => toggle("topContent")}>
+          <Field label="Title">
+            <TextInput value={topContent.title} onChange={(e) => setTopContent({ ...topContent, title: e.target.value })} />
+          </Field>
+          <Field label="Description">
+            <TextArea rows={4} value={topContent.description} onChange={(e) => setTopContent({ ...topContent, description: e.target.value })} />
+          </Field>
+        </Section>
+
+        <Section title="3. Help Cards" open={openSection === "helpCards"} onToggle={() => toggle("helpCards")}>
+          <LeadForm
+            title="Help Cards"
+            addLabel="Add Card"
+            items={helpCards}
+            onChange={setHelpCards}
+            fields={[
+              { name: "icon", label: "Icon", type: "image" },
+              { name: "title", label: "Title", type: "text", required: true },
+              { name: "desc", label: "Description", type: "textarea", rows: 3 },
+            ]}
+          />
+        </Section>
+
+        <Section title="4. Web Design Section" open={openSection === "webDesign"} onToggle={() => toggle("webDesign")}>
+          <Field label="Title">
+            <TextInput value={webDesign.title} onChange={(e) => setWebDesign({ ...webDesign, title: e.target.value })} />
+          </Field>
+          <Field label="Description">
+            <TextArea rows={4} value={webDesign.description} onChange={(e) => setWebDesign({ ...webDesign, description: e.target.value })} />
+          </Field>
+          <ImageInput label="Main Image" value={webDesign.image} onChange={(e) => setWebDesign({ ...webDesign, image: e.target.value })} />
+          <Field label="Heading">
+            <TextInput value={webDesign.heading} onChange={(e) => setWebDesign({ ...webDesign, heading: e.target.value })} />
+          </Field>
+          <Field label="Body Text 1">
+            <TextArea rows={4} value={webDesign.bodyText1} onChange={(e) => setWebDesign({ ...webDesign, bodyText1: e.target.value })} />
+          </Field>
+          <Field label="Body Text 2">
+            <TextArea rows={4} value={webDesign.bodyText2} onChange={(e) => setWebDesign({ ...webDesign, bodyText2: e.target.value })} />
+          </Field>
+        </Section>
+
+        <Section title="5. CMS Section" open={openSection === "cmsSection"} onToggle={() => toggle("cmsSection")}>
+          <Field label="Title">
+            <TextInput value={cmsSection.title} onChange={(e) => setCmsSection({ ...cmsSection, title: e.target.value })} />
+          </Field>
+          <Field label="Description">
+            <TextArea rows={4} value={cmsSection.description} onChange={(e) => setCmsSection({ ...cmsSection, description: e.target.value })} />
+          </Field>
+          <div className="md:col-span-2 space-y-3">
+            <CardListHeader title="CMS Cards" onAdd={addCmsItem} />
+            {cmsData.map((item, index) => (
+              <div key={item.id} className="p-4 bg-bg-secondary rounded-2xl border border-brand-primary/25 space-y-3">
+                <div className="flex items-center justify-between gap-3">
+                  <span className="text-xs font-semibold text-text-muted">CMS Card {index + 1}</span>
+                  <RemoveBtn onClick={() => removeCmsItem(item.id)} />
+                </div>
+                <Field label="Icon Name">
+                  <TextInput placeholder="e.g. WordPress" value={item.icon} onChange={(e) => updateCmsItem(item.id, "icon", e.target.value)} />
+                </Field>
+                <Field label="Title">
+                  <TextInput value={item.title} onChange={(e) => updateCmsItem(item.id, "title", e.target.value)} />
+                </Field>
+                <CardListHeader title="Points" onAdd={() => addCmsPoint(item.id)} />
+                {item.points.map((point, pointIndex) => (
+                  <div key={pointIndex} className="flex items-center gap-3">
+                    <TextInput value={point} onChange={(e) => updateCmsPoint(item.id, pointIndex, e.target.value)} />
+                    <RemoveBtn onClick={() => removeCmsPoint(item.id, pointIndex)} />
+                  </div>
+                ))}
+              </div>
+            ))}
+          </div>
+        </Section>
+
+        <Section title="6. Our Work Section" open={openSection === "ourWork"} onToggle={() => toggle("ourWork")}>
+          <Field label="Title">
+            <TextInput value={ourWork.title} onChange={(e) => setOurWork({ ...ourWork, title: e.target.value })} />
+          </Field>
+          <Field label="Description">
+            <TextArea rows={4} value={ourWork.description} onChange={(e) => setOurWork({ ...ourWork, description: e.target.value })} />
+          </Field>
+          <ImageInput label="Work Image" value={ourWork.image} onChange={(e) => setOurWork({ ...ourWork, image: e.target.value })} />
+          <Field label="Work Title">
+            <TextInput value={ourWork.workTitle} onChange={(e) => setOurWork({ ...ourWork, workTitle: e.target.value })} />
+          </Field>
+          <div className="md:col-span-2 space-y-3">
+            <CardListHeader title="Bullets" onAdd={addOurWorkBullet} />
+            {ourWork.bullets.map((bullet, index) => (
+              <div key={index} className="flex items-center gap-3">
+                <TextInput value={bullet} onChange={(e) => updateOurWorkBullet(index, e.target.value)} />
+                <RemoveBtn onClick={() => removeOurWorkBullet(index)} />
+              </div>
+            ))}
+          </div>
+          <ButtonFields label="Work Button" value={ourWork.button} onChange={(v) => setOurWork({ ...ourWork, button: v })} />
+        </Section>
+
+        <Section title="7. Built Section" open={openSection === "builtSection"} onToggle={() => toggle("builtSection")}>
+          <Field label="Title">
+            <TextInput value={builtSection.title} onChange={(e) => setBuiltSection({ ...builtSection, title: e.target.value })} />
+          </Field>
+          <Field label="Description">
+            <TextArea rows={4} value={builtSection.description} onChange={(e) => setBuiltSection({ ...builtSection, description: e.target.value })} />
+          </Field>
+          <LeadForm
+            title="Service Cards"
+            addLabel="Add Service"
+            items={services}
+            onChange={setServices}
+            fields={[
+              { name: "image", label: "Service Image", type: "image" },
+              { name: "title", label: "Title", type: "text", required: true },
+            ]}
+          />
+        </Section>
+
+        <Section title="8. Connect Section" open={openSection === "connectSection"} onToggle={() => toggle("connectSection")}>
+          <Field label="Title">
+            <TextInput value={connectSection.title} onChange={(e) => setConnectSection({ ...connectSection, title: e.target.value })} />
+          </Field>
+          <Field label="Description">
+            <TextArea rows={4} value={connectSection.description} onChange={(e) => setConnectSection({ ...connectSection, description: e.target.value })} />
+          </Field>
+          <ButtonFields label="Submit Button" value={connectSection.button} onChange={(v) => setConnectSection({ ...connectSection, button: v })} />
+        </Section>
+
+        <Section title="9. Process Section" open={openSection === "processHeader"} onToggle={() => toggle("processHeader")}>
+          <Field label="Title">
+            <TextInput value={processHeader.title} onChange={(e) => setProcessHeader({ ...processHeader, title: e.target.value })} />
+          </Field>
+          <Field label="Description">
+            <TextArea rows={4} value={processHeader.description} onChange={(e) => setProcessHeader({ ...processHeader, description: e.target.value })} />
+          </Field>
+          <ImageInput label="Process Image" value={processHeader.image} onChange={(e) => setProcessHeader({ ...processHeader, image: e.target.value })} />
+          <LeadForm
+            title="Process Steps"
+            addLabel="Add Step"
+            items={processData}
+            onChange={setProcessData}
+            fields={[
+              { name: "title", label: "Title", type: "text", required: true },
+              { name: "desc", label: "Description", type: "textarea", rows: 3 },
+            ]}
+          />
+        </Section>
+
+        <Section title="10. Testimonials Section" open={openSection === "testimonialHeader"} onToggle={() => toggle("testimonialHeader")}>
+          <Field label="Title">
+            <TextInput value={testimonialHeader.title} onChange={(e) => setTestimonialHeader({ ...testimonialHeader, title: e.target.value })} />
+          </Field>
+          <Field label="Subtitle">
+            <TextArea rows={3} value={testimonialHeader.subtitle} onChange={(e) => setTestimonialHeader({ ...testimonialHeader, subtitle: e.target.value })} />
+          </Field>
+          <Field label="Video URL">
+            <TextInput placeholder="YouTube or direct video URL" value={testimonialHeader.videoUrl} onChange={(e) => setTestimonialHeader({ ...testimonialHeader, videoUrl: e.target.value })} />
+          </Field>
+          <LeadForm
+            title="Testimonials"
+            addLabel="Add Testimonial"
+            items={testimonials}
+            onChange={setTestimonials}
+            fields={[
+              { name: "image", label: "Profile Image", type: "image" },
+              { name: "name", label: "Name", type: "text", required: true },
+              { name: "designation", label: "Designation", type: "text" },
+              { name: "text", label: "Text", type: "textarea", rows: 3 },
+            ]}
+          />
+        </Section>
+
+        <Section title="11. Contact Banner" open={openSection === "contactBanner"} onToggle={() => toggle("contactBanner")}>
+          <Field label="Phone Number">
+            <TextInput value={contactBanner.phone} onChange={(e) => setContactBanner({ ...contactBanner, phone: e.target.value })} />
+          </Field>
+          <Field label="Email Address">
+            <TextInput value={contactBanner.email} onChange={(e) => setContactBanner({ ...contactBanner, email: e.target.value })} />
+          </Field>
+          <ImageInput label="Logo Image" value={contactBanner.logo} onChange={(e) => setContactBanner({ ...contactBanner, logo: e.target.value })} />
+        </Section>
+
+        <Section title="12. FAQ Section" open={openSection === "faqHeader"} onToggle={() => toggle("faqHeader")}>
+          <Field label="Title">
+            <TextInput value={faqHeader.title} onChange={(e) => setFaqHeader({ ...faqHeader, title: e.target.value })} />
+          </Field>
+          <Field label="Subtitle">
+            <TextArea rows={3} value={faqHeader.subtitle} onChange={(e) => setFaqHeader({ ...faqHeader, subtitle: e.target.value })} />
+          </Field>
+          <ImageInput label="FAQ Image" value={faqHeader.image} onChange={(e) => setFaqHeader({ ...faqHeader, image: e.target.value })} />
+          <div className="md:col-span-2 space-y-3">
+            <CardListHeader title="FAQ Items" onAdd={addFaqItem} />
+            {faqData.map((item, index) => (
+              <div key={item.id} className="p-4 bg-bg-secondary rounded-2xl border border-brand-primary/25 space-y-3">
+                <div className="flex items-center justify-between gap-3">
+                  <span className="text-xs font-semibold text-text-muted">FAQ {index + 1}</span>
+                  <RemoveBtn onClick={() => removeFaqItem(item.id)} />
+                </div>
+                <Field label="Question">
+                  <TextInput value={item.question} onChange={(e) => updateFaqItem(item.id, "question", e.target.value)} />
+                </Field>
+                <Field label="Answer">
+                  <TextArea rows={3} value={item.answer} onChange={(e) => updateFaqItem(item.id, "answer", e.target.value)} />
+                </Field>
+                <CardListHeader title="Answer Points" onAdd={() => addFaqPoint(item.id)} />
+                {item.answerList.map((point, pointIndex) => (
+                  <div key={pointIndex} className="flex items-center gap-3">
+                    <TextInput value={point} onChange={(e) => updateFaqPoint(item.id, pointIndex, e.target.value)} />
+                    <RemoveBtn onClick={() => removeFaqPoint(item.id, pointIndex)} />
+                  </div>
+                ))}
+              </div>
+            ))}
+          </div>
+        </Section>
+
+        <SaveBar status={status} onSave={handleSave} />
+      </form>
+    </div>
+  );
+}

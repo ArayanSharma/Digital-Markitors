@@ -1,0 +1,166 @@
+/* ==========================================================================
+   ALL BLOGS LISTING PAGE
+   ========================================================================== */
+
+.all-blogs-page {
+  padding: 50px 20px 70px;
+  background: #ffffff;
+  min-height: 100vh;
+}
+
+.all-blogs-container {
+  max-width: 1300px;
+  margin: 0 auto;
+}
+
+/* ─── Page Header ─── */
+
+.all-blogs-header {
+  text-align: center;
+  margin-bottom: 50px;
+  animation: abFadeUp 0.5s ease forwards;
+}
+
+.all-blogs-header h1 {
+  font-size: 42px;
+  font-weight: 600;
+  color: #003366;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.all-blogs-header-line {
+  width: 55px;
+  height: 4px;
+  background: #ea8215;
+  margin: 0 auto 18px;
+  border-radius: 20px;
+}
+
+.all-blogs-header p {
+  font-size: 18px;
+  color: #555;
+  line-height: 1.6;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* ─── Blog Grid ─── */
+
+.all-blogs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 32px;
+  justify-items: center;
+}
+
+/* Card hover lift effect */
+.all-blogs-grid .blog-card {
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+  cursor: pointer;
+  width: 100%;
+  max-width: 400px;
+}
+
+.all-blogs-grid .blog-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 36px rgba(0, 51, 102, 0.12);
+}
+
+/* Staggered entrance */
+.all-blogs-grid .blog-card:nth-child(1) { animation: abFadeUp 0.4s ease forwards; }
+.all-blogs-grid .blog-card:nth-child(2) { animation: abFadeUp 0.5s ease forwards; }
+.all-blogs-grid .blog-card:nth-child(3) { animation: abFadeUp 0.6s ease forwards; }
+.all-blogs-grid .blog-card:nth-child(4) { animation: abFadeUp 0.7s ease forwards; }
+.all-blogs-grid .blog-card:nth-child(5) { animation: abFadeUp 0.8s ease forwards; }
+.all-blogs-grid .blog-card:nth-child(6) { animation: abFadeUp 0.9s ease forwards; }
+.all-blogs-grid .blog-card:nth-child(n+7) { animation: abFadeUp 1s ease forwards; }
+
+/* ─── Loading / Empty States ─── */
+
+.all-blogs-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 300px;
+  gap: 16px;
+}
+
+.all-blogs-spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid #e2e2e2;
+  border-top-color: #003366;
+  border-radius: 50%;
+  animation: abSpin 0.8s linear infinite;
+}
+
+.all-blogs-loading p {
+  color: #888;
+  font-size: 15px;
+}
+
+.all-blogs-empty {
+  text-align: center;
+  padding: 60px 20px;
+  color: #888;
+  font-size: 16px;
+}
+
+/* ─── Animations ─── */
+
+@keyframes abFadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes abSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ==========================================================================
+   RESPONSIVE
+   ========================================================================== */
+
+@media (max-width: 992px) {
+  .all-blogs-grid {
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 28px;
+  }
+
+  .all-blogs-header h1 {
+    font-size: 36px;
+  }
+}
+
+@media (max-width: 768px) {
+  .all-blogs-page {
+    padding: 40px 15px 50px;
+  }
+
+  .all-blogs-header h1 {
+    font-size: 30px;
+  }
+
+  .all-blogs-header p {
+    font-size: 16px;
+  }
+
+  .all-blogs-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .all-blogs-grid .blog-card {
+    max-width: 100%;
+  }
+}

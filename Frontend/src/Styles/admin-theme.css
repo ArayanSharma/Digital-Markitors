@@ -1,0 +1,570 @@
+
+/* ==========================================================================
+   Admin Design System — White + Navy Blue
+   Imported once, in layout/AdminLayout.jsx, so it never loads on public routes.
+   ========================================================================== */
+
+.adm-shell {
+  background: var(--color-bg-primary);
+  color: var(--color-text-secondary);
+  color-scheme: light;
+  min-height: 100vh;
+  font-family: "Inter", sans-serif;
+}
+
+
+.adm-content {
+  margin-left: 0;
+  transition: margin-left 300ms ease;
+}
+
+@media (min-width: 1024px) {
+  .adm-content {
+    margin-left: 260px;
+  }
+
+  .adm-content.adm-content-collapsed {
+    margin-left: 76px;
+  }
+}
+
+/* ==========================================================================
+   Cards
+   ========================================================================== */
+
+.adm-card {
+  background: var(--color-bg-card);
+  border: 1px solid rgba(0, 31, 63, 0.12);
+  border-radius: 16px;
+  box-shadow: 0 1px 3px rgba(0, 31, 63, 0.06), 0 8px 24px rgba(0, 31, 63, 0.06);
+  transition: transform 300ms ease, box-shadow 300ms ease, border-color 300ms ease;
+}
+
+.adm-card-hover:hover {
+  transform: translateY(-4px);
+  border-color: rgba(0, 31, 63, 0.25);
+  box-shadow: 0 4px 10px rgba(0, 31, 63, 0.08), 0 16px 32px rgba(0, 31, 63, 0.12);
+}
+
+/* ==========================================================================
+   Buttons
+   ========================================================================== */
+
+.adm-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 20px;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: transform 300ms ease, box-shadow 300ms ease, background 300ms ease, color 300ms ease, border-color 300ms ease;
+  white-space: nowrap;
+}
+
+.adm-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.adm-btn:not(:disabled):hover {
+  transform: translateY(-2px) scale(1.02);
+}
+
+.adm-btn-primary {
+  background: linear-gradient(135deg, var(--color-brand-primary), var(--color-brand-secondary));
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(0, 31, 63, 0.25);
+}
+
+.adm-btn-primary:not(:disabled):hover {
+  box-shadow: 0 6px 18px rgba(0, 31, 63, 0.35);
+}
+
+.adm-btn-secondary {
+  background: transparent;
+  color: var(--color-brand-primary);
+  border-color: rgba(0, 31, 63, 0.3);
+}
+
+.adm-btn-secondary:not(:disabled):hover {
+  background: rgba(0, 31, 63, 0.06);
+  border-color: var(--color-brand-primary);
+  color: var(--color-brand-primary);
+}
+
+.adm-btn-danger {
+  background: rgba(220, 38, 38, 0.08);
+  color: var(--color-danger);
+  border-color: rgba(220, 38, 38, 0.3);
+}
+
+.adm-btn-danger:not(:disabled):hover {
+  background: var(--color-danger);
+  color: #ffffff;
+  box-shadow: 0 6px 16px rgba(220, 38, 38, 0.35);
+}
+
+.adm-icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  border: 1px solid rgba(0, 31, 63, 0.15);
+  background: #ffffff;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  transition: 300ms ease;
+}
+
+.adm-icon-btn:hover {
+  color: var(--color-brand-primary);
+  border-color: var(--color-brand-primary);
+  background: rgba(0, 31, 63, 0.06);
+  transform: scale(1.05);
+}
+
+.adm-icon-btn.danger:hover {
+  color: var(--color-danger);
+  border-color: var(--color-danger);
+  background: rgba(239, 68, 68, 0.12);
+}
+
+/* ==========================================================================
+   Inputs
+   ========================================================================== */
+
+.adm-input,
+.adm-textarea,
+.adm-select {
+  width: 100%;
+  background: #ffffff;
+  border: 1.5px solid rgba(0, 31, 63, 0.18);
+  border-radius: 12px;
+  padding: 11px 14px;
+  font-size: 14px;
+  font-family: inherit;
+  color: var(--color-text-primary);
+  transition: border-color 300ms ease, box-shadow 300ms ease;
+}
+
+.adm-input::placeholder,
+.adm-textarea::placeholder {
+  color: var(--color-text-muted);
+}
+
+.adm-input:focus,
+.adm-textarea:focus,
+.adm-select:focus {
+  outline: none;
+  border-color: var(--color-brand-primary);
+  box-shadow: 0 0 0 3px rgba(0, 31, 63, 0.15);
+}
+
+.adm-label {
+  display: block;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--color-text-muted);
+  margin-bottom: 6px;
+}
+
+/* ==========================================================================
+   Tables
+   ========================================================================== */
+
+.adm-table-wrap {
+  overflow-x: auto;
+  border-radius: 16px;
+  border: 1px solid rgba(0, 31, 63, 0.12);
+}
+
+.adm-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 640px;
+}
+
+.adm-table thead {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background: var(--color-bg-secondary);
+}
+
+.adm-table th {
+  text-align: left;
+  padding: 14px 18px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  border-bottom: 1px solid rgba(0, 31, 63, 0.15);
+}
+
+.adm-table td {
+  padding: 14px 18px;
+  font-size: 14px;
+  color: var(--color-text-secondary);
+  border-bottom: 1px solid rgba(0, 31, 63, 0.08);
+}
+
+.adm-table tbody tr {
+  background: transparent;
+  transition: background 300ms ease;
+}
+
+.adm-table tbody tr:nth-child(even) {
+  background: rgba(0, 31, 63, 0.02);
+}
+
+.adm-table tbody tr:hover {
+  background: rgba(0, 31, 63, 0.05);
+}
+
+/* ==========================================================================
+   Modal
+   ========================================================================== */
+
+.adm-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 15, 31, 0.55);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  z-index: 1000;
+  opacity: 0;
+  transition: opacity 300ms ease;
+}
+
+.adm-modal-overlay.adm-in {
+  opacity: 1;
+}
+
+.adm-modal-box {
+  width: 100%;
+  max-width: 560px;
+  max-height: 90vh;
+  overflow-y: auto;
+  background: var(--color-bg-card);
+  border: 1px solid rgba(0, 31, 63, 0.15);
+  border-radius: 16px;
+  box-shadow: 0 25px 60px rgba(0, 31, 63, 0.25);
+  transform: scale(0.94) translateY(12px);
+  opacity: 0;
+  transition: transform 300ms ease, opacity 300ms ease;
+}
+
+.adm-modal-overlay.adm-in .adm-modal-box {
+  transform: scale(1) translateY(0);
+  opacity: 1;
+}
+
+.adm-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 24px;
+  border-bottom: 1px solid rgba(0, 31, 63, 0.12);
+}
+
+.adm-modal-header h2 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--color-text-primary);
+}
+
+.adm-modal-body {
+  padding: 24px;
+}
+
+/* ==========================================================================
+   Toasts
+   ========================================================================== */
+
+.adm-toast-stack {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 1200;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 360px;
+}
+
+.adm-toast {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 14px;
+  border-radius: 12px;
+  background: var(--color-bg-card);
+  border: 1px solid rgba(0, 31, 63, 0.15);
+  box-shadow: 0 12px 30px rgba(0, 31, 63, 0.15);
+  color: var(--color-text-primary);
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.adm-toast span {
+  flex: 1;
+}
+
+.adm-toast-success {
+  border-color: rgba(34, 197, 94, 0.4);
+}
+.adm-toast-success svg {
+  color: var(--color-success);
+}
+
+.adm-toast-error {
+  border-color: rgba(239, 68, 68, 0.4);
+}
+.adm-toast-error svg {
+  color: var(--color-danger);
+}
+
+.adm-toast-close {
+  display: inline-flex;
+  color: var(--color-text-muted);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 2px;
+  transition: color 200ms ease;
+}
+.adm-toast-close:hover {
+  color: var(--color-text-primary);
+}
+
+@media (max-width: 480px) {
+  .adm-toast-stack {
+    left: 12px;
+    right: 12px;
+    max-width: none;
+  }
+}
+
+/* ==========================================================================
+   Badges
+   ========================================================================== */
+
+.adm-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.adm-badge-success {
+  background: rgba(34, 197, 94, 0.14);
+  color: var(--color-success);
+}
+
+.adm-badge-warning {
+  background: rgba(245, 158, 11, 0.14);
+  color: var(--color-warning);
+}
+
+.adm-badge-danger {
+  background: rgba(239, 68, 68, 0.14);
+  color: var(--color-danger);
+}
+
+/* ==========================================================================
+   Skeleton / loading
+   ========================================================================== */
+
+.adm-skeleton {
+  position: relative;
+  overflow: hidden;
+  background: rgba(0, 31, 63, 0.06);
+  border-radius: 10px;
+}
+
+.adm-skeleton::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  transform: translateX(-100%);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(0, 31, 63, 0.12),
+    transparent
+  );
+  animation: adm-shimmer 1.6s ease-in-out infinite;
+}
+
+/* ==========================================================================
+   Keyframes
+   ========================================================================== */
+
+@keyframes adm-shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes adm-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes adm-scale-in {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes adm-pulse-glow {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(0, 31, 63, 0.35);
+  }
+  50% {
+    box-shadow: 0 0 0 6px rgba(0, 31, 63, 0);
+  }
+}
+
+/* fill-mode: backwards (not "both") — holds the start state during any
+   delay, but does NOT persist the end-state transform after the animation
+   finishes. A lingering `transform` on an ancestor creates a new containing
+   block for `position: fixed` descendants (e.g. modals), which would
+   otherwise mis-position every modal rendered inside an animated page. */
+.adm-fade-in {
+  animation: adm-fade-in 400ms ease backwards;
+}
+
+.adm-scale-in {
+  animation: adm-scale-in 300ms ease backwards;
+}
+
+.adm-pulse-glow {
+  animation: adm-pulse-glow 2.2s ease-in-out infinite;
+}
+
+/* Staggered entrance helper — pair with inline style `--adm-delay` or use nth-child */
+.adm-stagger > * {
+  animation: adm-fade-in 400ms ease backwards;
+}
+.adm-stagger > *:nth-child(1) { animation-delay: 60ms; }
+.adm-stagger > *:nth-child(2) { animation-delay: 120ms; }
+.adm-stagger > *:nth-child(3) { animation-delay: 180ms; }
+.adm-stagger > *:nth-child(4) { animation-delay: 240ms; }
+.adm-stagger > *:nth-child(5) { animation-delay: 300ms; }
+.adm-stagger > *:nth-child(6) { animation-delay: 360ms; }
+.adm-stagger > *:nth-child(n + 7) { animation-delay: 420ms; }
+
+/* ==========================================================================
+   Scrollbar (admin scope only — public site keeps its own global rule)
+   ========================================================================== */
+
+.adm-shell ::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.adm-shell ::-webkit-scrollbar-track {
+  background: var(--color-bg-primary);
+}
+
+.adm-shell ::-webkit-scrollbar-thumb {
+  background: linear-gradient(var(--color-brand-primary), var(--color-brand-secondary));
+  border-radius: 20px;
+}
+
+/* ==========================================================================
+   Admin section form grid
+   ========================================================================== */
+
+/* Section content renders as a responsive 2-col/1-col grid (see FormKit's
+   Section component). Any direct child that is itself a grid (a hand-rolled
+   multi-field row group, or a repeatable list row) always needs the full
+   row's width rather than being squeezed into one half-width column. */
+.adm-section-grid > .grid {
+  grid-column: 1 / -1;
+}
+
+/* ==========================================================================
+   Responsive breakpoints
+   ========================================================================== */
+
+@media (max-width: 1440px) {
+  .adm-container {
+    max-width: 1280px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .adm-grid-3 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 992px) {
+  .adm-grid-3,
+  .adm-grid-2 {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .adm-card {
+    border-radius: 14px;
+  }
+
+  .adm-table th,
+  .adm-table td {
+    padding: 11px 14px;
+  }
+}
+
+@media (max-width: 576px) {
+  .adm-modal-box {
+    max-width: 100%;
+  }
+
+  .adm-btn {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .adm-modal-header h2 {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 375px) {
+  .adm-modal-body {
+    padding: 16px;
+  }
+}

@@ -1,0 +1,126 @@
+/* ==========================================================================
+   CASE STUDY CARD (used in grid listing + recent case studies section)
+   ========================================================================== */
+
+.cs-card {
+  background: #ffffff;
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid #eee;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.06);
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+  cursor: pointer;
+  width: 100%;
+  max-width: 380px;
+  display: flex;
+  flex-direction: column;
+}
+
+.cs-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 14px 36px rgba(0, 51, 102, 0.14);
+}
+
+.cs-card-image {
+  width: 100%;
+  height: 210px;
+  overflow: hidden;
+  position: relative;
+  background: #f2f4f8;
+}
+
+.cs-card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.cs-card:hover .cs-card-image img {
+  transform: scale(1.06);
+}
+
+.cs-card-category {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  background: linear-gradient(135deg, #003366, #1a5c99);
+  color: #ffffff;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  padding: 5px 12px;
+  border-radius: 20px;
+  z-index: 2;
+}
+
+.cs-card-body {
+  padding: 22px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.cs-card-client {
+  font-size: 12px;
+  font-weight: 600;
+  color: #ea8215;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 8px;
+}
+
+.cs-card-body h3 {
+  font-size: 19px;
+  font-weight: 700;
+  color: #003366;
+  line-height: 1.35;
+  margin-bottom: 10px;
+}
+
+.cs-card-body p {
+  font-size: 14.5px;
+  color: #666;
+  line-height: 1.6;
+  margin-bottom: 18px;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.cs-card-btn {
+  align-self: flex-start;
+  background: #003366;
+  color: #ffffff;
+  border: none;
+  padding: 11px 24px;
+  border-radius: 30px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  transition: background 0.3s ease;
+}
+
+.cs-card-btn:hover {
+  background: #ea8215;
+}
+
+@media (max-width: 480px) {
+  .cs-card-image {
+    height: 180px;
+  }
+
+  .cs-card-body {
+    padding: 18px;
+  }
+
+  .cs-card-body h3 {
+    font-size: 17px;
+  }
+}

@@ -1,0 +1,47 @@
+body{
+  font-family: "Inter", sans-serif;
+  background:#fff;
+  color:var(--text);
+}
+
+section{
+  position:relative;
+}
+
+.container{
+  width:min(1400px,90%);
+  margin:auto;
+}
+
+h1,h2,h3,h4,h5{
+  font-weight:700;
+  letter-spacing:-0.5px;
+}
+
+p{
+  color:var(--text-light);
+  line-height:1.8;
+}
+
+.section-title{
+  font-size:48px;
+  color:var(--secondary);
+}
+
+.section-subtitle{
+  color:var(--primary);
+  font-weight:600;
+  text-transform:uppercase;
+  letter-spacing:1px;
+}
+
+.divider{
+  width:70px;
+  height:5px;
+  border-radius:20px;
+  background:linear-gradient(
+    90deg,
+    #ff7a00,
+    #ffb347
+  );
+}
