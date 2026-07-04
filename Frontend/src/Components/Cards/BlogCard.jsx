@@ -90,7 +90,13 @@ const LatestBlogs = () => {
           {blogs.map((blog, index) => {
             const blogSlug = blog.slug || slugify(blog.title);
             return (
-              <div className="blog-card" key={blog.id || index}>
+              <div
+                className="blog-card"
+                key={blog.id || index}
+                style={{ animationDelay: `${index * 0.15}s` }}
+              >
+
+                <span className="blog-shine" aria-hidden="true"></span>
 
                 <div className="blog-top">
 
@@ -99,6 +105,7 @@ const LatestBlogs = () => {
                     <img
                       src={blog.image}
                       alt="blog"
+                      loading="lazy"
                     />
 
                   </div>
@@ -117,6 +124,7 @@ const LatestBlogs = () => {
 
                   <button className="read-more-btn" onClick={() => navigate(`/blog/${blogSlug}`)}>
                     {blog.buttonText}
+                    <span className="btn-arrow">&rarr;</span>
                   </button>
 
                 </div>
