@@ -33,10 +33,8 @@ app.use(express.json());
 app.use("/api/career", careerRoutes);
 app.use("/api/footer", footerRoutes);
 app.use("/api/pages", pageRoutes);
+app.use("/api/contact", contactRoutes);
 
-
-
-app.use("/api/career", careerRoutes);
 app.use("/uploads", express.static("uploads"));
 app.use("/api/upload", uploadRoutes);
 app.use("/api/blogs", blogRoutes);
