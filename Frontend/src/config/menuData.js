@@ -44,7 +44,7 @@ const menuData = [
     icon: FiBox,
     children: [
       { label: "About", path: "/admin/page-editor/about" },
-      { label: "SEO Results", path: "/admin/page-editor/Reseller" },
+      { label: "SEO Results", path: "/admin/page-editor/seo-results" },
       { label: "Packages", path: "/admin/page-editor/packages" },
       { label: "Career", path: "/admin/page-editor/career" },
     ],

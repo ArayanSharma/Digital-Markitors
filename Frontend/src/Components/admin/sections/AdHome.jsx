@@ -289,9 +289,11 @@ export default function HomeAdminForm() {
             <Field label="Heading">
               <TextInput value={visibility.heading} onChange={(e) => setVisibility({ ...visibility, heading: e.target.value })} />
             </Field>
+
             <Field label="Paragraph 1">
               <TextArea value={visibility.paragraph1} onChange={(e) => setVisibility({ ...visibility, paragraph1: e.target.value })} />
             </Field>
+
             <Field label="Paragraph 2">
               <TextArea value={visibility.paragraph2} onChange={(e) => setVisibility({ ...visibility, paragraph2: e.target.value })} />
             </Field>

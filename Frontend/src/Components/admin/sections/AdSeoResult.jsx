@@ -86,6 +86,8 @@ export default function AdSeoResult() {
         logo: "",
     });
 
+    const [industriesTitle, setIndustriesTitle] = useState("Industries We Serve");
+
     const [industries, setIndustries] = useState([
         {
             id: uid(),
@@ -166,6 +168,7 @@ export default function AdSeoResult() {
             if (data.betterSection) setBetterSection(data.betterSection);
             if (data.stats) setStats(data.stats);
             if (data.contactBanner) setContactBanner(data.contactBanner);
+            if (data.industriesTitle) setIndustriesTitle(data.industriesTitle);
             if (data.industries) setIndustries(data.industries);
             if (data.missionSection) setMissionSection(data.missionSection);
             if (data.visionSection) setVisionSection(data.visionSection);
@@ -187,6 +190,7 @@ export default function AdSeoResult() {
             betterSection,
             stats,
             contactBanner,
+            industriesTitle,
             industries,
             missionSection,
             visionSection,
@@ -283,6 +287,9 @@ export default function AdSeoResult() {
                 </Section>
 
                 <Section title="5. Industries Section" open={openSection === "industries"} onToggle={() => toggle("industries")}>
+                    <Field label="Section Title">
+                        <TextInput value={industriesTitle} onChange={(e) => setIndustriesTitle(e.target.value)} />
+                    </Field>
                     <LeadForm
                         title="Industry"
                         addLabel="Add Industry"

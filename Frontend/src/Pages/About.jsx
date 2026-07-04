@@ -91,6 +91,7 @@ const About = () => {
   const displayIndustries = c?.industries?.length
     ? c.industries.map((i) => ({ ...i, icon: resolveImage(i.icon) }))
     : industries;
+  const industriesTitle = c?.industriesTitle || "Industries We Serve";
   const missionSection = c?.missionSection;
   const visionSection = c?.visionSection;
 
@@ -208,7 +209,7 @@ const About = () => {
       <section className="industries-section">
         <div className="container">
           <h2 className="section-title">
-            Industries <span>We Serve</span>
+            {industriesTitle}
           </h2>
 
           <div className="industries-grid ">

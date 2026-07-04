@@ -91,6 +91,7 @@ const SeoResult = () => {
     const displayIndustries = c?.industries?.length
         ? c.industries.map((i) => ({ ...i, icon: resolveImage(i.icon) }))
         : industries;
+    const industriesTitle = c?.industriesTitle || "Industries We Serve";
     const missionSection = c?.missionSection;
     const visionSection = c?.visionSection;
 
@@ -102,14 +103,14 @@ const SeoResult = () => {
                 <div className="container">
 
                     <h1 className="topheading">
-                      {aboutSection?.heading || "Hello"}
+                        {aboutSection?.heading || "Hello"}
                     </h1>
 
                     <div className="shrtdesc">
                         {aboutSection?.body ? (
                             <>
                                 <p className="text-center">{aboutSection.body}</p>
-                             
+
                             </>
                         ) : (
                             <p className="text-center">
@@ -130,22 +131,22 @@ const SeoResult = () => {
 
                         <div className="overview-content">
 
-                          {aboutSection?.body ? (
-                            <>
-                            
-                                {aboutSection.paragraph1 ? <p className="text-center">{aboutSection.paragraph1}</p> : null}
-                                {aboutSection.paragraph2 ? <p className="text-center">{aboutSection.paragraph2}</p> : null}
-                            </>
-                        ) : (
-                            <p className="text-center">
-                                {`Digicore Inc. is one of the top Digital Marketing companies in India
+                            {aboutSection?.body ? (
+                                <>
+
+                                    {aboutSection.paragraph1 ? <p className="text-center">{aboutSection.paragraph1}</p> : null}
+                                    {aboutSection.paragraph2 ? <p className="text-center">{aboutSection.paragraph2}</p> : null}
+                                </>
+                            ) : (
+                                <p className="text-center">
+                                    {`Digicore Inc. is one of the top Digital Marketing companies in India
                             based in Kanpur. We are a complete digital marketing company that
                             discusses and expertly applies all your strategies. Our top-notch
                             services include everything, right from designing your business website
                             and the best SEO services to mobile app development and online
                             reputation management to engage your targeted and potential customers.`}
-                            </p>
-                        )}
+                                </p>
+                            )}
                         </div>
 
 
@@ -164,7 +165,7 @@ const SeoResult = () => {
                 <div className="container">
 
                     <h2 className="wydm-title">
-                        What Makes Us <span>{betterSection?.heading || "Better than Others?"}</span>
+                        <span>{betterSection?.heading || "Better than Others?"}</span>
                     </h2>
 
                     <p className="wydm-desc">
@@ -216,7 +217,7 @@ const SeoResult = () => {
             <section className="industries-section">
                 <div className="container">
                     <h2 className="section-title">
-                        Industries <span>We Serve</span>
+                        {industriesTitle}
                     </h2>
 
                     <div className="industries-grid ">
