@@ -428,19 +428,19 @@ const Header = () => {
                       {industryLabel} <FaChevronDown className={`down-icon ${industryOpen ? "open" : ""}`} />
                     </div>
 
-                <div className="mega-menu">
-                  <div className="mega-links">
-                    {industryItems.map((item) => (
-                      <Link key={item.id || item.link} to={item.link} onClick={closeMenu}>
-                        ➜ {item.label}
-                      </Link>
-                    ))}
-                  </div>
+                    <div className="mega-menu">
+                      <div className="mega-links">
+                        {industryItems.map((item) => (
+                          <Link key={item.id || item.link} to={item.link} onClick={closeMenu}>
+                            ➜ {item.label}
+                          </Link>
+                        ))}
+                      </div>
 
-                  <div className="mega-image">
-                    <img src={industryImage} alt="" />
-                  </div>
-                </div>
+                      <div className="mega-image">
+                        <img src={industryImage} alt="" />
+                      </div>
+                    </div>
                   </>
                 ) : (
                   <Link className="nav-link" to="/A505" onClick={closeMenu}>

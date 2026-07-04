@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../../Styles/Casestudy.css";
 
@@ -8,6 +8,7 @@ export default function Casestudy() {
   const navigate = useNavigate();
   const [caseStudies, setCaseStudies] = useState([]);
   const [currentCase, setCurrentCase] = useState(0);
+  const isPaused = useRef(false);
 
   useEffect(() => {
     const fetchCaseStudies = async () => {
@@ -36,6 +37,19 @@ export default function Casestudy() {
     );
   };
 
+  useEffect(() => {
+    if (caseStudies.length === 0) return;
+
+    const intervalId = setInterval(() => {
+      if (isPaused.current) return;
+      setCurrentCase((prev) =>
+        prev === caseStudies.length - 1 ? 0 : prev + 1
+      );
+    }, 1500);
+
+    return () => clearInterval(intervalId);
+  }, [caseStudies]);
+
   if (caseStudies.length === 0) {
     return null;
   }
@@ -54,7 +68,11 @@ export default function Casestudy() {
           <div className="divider"></div>
         </div>
 
-        <div className="case-slider">
+        <div
+          className="case-slider"
+          onMouseEnter={() => { isPaused.current = true; }}
+          onMouseLeave={() => { isPaused.current = false; }}
+        >
           <button className="case-arrow" onClick={prevCase}>
             ←
           </button>

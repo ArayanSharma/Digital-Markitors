@@ -116,11 +116,12 @@
 
 .case-study-item {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
-  gap: 22px;
-  min-height: 190px;
-  padding: 22px 24px;
+  gap: 16px;
+  min-height: auto;
+  padding: 14px 18px;
   background: #ffffff;
   border: 1px solid var(--color-border);
   border-left: 3px solid var(--color-primary);
@@ -155,15 +156,15 @@
 }
 
 .description-preview {
-  width: min(100%, 866px);
-  font-size: 0.98rem;
+  max-width: 100%;
+  font-size: 0.9rem;
   color: var(--color-muted);
-  margin-top: 10px;
-  padding: 11px 15px;
+  margin-top: 6px;
+  padding: 7px 12px;
   background: #f8fafc;
   border-left: 3px solid var(--color-accent);
   border-radius: 8px;
-  line-height: 1.5;
+  line-height: 1.4;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -180,10 +181,10 @@
 .btn-edit,
 .btn-delete,
 .btn-toggle {
-  min-width: 70px;
-  height: 46px;
-  padding: 0 20px;
-  font-size: 0.9rem;
+  min-width: 64px;
+  height: 38px;
+  padding: 0 16px;
+  font-size: 0.85rem;
   font-weight: 600;
   border: 1px solid transparent;
   border-radius: 10px;
@@ -210,6 +211,26 @@
 
 .btn-delete:hover {
   background: var(--color-danger);
+  color: #fff;
+}
+
+.btn-case-study {
+  min-width: 64px;
+  height: 38px;
+  padding: 0 16px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  border: 1px solid var(--color-primary);
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  background: var(--color-surface);
+  color: var(--color-primary);
+  white-space: nowrap;
+}
+
+.btn-case-study:hover {
+  background: var(--color-primary);
   color: #fff;
 }
 
@@ -441,7 +462,7 @@
   border: 1px solid var(--color-border);
   background: var(--color-surface);
   color: var(--color-text);
-  min-width: 118px;
+  min-width: 100px;
 }
 
 .btn-toggle:hover {
@@ -571,7 +592,8 @@
 .item-content-with-thumb {
   display: flex;
   gap: 12px;
-  flex: 1;
+  flex: 1 1 320px;
+  min-width: 0;
   align-items: flex-start;
 }
 
@@ -624,7 +646,8 @@
 
   .btn-edit,
   .btn-delete,
-  .btn-toggle {
+  .btn-toggle,
+  .btn-case-study {
     flex: 1;
   }
 

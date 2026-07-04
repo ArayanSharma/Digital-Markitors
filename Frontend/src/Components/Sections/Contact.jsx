@@ -2,8 +2,15 @@ import React, { useState } from "react";
 import axios from "axios";
 import "../../Styles/Contact.css";
 import { Send } from "lucide-react";
+import { usePageContent } from "../../hooks/usePageContent";
 
 const Contact = () => {
+  const { content: c } = usePageContent("contact");
+  const left = c?.left;
+  const form = c?.form;
+  const services = c?.services?.length ? c.services : ["SEO", "Web Development", "Social Media Marketing"];
+  const hearOptions = c?.hearOptions?.length ? c.hearOptions : ["Google", "Facebook", "Instagram"];
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -70,12 +77,10 @@ const Contact = () => {
               <Send size={20} />
             </div>
 
-            <h3>READY FOR RESULTS?</h3>
+            <h3>{left?.smallHeading || "READY FOR RESULTS?"}</h3>
 
             <h2 >
-              DROP US AN
-
-              EMAIL:
+              {left?.title || "DROP US AN EMAIL:"}
             </h2>
             <h3
               style={{
@@ -86,7 +91,7 @@ const Contact = () => {
                 color: "#fff",
               }}
             >
-              support@digicore.co.in
+              {left?.email || "support@digicore.co.in"}
             </h3>
             <br />
 
@@ -99,7 +104,7 @@ const Contact = () => {
                 color: "#fff",
               }}
             >
-              We're committed to your privacy. We’ll never share your email with a 3rd party, and will only contact you with material or notice of meaningful content we personally curate.
+              {left?.privacyText || "We respect your privacy. By ticking this box, you agree that Digicore Inc. may contact you with relevant updates, insights, and services. You can unsubscribe at any time."}
             </p>
           </div>
 
@@ -120,7 +125,7 @@ const Contact = () => {
                     name="name"
                     value={formData.name}
                     onChange={handleChange}
-                    placeholder="What is your name?"
+                    placeholder={form?.placeholders?.name || "What is your name?"}
                     required
                   />
                 </div>
@@ -133,7 +138,7 @@ const Contact = () => {
                     name="email"
                     value={formData.email}
                     onChange={handleChange}
-                    placeholder="Can we have your email address?"
+                    placeholder={form?.placeholders?.email || "Can we have your email address?"}
                     required
                   />
                 </div>
@@ -146,7 +151,7 @@ const Contact = () => {
                     name="phone"
                     value={formData.phone}
                     onChange={handleChange}
-                    placeholder="What phone number can we reach you on?"
+                    placeholder={form?.placeholders?.phone || "What phone number can we reach you on?"}
                     required
                   />
                 </div>
@@ -160,14 +165,11 @@ const Contact = () => {
                     onChange={handleChange}
                   >
                     <option value="">Choose Service</option>
-
-                    <option value="SEO">SEO</option>
-
-                    <option value="Web Development">Web Development</option>
-
-                    <option value="Social Media Marketing">
-                      Social Media Marketing
-                    </option>
+                    {services.map((s) => (
+                      <option key={s} value={s}>
+                        {s}
+                      </option>
+                    ))}
                   </select>
                 </div>
 
@@ -179,7 +181,7 @@ const Contact = () => {
                     name="website"
                     value={formData.website}
                     onChange={handleChange}
-                    placeholder="Your website link?"
+                    placeholder={form?.placeholders?.website || "Your website link?"}
                   />
                 </div>
 
@@ -192,12 +194,11 @@ const Contact = () => {
                     onChange={handleChange}
                   >
                     <option value="">How did you hear about us?</option>
-
-                    <option value="Google">Google</option>
-
-                    <option value="Facebook">Facebook</option>
-
-                    <option value="Instagram">Instagram</option>
+                    {hearOptions.map((o) => (
+                      <option key={o} value={o}>
+                        {o}
+                      </option>
+                    ))}
                   </select>
                 </div>
               </div>
@@ -210,7 +211,7 @@ const Contact = () => {
                   name="message"
                   value={formData.message}
                   onChange={handleChange}
-                  placeholder="How can we help?"
+                  placeholder={form?.placeholders?.message || "How can we help?"}
                   required
                 ></textarea>
               </div>
@@ -223,9 +224,8 @@ const Contact = () => {
                     required
                   />
                   <span className="privacy-text">
-                    We respect your privacy. By ticking this box, you agree that
-                    Digicore Inc. may contact you with relevant updates, insights,
-                    and services. You can unsubscribe at any time.
+                    {form?.privacyText ||
+                      "We respect your privacy. By ticking this box, you agree that Digicore Inc. may contact you with relevant updates, insights, and services. You can unsubscribe at any time."}
                   </span>
                 </label>
               </div>

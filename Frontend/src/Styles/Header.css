@@ -155,7 +155,7 @@
 .navbar-container {
   max-width: 1250px;
   margin: auto;
-  padding: 0 10px;
+  padding: 0 20px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -168,28 +168,27 @@
 
 .navbar .logo {
   width: auto;
-  height: auto;
+  height: 130px;
   background: transparent;
   box-shadow: none;
   border-radius: 0;
   display: flex;
-
-  
+  z-index: 1000;
 }
 
 .logo a {
   display: flex;
   align-items: center;
   padding: 0;
+  height: 100%;
 }
 
 .logo-bg {
-  width: 340px;
-  height: 150px;
-  min-width: 300px;
+  width: 380px;
+  height: 100%;
   display: block;
   background-size: contain;
-  background-position: center;
+  background-position: left center;
   background-repeat: no-repeat;
 }
 
@@ -538,14 +537,26 @@
   }
 
   /* Logo */
-  .logo {
-    margin: auto;
+  .navbar .logo {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    margin: 0;
+    width: auto;
+    height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100000;
   }
 
   .logo-bg {
-    width: 220px;
-    height: 96px;
-    min-width: 180px;
+    width: 320px;
+    height: 100%;
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
   }
 
   /* Full Screen Menu */
@@ -609,8 +620,8 @@
     background: rgba(1, 47, 163, 0.05);
   }
 
-  .nav-menu ul li.dropdown.open > .nav-link,
-  .nav-menu ul li.services-dropdown.open > .nav-link {
+  .nav-menu ul li.dropdown.open>.nav-link,
+  .nav-menu ul li.services-dropdown.open>.nav-link {
     color: #012fa3;
     background: rgba(1, 47, 163, 0.06);
   }
@@ -694,10 +705,13 @@
     padding: 0 16px;
   }
 
+  .navbar .logo {
+    height: 110px;
+  }
+
   .logo-bg {
-    width: 190px;
-    height: 82px;
-    min-width: 160px;
+    width: 300px;
+    height: 100%;
   }
 
   .mobile-toggle {
@@ -726,10 +740,13 @@
     padding: 0 16px;
   }
 
+  .navbar .logo {
+    height: 100px;
+  }
+
   .logo-bg {
-    width: 150px;
-    height: 72px;
-    min-width: 140px;
+    width: 280px;
+    height: 100%;
   }
 
   .nav-menu ul li {
@@ -753,10 +770,13 @@
     height: 70px;
   }
 
+  .navbar .logo {
+    height: 95px;
+  }
+
   .logo-bg {
-    width: 140px;
-    height: 64px;
-    min-width: 130px;
+    width: 260px;
+    height: 100%;
   }
 
   .mobile-toggle {

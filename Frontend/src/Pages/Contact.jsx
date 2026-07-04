@@ -159,7 +159,7 @@ const [messageType, setMessageType] = useState("");
                 color: "#fff",
               }}
             >
-              Digicore Inc.
+            
               <br />
               {(left?.addressLines?.length
                 ? left.addressLines

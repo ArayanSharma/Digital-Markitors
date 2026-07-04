@@ -36,9 +36,52 @@ export default function Industry() {
     }
   };
 
+  useEffect(() => {
+    const slider = sliderRef.current;
+    if (!slider || industries.length === 0) return;
+
+    let isPaused = false;
+
+    const loopIfNeeded = () => {
+      const half = slider.scrollWidth / 2;
+      if (slider.scrollLeft >= half) {
+        slider.scrollLeft -= half;
+      }
+    };
+
+    const autoScroll = () => {
+      if (isPaused) return;
+      slider.scrollBy({ left: 300, behavior: 'smooth' });
+    };
+
+    const intervalId = setInterval(autoScroll, 1500);
+
+    const pause = () => { isPaused = true; };
+    const resume = () => { isPaused = false; };
+
+    slider.addEventListener('scroll', loopIfNeeded);
+    slider.addEventListener('mouseenter', pause);
+    slider.addEventListener('mouseleave', resume);
+    slider.addEventListener('touchstart', pause);
+    slider.addEventListener('touchend', resume);
+
+    return () => {
+      clearInterval(intervalId);
+      slider.removeEventListener('scroll', loopIfNeeded);
+      slider.removeEventListener('mouseenter', pause);
+      slider.removeEventListener('mouseleave', resume);
+      slider.removeEventListener('touchstart', pause);
+      slider.removeEventListener('touchend', resume);
+    };
+  }, [industries]);
+
   if (industries.length === 0) {
     return null;
   }
+
+  // Duplicate the cards so the track has room to scroll and can loop
+  // seamlessly even when there are only a few industries (e.g. 3).
+  const loopedIndustries = [...industries, ...industries];
 
   return (
  <>
@@ -62,8 +105,8 @@ export default function Industry() {
       className="workindustry-cards"
       ref={sliderRef}
     >
-    {industries.map((item) => (
-  <div className="workindustry-card" key={item._id}>
+    {loopedIndustries.map((item, index) => (
+  <div className="workindustry-card" key={`${item._id}-${index}`}>
 
     <div className="workindustry-icon">
       <img src={item.image} alt={item.title} />

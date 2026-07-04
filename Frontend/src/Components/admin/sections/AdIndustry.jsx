@@ -1,8 +1,27 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Modal from "../ui/Modal";
 import "../../../Styles/AdminForm.css";
 
 const API = import.meta.env.VITE_API_URL || "http://localhost:5000";
+
+// Maps an industry's title to the pageId used by /admin/page-editor/:pageId
+// (see Frontend/src/Pages/admin/PageEditor.jsx) for industries that have a
+// dedicated page with its own case studies section.
+const INDUSTRY_PAGE_EDITOR_MAP = {
+  healthcare: "Healthcare",
+  "e-commerce": "E-Commerce",
+  ecommerce: "E-Commerce",
+  b2b: "B2B",
+  hospitality: "Hospitality",
+  travel: "Travel",
+  "financial & professional": "Financial-&-Professional",
+  financial: "Financial-&-Professional",
+  education: "Education",
+};
+
+const getPageEditorId = (industry) =>
+  INDUSTRY_PAGE_EDITOR_MAP[(industry.title || "").trim().toLowerCase()];
 
 const emptyForm = {
   title: "",
@@ -17,6 +36,7 @@ const emptyForm = {
 };
 
 export default function AdIndustry() {
+  const navigate = useNavigate();
   const [industries, setIndustries] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
@@ -308,6 +328,7 @@ export default function AdIndustry() {
                   >
                     Delete
                   </button>
+                   
                 </div>
               </div>
             ))}
