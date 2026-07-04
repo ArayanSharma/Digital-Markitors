@@ -189,9 +189,10 @@ export default function AdTechSEO() {
   };
 
   return (
-    <div className="min-h-screen bg-bg-card py-8 px-4 md:px-8 lg:px-10">
-      <form onSubmit={handleSave} className="w-full">
+    <div className="min-h-screen bg-bg-card py-8 px-4 md:px-8 lg:px-10 flex flex-col gap-6">
+      
         <PageHeader title="Technical SEO Page Content - Admin" description="Edit all Technical page sections from the admin panel." status={status} />
+      <form onSubmit={handleSave} className="w-full">
 
         <PageStatusBanner loading={loading} error={loadError} onRetry={load} />
 

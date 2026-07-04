@@ -10,7 +10,7 @@ export default function QuickActions({ actions = [], loading = false }) {
         <CardTitle>Quick Actions</CardTitle>
       </CardHeader>
       <CardContent className="pt-4">
-        <div className="grid grid-cols-2 gap-3">
+        <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
           {loading
             ? Array.from({ length: 8 }).map((_, i) => (
                 <Skeleton key={i} className="h-20 w-full" />

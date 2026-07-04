@@ -4,6 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "../../ui/card";
 import { Badge } from "../../ui/badge";
 import { Skeleton } from "../../ui/skeleton";
 import { formatRelativeTime } from "../../../lib/time";
+import "./Dashboard.css";
 
 const STATUS_VARIANT = {
   New: "default",
@@ -46,29 +47,39 @@ export default function RecentLeads({ leads = [], loading = false }) {
             <p className="text-sm">No enquiries yet</p>
           </div>
         ) : (
-          <ul className="divide-y divide-slate-100">
-            {leads.map((lead) => (
-              <li key={lead._id} className="flex items-center gap-3 py-3 first:pt-0 last:pb-0">
-                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-blue-50 text-sm font-semibold text-blue-600">
-                  {initials(lead.name)}
-                </div>
-                <div className="min-w-0 flex-1">
-                  <p className="truncate text-sm font-medium text-slate-900">{lead.name}</p>
-                  <p className="truncate text-xs text-slate-500">
-                    {lead.service || "General Enquiry"}
-                  </p>
-                </div>
-                <div className="flex shrink-0 flex-col items-end gap-1.5">
-                  <Badge variant={STATUS_VARIANT[lead.status] || "neutral"}>
-                    {lead.status || "New"}
-                  </Badge>
-                  <span className="text-xs text-slate-400">
-                    {formatRelativeTime(lead.createdAt)}
-                  </span>
-                </div>
-              </li>
-            ))}
-          </ul>
+          <div className="dash-table-wrap">
+            <table className="dash-table">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Service</th>
+                  <th>Status</th>
+                  <th>Received</th>
+                </tr>
+              </thead>
+              <tbody>
+                {leads.map((lead) => (
+                  <tr key={lead._id}>
+                    <td>
+                      <div className="flex items-center gap-3">
+                        <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-blue-50 text-xs font-semibold text-blue-600">
+                          {initials(lead.name)}
+                        </div>
+                        <span className="font-medium text-slate-900">{lead.name}</span>
+                      </div>
+                    </td>
+                    <td>{lead.service || "General Enquiry"}</td>
+                    <td>
+                      <Badge variant={STATUS_VARIANT[lead.status] || "neutral"}>
+                        {lead.status || "New"}
+                      </Badge>
+                    </td>
+                    <td className="text-slate-400">{formatRelativeTime(lead.createdAt)}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         )}
       </CardContent>
     </Card>

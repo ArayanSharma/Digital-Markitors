@@ -63,8 +63,6 @@ const menuData = [
       { label: "AEO", path: "/admin/page-editor/AEO" },
       { label: "Technical SEO", path: "/admin/page-editor/Technical-SEO" },
       { label: "Ecommerce SEO", path: "/admin/page-editor/Eco-SEO" },
-      { label: "SEO Audit", path: "/admin/page-editor/seo-audit" },
-      { label: "Link Building", path: "/admin/page-editor/link-building" },
       { label: "SEO Reseller", path: "/admin/page-editor/Reseller" },
     ],
   },
@@ -74,7 +72,6 @@ const menuData = [
     icon: FiShare2,
     children: [
       { label: "Social Media Marketing", path: "/admin/page-editor/social-media-marketing" },
-      { label: "Content Creation", path: "/admin/page-editor/content-creation" },
       { label: "Influencer Marketing", path: "/admin/page-editor/influencer-marketing" },
       { label: "Social Media Listening & Response Management", path: "/admin/page-editor/social-listening" },
     ],

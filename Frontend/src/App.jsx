@@ -70,9 +70,9 @@ import Reseller from "./Pages/Reseller";
 import Login from "./Pages/admin/Login";
 
 // Admin Pages
-import Dashboard from "./Pages/admin/Dashboard";
+import Dashboard from "./Components/admin/Dashboard/Dashboard";
 import Contacts from "./Pages/admin/Contacts";
-import CareerAdmin from "./Pages/admin/A-Carrer";
+import CareerAdmin from "./Pages/admin/Contact/A-Carrer";
 import PageEditor from "./Pages/admin/PageEditor";
 import Blog from "./Pages/admin/Blog";
 import Brands from "./Pages/admin/Brands";

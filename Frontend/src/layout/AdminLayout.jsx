@@ -16,7 +16,7 @@ function DashboardLayoutInner() {
       <div className={`adm-shell adm-content ${sidebarCollapsed ? "adm-content-collapsed" : ""}`}>
         <Navbar />
 
-        <div key={location.pathname} className="p-6 adm-fade-in">
+        <div key={location.pathname} className="px-8 py-6 md:px-10 md:py-8 adm-fade-in">
           <Outlet />
         </div>
       </div>

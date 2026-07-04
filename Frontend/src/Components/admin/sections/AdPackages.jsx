@@ -217,14 +217,15 @@ export default function AdPackages() {
   };
 
   return (
-    <div className="min-h-screen bg-bg-card py-8 px-4 md:px-8 lg:px-10">
-      <form onSubmit={handleSave} className="w-full">
+    <div className="min-h-screen bg-bg-card py-8 px-4 md:px-8 lg:px-10 flex flex-col gap-6">
+      
         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-6">
           <div>
             <h1 className="text-xl font-bold text-brand-primary">Packages Page Content — Admin</h1>
             <p className="text-sm text-text-muted">Manage every section of the Packages page from the admin panel.</p>
           </div>
         </div>
+      <form onSubmit={handleSave} className="w-full">
 
         <PageStatusBanner loading={loading} error={loadError} onRetry={load} />
 

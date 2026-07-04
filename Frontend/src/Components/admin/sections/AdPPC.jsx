@@ -215,9 +215,10 @@ export default function AdPPC() {
   };
 
   return (
-    <div className="min-h-screen bg-bg-card py-8 px-4 md:px-8 lg:px-10">
-      <form onSubmit={handleSave} className="w-full">
+    <div className="min-h-screen bg-bg-card py-8 px-4 md:px-8 lg:px-10 flex flex-col gap-6">
+      
         <PageHeader title="PPC Page Content - Admin" description="Edit every PPC section, including buttons, links, addable cards, and video URL." status={status} />
+      <form onSubmit={handleSave} className="w-full">
 
         <PageStatusBanner loading={loading} error={loadError} onRetry={load} />
 

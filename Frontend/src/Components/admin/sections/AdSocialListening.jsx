@@ -284,13 +284,14 @@ export default function AdSocialListening() {
   };
 
   return (
-    <div className="min-h-screen bg-bg-card py-8 px-4 md:px-8 lg:px-10">
-      <form onSubmit={handleSave} className="w-full">
+    <div className="min-h-screen bg-bg-card py-8 px-4 md:px-8 lg:px-10 flex flex-col gap-6">
+      
         <div className="flex items-center justify-between mb-6">
           <h1 className="text-xl font-bold text-brand-primary">
             Social Listening & Response Management — Admin
           </h1>
         </div>
+      <form onSubmit={handleSave} className="w-full">
 
         <PageStatusBanner loading={loading} error={loadError} onRetry={load} />
 

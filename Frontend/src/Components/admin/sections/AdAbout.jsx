@@ -216,8 +216,9 @@ export default function AdAbout() {
 
   return (
     <div className="min-h-screen bg-white py-3 px-4 md:px-6 lg:px-8">
-      <form onSubmit={handleSave} className="w-full max-w-[1306px] mx-auto">
+      
         <PageHeader title="About Page Content - Admin" description="Edit all About page sections from the admin panel." status={status} />
+      <form onSubmit={handleSave} className="w-full max-w-[1306px] mx-auto">
 
         <PageStatusBanner loading={loading} error={loadError} onRetry={load} />
 

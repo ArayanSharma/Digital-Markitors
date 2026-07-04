@@ -207,8 +207,8 @@ export default function AdContact() {
   };
 
   return (
-    <div className="min-h-screen py-6 px-4 md:px-8 lg:px-10">
-      <form onSubmit={handleSave} className="w-full">
+    <div className="min-h-screen py-6 px-4 md:px-8 lg:px-10 flex flex-col gap-6">
+      
         {/* Page Header */}
         <PageHeader
           icon={Mail}
@@ -216,6 +216,7 @@ export default function AdContact() {
           description="Manage all website contact page content and sections"
           breadcrumbs={["Dashboard", "Page Editor", "Contact"]}
         />
+      <form onSubmit={handleSave} className="w-full">
 
         <PageStatusBanner loading={loading} error={loadError} onRetry={load} />
 

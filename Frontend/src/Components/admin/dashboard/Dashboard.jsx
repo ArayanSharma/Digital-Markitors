@@ -8,14 +8,14 @@ import {
   Tag,
   Wrench,
 } from "lucide-react";
-import { useDashboardData } from "../../hooks/useDashboardData";
-import WelcomeBanner from "../../Components/admin/dashboard/WelcomeBanner";
-import StatCard from "../../Components/admin/dashboard/StatCard";
-import LeadsTrendChart from "../../Components/admin/dashboard/LeadsTrendChart";
-import ServiceBreakdownChart from "../../Components/admin/dashboard/ServiceBreakdownChart";
-import LeadPipeline from "../../Components/admin/dashboard/LeadPipeline";
-import RecentLeads from "../../Components/admin/dashboard/RecentLeads";
-import QuickActions from "../../Components/admin/dashboard/QuickActions";
+import { useDashboardData } from "../../../hooks/useDashboardData";
+import WelcomeBanner from "./WelcomeBanner";
+import StatCard from "./StatCard";
+import LeadsTrendChart from "./LeadsTrendChart";
+import ServiceBreakdownChart from "./ServiceBreakdownChart";
+import LeadPipeline from "./LeadPipeline";
+import RecentLeads from "./RecentLeads";
+import QuickActions from "./QuickActions";
 
 export default function Dashboard() {
   const { loading, data } = useDashboardData();
