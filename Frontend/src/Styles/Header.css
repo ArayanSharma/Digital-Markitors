@@ -237,6 +237,14 @@
 
 .down-icon {
   font-size: 12px;
+  transition: transform 0.3s ease;
+}
+
+.dropdown:hover .down-icon,
+.dropdown.open .down-icon,
+.services-dropdown:hover .down-icon,
+.services-dropdown.open .down-icon {
+  transform: rotate(180deg);
 }
 
 /* ── Mobile Toggle (hidden on desktop) ───────────────────────────────────── */
@@ -272,7 +280,8 @@
   transition: all 0.3s ease;
 }
 
-.dropdown:hover .mega-menu {
+.dropdown:hover .mega-menu,
+.dropdown.open .mega-menu {
   opacity: 1;
   visibility: visible;
   display: grid !important;
@@ -339,7 +348,8 @@
   z-index: 999;
 }
 
-.services-dropdown:hover .services-mega-menu {
+.services-dropdown:hover .services-mega-menu,
+.services-dropdown.open .services-mega-menu {
   opacity: 1;
   visibility: visible;
 }
@@ -515,9 +525,14 @@
     left: 20px;
     top: 28px;
     font-size: 30px;
-    color: #f59e0b;
+    color: #012fa3;
     cursor: pointer;
     z-index: 100001;
+    transition: color 0.3s ease, transform 0.3s ease;
+  }
+
+  .mobile-toggle:active {
+    transform: scale(0.9);
   }
 
   /* Logo */
@@ -538,17 +553,13 @@
     left: -100%;
     width: 100%;
     height: 100vh;
-    background: linear-gradient(135deg,
-        #0f172a 0%,
-        #1e293b 50%,
-        #334155 100%);
+    background: #ffffff;
     transition: left 0.4s ease;
     overflow-y: auto;
     overflow-x: hidden;
     z-index: 100000;
     padding-top: 85px;
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
+    box-shadow: 6px 0 40px rgba(15, 23, 42, 0.18);
   }
 
   .nav-menu.active {
@@ -568,10 +579,10 @@
 
   .nav-menu ul li {
     width: 100%;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    border-bottom: 1px solid #eef0f3;
     padding: 0;
     justify-content: center;
-    color: #fff;
+    color: #1f2937;
   }
 
   .nav-link,
@@ -582,7 +593,7 @@
     justify-content: center;
     align-items: center;
     padding: 20px 24px;
-    color: #f8fafc;
+    color: #1f2937;
     font-size: 18px;
     font-weight: 600;
     text-decoration: none;
@@ -592,15 +603,21 @@
   .nav-link:hover,
   .nav-menu ul li a:hover,
   .nav-menu a:hover {
-    color: #f59e0b;
-    background: rgba(255, 255, 255, 0.05);
+    color: #ea8215;
+    background: rgba(1, 47, 163, 0.05);
+  }
+
+  .nav-menu ul li.dropdown.open > .nav-link,
+  .nav-menu ul li.services-dropdown.open > .nav-link {
+    color: #012fa3;
+    background: rgba(1, 47, 163, 0.06);
   }
 
   .down-icon {
     margin-left: 8px;
   }
 
-  /* Mega menus in mobile */
+  /* Mega menus in mobile — smooth accordion under the tab, opens on hover or click */
   .mega-menu,
   .services-mega-menu {
     position: static !important;
@@ -608,20 +625,31 @@
     transform: none !important;
     opacity: 1 !important;
     visibility: visible !important;
-    background: #111827 !important;
+    background: #f8fafc !important;
     box-shadow: none;
     border-radius: 0;
-    padding: 15px;
+    max-height: 0;
+    overflow: hidden;
+    padding: 0 20px;
+    transition: max-height 0.4s ease, padding 0.4s ease;
+  }
+
+  .dropdown:hover .mega-menu,
+  .dropdown.open .mega-menu,
+  .services-dropdown:hover .services-mega-menu,
+  .services-dropdown.open .services-mega-menu {
+    max-height: 1200px;
+    padding: 18px 20px;
   }
 
   .mega-links a,
   .service-grid a {
-    color: #e5e7eb;
+    color: #374151;
   }
 
   .mega-links a:hover,
   .service-grid a:hover {
-    color: #f59e0b;
+    color: #ea8215;
   }
 
   .service-image,
@@ -631,12 +659,6 @@
 
   .service-content {
     display: none !important;
-  }
-
-  /* Services mega menu mobile */
-  .services-mega-menu {
-    background: #111827 !important;
-    padding: 0 !important;
   }
 
   .service-tabs {
@@ -649,18 +671,12 @@
   .service-tabs button {
     width: 100%;
     border: none;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid #e5e7eb;
     background: transparent;
-    color: #fff;
+    color: #374151;
     border-radius: 0;
     text-align: center;
     padding: 18px;
-  }
-
-  /* Toggle menu visibility via click */
-  .dropdown.active .mega-menu,
-  .services-dropdown.active .services-mega-menu {
-    display: block !important;
   }
 }
 

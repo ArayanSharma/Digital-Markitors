@@ -309,22 +309,17 @@ const Header = () => {
           <nav className={`nav-menu ${menuOpen ? "active" : ""}`}>
             <ul>
               {/* Company dropdown */}
-              <li className="dropdown">
+              <li className={`dropdown ${companyOpen ? "open" : ""}`}>
                 {companyActive ? (
                   <>
                     <div
                       className="nav-link"
                       onClick={() => setCompanyOpen(!companyOpen)}
                     >
-                      {companyLabel} <FaChevronDown className="down-icon" />
+                      {companyLabel} <FaChevronDown className={`down-icon ${companyOpen ? "open" : ""}`} />
                     </div>
 
-                    <div
-                      className="mega-menu"
-                      style={{
-                        display: companyOpen ? "grid" : "none"
-                      }}
-                    >
+                    <div className="mega-menu">
                       <div className="mega-links">
                         {companyItems.map((item) => (
                           <Link key={item.id || item.link} to={item.link} onClick={closeMenu}>
@@ -346,22 +341,17 @@ const Header = () => {
               </li>
 
               {/* Our Services mega menu */}
-              <li className="dropdown services-dropdown">
+              <li className={`dropdown services-dropdown ${servicesOpen ? "open" : ""}`}>
                 {servicesActive ? (
                   <>
                     <div
                       className="nav-link"
                       onClick={() => setServicesOpen(!servicesOpen)}
                     >
-                      {servicesLabel} <FaChevronDown className="down-icon" />
+                      {servicesLabel} <FaChevronDown className={`down-icon ${servicesOpen ? "open" : ""}`} />
                     </div>
 
-                    <div
-                      className="services-mega-menu"
-                      style={{
-                        display: servicesOpen ? "grid" : "none"
-                      }}
-                    >
+                    <div className="services-mega-menu">
                       <div className="service-tabs">
                         {servicesCategories.map((cat, idx) => {
                           const key = getCategoryTabKey(cat, idx);
@@ -419,22 +409,17 @@ const Header = () => {
               </li>
 
               {/* Industry dropdown */}
-              <li className="dropdown">
+              <li className={`dropdown ${industryOpen ? "open" : ""}`}>
                 {industryActive ? (
                   <>
                     <div
                       className="nav-link"
                       onClick={() => setIndustryOpen(!industryOpen)}
                     >
-                      {industryLabel} <FaChevronDown className="down-icon" />
+                      {industryLabel} <FaChevronDown className={`down-icon ${industryOpen ? "open" : ""}`} />
                     </div>
 
-                <div
-                  className="mega-menu"
-                  style={{
-                    display: industryOpen ? "grid" : "none"
-                  }}
-                >
+                <div className="mega-menu">
                   <div className="mega-links">
                     {industryItems.map((item) => (
                       <Link key={item.id || item.link} to={item.link} onClick={closeMenu}>
