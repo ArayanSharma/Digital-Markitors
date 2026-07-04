@@ -1,7 +1,4 @@
-
-
-
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "../Styles/Footer.css";
 
 import {
@@ -16,52 +13,116 @@ import {
 
 import logo from "../assets/logo.png";
 
-const API = import.meta.env.VITE_API_URL || "http://localhost:5000";
+const API_BASE = "http://localhost:5000";
 
-const normalizeMediaUrl = (url) => {
-  if (!url || typeof url !== "string") return url;
-  if (/^https?:\/\//.test(url)) return url;
-  if (url.startsWith("/")) return `${API}${url}`;
-  if (url.startsWith("uploads/")) return `${API}/${url}`;
-  if (url.startsWith("./uploads/")) return `${API}/${url.slice(2)}`;
-  if (url.startsWith("../uploads/")) return `${API}/${url.slice(3)}`;
-  return url;
+const socialIcons = {
+  facebook: <FaFacebookF />,
+  twitter: <FaTwitter />,
+  linkedin: <FaLinkedinIn />,
+  instagram: <FaInstagram />,
+  pinterest: <FaPinterestP />,
+};
+
+const defaultFooter = {
+  logo: "",
+  companyName: "Digicore Inc.",
+  address: "Digicore Inc. 438C, Panki Road, Kalyanpur, Kanpur 208017 UP",
+  phone: "+91 9818888064",
+  email: "support@digicore.co.in",
+  socialLinks: {
+    facebook: "https://www.facebook.com/digitalmarkitors/",
+    twitter: "https://x.com/digitalmarkitor",
+    linkedin: "https://www.linkedin.com/company/digitalmarkitors/",
+    instagram: "https://www.instagram.com/digitalmarkitorsofficial/",
+    pinterest: "",
+  },
+  linkColumns: [
+    {
+      title: "SEO",
+      links: [
+        { label: "SEO Services", url: "#" },
+        { label: "AI SEO Services", url: "#" },
+        { label: "GEO", url: "#" },
+        { label: "AEO", url: "#" },
+        { label: "Technical SEO", url: "#" },
+        { label: "Ecommerce SEO", url: "#" },
+        { label: "SEO Reseller", url: "#" },
+      ],
+    },
+    {
+      title: "PPC",
+      links: [
+        { label: "PPC", url: "#" },
+        { label: "Google Shopping Ads", url: "#" },
+        { label: "Display Ads", url: "#" },
+        { label: "Amazon Ads", url: "#" },
+        { label: "Meta/Facebook Ads", url: "#" },
+        { label: "Instagram Ads", url: "#" },
+        { label: "YouTube Ads", url: "#" },
+        { label: "LinkedIn Ads", url: "#" },
+      ],
+    },
+    {
+      title: "SMM",
+      links: [
+        { label: "Social Media Marketing", url: "#" },
+        { label: "Facebook Marketing", url: "#" },
+        { label: "Social Media Marketing Packages", url: "#" },
+      ],
+    },
+    {
+      title: "Location",
+      links: [
+        { label: "Noida", url: "#" },
+        { label: "Lucknow", url: "#" },
+        { label: "Gurgaon", url: "#" },
+      ],
+    },
+    {
+      title: "Industries",
+      links: [
+        { label: "Education", url: "#" },
+        { label: "Healthcare", url: "#" },
+        { label: "B2B", url: "#" },
+        { label: "Hospitality", url: "#" },
+        { label: "Ecommerce", url: "#" },
+        { label: "Travel", url: "#" },
+        { label: "Financial & Professional", url: "#" },
+      ],
+    },
+    {
+      title: "Support",
+      links: [
+        { label: "Contact", url: "#" },
+        { label: "Privacy Policy", url: "#" },
+        { label: "AI Reference", url: "#" },
+        { label: "Terms & Conditions", url: "#" },
+        { label: "Career", url: "#" },
+        { label: "Blog", url: "#" },
+      ],
+    },
+  ],
+  copyrightText:
+    "© 2016-2026 Digicore Inc. - Digital Marketing Company Kanpur | Website designed by Digicore Inc.",
 };
 
 const Footer = () => {
-  const [footerLogoUrl, setFooterLogoUrl] = useState(logo);
-  const [footerLogoAlt, setFooterLogoAlt] = useState("Digicore Inc.");
+  const [data, setData] = useState(defaultFooter);
 
   useEffect(() => {
-    let ignore = false;
-
-    const fetchHeader = async () => {
-      try {
-        const res = await fetch(`${API}/api/header`);
-        if (!res.ok) throw new Error("Unable to load footer logo.");
-        const data = await res.json();
-        if (ignore) return;
-
-        const config = data?.config || data || {};
-        const logoUrl = normalizeMediaUrl(config?.logo?.url || logo);
-        const logoAlt = config?.logo?.alt || "Digicore Inc.";
-
-        setFooterLogoUrl(logoUrl);
-        setFooterLogoAlt(logoAlt);
-      } catch (err) {
-        if (!ignore) {
-          console.error("Failed to fetch footer logo:", err);
-          setFooterLogoUrl(logo);
-          setFooterLogoAlt("Digicore Inc.");
-        }
-      }
-    };
-
-    fetchHeader();
-    return () => {
-      ignore = true;
-    };
+    fetch(`${API_BASE}/api/footer`)
+      .then((res) => res.json())
+      .then((json) => {
+        if (json.footer) setData((prev) => ({ ...prev, ...json.footer }));
+      })
+      .catch(() => {});
   }, []);
+
+  const logoSrc = data.logo
+    ? data.logo.startsWith("http")
+      ? data.logo
+      : `${API_BASE}${data.logo}`
+    : logo;
 
   return (
     <footer className="footer">
@@ -70,77 +131,42 @@ const Footer = () => {
         <div className="footer-top">
 
           <div className="footer-logo">
-            <img src={footerLogoUrl} alt={footerLogoAlt} />
+            <img src={logoSrc} alt={data.companyName} crossOrigin="anonymous" />
           </div>
 
           <div className="footer-box">
             <h3>Follow Us</h3>
 
             <div className="footer-social">
-
-              <a
-                href="https://www.facebook.com/digitalmarkitors/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <FaFacebookF />
-              </a>
-
-              <a
-                href="https://x.com/digitalmarkitor"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <FaTwitter />
-              </a>
-
-              <a
-                href="https://www.linkedin.com/company/digitalmarkitors/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <FaLinkedinIn />
-              </a>
-
-              <a
-                href="https://www.instagram.com/digitalmarkitorsofficial/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <FaInstagram />
-              </a>
-
-              <a href="/">
-                <FaPinterestP />
-              </a>
+              {Object.entries(data.socialLinks || {})
+                .filter(([, url]) => url)
+                .map(([key, url]) => (
+                  <a key={key} href={url} target="_blank" rel="noopener noreferrer">
+                    {socialIcons[key]}
+                  </a>
+                ))}
             </div>
           </div>
 
           <div className="footer-box">
             <h3>Office Address</h3>
 
-            <p>Digicore Inc.</p>
+            <p>{data.companyName}</p>
 
-            <p>
-               Digicore Inc.
-            
-           438C, Panki Road,
-            Kalyanpur,    
-            Kanpur 208017 UP 
-            </p>
+            <p style={{ whiteSpace: "pre-line" }}>{data.address}</p>
           </div>
 
           <div className="footer-box">
             <h3>Contact Us</h3>
 
-            <a href="tel:+919818888064">
+            <a href={`tel:${data.phone}`}>
               <FaPhoneAlt />
-              +91 9818888064
+              {data.phone}
             </a>
 
-            <a href="mailto:support@digicore.co.in">
+            <a href={`mailto:${data.email}`}>
               <FaEnvelope />
-              support@digicore.co.in
+              {data.email}
             </a>
           </div>
         </div>
@@ -148,85 +174,25 @@ const Footer = () => {
         <div className="footer-line"></div>
 
         <div className="footer-links">
-
-          <div>
-            <h3>SEO</h3>
-            <ul>
-              <li>SEO Services</li>
-              <li>AI SEO Services</li>
-              <li>GEO</li>
-              <li>AEO</li>
-              <li>Technical SEO</li>
-              <li>Ecommerce SEO</li>
-              <li>SEO Reseller</li>
-            </ul>
-          </div>
-
-          <div>
-            <h3>PPC</h3>
-            <ul>
-              <li>PPC</li>
-              <li>Google Shopping Ads</li>
-              <li>Display Ads</li>
-              <li>Amazon Ads</li>
-              <li>Meta/Facebook Ads</li>
-              <li>Instagram Ads</li>
-              <li>YouTube Ads</li>
-              <li>LinkedIn Ads</li>
-            </ul>
-          </div>
-
-          <div>
-            <h3>SMM</h3>
-            <ul>
-              <li>Social Media Marketing</li>
-              <li>Facebook Marketing</li>
-              <li>Social Media Marketing Packages</li>
-            </ul>
-          </div>
-
-          <div>
-            <h3>Location</h3>
-            <ul>
-              <li>Noida</li>
-              <li>Lucknow</li>
-              <li>Gurgaon</li>
-            </ul>
-          </div>
-
-          <div>
-            <h3>Industries</h3>
-            <ul>
-              <li>Education</li>
-              <li>Healthcare</li>
-              <li>B2B</li>
-              <li>Hospitality</li>
-              <li>Ecommerce</li>
-              <li>Travel</li>
-              <li>Financial & Professional</li>
-            </ul>
-          </div>
-
-          <div>
-            <h3>Support</h3>
-            <ul>
-              <li>Contact</li>
-              <li>Privacy Policy</li>
-              <li>AI Reference</li>
-              <li>Terms & Conditions</li>
-              <li>Career</li>
-              <li>Blog</li>
-            </ul>
-          </div>
-
+          {(data.linkColumns || []).map((column, i) => (
+            <div key={column._id || i}>
+              <h3>{column.title}</h3>
+              <ul>
+                {column.links.map((link, j) => (
+                  <li key={link._id || j}>
+                    <a href={link.url} style={{ color: "inherit", textDecoration: "none" }}>
+                      {link.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
         </div>
       </div>
 
       <div className="footer-bottom">
-        <p>
-          © 2016-2026 Digicore Inc. - Digital Marketing Company Kanpur |
-          Website designed by Digicore Inc.
-        </p>
+        <p>{data.copyrightText}</p>
       </div>
     </footer>
   );

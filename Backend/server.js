@@ -1,6 +1,8 @@
 import "dotenv/config";
 import express from "express";
 import cors from "cors";
+import dns from "dns";
+dns.setServers(["8.8.8.8", "1.1.1.1"]);
 
 import connectDB from "./Config/db.js";
 import "./Config/cloudinary.js";
@@ -16,17 +18,20 @@ import caseStudyRoutes from "./routes/caseStudyRoutes.js";
 import industryRoutes from "./routes/industryRoutes.js";
 import headerRoutes from "./routes/headerRoutes.js";
 import page505Routes from "./routes/page505Routes.js";
+import footerRoutes from "./routes/footerRoutes.js";
 
 connectDB();
 
 const app = express();
 
 app.use(cors());
+
 app.use(express.json());
 
 
 
-app.use("/api/contact", contactRoutes);
+app.use("/api/career", careerRoutes);
+app.use("/api/footer", footerRoutes);
 app.use("/api/pages", pageRoutes);
 
 

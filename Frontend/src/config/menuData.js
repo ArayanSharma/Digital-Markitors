@@ -15,6 +15,7 @@ import {
   FiSearch,
   FiShare2,
   FiTrendingUp,
+  FiLayers,
 } from "react-icons/fi";
 
 const menuData = [
@@ -28,6 +29,7 @@ const menuData = [
   { type: "divider" },
 
   { type: "item", label: "Header", path: "/admin/header", icon: FiLayout },
+  { type: "item", label: "Footer", path: "/admin/footer", icon: FiLayers },
   { type: "item", label: "Testimonials", path: "/admin/testimonials", icon: FiStar },
   { type: "item", label: "Case Studies", path: "/admin/case-study", icon: FiBookOpen },
   { type: "item", label: "Industry", path: "/admin/industry", icon: FiGlobe },

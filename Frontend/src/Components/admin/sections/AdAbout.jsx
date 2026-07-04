@@ -215,14 +215,14 @@ export default function AdAbout() {
   };
 
   return (
-    <div className="min-h-screen bg-bg-card py-8 px-4 md:px-8 lg:px-10">
-      <form onSubmit={handleSave} className="w-full">
+    <div className="min-h-screen bg-white py-3 px-4 md:px-6 lg:px-8">
+      <form onSubmit={handleSave} className="w-full max-w-[1306px] mx-auto">
         <PageHeader title="About Page Content - Admin" description="Edit all About page sections from the admin panel." status={status} />
 
         <PageStatusBanner loading={loading} error={loadError} onRetry={load} />
 
         
-        <div className="bg-white rounded-2xl border border-slate-200 shadow-[0_8px_24px_rgba(15,23,42,.06)] hover:shadow-[0_16px_36px_rgba(37,99,235,.10)] transition-all duration-300 p-8 space-y-8 mt-8">
+        <div className="bg-white rounded-[16px] border border-[#d6dee8] shadow-[0_1px_2px_rgba(15,23,42,.02)] transition-all duration-300 p-6 md:p-8 space-y-7 mt-8">
           <Section title="1. Hero / Banner" open={openSection === "hero"} onToggle={() => toggle("hero")}>
           <Field label="Subtitle">
             <TextInput value={hero.subtitle} onChange={(e) => setHero({ ...hero, subtitle: e.target.value })} />

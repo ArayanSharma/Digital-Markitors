@@ -81,6 +81,7 @@ import Ad505 from "./Pages/admin/Ad505";
 import Adheader from "./Pages/admin/Adheader";
 import Testimonial from "./Pages/admin/Testimonial";
 import CreateService from "./Pages/admin/CreateService";
+import FooterAdmin from "./Pages/admin/Afooter";
 
 // Admin Components
 import AdCasestudy from "./Components/admin/sections/AdCasestudy";
@@ -168,6 +169,7 @@ function App() {
         <Route path="505" element={<Ad505 />} />
         <Route path="testimonials" element={<Testimonial />} />
         <Route path="services/create" element={<CreateService />} />
+        <Route path="footer" element={<FooterAdmin />} />
       </Route>
     </Routes>
   );

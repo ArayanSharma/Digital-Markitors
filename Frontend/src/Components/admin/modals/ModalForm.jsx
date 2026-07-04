@@ -45,7 +45,7 @@ export default function ModalForm({ isOpen, title, onClose, onSubmit, fields, in
         </div>
 
         {/* Form */}
-        <form onSubmit={handleSubmit} className="px-6 py-4 space-y-4">
+        <form onSubmit={handleSubmit} className="px-6 py-4 space-y-4  bg-amber-900 ">
           {fields.map((field) => (
             <div key={field.name}>
               <label className="block text-sm font-medium text-text-secondary mb-2">
