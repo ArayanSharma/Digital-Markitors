@@ -68,6 +68,7 @@ const emptyForm = {
   role: "",
   review: "",
   image: "",
+  rating: 5,
 };
 
 export default function AdTestimonial() {
@@ -108,6 +109,7 @@ export default function AdTestimonial() {
       role: item.role || "",
       review: item.review || "",
       image: item.image || "",
+      rating: item.rating || 5,
     });
     setModalOpen(true);
   };
@@ -176,6 +178,20 @@ export default function AdTestimonial() {
             </Field>
           </div>
 
+          <Field label="Rating">
+            <select
+              className="adm-input bg-bg-secondary text-white border border-brand-primary/25 rounded-2xl w-full px-3 py-2 text-sm focus:outline-none"
+              value={form.rating || 5}
+              onChange={(e) => setForm({ ...form, rating: Number(e.target.value) })}
+            >
+              <option value={5}>5 Stars</option>
+              <option value={4}>4 Stars</option>
+              <option value={3}>3 Stars</option>
+              <option value={2}>2 Stars</option>
+              <option value={1}>1 Star</option>
+            </select>
+          </Field>
+
           <Field label="Review">
             <TextArea required rows={4} value={form.review} onChange={(e) => setForm({ ...form, review: e.target.value })} />
           </Field>
@@ -205,6 +221,9 @@ export default function AdTestimonial() {
                 <div className="flex-1 min-w-0">
                   <h4 className="text-sm font-semibold text-white truncate">{item.name}</h4>
                   <p className="text-xs text-text-muted">{item.role}</p>
+                  <div className="text-xs text-yellow-400 mt-1">
+                    {"★".repeat(item.rating || 5)}{"☆".repeat(5 - (item.rating || 5))}
+                  </div>
                   <p className="text-xs text-text-muted line-clamp-2 mt-1">{item.review}</p>
                 </div>
                 <div className="flex flex-col gap-2 shrink-0">

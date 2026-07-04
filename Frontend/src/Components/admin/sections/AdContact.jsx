@@ -27,6 +27,7 @@ export default function AdContact() {
     addressLine: false,
     service: false,
     touchCard: false,
+    hearOption: false,
   });
   const [modalData, setModalData] = useState({ edit: null, index: null });
 
@@ -58,6 +59,9 @@ export default function AdContact() {
   /* ---------- Services dropdown options ---------- */
   const [services, setServices] = useState(["SEO", "Web Development", "Social Media Marketing"]);
 
+  /* ---------- Hear About Us dropdown options ---------- */
+  const [hearOptions, setHearOptions] = useState(["Google", "Facebook", "Instagram"]);
+
   /* ---------- TOUCH / HOW TO GET IN TOUCH CARDS ---------- */
   const [touchHeading, setTouchHeading] = useState("How to get in touch");
   const [touchCards, setTouchCards] = useState([
@@ -84,6 +88,7 @@ export default function AdContact() {
       if (data.left) setLeft(data.left);
       if (data.form) setForm(data.form);
       if (data.services) setServices(data.services);
+      if (data.hearOptions) setHearOptions(data.hearOptions);
       if (data.touchHeading) setTouchHeading(data.touchHeading);
       if (data.touchCards) setTouchCards(data.touchCards);
       if (data.mapSrc) setMapSrc(data.mapSrc);
@@ -138,6 +143,26 @@ export default function AdContact() {
     setServices(services.filter((_, i) => i !== idx));
   };
 
+  const openHearOptionModal = () => {
+    setModalData({ edit: null, index: null });
+    setModals({ ...modals, hearOption: true });
+  };
+
+  const closeHearOptionModal = () => {
+    setModals({ ...modals, hearOption: false });
+  };
+
+  const handleAddHearOption = (data) => {
+    if (data.option.trim()) {
+      setHearOptions([...hearOptions, data.option]);
+      closeHearOptionModal();
+    }
+  };
+
+  const removeHearOption = (idx) => {
+    setHearOptions(hearOptions.filter((_, i) => i !== idx));
+  };
+
   const openTouchCardModal = () => {
     setModalData({ edit: null, index: null });
     setModals({ ...modals, touchCard: true });
@@ -164,7 +189,7 @@ export default function AdContact() {
     e?.preventDefault();
     setStatus("saving");
     try {
-      const payload = { left, form, services, touchHeading, touchCards, mapSrc };
+      const payload = { left, form, services, hearOptions, touchHeading, touchCards, mapSrc };
       await savePageContent(PAGE_SLUG, payload);
       setStatus("saved");
       showToast("Contact page saved successfully");
@@ -286,9 +311,7 @@ export default function AdContact() {
               <TextArea value={form.privacyText} onChange={(e) => setForm({ ...form, privacyText: e.target.value })} placeholder="Privacy policy text..." rows={4} />
             </Field>
 
-            <Field label="Submit Button">
-              <ButtonFields label="Submit" value={form.submitBtn} onChange={(val) => setForm({ ...form, submitBtn: val })} />
-            </Field>
+
 
             <Field label="Privacy Checkbox">
               <div className="flex items-center gap-3 p-3 rounded bg-white shadow-sm border border-brand-primary/10">
@@ -334,6 +357,40 @@ export default function AdContact() {
               className="w-full px-4 py-2.5 rounded-xl bg-brand-primary/10 hover:bg-brand-primary/20 text-brand-primary border border-brand-primary/30 hover:border-brand-primary/50 transition-all font-medium text-sm"
             >
               + Add Service
+            </button>
+          </div>
+        </Section>
+
+        {/* ========== HEAR ABOUT US ========== */}
+        <Section title="How Did You Hear About Us? Dropdown" open={openSection === "hear"} onToggle={() => toggle("hear")}>
+          <div className="md:col-span-2 space-y-3">
+            <p className="text-sm text-text-muted">Options shown in the "How did you hear about us?" dropdown</p>
+
+            {hearOptions.length > 0 ? (
+              <div className="space-y-2 mb-4">
+                {hearOptions.map((opt, idx) => (
+                  <div key={idx} className="flex items-center gap-2 p-3 bg-white shadow-sm rounded-xl border border-brand-primary/10 hover:border-brand-primary/20 transition-colors group">
+                    <span className="flex-1 text-text-primary">{opt || "(empty)"}</span>
+                    <button
+                      type="button"
+                      onClick={() => removeHearOption(idx)}
+                      className="text-text-muted hover:text-red-500 transition-colors font-medium text-sm opacity-0 group-hover:opacity-100"
+                    >
+                      ✕
+                    </button>
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <p className="text-text-muted text-sm py-3">No options added yet</p>
+            )}
+
+            <button
+              type="button"
+              onClick={openHearOptionModal}
+              className="w-full px-4 py-2.5 rounded-xl bg-brand-primary/10 hover:bg-brand-primary/20 text-brand-primary border border-brand-primary/30 hover:border-brand-primary/50 transition-all font-medium text-sm"
+            >
+              + Add Option
             </button>
           </div>
         </Section>
@@ -428,6 +485,17 @@ export default function AdContact() {
         fields={[
           { name: "title", label: "Title", type: "text", required: true, placeholder: "e.g., EMAIL US" },
           { name: "text", label: "Description", type: "textarea", rows: 3, placeholder: "Enter description..." },
+        ]}
+      />
+
+      {/* Hear Option Modal */}
+      <ModalForm
+        isOpen={modals.hearOption}
+        title="Add Dropdown Option"
+        onClose={closeHearOptionModal}
+        onSubmit={handleAddHearOption}
+        fields={[
+          { name: "option", label: "Option Name", type: "text", required: true, placeholder: "e.g., Google, LinkedIn" },
         ]}
       />
     </div>

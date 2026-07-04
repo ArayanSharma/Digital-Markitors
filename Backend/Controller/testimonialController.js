@@ -3,13 +3,14 @@ import Testimonial from "../Model/Testimonial.js";
 // CREATE Testimonial
 export const createTestimonial = async (req, res) => {
   try {
-    const { name, role, review, image } = req.body;
+    const { name, role, review, image, rating } = req.body;
 
     const testimonial = await Testimonial.create({
       name,
       role,
       review,
       image,
+      rating,
     });
 
     res.status(201).json({

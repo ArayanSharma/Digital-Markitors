@@ -161,8 +161,6 @@ export default function AdCasestudy() {
     if (!formData.title.trim()) newErrors.title = "Title is required";
     if (!formData.shortDescription.trim())
       newErrors.shortDescription = "Short description is required";
-    if (!formData.coverImage.trim())
-      newErrors.coverImage = "Cover image is required";
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
@@ -318,11 +316,6 @@ export default function AdCasestudy() {
             {filteredCaseStudies.map((caseStudy) => (
               <div key={caseStudy._id} className="case-study-item">
                 <div className="item-content-with-thumb">
-                  {caseStudy.coverImage && (
-                    <div className="thumb-image">
-                      <img src={caseStudy.coverImage} alt={caseStudy.title} />
-                    </div>
-                  )}
                   <div className="item-content">
                     <span
                       className={`status-badge ${caseStudy.active ? "active" : "inactive"}`}
@@ -422,24 +415,7 @@ export default function AdCasestudy() {
                 </div>
               </div>
 
-              <div className="form-group">
-                <label>Cover Image</label>
-                {formData.coverImage && (
-                  <div className="cover-preview">
-                    <img src={formData.coverImage} alt="Cover" />
-                  </div>
-                )}
-                <input
-                  type="file"
-                  accept="image/*"
-                  onChange={handleCoverImageChange}
-                  className={errors.coverImage ? "input-error" : ""}
-                />
-                {coverUploading && <p className="image-preview">Uploading...</p>}
-                {errors.coverImage && (
-                  <span className="field-error">{errors.coverImage}</span>
-                )}
-              </div>
+
 
               <div className="form-group">
                 <label>Short Description</label>
@@ -533,28 +509,7 @@ export default function AdCasestudy() {
                 />
               </div>
 
-              <div className="form-group">
-                <label>Gallery Images</label>
-                <input
-                  type="file"
-                  accept="image/*"
-                  multiple
-                  onChange={handleGalleryImagesChange}
-                />
-                {galleryUploading && <p className="image-preview">Uploading...</p>}
-                {formData.galleryImages.length > 0 && (
-                  <div className="gallery-grid">
-                    {formData.galleryImages.map((img, index) => (
-                      <div key={index} className="gallery-thumb">
-                        <img src={img} alt={`Gallery ${index + 1}`} />
-                        <button type="button" onClick={() => removeGalleryImage(index)}>
-                          &times;
-                        </button>
-                      </div>
-                    ))}
-                  </div>
-                )}
-              </div>
+
 
               <div className="form-row">
                 <div className="form-group checkbox-group">

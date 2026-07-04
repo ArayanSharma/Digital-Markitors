@@ -19,6 +19,7 @@ const defaultTestimonials = [
     role: "Director - Signature Visas",
     review:
       "Choosing Digital markitor was my best decision..Their team identified and shortlists keywords for my company and within 3-4 months most the keywords started ranking on the first page of google. I thank Mr Ram and his team for generating extra revenue through google for me. Your SEO work is commendable.",
+    rating: 5,
   },
 
   {
@@ -27,6 +28,7 @@ const defaultTestimonials = [
     role: "Director",
     review:
       "I have been working with Digicore Inc. for the last 5 years. Before this I have worked with various SEO agencies for my business but I always ended up wasting my time and money. Digicore Inc. are the best SEO agency. Till date they have been consistent with their efforts and my website has been ranking on top for more than last 4 years. They are very reasonably priced. Thanks to the entire team!!!!",
+    rating: 5,
   },
 
   {
@@ -35,6 +37,7 @@ const defaultTestimonials = [
     role: "Founder - The Moto Men",
     review:
       "I am very happy with services offered by Digicore Inc.. They offer an extensive range of services and have in-depth knowledge of all digital marketing aspects. They are quite professional, knowledgeable, and experienced. I opted for their SEO and SMO services and I really appreciate their efforts as they provided me with the desired results within the stipulated time. So, a BIG thumbs up from my side. Thank you team.",
+    rating: 5,
   },
 ];
 
@@ -65,6 +68,7 @@ export default function TestimonialSection() {
               name: item.name,
               role: item.role,
               review: item.review,
+              rating: item.rating || 5,
             }))
           );
         }
@@ -79,68 +83,68 @@ export default function TestimonialSection() {
     <>
 
 
-     <div className="testimonial-heading" style={{ backgroundColor: "#fff" }}>
-  <h2>TESTIMONIALS</h2>
-  <span></span>
-</div>
+      <div className="testimonial-heading" style={{ backgroundColor: "#fff" }}>
+        <h2>TESTIMONIALS</h2>
+        <span></span>
+      </div>
 
-<section className="testimonial-section">
+      <section className="testimonial-section">
 
-  <Swiper
-    modules={[Autoplay, Navigation]}
-    slidesPerView={1}
-    loop={true}
-    speed={1200}
-    autoplay={{
-      delay: 5000,
-      disableOnInteraction: false,
-    }}
-    navigation={{
-      nextEl: ".right",
-      prevEl: ".left",
-    }}
-    className="testimonialSwiper"
-  >
+        <Swiper
+          modules={[Autoplay, Navigation]}
+          slidesPerView={1}
+          loop={true}
+          speed={1200}
+          autoplay={{
+            delay: 5000,
+            disableOnInteraction: false,
+          }}
+          navigation={{
+            nextEl: ".right",
+            prevEl: ".left",
+          }}
+          className="testimonialSwiper"
+        >
 
-    {testimonials.map((item, index) => (
+          {testimonials.map((item, index) => (
 
-      <SwiperSlide key={index}>
+            <SwiperSlide key={index}>
 
-        <div className="testimonial-card">
+              <div className="testimonial-card">
 
-          <div className="profile-img">
-            <img src={item.image} alt={item.name} />
-          </div>
+                <div className="profile-img">
+                  <img src={item.image} alt={item.name} />
+                </div>
 
-          <h3>{item.name}</h3>
+                <h3>{item.name}</h3>
 
-          <h5>{item.role}</h5>
+                <h5>{item.role}</h5>
 
-          <p>{item.review}</p>
+                <p>{item.review}</p>
 
-          <div className="stars">
-            ★★★★★
-          </div>
+                <div className="stars">
+                  {"★".repeat(item.rating || 5)}{"☆".repeat(5 - (item.rating || 5))}
+                </div>
 
-          <div className="card-pointer"></div>
+                <div className="card-pointer"></div>
 
-        </div>
+              </div>
 
-      </SwiperSlide>
+            </SwiperSlide>
 
-    ))}
+          ))}
 
-  </Swiper>
+        </Swiper>
 
-  <button className="nav-btn left">
-    ←
-  </button>
+        <button className="nav-btn left">
+          ←
+        </button>
 
-  <button className="nav-btn right">
-    →
-  </button>
+        <button className="nav-btn right">
+          →
+        </button>
 
-</section>
+      </section>
     </>
   );
 }

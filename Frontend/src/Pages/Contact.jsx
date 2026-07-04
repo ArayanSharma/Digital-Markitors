@@ -26,12 +26,14 @@ const defaultTouchCards = [
 ];
 const defaultMapSrc =
   "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d7009.334881986703!2d77.250079!3d28.549714000000005!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390ce3cf0fa997a5%3A0x9f960e33bba19672!2sDigital%20Markitors%20-%20Best%20Digital%20Marketing%20and%20SEO%20Company%20in%20Kanpur!5e0!3m2!1sen!2sin!4v1780405452796!5m2!1sen!2sin";
+const defaultHearOptions = ["Google", "Facebook", "Instagram"];
 
 const Contact = () => {
   const { content: c } = usePageContent("contact");
   const left = c?.left;
   const form = c?.form;
   const services = c?.services?.length ? c.services : defaultServices;
+  const hearOptions = c?.hearOptions?.length ? c.hearOptions : defaultHearOptions;
   const touchHeading = c?.touchHeading || "How to get in touch";
   const touchCards = c?.touchCards?.length ? c.touchCards : defaultTouchCards;
   const mapSrc = c?.mapSrc || defaultMapSrc;
@@ -262,11 +264,11 @@ const [messageType, setMessageType] = useState("");
                   >
                     <option value="">How did you hear about us?</option>
 
-                    <option value="Google">Google</option>
-
-                    <option value="Facebook">Facebook</option>
-
-                    <option value="Instagram">Instagram</option>
+                    {hearOptions.map((opt, i) => (
+                      <option key={i} value={opt}>
+                        {opt}
+                      </option>
+                    ))}
                   </select>
                 </div>
               </div>

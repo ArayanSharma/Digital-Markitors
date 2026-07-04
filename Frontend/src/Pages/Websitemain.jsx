@@ -223,11 +223,12 @@ const [activeFAQ, setActiveFAQ] = useState(null);
     : cmsData;
   const ourWorkSection = c?.ourWorkSection;
   const builtSection = c?.builtSection;
-  const displayServices = builtSection?.services?.length ? builtSection.services : services;
-  const builtServicesImage = builtSection?.servicesImage ? resolveImage(builtSection.servicesImage) : webDesignImg;
+  const displayServices = c?.services?.length
+    ? c.services.map((s) => ({ title: s.title, image: s.image ? resolveImage(s.image) : webDesignImg }))
+    : services.map((title) => ({ title, image: webDesignImg }));
   const connectSection = c?.connectSection;
   const processSection = c?.processSection;
-  const displayProcessData = processSection?.processData?.length ? processSection.processData : processData;
+  const displayProcessData = c?.processData?.length ? c.processData : (processSection?.processData?.length ? processSection.processData : processData);
   const testimonialsSection = c?.testimonialsSection;
   const displayTestimonials = testimonialsSection?.testimonials?.length
     ? testimonialsSection.testimonials.map((i) => ({ ...i, image: resolveImage(i.image) }))
@@ -403,7 +404,7 @@ const [activeFAQ, setActiveFAQ] = useState(null);
         </ul>
 
         <a href={ourWorkSection?.workDetails?.viewWorkLink || "/"} className="view-work">
-          View All Work
+          {ourWorkSection?.workDetails?.buttonText || "View All Work"}
         </a>
       </div>
     </div>
@@ -422,10 +423,10 @@ const [activeFAQ, setActiveFAQ] = useState(null);
       {builtSection?.p || "It is because our team understands that perfect website design harmonizes the right layout, colours, and airtight coding work to enhance leads, conversions, and sales. We can take care of your business website from soup to nuts with our following services:"}
     </p>
 <div className="built-grid">
-  {displayServices.map((title, index) => (
+  {displayServices.map((item, index) => (
     <div className="built-card" key={index}>
-      <img src={builtServicesImage} alt={title} />
-      <h3>{title}</h3>
+      <img src={item.image} alt={item.title} />
+      <h3>{item.title}</h3>
     </div>
   ))}
 </div>

@@ -377,61 +377,7 @@ export default function AdIndustry() {
                 )}
               </div>
 
-              <div className="form-group">
-                <label>Services Offered (optional)</label>
-                <div className="description-input-group">
-                  <input
-                    type="text"
-                    value={serviceInput}
-                    onChange={(e) => setServiceInput(e.target.value)}
-                    placeholder="e.g. SEO Audits"
-                    onKeyDown={(e) => {
-                      if (e.key === "Enter") {
-                        e.preventDefault();
-                        addService();
-                      }
-                    }}
-                  />
-                  <button type="button" onClick={addService} className="btn-add-description">
-                    + Add
-                  </button>
-                </div>
-                {formData.services.length > 0 && (
-                  <div className="tag-list">
-                    {formData.services.map((service, index) => (
-                      <span key={index} className="tag-chip">
-                        {service}
-                        <button type="button" onClick={() => removeService(index)}>
-                          &times;
-                        </button>
-                      </span>
-                    ))}
-                  </div>
-                )}
-              </div>
 
-              <div className="form-row">
-                <div className="form-group">
-                  <label>Button Text</label>
-                  <input
-                    type="text"
-                    name="buttonText"
-                    value={formData.buttonText}
-                    onChange={handleInputChange}
-                    placeholder="Read More"
-                  />
-                </div>
-                <div className="form-group">
-                  <label>Button Link</label>
-                  <input
-                    type="text"
-                    name="buttonLink"
-                    value={formData.buttonLink}
-                    onChange={handleInputChange}
-                    placeholder="/industries/healthcare"
-                  />
-                </div>
-              </div>
 
               <div className="form-row">
                 <div className="form-group checkbox-group">

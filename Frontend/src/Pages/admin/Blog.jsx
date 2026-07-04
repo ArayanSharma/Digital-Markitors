@@ -211,34 +211,7 @@ export default function AdBlog() {
         }
       />
 
-      {/* Section header editor — a single settings form, not a per-record list, so it stays inline */}
-      <AdminCard style={{ padding: 20, marginBottom: 24 }}>
-        <form onSubmit={saveSection} className="space-y-4">
-          <div className="flex items-center justify-between">
-            <h2 className="text-sm font-semibold text-white tracking-wide uppercase">Blog Section Settings</h2>
-            <div className="text-sm text-text-muted">
-              {sectionStatus === "saving" ? "Saving..." : sectionStatus === "saved" ? "Saved ✓" : ""}
-            </div>
-          </div>
 
-          <Field label="Section Description">
-            <TextArea rows={3} value={section.description} onChange={(e) => setSection({ ...section, description: e.target.value })} />
-          </Field>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-            <Field label="Button Text">
-              <TextInput value={section.buttonText} onChange={(e) => setSection({ ...section, buttonText: e.target.value })} />
-            </Field>
-            <Field label="Button Link">
-              <TextInput value={section.buttonLink} onChange={(e) => setSection({ ...section, buttonLink: e.target.value })} />
-            </Field>
-          </div>
-
-          <AdminButton type="submit" variant="secondary">
-            Save Section
-          </AdminButton>
-        </form>
-      </AdminCard>
 
       <Modal open={modalOpen} onClose={cancelEdit} title={editingId ? "Edit Blog Post" : "Add New Blog Post"}>
         <form onSubmit={handleSubmit} className="space-y-4">
@@ -252,14 +225,7 @@ export default function AdBlog() {
             <TextArea required rows={4} value={form.description} onChange={(e) => setForm({ ...form, description: e.target.value })} />
           </Field>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-            <Field label="Button Text">
-              <TextInput value={form.buttonText} onChange={(e) => setForm({ ...form, buttonText: e.target.value })} />
-            </Field>
-            <Field label="Button Link">
-              <TextInput value={form.buttonLink} onChange={(e) => setForm({ ...form, buttonLink: e.target.value })} />
-            </Field>
-          </div>
+
 
           <AdminButton type="submit" variant="primary" icon={editingId ? Save : Plus} loading={status === "saving"}>
             {status === "saved" ? "Saved ✓" : editingId ? "Update Blog" : "Add Blog"}

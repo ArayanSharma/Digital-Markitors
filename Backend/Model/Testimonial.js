@@ -21,6 +21,11 @@ const testimonialSchema = new mongoose.Schema(
       type: String,
       default: "",
     },
+
+    rating: {
+      type: Number,
+      default: 5,
+    },
   },
   {
     timestamps: true,

@@ -110,6 +110,14 @@ export default function AdWebsitemain() {
     servicesImage: "",
   });
 
+  const [services, setServices] = useState([
+    { id: uid(), image: "", title: "Web Design" },
+    { id: uid(), image: "", title: "Web Development" },
+    { id: uid(), image: "", title: "Branding" },
+    { id: uid(), image: "", title: "SEO" },
+    { id: uid(), image: "", title: "Ecommerce" },
+  ]);
+
 
 
   // PROCESS SECTION STATE
@@ -126,6 +134,14 @@ export default function AdWebsitemain() {
       { id: uid(), title: "", desc: "" },
     ],
   });
+
+  const [processData, setProcessData] = useState([
+    { id: uid(), title: "ANALYSIS", desc: "" },
+    { id: uid(), title: "YOUR TEAM", desc: "" },
+    { id: uid(), title: "DESIGN STAGE", desc: "" },
+    { id: uid(), title: "DEVELOPMENT STAGE", desc: "" },
+    { id: uid(), title: "LAUNCH", desc: "" },
+  ]);
 
   // TESTIMONIALS SECTION STATE
   const [testimonialsSection, setTestimonialsSection] = useState({
@@ -170,6 +186,16 @@ export default function AdWebsitemain() {
       ...cmsSection,
       cmsData: cmsSection.cmsData.map((item) => (item.id === id ? { ...item, [field]: value } : item)),
     });
+  const addCmsItem = () =>
+    setCmsSection({
+      ...cmsSection,
+      cmsData: [...cmsSection.cmsData, { id: uid(), icon: CMS_ICON_OPTIONS[0], title: "", points: [] }],
+    });
+  const removeCmsItem = (id) =>
+    setCmsSection({
+      ...cmsSection,
+      cmsData: cmsSection.cmsData.filter((item) => item.id !== id),
+    });
   const updateCmsPoint = (id, pointIdx, value) =>
     setCmsSection({
       ...cmsSection,
@@ -195,34 +221,38 @@ export default function AdWebsitemain() {
     });
 
   // OUR WORK LIST HELPERS
-  const updateWorkListItem = (idx, value) =>
+  const updateOurWorkBullet = (index, value) => {
+    const list = [...(ourWorkSection.workDetails.list || [])];
+    list[index] = value;
+    setOurWorkSection({
+      ...ourWorkSection,
+      workDetails: { ...ourWorkSection.workDetails, list },
+    });
+  };
+
+  const addOurWorkBullet = () => {
     setOurWorkSection({
       ...ourWorkSection,
       workDetails: {
         ...ourWorkSection.workDetails,
-        list: ourWorkSection.workDetails.list.map((item, i) => (i === idx ? value : item)),
+        list: [...(ourWorkSection.workDetails.list || []), ""],
       },
     });
+  };
 
-  // BUILT SERVICES HELPERS
-  const updateService = (idx, value) =>
-    setBuiltSection({
-      ...builtSection,
-      services: builtSection.services.map((s, i) => (i === idx ? value : s)),
+  const removeOurWorkBullet = (index) => {
+    setOurWorkSection({
+      ...ourWorkSection,
+      workDetails: {
+        ...ourWorkSection.workDetails,
+        list: (ourWorkSection.workDetails.list || []).filter((_, i) => i !== index),
+      },
     });
-  const addService = () =>
-    setBuiltSection({ ...builtSection, services: [...builtSection.services, ""] });
-  const removeService = (idx) =>
-    setBuiltSection({ ...builtSection, services: builtSection.services.filter((_, i) => i !== idx) });
+  };
 
-  // PROCESS DATA HELPERS
-  const updateProcessItem = (id, field, value) =>
-    setProcessSection({
-      ...processSection,
-      processData: processSection.processData.map((item) =>
-        item.id === id ? { ...item, [field]: value } : item
-      ),
-    });
+
+
+
 
   // FAQ HELPERS
   const updateFaq = (id, field, value) =>
@@ -282,8 +312,10 @@ export default function AdWebsitemain() {
       if (data.cmsSection) setCmsSection(data.cmsSection);
       if (data.ourWorkSection) setOurWorkSection(data.ourWorkSection);
       if (data.builtSection) setBuiltSection(data.builtSection);
+      if (data.services) setServices(data.services);
       if (data.connectSection) setConnectSection(data.connectSection);
       if (data.processSection) setProcessSection(data.processSection);
+      if (data.processData) setProcessData(data.processData);
       if (data.testimonialsSection) {
         setTestimonialsSection({
           title: data.testimonialsSection.title || "",
@@ -316,7 +348,9 @@ export default function AdWebsitemain() {
       cmsSection,
       ourWorkSection,
       builtSection,
+      services,
       processSection,
+      processData,
       testimonialsSection,
       contactBanner,
       faqSection,
@@ -349,7 +383,7 @@ export default function AdWebsitemain() {
 
         <PageStatusBanner loading={loading} error={loadError} onRetry={load} />
 
-        <Section title="1. Banner Section" open={openSection === "banner"} onToggle={() => toggle("banner")}>
+        <Section title="HERO BANNER" open={openSection === "banner"} onToggle={() => toggle("banner")}>
           <Field label="Subtitle">
             <TextInput value={bannerData.subtitle} onChange={(e) => setBannerData({ ...bannerData, subtitle: e.target.value })} />
           </Field>
@@ -372,8 +406,8 @@ export default function AdWebsitemain() {
           <ImageInput label="Background Image" value={bannerData.backgroundImage} onChange={(e) => setBannerData({ ...bannerData, backgroundImage: e.target.value })} />
         </Section>
 
-        <Section title="2. Top Content Section" open={openSection === "topContent"} onToggle={() => toggle("topContent")}>
-          <Field label="Main Title (H1)">
+        <Section title="TOP CONTENT" open={openSection === "topContent"} onToggle={() => toggle("topContent")}>
+          <Field label="Title">
             <TextInput value={topContent.h1} onChange={(e) => setTopContent({ ...topContent, h1: e.target.value })} />
           </Field>
           <Field label="Description">
@@ -381,7 +415,7 @@ export default function AdWebsitemain() {
           </Field>
         </Section>
 
-        <Section title="3. Help Cards Section" open={openSection === "helpCards"} onToggle={() => toggle("helpCards")}>
+        <Section title="HELP CARDS" open={openSection === "helpCards"} onToggle={() => toggle("helpCards")}>
           <LeadForm
             title="Help Cards"
             addLabel="Add Card"
@@ -395,8 +429,8 @@ export default function AdWebsitemain() {
           />
         </Section>
 
-        <Section title="4. Web Design Section" open={openSection === "webDesignSection"} onToggle={() => toggle("webDesignSection")}>
-          <Field label="Main Title (H1)">
+        <Section title="WEB DESIGN SECTION" open={openSection === "webDesignSection"} onToggle={() => toggle("webDesignSection")}>
+          <Field label="Title">
             <TextInput value={webDesignSection.h1} onChange={(e) => setWebDesignSection({ ...webDesignSection, h1: e.target.value })} />
           </Field>
           <Field label="Highlighted Text (Span)">
@@ -409,13 +443,13 @@ export default function AdWebsitemain() {
             <TextArea rows={3} value={webDesignSection.p2} onChange={(e) => setWebDesignSection({ ...webDesignSection, p2: e.target.value })} />
           </Field>
           <ImageInput label="Image" value={webDesignSection.image} onChange={(e) => setWebDesignSection({ ...webDesignSection, image: e.target.value })} />
-          <Field label="Section Title (H2)">
+          <Field label="Second Title">
             <TextInput value={webDesignSection.h2} onChange={(e) => setWebDesignSection({ ...webDesignSection, h2: e.target.value })} />
           </Field>
         </Section>
 
-        <Section title="5. CMS Section" open={openSection === "cmsSection"} onToggle={() => toggle("cmsSection")}>
-          <Field label="Main Title (H2)">
+        <Section title="CMS SECTION" open={openSection === "cmsSection"} onToggle={() => toggle("cmsSection")}>
+          <Field label="Title">
             <TextInput value={cmsSection.h2} onChange={(e) => setCmsSection({ ...cmsSection, h2: e.target.value })} />
           </Field>
           <Field label="Highlighted Text (Span)">
@@ -424,42 +458,48 @@ export default function AdWebsitemain() {
           <Field label="Description">
             <TextArea rows={3} value={cmsSection.p} onChange={(e) => setCmsSection({ ...cmsSection, p: e.target.value })} />
           </Field>
-          <h4 className="text-sm font-semibold text-text-secondary">CMS Options</h4>
-          {cmsSection.cmsData.map((cms, index) => (
-            <div key={cms.id} className="p-4 bg-bg-secondary rounded-2xl border border-brand-primary/25 space-y-3">
-              <span className="text-xs font-semibold text-text-muted">CMS {index + 1}</span>
-              <Field label="Icon">
-                <select
-                  className={inputCls}
-                  value={cms.icon || "WordPress"}
-                  onChange={(e) => updateCmsItem(cms.id, "icon", e.target.value)}
-                >
-                  <option value="WordPress">WordPress</option>
-                  <option value="Shopify">Shopify</option>
-                  <option value="Magento">Magento</option>
-                  <option value="BigCommerce">BigCommerce</option>
-                </select>
-              </Field>
-              <Field label="Title">
-                <TextInput value={cms.title} onChange={(e) => updateCmsItem(cms.id, "title", e.target.value)} />
-              </Field>
-              <Field label="Points">
-                <div className="space-y-2">
-                  {(cms.points || []).map((point, pointIndex) => (
-                    <div key={pointIndex} className="flex items-center gap-3">
-                      <TextInput value={point} onChange={(e) => updateCmsPoint(cms.id, pointIndex, e.target.value)} />
-                      <RemoveBtn onClick={() => removeCmsPoint(cms.id, pointIndex)} />
-                    </div>
-                  ))}
-                  <AddRowBtn label="Add Point" onClick={() => addCmsPoint(cms.id)} />
+          <div className="md:col-span-2 space-y-3">
+            <CardListHeader title="CMS Cards" onAdd={addCmsItem} />
+            {cmsSection.cmsData.map((cms, index) => (
+              <div key={cms.id} className="p-4 bg-bg-secondary rounded-2xl border border-brand-primary/25 space-y-3">
+                <div className="flex items-center justify-between gap-3">
+                  <span className="text-xs font-semibold text-text-muted">CMS Card {index + 1}</span>
+                  <RemoveBtn onClick={() => removeCmsItem(cms.id)} />
                 </div>
-              </Field>
-            </div>
-          ))}
+                <Field label="Icon">
+                  <select
+                    className={inputCls}
+                    value={cms.icon || CMS_ICON_OPTIONS[0]}
+                    onChange={(e) => updateCmsItem(cms.id, "icon", e.target.value)}
+                  >
+                    {CMS_ICON_OPTIONS.map((opt) => (
+                      <option key={opt} value={opt}>
+                        {opt}
+                      </option>
+                    ))}
+                  </select>
+                </Field>
+                <Field label="Title">
+                  <TextInput value={cms.title} onChange={(e) => updateCmsItem(cms.id, "title", e.target.value)} />
+                </Field>
+                <Field label="Points">
+                  <div className="space-y-2">
+                    {(cms.points || []).map((point, pointIndex) => (
+                      <div key={pointIndex} className="flex items-center gap-3">
+                        <TextInput value={point} onChange={(e) => updateCmsPoint(cms.id, pointIndex, e.target.value)} />
+                        <RemoveBtn onClick={() => removeCmsPoint(cms.id, pointIndex)} />
+                      </div>
+                    ))}
+                    <AddRowBtn label="Add Point" onClick={() => addCmsPoint(cms.id)} />
+                  </div>
+                </Field>
+              </div>
+            ))}
+          </div>
         </Section>
 
-        <Section title="6. Our Work Section" open={openSection === "ourWorkSection"} onToggle={() => toggle("ourWorkSection")}>
-          <Field label="Main Title (H2)">
+        <Section title="OUR WORK SECTION" open={openSection === "ourWorkSection"} onToggle={() => toggle("ourWorkSection")}>
+          <Field label="Title">
             <TextInput value={ourWorkSection.h2} onChange={(e) => setOurWorkSection({ ...ourWorkSection, h2: e.target.value })} />
           </Field>
           <Field label="Highlighted Text (Span)">
@@ -470,7 +510,7 @@ export default function AdWebsitemain() {
           </Field>
           <ImageInput label="Work Image" value={ourWorkSection.workImage} onChange={(e) => setOurWorkSection({ ...ourWorkSection, workImage: e.target.value })} />
           <h4 className="text-sm font-semibold text-text-secondary">Work Details</h4>
-          <Field label="Work Title (H3)">
+          <Field label="Work Title">
             <TextInput
               value={ourWorkSection.workDetails.h3}
               onChange={(e) =>
@@ -481,26 +521,36 @@ export default function AdWebsitemain() {
               }
             />
           </Field>
-          {ourWorkSection.workDetails.list.map((item, idx) => (
-            <Field key={idx} label={`List Item ${idx + 1}`}>
-              <TextInput value={item} onChange={(e) => updateWorkListItem(idx, e.target.value)} />
-            </Field>
-          ))}
-          <Field label={'"View All Work" Button Link'}>
-            <TextInput
-              value={ourWorkSection.workDetails.viewWorkLink}
-              onChange={(e) =>
-                setOurWorkSection({
-                  ...ourWorkSection,
-                  workDetails: { ...ourWorkSection.workDetails, viewWorkLink: e.target.value },
-                })
-              }
-            />
-          </Field>
+          <div className="md:col-span-2 space-y-3">
+            <CardListHeader title="Bullets" onAdd={addOurWorkBullet} />
+            {(ourWorkSection.workDetails.list || []).map((bullet, index) => (
+              <div key={index} className="flex items-center gap-2">
+                <TextInput value={bullet} onChange={(e) => updateOurWorkBullet(index, e.target.value)} />
+                <RemoveBtn onClick={() => removeOurWorkBullet(index)} />
+              </div>
+            ))}
+          </div>
+          <ButtonFields
+            label="Work Button"
+            value={{
+              text: ourWorkSection.workDetails.buttonText || "View All Work",
+              link: ourWorkSection.workDetails.viewWorkLink || "",
+            }}
+            onChange={(v) =>
+              setOurWorkSection({
+                ...ourWorkSection,
+                workDetails: {
+                  ...ourWorkSection.workDetails,
+                  buttonText: v.text,
+                  viewWorkLink: v.link,
+                },
+              })
+            }
+          />
         </Section>
 
-        <Section title="7. Built Section" open={openSection === "builtSection"} onToggle={() => toggle("builtSection")}>
-          <Field label="Main Title (H2)">
+        <Section title="BUILT SECTION" open={openSection === "builtSection"} onToggle={() => toggle("builtSection")}>
+          <Field label="Title">
             <TextInput value={builtSection.h2} onChange={(e) => setBuiltSection({ ...builtSection, h2: e.target.value })} />
           </Field>
           <Field label="Highlighted Text (Span)">
@@ -509,26 +559,22 @@ export default function AdWebsitemain() {
           <Field label="Description">
             <TextArea rows={3} value={builtSection.p} onChange={(e) => setBuiltSection({ ...builtSection, p: e.target.value })} />
           </Field>
-          <div className="md:col-span-2 space-y-3">
-            <CardListHeader title="Services" onAdd={addService} />
-            {builtSection.services.map((service, idx) => (
-              <div key={idx} className="flex items-center gap-3">
-                <div className="flex-1">
-                  <Field label={`Service ${idx + 1}`}>
-                    <TextInput value={service} onChange={(e) => updateService(idx, e.target.value)} />
-                  </Field>
-                </div>
-                <RemoveBtn onClick={() => removeService(idx)} />
-              </div>
-            ))}
-          </div>
-          <ImageInput label="Services Image" value={builtSection.servicesImage} onChange={(e) => setBuiltSection({ ...builtSection, servicesImage: e.target.value })} />
+          <LeadForm
+            title="Services"
+            addLabel="Add Service"
+            items={services}
+            onChange={setServices}
+            fields={[
+              { name: "image", label: "Service Image", type: "image" },
+              { name: "title", label: "Title", type: "text", required: true },
+            ]}
+          />
         </Section>
 
 
 
-        <Section title="9. Process Section" open={openSection === "processSection"} onToggle={() => toggle("processSection")}>
-          <Field label="Main Title (H2)">
+        <Section title="PROCESS SECTION" open={openSection === "processSection"} onToggle={() => toggle("processSection")}>
+          <Field label="Title">
             <TextInput value={processSection.h2} onChange={(e) => setProcessSection({ ...processSection, h2: e.target.value })} />
           </Field>
           <Field label="Highlighted Text (Span)">
@@ -538,22 +584,20 @@ export default function AdWebsitemain() {
             <TextArea rows={3} value={processSection.p} onChange={(e) => setProcessSection({ ...processSection, p: e.target.value })} />
           </Field>
           <ImageInput label="Process Image" value={processSection.processImage} onChange={(e) => setProcessSection({ ...processSection, processImage: e.target.value })} />
-          <h4 className="text-sm font-semibold text-text-secondary">Process Steps</h4>
-          {processSection.processData.map((item, index) => (
-            <div key={item.id} className="p-4 bg-bg-secondary rounded-2xl border border-brand-primary/25 space-y-3">
-              <span className="text-xs font-semibold text-text-muted">Step {index + 1}</span>
-              <Field label="Title">
-                <TextInput value={item.title} onChange={(e) => updateProcessItem(item.id, "title", e.target.value)} />
-              </Field>
-              <Field label="Description">
-                <TextArea rows={2} value={item.desc} onChange={(e) => updateProcessItem(item.id, "desc", e.target.value)} />
-              </Field>
-            </div>
-          ))}
+          <LeadForm
+            title="Process Steps"
+            addLabel="Add Step"
+            items={processData}
+            onChange={setProcessData}
+            fields={[
+              { name: "title", label: "Title", type: "text", required: true },
+              { name: "desc", label: "Description", type: "textarea", rows: 3 },
+            ]}
+          />
         </Section>
 
-        <Section title="10. Testimonials Section" open={openSection === "testimonialsSection"} onToggle={() => toggle("testimonialsSection")}>
-          <Field label="Section Title">
+        <Section title="TESTIMONIALS SECTION" open={openSection === "testimonialsSection"} onToggle={() => toggle("testimonialsSection")}>
+          <Field label="Title">
             <TextInput value={testimonialsSection.title} onChange={(e) => setTestimonialsSection({ ...testimonialsSection, title: e.target.value })} />
           </Field>
           <Field label="Subtitle">
@@ -632,7 +676,7 @@ export default function AdWebsitemain() {
           />
         </Section>
 
-        <Section title="11. Contact Banner Section" open={openSection === "contactBanner"} onToggle={() => toggle("contactBanner")}>
+        <Section title="CONTACT BANNER" open={openSection === "contactBanner"} onToggle={() => toggle("contactBanner")}>
           <Field label="Phone Number">
             <TextInput value={contactBanner.phone} onChange={(e) => setContactBanner({ ...contactBanner, phone: e.target.value })} />
           </Field>
@@ -642,11 +686,11 @@ export default function AdWebsitemain() {
           <ImageInput label="Logo" value={contactBanner.logo} onChange={(e) => setContactBanner({ ...contactBanner, logo: e.target.value })} />
         </Section>
 
-        <Section title="12. FAQ Section" open={openSection === "faqSection"} onToggle={() => toggle("faqSection")}>
-          <Field label="Section Title">
+        <Section title="FAQ SECTION" open={openSection === "faqSection"} onToggle={() => toggle("faqSection")}>
+          <Field label="Title">
             <TextInput value={faqSection.h2} onChange={(e) => setFaqSection({ ...faqSection, h2: e.target.value })} />
           </Field>
-          <Field label="Section Description">
+          <Field label="Description">
             <TextArea rows={2} value={faqSection.p} onChange={(e) => setFaqSection({ ...faqSection, p: e.target.value })} />
           </Field>
           <ImageInput label="FAQ Image" value={faqSection.faqImage} onChange={(e) => setFaqSection({ ...faqSection, faqImage: e.target.value })} />

@@ -15,7 +15,7 @@ import Banner from "../Components/Cards/Seohero";
 import heroImg from "../assets/a.png";
 
 import eimage from "../assets/BannerImg/ShopifyDevelopment.png";
- import Icon1 from "../assets/h1.png";
+import Icon1 from "../assets/h1.png";
 import Icon2 from "../assets/h2.png";
 import Icon3 from "../assets/h3.png";
 import Icon4 from "../assets/h4.png";
@@ -63,14 +63,14 @@ const cmsData = [
     ],
   },
   {
-  icon: <FaMagento />,
-  title: "Magento",
-  points: [
-    "Out-of-the-Box Features",
-    "SEO-Friendly",
-    "Cost-Effective",
-  ],
-},
+    icon: <FaMagento />,
+    title: "Magento",
+    points: [
+      "Out-of-the-Box Features",
+      "SEO-Friendly",
+      "Cost-Effective",
+    ],
+  },
   {
     icon: <SiBigcommerce />,
     title: "BigCommerce",
@@ -83,7 +83,7 @@ const cmsData = [
 ];
 
 // HELP CARDS
- const helpCards = [
+const helpCards = [
 
   {
     icon: Icon1,
@@ -92,13 +92,13 @@ const cmsData = [
   },
 
   {
-    icon: Icon2 ,
+    icon: Icon2,
     title: "Make More Sales",
     desc: "We help you convert maximum possible leads into sales and grow your business faster",
   },
 
   {
-    icon: Icon3 ,
+    icon: Icon3,
     title: "Build Brand Awareness",
     desc: "We help your brand gain strong recognition across digital platforms globally",
   },
@@ -169,13 +169,14 @@ const faqData = [
   {
     question:
       "Why should I hire a professional web design company to design my website?",
-    answer:[
+    answer: [
       "Digicore Inc. delivers website designing and development solutions that best suit your business, its targeted customers, the marketplace, and future goals",
       "We make the right use of appropriate colour scheme, text, and navigation to make your website more user-friendly",
       "To ensure optimal success, we make the use of the latest website designing trends and technologies",
       "Our website designers and developers use the techniques to make your website SEO-friendly",
       "We can help you keep your website updated and free with our webmaster services",
-    ],},
+    ],
+  },
 
   {
     question: "How long does it take to build a new website?",
@@ -201,9 +202,9 @@ const faqData = [
 
 const ShopifyDev = () => {
 
-const [active, setActive] = useState(0);
+  const [active, setActive] = useState(0);
 
-const [activeFAQ, setActiveFAQ] = useState(null);
+  const [activeFAQ, setActiveFAQ] = useState(null);
 
   const toggleFAQ = (index) => {
     setActiveFAQ(activeFAQ === index ? null : index);
@@ -236,62 +237,62 @@ const [activeFAQ, setActiveFAQ] = useState(null);
   const faqHeader = c?.faqHeader;
   const displayFaq = c?.faqData?.length
     ? c.faqData.map((item) => ({
-        question: item.question,
-        answer: item.isList ? item.answerList || [] : (item.answerText || item.answer),
-      }))
+      question: item.question,
+      answer: item.isList ? item.answerList || [] : (item.answerText || item.answer),
+    }))
     : faqData;
 
   return (
     <div>
 
-        <Banner
-      subtitle={hero?.subtitle || "We make your brand UNMISSABLE"}
-      title={hero?.title || "Turning Visibility into Growth. Turning Brands into Market Leaders"}
-      description={hero?.description || "We are Digicore Inc. – The Best SEO Company in Delhi NCR. SEO runs in our DNA. We deliver powerful, sustainable organic traffic, relevant leads by choosing hight intent commercial keywords for your business."}
-      primaryBtnText={hero?.primaryBtn?.text || "Speak to an SEO Expert"}
-      secondaryBtnText={hero?.secondaryBtn?.text || "Our Services"}
-      backgroundImage={hero?.backgroundImage ? resolveImage(hero.backgroundImage) : eimage}
-    />
+      <Banner
+        subtitle={hero?.subtitle || "We make your brand UNMISSABLE"}
+        title={hero?.title || "Turning Visibility into Growth. Turning Brands into Market Leaders"}
+        description={hero?.description || "We are Digicore Inc. – The Best SEO Company in Delhi NCR. SEO runs in our DNA. We deliver powerful, sustainable organic traffic, relevant leads by choosing hight intent commercial keywords for your business."}
+        primaryBtnText={hero?.primaryBtn?.text || "Speak to an SEO Expert"}
+        secondaryBtnText={hero?.secondaryBtn?.text || "Our Services"}
+        backgroundImage={hero?.backgroundImage ? resolveImage(hero.backgroundImage) : eimage}
+      />
 
 
 
       <div className="top-content">
-            <h1>
-              Complete WordPress Website Development Services <strong>{topContent?.title || "for Every Business"}</strong>
+        <h1>
+          Complete WordPress Website Development Services <strong>{topContent?.title || "for Every Business"}</strong>
 
 
-            </h1>
+        </h1>
 
-            <p>
-              {topContent?.description || "From corporate websites to advanced WooCommerce stores, we deliver high-performance WordPress solutions tailored for your business in Delhi NCR."}
-            </p>
-          </div>
-
-     <div className="dominate-cards">
-  {displayHelpCards.map((item, index) => (
-    <div className="dominate-card" key={item.id || index}>
-
-      <div className="dominate-icon">
-        <img
-          src={item.icon}
-          alt={item.title}
-          className="dominate-icon-img"
-        />
+        <p>
+          {topContent?.description || "From corporate websites to advanced WooCommerce stores, we deliver high-performance WordPress solutions tailored for your business in Delhi NCR."}
+        </p>
       </div>
 
-      <h3>{item.title}</h3>
+      <div className="dominate-cards">
+        {displayHelpCards.map((item, index) => (
+          <div className="dominate-card" key={item.id || index}>
 
-      <p>{item.desc}</p>
+            <div className="dominate-icon">
+              <img
+                src={item.icon}
+                alt={item.title}
+                className="dominate-icon-img"
+              />
+            </div>
 
-    </div>
-  ))}
-</div>
+            <h3>{item.title}</h3>
+
+            <p>{item.desc}</p>
+
+          </div>
+        ))}
+      </div>
 
       {/* WEB DESIGN SECTION */}
       <section className="web-design">
         <div className="container">
           <div className="top-content">
-           <h1>
+            <h1>
               {webDesign?.title || "Take Your Business Success on Another Level"}
               <br />
               <span>
@@ -363,274 +364,252 @@ const [activeFAQ, setActiveFAQ] = useState(null);
       </section>
 
       <section className="our-work">
-  <div className="container">
-    <div className="work-header">
-      <h2>
-        Our <span>{ourWork?.title || "Work"}</span>
-      </h2>
+        <div className="container">
+          <div className="work-header">
+            <h2>
+              Our <span>{ourWork?.title || "Work"}</span>
+            </h2>
 
-      <p>
-        {ourWork?.description || "Digital Markitor's website designing team has had the great pleasure of working with various high-profile and well-known clients across a varied mix of verticals"}
-      </p>
-    </div>
+            <p>
+              {ourWork?.description || "Digital Markitor's website designing team has had the great pleasure of working with various high-profile and well-known clients across a varied mix of verticals"}
+            </p>
+          </div>
 
-    <div className="work-content">
-      <div className="work-image">
-        <img src={ourWork?.image ? resolveImage(ourWork.image) : workImg} alt="Our Work" />
-      </div>
+          <div className="work-content">
+            <div className="work-image">
+              <img src={ourWork?.image ? resolveImage(ourWork.image) : workImg} alt="Our Work" />
+            </div>
 
-      <div className="work-details">
-        <h3>{ourWork?.workTitle || "Panache Worldwide"}</h3>
+            <div className="work-details">
+              <h3>{ourWork?.workTitle || "Panache Worldwide"}</h3>
 
-        <ul>
-          {ourWork?.bullets?.length ? (
-            ourWork.bullets.map((b, i) => <li key={i}>{b}</li>)
-          ) : (
-            <>
-              <li>Website Design</li>
-              <li>Responsive Html5 & Css3</li>
-              <li>Custom WordPress Development</li>
-              <li>WHMCS Integration</li>
-              <li>National and Local SEO</li>
-            </>
-          )}
-        </ul>
+              <ul>
+                {ourWork?.bullets?.length ? (
+                  ourWork.bullets.map((b, i) => <li key={i}>{b}</li>)
+                ) : (
+                  <>
+                    <li>Website Design</li>
+                    <li>Responsive Html5 & Css3</li>
+                    <li>Custom WordPress Development</li>
+                    <li>WHMCS Integration</li>
+                    <li>National and Local SEO</li>
+                  </>
+                )}
+              </ul>
 
-        <a href={ourWork?.button?.link || "/"} className="view-work">
-          {ourWork?.button?.text || "View All Work"}
-        </a>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-
-<section className="built-section">
-  <div className="built-container">
-    <h2>
-      Our Work Includes <span>{builtSection?.title || "600+ Websites Built"}</span>
-    </h2>
-
-    <p>
-      {builtSection?.description || "It is because our team understands that perfect website design harmonizes the right layout, colours, and airtight coding work to enhance leads, conversions, and sales. We can take care of your business website from soup to nuts with our following services:"}
-    </p>
-<div className="built-grid">
-  {displayServices.map((item, index) => (
-    <div className="built-card" key={item.id || index}>
-      <img src={item.image} alt={item.title} />
-      <h3>{item.title}</h3>
-    </div>
-  ))}
-</div>
-</div>
-</section>
-
-      
-<section className="connect-section">
-  <div className="connect-overlay">
-    <div className="connect-container">
-      <div className="connect-content">
-        <h2>
-          Let's <span>{connectSection?.title || "connect"}</span>
-        </h2>
-
-        <p>
-          {connectSection?.description || "Need Dynamic Web Designing Solutions? Contact us to discuss your needs and business objectives"}
-        </p>
-      </div>
-
-      <form className="connect-form">
-        <input type="text" placeholder="Name" />
-        <input type="email" placeholder="Email" />
-        <input type="text" placeholder="Phone Number" />
-
-        <button type="submit">{connectSection?.button?.text || "SUBMIT"}</button>
-      </form>
-    </div>
-  </div>
-</section>
-
-<section className="process-section">
-  <div className="container">
-    <div className="process-header">
-      <h2>
-        Our Website Designing <span>{processHeader?.title || "Process"}</span>
-      </h2>
-
-      <p>
-        {processHeader?.description || "We, Digicore Inc., take pride in our exceptional work. For us, designing and developing a website is not only for customer satisfaction but about helping our clients stand out."}
-      </p>
-    </div>
-
-    <div className="process-wrapper">
-      <div className="process-image">
-        <img src={processHeader?.image ? resolveImage(processHeader.image) : processImg} alt="Process" />
-      </div>
-
-      <div className="process-content">
-        {displayProcessData.map((item, index) => (
-          <div className="process-item" key={item.id || index}>
-            <div className="process-icon"></div>
-
-            <div>
-              <h3>{item.title}</h3>
-              <p>{item.desc}</p>
+              <a href={ourWork?.button?.link || "/"} className="view-work">
+                {ourWork?.button?.text || "View All Work"}
+              </a>
             </div>
           </div>
-        ))}
-      </div>
-    </div>
-  </div>
-</section>
+        </div>
+      </section>
 
 
 
-<section className="testimonials">
-      <div className="container">
-        <h2 className="title">{testimonialHeader?.title || "Testimonials"}</h2>
+      <section className="built-section">
+        <div className="built-container">
+          <h2>
+            Our Work Includes <span>{builtSection?.title || "600+ Websites Built"}</span>
+          </h2>
 
-        <p className="subtitle">
-          {testimonialHeader?.subtitle || "Check out what our clients say about our top digital marketing solutions"}
-        </p>
+          <p>
+            {builtSection?.description || "It is because our team understands that perfect website design harmonizes the right layout, colours, and airtight coding work to enhance leads, conversions, and sales. We can take care of your business website from soup to nuts with our following services:"}
+          </p>
+          <div className="built-grid">
+            {displayServices.map((item, index) => (
+              <div className="built-card" key={item.id || index}>
+                <img src={item.image} alt={item.title} />
+                <h3>{item.title}</h3>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
-        <div className="testimonial-wrapper">
 
-          <div className="video-box" style={{ overflow: "hidden" }}>
-            {testimonialHeader?.videoUpload || (testimonialHeader?.videoUrl && !testimonialHeader.videoUrl.includes("youtube.com") && !testimonialHeader.videoUrl.includes("youtu.be")) ? (
-              <video
-                src={testimonialHeader?.videoUpload ? resolveImage(testimonialHeader.videoUpload) : testimonialHeader?.videoUrl}
-                controls
-                className="w-full h-full object-cover"
-                poster={testimonialHeader?.videoImage ? resolveImage(testimonialHeader.videoImage) : video}
-                style={{ width: "100%", height: "100%", borderRadius: "20px", display: "block", minHeight: "280px" }}
-              />
-            ) : testimonialHeader?.videoUrl ? (
-              <iframe
-                src={testimonialHeader.videoUrl.includes("embed") ? testimonialHeader.videoUrl : testimonialHeader.videoUrl.replace("watch?v=", "embed/")}
-                title="Testimonial Video"
-                className="w-full h-full"
-                allowFullScreen
-                style={{ width: "100%", height: "100%", minHeight: "280px", border: "none", borderRadius: "20px" }}
-              />
-            ) : (
-              <img
-                src={testimonialHeader?.videoImage ? resolveImage(testimonialHeader.videoImage) : video}
-                alt="Video"
-                style={{ width: "100%", height: "100%", borderRadius: "20px" }}
-              />
-            )}
+
+
+      <section className="process-section">
+        <div className="container">
+          <div className="process-header">
+            <h2>
+              Our Website Designing <span>{processHeader?.title || "Process"}</span>
+            </h2>
+
+            <p>
+              {processHeader?.description || "We, Digicore Inc., take pride in our exceptional work. For us, designing and developing a website is not only for customer satisfaction but about helping our clients stand out."}
+            </p>
           </div>
 
+          <div className="process-wrapper">
+            <div className="process-image">
+              <img src={processHeader?.image ? resolveImage(processHeader.image) : processImg} alt="Process" />
+            </div>
 
-          <div className="testimonial-content">
-            <div className="profile-card">
-              <div className="profile-image">
-                <img
-                  src={displayTestimonials[active].image}
-                  alt={displayTestimonials[active].name}
+            <div className="process-content">
+              {displayProcessData.map((item, index) => (
+                <div className="process-item" key={item.id || index}>
+                  <div className="process-icon"></div>
+
+                  <div>
+                    <h3>{item.title}</h3>
+                    <p>{item.desc}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+
+      <section className="testimonials">
+        <div className="container">
+          <h2 className="title">{testimonialHeader?.title || "Testimonials"}</h2>
+
+          <p className="subtitle">
+            {testimonialHeader?.subtitle || "Check out what our clients say about our top digital marketing solutions"}
+          </p>
+
+          <div className="testimonial-wrapper">
+
+            <div className="video-box" style={{ overflow: "hidden" }}>
+              {testimonialHeader?.videoUpload || (testimonialHeader?.videoUrl && !testimonialHeader.videoUrl.includes("youtube.com") && !testimonialHeader.videoUrl.includes("youtu.be")) ? (
+                <video
+                  src={testimonialHeader?.videoUpload ? resolveImage(testimonialHeader.videoUpload) : testimonialHeader?.videoUrl}
+                  controls
+                  className="w-full h-full object-cover"
+                  poster={testimonialHeader?.videoImage ? resolveImage(testimonialHeader.videoImage) : video}
+                  style={{ width: "100%", height: "100%", borderRadius: "20px", display: "block", minHeight: "280px" }}
                 />
+              ) : testimonialHeader?.videoUrl ? (
+                <iframe
+                  src={testimonialHeader.videoUrl.includes("embed") ? testimonialHeader.videoUrl : testimonialHeader.videoUrl.replace("watch?v=", "embed/")}
+                  title="Testimonial Video"
+                  className="w-full h-full"
+                  allowFullScreen
+                  style={{ width: "100%", height: "100%", minHeight: "280px", border: "none", borderRadius: "20px" }}
+                />
+              ) : (
+                <img
+                  src={testimonialHeader?.videoImage ? resolveImage(testimonialHeader.videoImage) : video}
+                  alt="Video"
+                  style={{ width: "100%", height: "100%", borderRadius: "20px" }}
+                />
+              )}
+            </div>
+
+
+            <div className="testimonial-content">
+              <div className="profile-card">
+                <div className="profile-image">
+                  <img
+                    src={displayTestimonials[active].image}
+                    alt={displayTestimonials[active].name}
+                  />
+                </div>
+
+                <h4>{displayTestimonials[active].name}</h4>
+
+                <p>{displayTestimonials[active].designation}</p>
               </div>
 
-              <h4>{displayTestimonials[active].name}</h4>
+              <div className="quote-box">
+                <span className="quote-left">❝</span>
 
-              <p>{displayTestimonials[active].designation}</p>
-            </div>
+                <p>{displayTestimonials[active].text}</p>
 
-            <div className="quote-box">
-              <span className="quote-left">❝</span>
+                <span className="quote-right">❞</span>
 
-              <p>{displayTestimonials[active].text}</p>
-
-              <span className="quote-right">❞</span>
-
-              <div className="dots">
-                {displayTestimonials.map((_, index) => (
-                  <span
-                    key={index}
-                    className={active === index ? "active" : ""}
-                    onClick={() => setActive(index)}
-                  />
-                ))}
+                <div className="dots">
+                  {displayTestimonials.map((_, index) => (
+                    <span
+                      key={index}
+                      className={active === index ? "active" : ""}
+                      onClick={() => setActive(index)}
+                    />
+                  ))}
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
 
-    <section className="contact-banner">
-          <div className="contact-wrapper">
+      <section className="contact-banner">
+        <div className="contact-wrapper">
 
-            <div className="contact-left">
-              <FaPhoneAlt />
-              <span>{contactBanner?.phone || "9818888064"}</span>
-            </div>
-
-            <div className="contact-center">
-              <img src={contactBanner?.logo ? resolveImage(contactBanner.logo) : logo} alt="logo" />
-            </div>
-
-            <div className="contact-right">
-              <FaEnvelope />
-              <span>{contactBanner?.email || "support@digicore.co.in"}</span>
-            </div>
-
+          <div className="contact-left">
+            <FaPhoneAlt />
+            <span>{contactBanner?.phone || "9818888064"}</span>
           </div>
-        </section>
 
-<section className="custom-faq-section">
-  <div className="custom-faq-container">
-    <div className="custom-faq-header">
-      <h2>{faqHeader?.title || "FAQ"}</h2>
+          <div className="contact-center">
+            <img src={contactBanner?.logo ? resolveImage(contactBanner.logo) : logo} alt="logo" />
+          </div>
 
-      <p>
-        {faqHeader?.subtitle || "Have Doubts? All Your Website Designing and Development Questions Are Answered Here"}
-      </p>
-    </div>
+          <div className="contact-right">
+            <FaEnvelope />
+            <span>{contactBanner?.email || "support@digicore.co.in"}</span>
+          </div>
 
-    <div className="custom-faq-wrapper">
-      <div className="custom-faq-left">
-        <img src={faqHeader?.image ? resolveImage(faqHeader.image) : faqImg} alt="FAQ" />
-      </div>
+        </div>
+      </section>
 
-      <div className="custom-faq-right">
-        {displayFaq.map((item, index) => (
-          <div className="custom-faq-card" key={index}>
-            <div
-              className="custom-faq-question"
-              onClick={() => toggleFAQ(index)}
-            >
-              <span>{item.question}</span>
+      <section className="custom-faq-section">
+        <div className="custom-faq-container">
+          <div className="custom-faq-header">
+            <h2>{faqHeader?.title || "FAQ"}</h2>
 
-              <span className="custom-faq-icon">
-                {activeFAQ === index ? "−" : "+"}
-              </span>
+            <p>
+              {faqHeader?.subtitle || "Have Doubts? All Your Website Designing and Development Questions Are Answered Here"}
+            </p>
+          </div>
+
+          <div className="custom-faq-wrapper">
+            <div className="custom-faq-left">
+              <img src={faqHeader?.image ? resolveImage(faqHeader.image) : faqImg} alt="FAQ" />
             </div>
 
-            {activeFAQ === index && (
-              <div className="custom-faq-answer">
-                {Array.isArray(item.answer) ? (
-                  <ul className="custom-faq-list">
-                    {item.answer.map((point, i) => (
-                      <li key={i}>
-                        <FaCheck />
-                        <span>{point}</span>
-                      </li>
-                    ))}
-                  </ul>
-                ) : (
-                  <p>{item.answer}</p>
-                )}
-              </div>
-            )}
+            <div className="custom-faq-right">
+              {displayFaq.map((item, index) => (
+                <div className="custom-faq-card" key={index}>
+                  <div
+                    className="custom-faq-question"
+                    onClick={() => toggleFAQ(index)}
+                  >
+                    <span>{item.question}</span>
+
+                    <span className="custom-faq-icon">
+                      {activeFAQ === index ? "−" : "+"}
+                    </span>
+                  </div>
+
+                  {activeFAQ === index && (
+                    <div className="custom-faq-answer">
+                      {Array.isArray(item.answer) ? (
+                        <ul className="custom-faq-list">
+                          {item.answer.map((point, i) => (
+                            <li key={i}>
+                              <FaCheck />
+                              <span>{point}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      ) : (
+                        <p>{item.answer}</p>
+                      )}
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
           </div>
-        ))}
-      </div>
-    </div>
-  </div>
-</section>
+        </div>
+      </section>
 
 
 

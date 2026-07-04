@@ -158,16 +158,7 @@ const CaseStudyDetails = () => {
             </div>
           )}
 
-          {/* Gallery */}
-          {caseStudy.galleryImages?.length > 0 && (
-            <div className="cs-gallery-grid">
-              {caseStudy.galleryImages.map((img, index) => (
-                <div className="cs-gallery-item" key={index}>
-                  <img src={img} alt={`${caseStudy.title} ${index + 1}`} />
-                </div>
-              ))}
-            </div>
-          )}
+
 
           <div className="cs-details-divider" />
         </div>
