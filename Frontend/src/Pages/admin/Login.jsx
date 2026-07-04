@@ -49,22 +49,7 @@ export default function Login() {
             one powerful dashboard.
           </p>
 
-          <div className="stats">
-            <div>
-              <h3>250+</h3>
-              <span>Projects</span>
-            </div>
-
-            <div>
-              <h3>98%</h3>
-              <span>Success Rate</span>
-            </div>
-
-            <div>
-              <h3>50K+</h3>
-              <span>Leads Generated</span>
-            </div>
-          </div>
+          
         </div>
       </div>
 

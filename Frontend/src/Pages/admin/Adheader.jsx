@@ -865,13 +865,13 @@ export default function HeaderNavEditor() {
                 ))}
               </div>
 
-              <button
+              {/* <button
                 type="button"
                 onClick={() => setConfig({ ...config, socialLinks: [...config.socialLinks, { id: `social-${Date.now()}`, platform: "New Link", url: "https://" }] })}
                 className="flex items-center gap-1.5 px-3 py-2 bg-white border border-slate-200 hover:border-slate-350 text-xs font-semibold text-slate-600 hover:bg-slate-50 rounded-lg transition-all cursor-pointer shadow-sm"
               >
                 <Plus size={14} /> Add Social Channel
-              </button>
+              </button> */}
             </div>
           </div>
         </div>
@@ -892,7 +892,7 @@ export default function HeaderNavEditor() {
           ))}
         </div>
 
-        <div 
+        {/* <div 
           className="flex flex-wrap gap-3 p-4 bg-slate-50/50 rounded-2xl " 
           style={{ border: "1px dashed #cbd5e1", marginTop: "1.5rem" }}
         >
@@ -914,7 +914,7 @@ export default function HeaderNavEditor() {
           >
             <Plus size={14} /> Add Mega Menu Tab
           </button>
-        </div>
+        </div> */}
       </div>
     </div>
   );
