@@ -25,36 +25,47 @@ export const FormCard = ({ children, className = "" }) => (
   </div>
 );
 
-// SectionCard: Collapsible card section with styling
-export const Section = ({ title, children, open, onToggle, icon: Icon, description }) => (
-  <div className="border border-slate-200 rounded-2xl mb-6 bg-white overflow-hidden shadow-[0_2px_8px_rgba(0,0,0,0.02)] w-full transition-all duration-300 hover:shadow-[0_4px_12px_rgba(15,23,42,0.04)]">
-    <button
-      type="button"
-      onClick={onToggle}
-      className="w-full flex items-center justify-between px-6 py-4 hover:bg-slate-50 transition-colors border-b border-slate-100"
-    >
-      <div className="flex items-center gap-3 text-left">
-        {Icon ? <Icon className="w-5 h-5 text-blue-600" /> : <Sparkles className="w-5 h-5 text-blue-600" />}
-        <div>
-          <span className="font-semibold text-slate-900 text-sm tracking-wide uppercase">
-            {title ? title.replace(/^\d+\.\s*/, "") : ""}
-          </span>
-          {description && <p className="text-xs text-slate-500 mt-0.5">{description}</p>}
+// SectionCard: Collapsible card section with styling (same as footer section head)
+export const Section = ({ title, children, open, onToggle, icon: Icon, description }) => {
+  const ActiveIcon = Icon || Sparkles;
+  return (
+    <div className="border border-slate-200 rounded-2xl mb-6 bg-white overflow-hidden shadow-[0_4px_16px_rgba(15,23,42,0.04)] w-full transition-all duration-300 hover:shadow-[0_8px_24px_rgba(37,99,235,0.08)]">
+      <button
+        type="button"
+        onClick={onToggle}
+        className="w-full flex items-center justify-between p-6 hover:bg-slate-50/50 transition-colors border-b border-slate-100"
+        style={{ padding: "1.5rem" }}
+      >
+        <div className="flex items-center gap-4 text-left">
+          <div className="w-12 h-12 rounded-xl bg-blue-600 text-white flex items-center justify-center shrink-0 shadow-md shadow-blue-500/20">
+            <ActiveIcon size={22} />
+          </div>
+          <div>
+            <h3 className="font-bold text-slate-900 text-base tracking-tight uppercase">
+              {title ? title.replace(/^\d+\.\s*/, "") : ""}
+            </h3>
+            <p className="text-xs font-semibold text-slate-500 mt-1">
+              {description || "Click to expand/collapse this page section."}
+            </p>
+          </div>
         </div>
-      </div>
-      {open ? (
-        <ChevronUp size={18} className="text-blue-600" />
-      ) : (
-        <ChevronDown size={18} className="text-slate-400" />
+        {open ? (
+          <ChevronUp size={20} className="text-blue-600" />
+        ) : (
+          <ChevronDown size={20} className="text-slate-400" />
+        )}
+      </button>
+      {open && (
+        <div
+          className="adm-section-grid grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6 items-start bg-slate-50/20"
+          style={{ padding: "2rem" }}
+        >
+          {children}
+        </div>
       )}
-    </button>
-    {open && (
-      <div className="adm-section-grid p-6 grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-5 items-start">
-        {children}
-      </div>
-    )}
-  </div>
-);
+    </div>
+  );
+};
 
 export const SectionCard = Section;
 
@@ -70,6 +81,7 @@ export const TextInput = ({ icon: Icon, error, ...props }) => {
       <input
         {...props}
         className={`w-full bg-white border ${error ? "border-red-500 focus:ring-red-500/10 focus:border-red-500" : "border-slate-200 focus:ring-blue-500/10 focus:border-blue-600"} rounded-xl ${Icon ? "pl-11" : "px-4"} h-[50px] text-sm shadow-sm focus:outline-none focus:ring-4 transition-all duration-200 hover:border-slate-400`}
+        style={{ paddingLeft: Icon ? "2.75rem" : "1rem", paddingRight: "1rem" }}
       />
     </div>
   );
@@ -87,6 +99,7 @@ export const TextArea = ({ icon: Icon, error, rows, ...props }) => {
         {...props}
         rows={rows || 4}
         className={`w-full bg-white border ${error ? "border-red-500 focus:ring-red-500/10 focus:border-red-500" : "border-slate-200 focus:ring-blue-500/10 focus:border-blue-600"} rounded-xl ${Icon ? "pl-11" : "px-4"} py-3 text-sm shadow-sm focus:outline-none focus:ring-4 transition-all duration-200 hover:border-slate-400 min-h-[140px]`}
+        style={{ paddingLeft: Icon ? "2.75rem" : "1rem", paddingRight: "1rem", paddingTop: "0.75rem", paddingBottom: "0.75rem" }}
       />
     </div>
   );
@@ -442,7 +455,7 @@ export const ImageUploader = ImageInput;
 
 // Premium custom form header
 export const PageHeader = ({ icon: Icon, title, description, breadcrumbs = [], actions = null }) => (
-  <div className="mb-8 flex flex-col md:flex-row md:items-center md:justify-between gap-4 p-6 bg-white rounded-2xl border border-slate-200 shadow-[0_10px_30px_rgba(15,23,42,.06)] hover:shadow-[0_12px_35px_rgba(15,23,42,0.08)] transition-all duration-300">
+  <div className="mb-8 flex flex-col md:flex-row md:items-center md:justify-between gap-4 py-4">
     <div className="flex items-center gap-4">
       {Icon && (
         <div className="h-12 w-12 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center shrink-0">
@@ -460,8 +473,8 @@ export const PageHeader = ({ icon: Icon, title, description, breadcrumbs = [], a
             ))}
           </div>
         )}
-        <h2 className="text-xl font-bold text-slate-900">{title}</h2>
-        <p className="text-sm text-slate-500">{description}</p>
+        <h2 className="text-3xl font-extrabold tracking-tight text-slate-900">{title}</h2>
+        <p className="text-sm text-slate-500 mt-1">{description}</p>
       </div>
     </div>
     {actions && <div className="flex items-center gap-3">{actions}</div>}

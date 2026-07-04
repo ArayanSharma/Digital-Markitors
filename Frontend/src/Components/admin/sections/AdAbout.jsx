@@ -198,7 +198,6 @@ export default function AdAbout() {
     setStatus("saving");
     try {
       await savePageContent(PAGE_SLUG, payload);
-      // reload from server to ensure latest persisted data is reflected
       try {
         await load();
       } catch (err) {
@@ -215,118 +214,114 @@ export default function AdAbout() {
   };
 
   return (
-    <div className="min-h-screen bg-white py-3 px-4 md:px-6 lg:px-8">
-      
-        <PageHeader title="About Page Content - Admin" description="Edit all About page sections from the admin panel." status={status} />
+    <div className="w-full flex flex-col gap-6">
+      <PageHeader title="About Page Content - Admin" description="Edit all About page sections from the admin panel." status={status} />
       <form onSubmit={handleSave} className="w-full max-w-[1306px] mx-auto">
-
         <PageStatusBanner loading={loading} error={loadError} onRetry={load} />
 
-        
-        <div className="bg-white rounded-[16px] border border-[#d6dee8] shadow-[0_1px_2px_rgba(15,23,42,.02)] transition-all duration-300 p-6 md:p-8 space-y-7 mt-8">
+        <div className="space-y-6 mt-6">
           <Section title="1. Hero / Banner" open={openSection === "hero"} onToggle={() => toggle("hero")}>
-          <Field label="Subtitle">
-            <TextInput value={hero.subtitle} onChange={(e) => setHero({ ...hero, subtitle: e.target.value })} />
-          </Field>
-          <Field label="Title">
-            <TextInput value={hero.title} onChange={(e) => setHero({ ...hero, title: e.target.value })} />
-          </Field>
-          <Field label="Description">
-            <TextArea rows={5} value={hero.description} onChange={(e) => setHero({ ...hero, description: e.target.value })} />
-          </Field>
-          <ImageInput label="Hero Image" value={hero.image} onChange={(e) => setHero({ ...hero, image: e.target.value })} />
-          <ButtonFields label="Primary Button" value={hero.primaryBtn} onChange={(v) => setHero({ ...hero, primaryBtn: v })} />
-          <ButtonFields label="Secondary Button" value={hero.secondaryBtn} onChange={(v) => setHero({ ...hero, secondaryBtn: v })} />
-        </Section>
+            <Field label="Subtitle">
+              <TextInput value={hero.subtitle} onChange={(e) => setHero({ ...hero, subtitle: e.target.value })} />
+            </Field>
+            <Field label="Title">
+              <TextInput value={hero.title} onChange={(e) => setHero({ ...hero, title: e.target.value })} />
+            </Field>
+            <Field label="Description">
+              <TextArea rows={5} value={hero.description} onChange={(e) => setHero({ ...hero, description: e.target.value })} />
+            </Field>
+            <ImageInput label="Hero Image" value={hero.image} onChange={(e) => setHero({ ...hero, image: e.target.value })} />
+            <ButtonFields label="Primary Button" value={hero.primaryBtn} onChange={(v) => setHero({ ...hero, primaryBtn: v })} />
+            <ButtonFields label="Secondary Button" value={hero.secondaryBtn} onChange={(v) => setHero({ ...hero, secondaryBtn: v })} />
+          </Section>
 
-        <Section title="2. About Overview" open={openSection === "aboutSection"} onToggle={() => toggle("aboutSection")}>
-          <Field label="Section Heading">
-            <TextInput value={aboutSection.heading} onChange={(e) => setAboutSection({ ...aboutSection, heading: e.target.value })} />
-          </Field>
-          <Field label="Body Text">
-            <TextArea rows={7} value={aboutSection.body} onChange={(e) => setAboutSection({ ...aboutSection, body: e.target.value })} />
-          </Field>
-          <Field label="Paragraph 1">
-            <TextArea rows={4} value={aboutSection.paragraph1} onChange={(e) => setAboutSection({ ...aboutSection, paragraph1: e.target.value })} />
-          </Field>
-          <Field label="Paragraph 2">
-            <TextArea rows={4} value={aboutSection.paragraph2} onChange={(e) => setAboutSection({ ...aboutSection, paragraph2: e.target.value })} />
-          </Field>
-          <ImageInput label="About Section Image" value={aboutSection.image} onChange={(e) => setAboutSection({ ...aboutSection, image: e.target.value })} />
-        </Section>
+          <Section title="2. About Overview" open={openSection === "aboutSection"} onToggle={() => toggle("aboutSection")}>
+            <Field label="Section Heading">
+              <TextInput value={aboutSection.heading} onChange={(e) => setAboutSection({ ...aboutSection, heading: e.target.value })} />
+            </Field>
+            <Field label="Body Text">
+              <TextArea rows={7} value={aboutSection.body} onChange={(e) => setAboutSection({ ...aboutSection, body: e.target.value })} />
+            </Field>
+            <Field label="Paragraph 1">
+              <TextArea rows={4} value={aboutSection.paragraph1} onChange={(e) => setAboutSection({ ...aboutSection, paragraph1: e.target.value })} />
+            </Field>
+            <Field label="Paragraph 2">
+              <TextArea rows={4} value={aboutSection.paragraph2} onChange={(e) => setAboutSection({ ...aboutSection, paragraph2: e.target.value })} />
+            </Field>
+            <ImageInput label="About Section Image" value={aboutSection.image} onChange={(e) => setAboutSection({ ...aboutSection, image: e.target.value })} />
+          </Section>
 
-        <Section title="3. Better Section" open={openSection === "betterSection"} onToggle={() => toggle("betterSection")}>
-          <Field label="Section Heading">
-            <TextInput value={betterSection.heading} onChange={(e) => setBetterSection({ ...betterSection, heading: e.target.value })} />
-          </Field>
-          <Field label="Section Description">
-            <TextArea rows={4} value={betterSection.description} onChange={(e) => setBetterSection({ ...betterSection, description: e.target.value })} />
-          </Field>
-          <LeadForm
-            title="Stats"
-            addLabel="Add Stat"
-            items={stats}
-            onChange={setStats}
-            fields={[
-              { name: "icon", label: "Icon", type: "image" },
-              { name: "title", label: "Title", type: "text", required: true },
-              { name: "count", label: "Count", type: "text", placeholder: "100+" },
-              { name: "desc", label: "Description", type: "textarea", rows: 3 },
-            ]}
-          />
-        </Section>
+          <Section title="3. Better Section" open={openSection === "betterSection"} onToggle={() => toggle("betterSection")}>
+            <Field label="Section Heading">
+              <TextInput value={betterSection.heading} onChange={(e) => setBetterSection({ ...betterSection, heading: e.target.value })} />
+            </Field>
+            <Field label="Section Description">
+              <TextArea rows={4} value={betterSection.description} onChange={(e) => setBetterSection({ ...betterSection, description: e.target.value })} />
+            </Field>
+            <LeadForm
+              title="Stats"
+              addLabel="Add Stat"
+              items={stats}
+              onChange={setStats}
+              fields={[
+                { name: "icon", label: "Icon", type: "image" },
+                { name: "title", label: "Title", type: "text", required: true },
+                { name: "count", label: "Count", type: "text", placeholder: "100+" },
+                { name: "desc", label: "Description", type: "textarea", rows: 3 },
+              ]}
+            />
+          </Section>
 
-        <Section title="4. Contact Banner" open={openSection === "contactBanner"} onToggle={() => toggle("contactBanner")}>
-          <Field label="Phone Number">
-            <TextInput value={contactBanner.phone} onChange={(e) => setContactBanner({ ...contactBanner, phone: e.target.value })} />
-          </Field>
-          <Field label="Email Address">
-            <TextInput value={contactBanner.email} onChange={(e) => setContactBanner({ ...contactBanner, email: e.target.value })} />
-          </Field>
-          <ImageInput label="Logo Image" value={contactBanner.logo} onChange={(e) => setContactBanner({ ...contactBanner, logo: e.target.value })} />
-        </Section>
+          <Section title="4. Contact Banner" open={openSection === "contactBanner"} onToggle={() => toggle("contactBanner")}>
+            <Field label="Phone Number">
+              <TextInput value={contactBanner.phone} onChange={(e) => setContactBanner({ ...contactBanner, phone: e.target.value })} />
+            </Field>
+            <Field label="Email Address">
+              <TextInput value={contactBanner.email} onChange={(e) => setContactBanner({ ...contactBanner, email: e.target.value })} />
+            </Field>
+            <ImageInput label="Logo Image" value={contactBanner.logo} onChange={(e) => setContactBanner({ ...contactBanner, logo: e.target.value })} />
+          </Section>
 
-        <Section title="5. Industries Section" open={openSection === "industries"} onToggle={() => toggle("industries")}>
-          <LeadForm
-            title="Industry"
-            addLabel="Add Industry"
-            items={industries}
-            onChange={setIndustries}
-            fields={[
-              { name: "icon", label: "Icon", type: "image" },
-              { name: "title", label: "Title", type: "text", required: true },
-              { name: "desc", label: "Description", type: "textarea", rows: 3 },
-            ]}
-          />
-        </Section>
+          <Section title="5. Industries Section" open={openSection === "industries"} onToggle={() => toggle("industries")}>
+            <LeadForm
+              title="Industry"
+              addLabel="Add Industry"
+              items={industries}
+              onChange={setIndustries}
+              fields={[
+                { name: "icon", label: "Icon", type: "image" },
+                { name: "title", label: "Title", type: "text", required: true },
+                { name: "desc", label: "Description", type: "textarea", rows: 3 },
+              ]}
+            />
+          </Section>
 
-        <Section title="6. Mission Section" open={openSection === "missionSection"} onToggle={() => toggle("missionSection")}>
-          <Field label="Heading">
-            <TextInput value={missionSection.heading} onChange={(e) => setMissionSection({ ...missionSection, heading: e.target.value })} />
-          </Field>
-          <Field label="Intro Text">
-            <TextInput value={missionSection.intro} onChange={(e) => setMissionSection({ ...missionSection, intro: e.target.value })} />
-          </Field>
-          <Field label="Body Text">
-            <TextArea rows={5} value={missionSection.body} onChange={(e) => setMissionSection({ ...missionSection, body: e.target.value })} />
-          </Field>
-          <ImageInput label="Mission Image" value={missionSection.image} onChange={(e) => setMissionSection({ ...missionSection, image: e.target.value })} />
-        </Section>
+          <Section title="6. Mission Section" open={openSection === "missionSection"} onToggle={() => toggle("missionSection")}>
+            <Field label="Heading">
+              <TextInput value={missionSection.heading} onChange={(e) => setMissionSection({ ...missionSection, heading: e.target.value })} />
+            </Field>
+            <Field label="Intro Text">
+              <TextInput value={missionSection.intro} onChange={(e) => setMissionSection({ ...missionSection, intro: e.target.value })} />
+            </Field>
+            <Field label="Body Text">
+              <TextArea rows={5} value={missionSection.body} onChange={(e) => setMissionSection({ ...missionSection, body: e.target.value })} />
+            </Field>
+            <ImageInput label="Mission Image" value={missionSection.image} onChange={(e) => setMissionSection({ ...missionSection, image: e.target.value })} />
+          </Section>
 
-        <Section title="7. Vision Section" open={openSection === "visionSection"} onToggle={() => toggle("visionSection")}>
-          <Field label="Heading">
-            <TextInput value={visionSection.heading} onChange={(e) => setVisionSection({ ...visionSection, heading: e.target.value })} />
-          </Field>
-          <Field label="Intro Text">
-            <TextInput value={visionSection.intro} onChange={(e) => setVisionSection({ ...visionSection, intro: e.target.value })} />
-          </Field>
-          <Field label="Body Text">
-            <TextArea rows={5} value={visionSection.body} onChange={(e) => setVisionSection({ ...visionSection, body: e.target.value })} />
-          </Field>
-          <ImageInput label="Vision Image" value={visionSection.image} onChange={(e) => setVisionSection({ ...visionSection, image: e.target.value })} />
-        </Section>
+          <Section title="7. Vision Section" open={openSection === "visionSection"} onToggle={() => toggle("visionSection")}>
+            <Field label="Heading">
+              <TextInput value={visionSection.heading} onChange={(e) => setVisionSection({ ...visionSection, heading: e.target.value })} />
+            </Field>
+            <Field label="Intro Text">
+              <TextInput value={visionSection.intro} onChange={(e) => setVisionSection({ ...visionSection, intro: e.target.value })} />
+            </Field>
+            <Field label="Body Text">
+              <TextArea rows={5} value={visionSection.body} onChange={(e) => setVisionSection({ ...visionSection, body: e.target.value })} />
+            </Field>
+            <ImageInput label="Vision Image" value={visionSection.image} onChange={(e) => setVisionSection({ ...visionSection, image: e.target.value })} />
+          </Section>
         </div>
-
 
         <SaveBar status={status} onSave={handleSave} />
       </form>

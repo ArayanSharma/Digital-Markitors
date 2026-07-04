@@ -106,7 +106,7 @@ export default function Career() {
   };
 
   return (
-    <div className="flex flex-col gap-6 pb-16">
+    <div className="flex flex-col gap-6 px-4 md:px-8 pt-4 pb-16 max-w-7xl mx-auto adm-fade-in text-slate-800">
       <AnimatePresence>
         {successMessage && (
           <motion.div

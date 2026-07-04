@@ -17,10 +17,6 @@ import {
 
 const PAGE_SLUG = "home";
 
-/* ----------------------------------------------------------------
-   Main component
----------------------------------------------------------------- */
-
 export default function HomeAdminForm() {
   const showToast = useToast();
   const [openSection, setOpenSection] = useState("hero");
@@ -65,11 +61,13 @@ export default function HomeAdminForm() {
     { id: uid(), value: 88, label: "of Indian users trust Google results for brands that shine on social media platforms." },
     { id: uid(), value: 76, label: "of young users turn to AI-generated overviews instead of scrolling through traditional search results." },
   ]);
+
   /* ---------- PERFORMANCE SECTION (TRACK/ANALYZE/SCALE/REPEAT) ---------- */
   const [performance, setPerformance] = useState({
     words: ["TRACK", "ANALYZE", "SCALE", "REPEAT"],
     image: "",
   });
+
   const updatePerfWord = (i, val) => {
     const words = [...performance.words];
     words[i] = val;
@@ -90,11 +88,13 @@ export default function HomeAdminForm() {
     paragraph:
       "We offer customized digital marketing solutions to help our clients engage their audience and build a strong brand presence across all platforms.",
   });
+
   const [services, setServices] = useState([
     { id: uid(), icon: "", title: "Search Engine Optimization", description: "Boost your visibility and drive targeted traffic..." },
     { id: uid(), icon: "", title: "Social Media Marketing", description: "We offer tailored social media strategies..." },
     { id: uid(), icon: "", title: "PPC & Performance Marketing", description: "Partner with us to unlock the full potential of paid advertising..." },
   ]);
+
   /* ---------- WHY CHOOSE US (CTA strip) ---------- */
   const [whyChoose, setWhyChoose] = useState({
     heading: "Stop Guessing. Start Growing. Book Your Strategy Call Now.",
@@ -112,12 +112,14 @@ export default function HomeAdminForm() {
     { id: uid(), title: "Proposal & Plan", desc: "We provide a customized strategy and roadmap." },
     { id: uid(), title: "Partner & Grow", desc: "Drive high-impact traffic and measurable growth." },
   ]);
+
   /* ---------- INDUSTRY SECTION ---------- */
   const [industries, setIndustries] = useState([
     { id: uid(), image: "", title: "Healthcare", desc: "We provide specialized digital marketing solutions to hospitals, clinics...", readMoreLink: "/industries/healthcare" },
     { id: uid(), image: "", title: "E-Commerce", desc: "We help online retailers and marketplaces with robust strategies...", readMoreLink: "/industries/ecommerce" },
     { id: uid(), image: "", title: "Travel", desc: "We offer a complete suite of digital marketing solutions for travel brands...", readMoreLink: "/industries/travel" },
   ]);
+
   /* ---------- CASE STUDY SECTION ---------- */
   const [caseStudies, setCaseStudies] = useState([
     {
@@ -129,18 +131,21 @@ export default function HomeAdminForm() {
       viewLatestWorkBtn: { text: "View Our Latest Work", link: "/portfolio" },
     },
   ]);
+
   /* ---------- DOMINATE / HELP CARDS SECTION ---------- */
   const [dominate, setDominate] = useState({
     heading: "DOMINATE YOUR INDUSTRY WITH US",
     paragraph:
       "We are a team of highly skilled and expert digital marketers. All our solutions are crafted thoughtfully to ensure your digital presence is strong, engaging and impactful.",
   });
+
   const [helpCards, setHelpCards] = useState([
     { id: uid(), icon: "", title: "Get More Leads", desc: "We ensure your business get more and more leads..." },
     { id: uid(), icon: "", title: "Make More Sales", desc: "We help you convert maximum possible leads into sales..." },
     { id: uid(), icon: "", title: "Build Brand Awareness", desc: "We help your brand gain strong recognition..." },
     { id: uid(), icon: "", title: "Upskill Your Team", desc: "Improve your team capabilities with advanced marketing strategies..." },
   ]);
+
   /* ---------- WHY BUSINESSES CHOOSE US SECTION ---------- */
   const [whyBusiness, setWhyBusiness] = useState({
     heading: "Why Businesses Choose Digicore Inc.",
@@ -148,6 +153,7 @@ export default function HomeAdminForm() {
       "Digicore Inc. is the most trusted and AI-first digital marketing agency in Kanpur, India...",
     image: "",
   });
+
   const [whyBusinessBullets, setWhyBusinessBullets] = useState([
     "Team of experienced digital marketing experts",
     "Result-oriented strategies tailored to your brand",
@@ -158,7 +164,6 @@ export default function HomeAdminForm() {
     "Convert opportunities into measurable growth",
     "Growth-focused strategies for startups & businesses",
   ].map((t) => ({ id: uid(), text: t })));
-  /* Removed: Testimonials, Brands, Tools, and Blog sections per request */
 
   /* ---------- FAQ SECTION ---------- */
   const [faqs, setFaqs] = useState([
@@ -202,7 +207,6 @@ export default function HomeAdminForm() {
       if (d.helpCards) setHelpCards(d.helpCards);
       if (d.whyBusiness) setWhyBusiness(d.whyBusiness);
       if (d.whyBusinessBullets) setWhyBusinessBullets(d.whyBusinessBullets);
-      /* testimonials, brandLogos, tools, and blogs removed */
       if (d.faqs) setFaqs(d.faqs);
       if (d.contact) setContact(d.contact);
     }
@@ -253,16 +257,12 @@ export default function HomeAdminForm() {
   };
 
   return (
-    <div className="min-h-screen bg-bg-card py-8 px-4 md:px-8 lg:px-10 flex flex-col gap-6">
-      
-        <PageHeader title="Home Page Content - Admin" description="Edit all Home page sections from the admin panel." status={status} />
+    <div className="w-full flex flex-col gap-6">
+      <PageHeader title="Home Page Content - Admin" description="Edit all Home page sections from the admin panel." status={status} />
       <form onSubmit={handleSave} className="w-full">
-
         <PageStatusBanner loading={loading} error={loadError} onRetry={load} />
 
-        {/* HERO */}
-        
-        <div className="bg-white rounded-2xl border border-slate-200 shadow-[0_8px_24px_rgba(15,23,42,.06)] hover:shadow-[0_16px_36px_rgba(37,99,235,.10)] transition-all duration-300 p-8 space-y-8 mt-8">
+        <div className="space-y-6 mt-6">
           <Section title="1. Hero / Banner" open={openSection === "hero"} onToggle={() => toggle("hero")}>
             <Field label="Heading">
               <TextInput value={hero.heading} onChange={(e) => setHero({ ...hero, heading: e.target.value })} />
@@ -270,179 +270,163 @@ export default function HomeAdminForm() {
             <Field label="Title">
               <TextInput value={hero.title} onChange={(e) => setHero({ ...hero, title: e.target.value })} />
             </Field>
-          <Field label="Description">
-            <TextArea value={hero.description} onChange={(e) => setHero({ ...hero, description: e.target.value })} />
-          </Field>
-          <ImageInput label="Background Image" value={hero.backgroundImage} onChange={(e) => setHero({ ...hero, backgroundImage: e.target.value })} />
-        </Section>
+            <Field label="Description">
+              <TextArea value={hero.description} onChange={(e) => setHero({ ...hero, description: e.target.value })} />
+            </Field>
+            <ImageInput label="Background Image" value={hero.backgroundImage} onChange={(e) => setHero({ ...hero, backgroundImage: e.target.value })} />
+          </Section>
 
-        {/* ABOUT */}
-        <Section title="2. About Section" open={openSection === "about"} onToggle={() => toggle("about")}>
-          <Field label="Heading">
-            <TextInput value={about.heading} onChange={(e) => setAbout({ ...about, heading: e.target.value })} />
-          </Field>
-          <Field label="Body Text">
-            <TextArea rows={6} value={about.body} onChange={(e) => setAbout({ ...about, body: e.target.value })} />
-          </Field>
-        </Section>
+          <Section title="2. About Section" open={openSection === "about"} onToggle={() => toggle("about")}>
+            <Field label="Heading">
+              <TextInput value={about.heading} onChange={(e) => setAbout({ ...about, heading: e.target.value })} />
+            </Field>
+            <Field label="Body Text">
+              <TextArea rows={6} value={about.body} onChange={(e) => setAbout({ ...about, body: e.target.value })} />
+            </Field>
+          </Section>
 
-        {/* VISIBILITY */}
-        <Section title="3. Visibility Section" open={openSection === "visibility"} onToggle={() => toggle("visibility")}>
-          <Field label="Heading">
-            <TextInput value={visibility.heading} onChange={(e) => setVisibility({ ...visibility, heading: e.target.value })} />
-          </Field>
-          <Field label="Paragraph 1">
-            <TextArea value={visibility.paragraph1} onChange={(e) => setVisibility({ ...visibility, paragraph1: e.target.value })} />
-          </Field>
-          <Field label="Paragraph 2">
-            <TextArea value={visibility.paragraph2} onChange={(e) => setVisibility({ ...visibility, paragraph2: e.target.value })} />
-          </Field>
-          <ImageInput label="Graph Image" value={visibility.image} onChange={(e) => setVisibility({ ...visibility, image: e.target.value })} />
-        </Section>
+          <Section title="3. Visibility Section" open={openSection === "visibility"} onToggle={() => toggle("visibility")}>
+            <Field label="Heading">
+              <TextInput value={visibility.heading} onChange={(e) => setVisibility({ ...visibility, heading: e.target.value })} />
+            </Field>
+            <Field label="Paragraph 1">
+              <TextArea value={visibility.paragraph1} onChange={(e) => setVisibility({ ...visibility, paragraph1: e.target.value })} />
+            </Field>
+            <Field label="Paragraph 2">
+              <TextArea value={visibility.paragraph2} onChange={(e) => setVisibility({ ...visibility, paragraph2: e.target.value })} />
+            </Field>
+            <ImageInput label="Graph Image" value={visibility.image} onChange={(e) => setVisibility({ ...visibility, image: e.target.value })} />
+          </Section>
 
-        {/* COUNTERS */}
-        <Section title="4. Counter Section" open={openSection === "counters"} onToggle={() => toggle("counters")}>
-          <LeadForm
-            title="Counters"
-            addLabel="Add Counter"
-            items={counters}
-            onChange={setCounters}
-            fields={[
-              { name: "value", label: "Value (%)", type: "text", required: true },
-              { name: "label", label: "Label Text", type: "textarea" },
-            ]}
-          />
-        </Section>
+          <Section title="4. Counter Section" open={openSection === "counters"} onToggle={() => toggle("counters")}>
+            <LeadForm
+              title="Counters"
+              addLabel="Add Counter"
+              items={counters}
+              onChange={setCounters}
+              fields={[
+                { name: "value", label: "Value (%)", type: "text", required: true },
+                { name: "label", label: "Label Text", type: "textarea" },
+              ]}
+            />
+          </Section>
 
-        {/* PERFORMANCE */}
-        <Section title="5. Performance Section (Track/Analyze/Scale/Repeat)" open={openSection === "performance"} onToggle={() => toggle("performance")}>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-            {performance.words.map((w, i) => (
-              <Field key={i} label={`Word ${i + 1}`}>
-                <TextInput value={w} onChange={(e) => updatePerfWord(i, e.target.value)} />
-              </Field>
-            ))}
-          </div>
-          <ImageInput label="Right-side Image" value={performance.image} onChange={(e) => setPerformance({ ...performance, image: e.target.value })} />
-        </Section>
+          <Section title="5. Performance Section (Track/Analyze/Scale/Repeat)" open={openSection === "performance"} onToggle={() => toggle("performance")}>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+              {performance.words.map((w, i) => (
+                <Field key={i} label={`Word ${i + 1}`}>
+                  <TextInput value={w} onChange={(e) => updatePerfWord(i, e.target.value)} />
+                </Field>
+              ))}
+            </div>
+            <ImageInput label="Right-side Image" value={performance.image} onChange={(e) => setPerformance({ ...performance, image: e.target.value })} />
+          </Section>
 
-        {/* DISCOVER */}
-        <Section title="6. Discover Section" open={openSection === "discover"} onToggle={() => toggle("discover")}>
-          <Field label="Line 1 (small heading)">
-            <TextInput value={discover.line1} onChange={(e) => setDiscover({ ...discover, line1: e.target.value })} />
-          </Field>
-          <Field label="Line 2 (accent heading)">
-            <TextInput value={discover.line2} onChange={(e) => setDiscover({ ...discover, line2: e.target.value })} />
-          </Field>
-          <Field label="Paragraph">
-            <TextArea rows={5} value={discover.paragraph} onChange={(e) => setDiscover({ ...discover, paragraph: e.target.value })} />
-          </Field>
-        </Section>
+          <Section title="6. Discover Section" open={openSection === "discover"} onToggle={() => toggle("discover")}>
+            <Field label="Line 1 (small heading)">
+              <TextInput value={discover.line1} onChange={(e) => setDiscover({ ...discover, line1: e.target.value })} />
+            </Field>
+            <Field label="Line 2 (accent heading)">
+              <TextInput value={discover.line2} onChange={(e) => setDiscover({ ...discover, line2: e.target.value })} />
+            </Field>
+            <Field label="Paragraph">
+              <TextArea rows={5} value={discover.paragraph} onChange={(e) => setDiscover({ ...discover, paragraph: e.target.value })} />
+            </Field>
+          </Section>
 
-        {/* SERVICES */}
-        <Section title="7. Services Section" open={openSection === "services"} onToggle={() => toggle("services")}>
-          <Field label="Section Heading">
-            <TextArea rows={3} value={servicesHeading.heading} onChange={(e) => setServicesHeading({ ...servicesHeading, heading: e.target.value })} />
-          </Field>
-          <Field label="Section Paragraph">
-            <TextArea value={servicesHeading.paragraph} onChange={(e) => setServicesHeading({ ...servicesHeading, paragraph: e.target.value })} />
-          </Field>
-          <LeadForm
-            title="Services"
-            addLabel="Add Service"
-            items={services}
-            onChange={setServices}
-            fields={[
-              { name: "icon", label: "Icon", type: "image" },
-              { name: "title", label: "Title", required: true },
-              { name: "description", label: "Description", type: "textarea" },
-            ]}
-          />
-        </Section>
+          <Section title="7. Services Section" open={openSection === "services"} onToggle={() => toggle("services")}>
+            <Field label="Section Heading">
+              <TextArea rows={3} value={servicesHeading.heading} onChange={(e) => setServicesHeading({ ...servicesHeading, heading: e.target.value })} />
+            </Field>
+            <Field label="Section Paragraph">
+              <TextArea value={servicesHeading.paragraph} onChange={(e) => setServicesHeading({ ...servicesHeading, paragraph: e.target.value })} />
+            </Field>
+            <LeadForm
+              title="Services"
+              addLabel="Add Service"
+              items={services}
+              onChange={setServices}
+              fields={[
+                { name: "icon", label: "Icon", type: "image" },
+                { name: "title", label: "Title", required: true },
+                { name: "description", label: "Description", type: "textarea" },
+              ]}
+            />
+          </Section>
 
-        {/* WHY CHOOSE US CTA */}
-        <Section title="8. Strategy Call CTA Strip" open={openSection === "whyChoose"} onToggle={() => toggle("whyChoose")}>
-          <Field label="Heading">
-            <TextInput value={whyChoose.heading} onChange={(e) => setWhyChoose({ ...whyChoose, heading: e.target.value })} />
-          </Field>
-          <ImageInput label="Background Icon/Pattern" value={whyChoose.backgroundIcon} onChange={(e) => setWhyChoose({ ...whyChoose, backgroundIcon: e.target.value })} />
-          <ButtonFields label="WhatsApp Button" value={whyChoose.whatsappBtn} onChange={(v) => setWhyChoose({ ...whyChoose, whatsappBtn: v })} />
-          <ButtonFields label="Callback Button" value={whyChoose.callbackBtn} onChange={(v) => setWhyChoose({ ...whyChoose, callbackBtn: v })} />
-        </Section>
+          <Section title="8. Strategy Call CTA Strip" open={openSection === "whyChoose"} onToggle={() => toggle("whyChoose")}>
+            <Field label="Heading">
+              <TextInput value={whyChoose.heading} onChange={(e) => setWhyChoose({ ...whyChoose, heading: e.target.value })} />
+            </Field>
+            <ImageInput label="Background Icon/Pattern" value={whyChoose.backgroundIcon} onChange={(e) => setWhyChoose({ ...whyChoose, backgroundIcon: e.target.value })} />
+            <ButtonFields label="WhatsApp Button" value={whyChoose.whatsappBtn} onChange={(v) => setWhyChoose({ ...whyChoose, whatsappBtn: v })} />
+            <ButtonFields label="Callback Button" value={whyChoose.callbackBtn} onChange={(v) => setWhyChoose({ ...whyChoose, callbackBtn: v })} />
+          </Section>
 
-        {/* IMPACT / TIMELINE */}
-        <Section title="9. Impact / Process Timeline" open={openSection === "impact"} onToggle={() => toggle("impact")}>
-          <ImageInput label="Impact Image" value={impactImage} onChange={(e) => setImpactImage(e.target.value)} />
-          <LeadForm
-            title="Timeline Steps"
-            addLabel="Add Step"
-            items={timeline}
-            onChange={setTimeline}
-            fields={[
-              { name: "title", label: "Title", required: true },
-              { name: "desc", label: "Description", type: "textarea" },
-            ]}
-          />
-        </Section>
+          <Section title="9. Impact / Process Timeline" open={openSection === "impact"} onToggle={() => toggle("impact")}>
+            <ImageInput label="Impact Image" value={impactImage} onChange={(e) => setImpactImage(e.target.value)} />
+            <LeadForm
+              title="Timeline Steps"
+              addLabel="Add Step"
+              items={timeline}
+              onChange={setTimeline}
+              fields={[
+                { name: "title", label: "Title", required: true },
+                { name: "desc", label: "Description", type: "textarea" },
+              ]}
+            />
+          </Section>
 
-        {/* INDUSTRY & CASE STUDIES removed per request */}
+          <Section title="12. Dominate Your Industry" open={openSection === "dominate"} onToggle={() => toggle("dominate")}>
+            <Field label="Heading">
+              <TextInput value={dominate.heading} onChange={(e) => setDominate({ ...dominate, heading: e.target.value })} />
+            </Field>
+            <Field label="Paragraph">
+              <TextArea value={dominate.paragraph} onChange={(e) => setDominate({ ...dominate, paragraph: e.target.value })} />
+            </Field>
+            <LeadForm
+              title="Help Cards"
+              addLabel="Add Card"
+              items={helpCards}
+              onChange={setHelpCards}
+              fields={[
+                { name: "icon", label: "Icon", type: "image" },
+                { name: "title", label: "Title", required: true },
+                { name: "desc", label: "Description", type: "textarea" },
+              ]}
+            />
+          </Section>
 
-        {/* DOMINATE / HELP CARDS */}
-        <Section title="12. Dominate Your Industry" open={openSection === "dominate"} onToggle={() => toggle("dominate")}>
-          <Field label="Heading">
-            <TextInput value={dominate.heading} onChange={(e) => setDominate({ ...dominate, heading: e.target.value })} />
-          </Field>
-          <Field label="Paragraph">
-            <TextArea value={dominate.paragraph} onChange={(e) => setDominate({ ...dominate, paragraph: e.target.value })} />
-          </Field>
-          <LeadForm
-            title="Help Cards"
-            addLabel="Add Card"
-            items={helpCards}
-            onChange={setHelpCards}
-            fields={[
-              { name: "icon", label: "Icon", type: "image" },
-              { name: "title", label: "Title", required: true },
-              { name: "desc", label: "Description", type: "textarea" },
-            ]}
-          />
-        </Section>
+          <Section title="13. Why Businesses Choose Us" open={openSection === "whyBusiness"} onToggle={() => toggle("whyBusiness")}>
+            <Field label="Heading">
+              <TextInput value={whyBusiness.heading} onChange={(e) => setWhyBusiness({ ...whyBusiness, heading: e.target.value })} />
+            </Field>
+            <Field label="Paragraph">
+              <TextArea rows={4} value={whyBusiness.paragraph} onChange={(e) => setWhyBusiness({ ...whyBusiness, paragraph: e.target.value })} />
+            </Field>
+            <ImageInput label="Right-side Image" value={whyBusiness.image} onChange={(e) => setWhyBusiness({ ...whyBusiness, image: e.target.value })} />
+            <LeadForm
+              title="Bullet Points"
+              addLabel="Add Bullet"
+              items={whyBusinessBullets}
+              onChange={setWhyBusinessBullets}
+              fields={[{ name: "text", label: "Bullet Text", required: true }]}
+            />
+          </Section>
 
-        {/* WHY BUSINESSES CHOOSE US */}
-        <Section title="13. Why Businesses Choose Us" open={openSection === "whyBusiness"} onToggle={() => toggle("whyBusiness")}>
-          <Field label="Heading">
-            <TextInput value={whyBusiness.heading} onChange={(e) => setWhyBusiness({ ...whyBusiness, heading: e.target.value })} />
-          </Field>
-          <Field label="Paragraph">
-            <TextArea rows={4} value={whyBusiness.paragraph} onChange={(e) => setWhyBusiness({ ...whyBusiness, paragraph: e.target.value })} />
-          </Field>
-          <ImageInput label="Right-side Image" value={whyBusiness.image} onChange={(e) => setWhyBusiness({ ...whyBusiness, image: e.target.value })} />
-          <LeadForm
-            title="Bullet Points"
-            addLabel="Add Bullet"
-            items={whyBusinessBullets}
-            onChange={setWhyBusinessBullets}
-            fields={[{ name: "text", label: "Bullet Text", required: true }]}
-          />
-        </Section>
-
-        {/* Removed: Testimonials, Brands, Tools, and Blogs sections */}
-
-        {/* FAQ */}
-        <Section title="18. FAQ" open={openSection === "faqs"} onToggle={() => toggle("faqs")}>
-          <LeadForm
-            title="FAQ Items"
-            addLabel="Add FAQ"
-            items={faqs}
-            onChange={setFaqs}
-            fields={[
-              { name: "question", label: "Question", required: true },
-              { name: "answer", label: "Answer", type: "textarea", rows: 3 },
-            ]}
-          />
-        </Section>
+          <Section title="18. FAQ" open={openSection === "faqs"} onToggle={() => toggle("faqs")}>
+            <LeadForm
+              title="FAQ Items"
+              addLabel="Add FAQ"
+              items={faqs}
+              onChange={setFaqs}
+              fields={[
+                { name: "question", label: "Question", required: true },
+                { name: "answer", label: "Answer", type: "textarea", rows: 3 },
+              ]}
+            />
+          </Section>
         </div>
-
 
         <SaveBar status={status} onSave={handleSave} />
       </form>

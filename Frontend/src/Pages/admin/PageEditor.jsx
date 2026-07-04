@@ -44,7 +44,7 @@ export default function PageEditor() {
   const normalizedPageId = (pageId || "").toLowerCase();
 
   return (
-    <div className="adm-shell" style={{ padding: "24px", minHeight: "100vh" }}>
+    <div className="w-full flex flex-col gap-6">
 
       {pageId === "home" ? (
         <AdHome />

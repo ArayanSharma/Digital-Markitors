@@ -21,30 +21,20 @@ export default function CareerTable({ careers, loading, onEdit, onDelete }) {
         </div>
       ) : (
         <div className="overflow-x-auto">
-          <table className="w-full text-sm">
+          <table className="adm-table">
             <thead>
-              <tr className="border-b border-slate-100">
-                <th className="whitespace-nowrap px-5 py-3 text-left text-[11px] font-semibold uppercase tracking-wide text-slate-500">
-                  Name
-                </th>
-                <th className="whitespace-nowrap px-5 py-3 text-left text-[11px] font-semibold uppercase tracking-wide text-slate-500">
-                  Email
-                </th>
-                <th className="whitespace-nowrap px-5 py-3 text-left text-[11px] font-semibold uppercase tracking-wide text-slate-500">
-                  Position
-                </th>
-                <th className="whitespace-nowrap px-5 py-3 text-left text-[11px] font-semibold uppercase tracking-wide text-slate-500">
-                  Date
-                </th>
-                <th className="whitespace-nowrap px-5 py-3 text-right text-[11px] font-semibold uppercase tracking-wide text-slate-500">
-                  Action
-                </th>
+              <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Position</th>
+                <th>Date</th>
+                <th className="text-right">Action</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-slate-100">
+            <tbody className="adm-stagger">
               {careers.map((item) => (
-                <tr key={item._id} className="transition-colors hover:bg-slate-50">
-                  <td className="whitespace-nowrap px-5 py-3">
+                <tr key={item._id}>
+                  <td>
                     <div className="flex items-center gap-3">
                       <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gradient-to-tr from-blue-600 to-blue-500 text-sm font-bold text-white shadow-sm">
                         {item.name ? item.name.charAt(0).toUpperCase() : "?"}
@@ -57,27 +47,27 @@ export default function CareerTable({ careers, loading, onEdit, onDelete }) {
                       </div>
                     </div>
                   </td>
-                  <td className="whitespace-nowrap px-5 py-3">
+                  <td>
                     <div className="flex items-center gap-2 text-slate-500">
                       <Mail size={14} className="text-slate-400" />
                       <span>{item.email}</span>
                     </div>
                   </td>
-                  <td className="whitespace-nowrap px-5 py-3">
+                  <td>
                     <Badge variant="default" className="bg-purple-50 text-purple-600">
                       {item.position || "General"}
                     </Badge>
                   </td>
-                  <td className="whitespace-nowrap px-5 py-3 font-medium text-slate-500">
+                  <td className="font-medium text-slate-500">
                     {new Date(item.createdAt).toLocaleDateString()}
                   </td>
-                  <td className="whitespace-nowrap px-5 py-3">
+                  <td>
                     <div className="flex items-center justify-end gap-2">
                       <button
                         type="button"
                         onClick={() => onEdit(item)}
                         title="Edit"
-                        className="flex h-8 w-8 items-center justify-center rounded-lg text-slate-500 transition-colors hover:bg-blue-50 hover:text-blue-600"
+                        className="adm-icon-btn"
                       >
                         <Edit size={14} />
                       </button>
@@ -85,7 +75,7 @@ export default function CareerTable({ careers, loading, onEdit, onDelete }) {
                         type="button"
                         onClick={() => onDelete(item._id)}
                         title="Delete"
-                        className="flex h-8 w-8 items-center justify-center rounded-lg text-slate-500 transition-colors hover:bg-rose-50 hover:text-rose-600"
+                        className="adm-icon-btn danger"
                       >
                         <Trash2 size={14} />
                       </button>

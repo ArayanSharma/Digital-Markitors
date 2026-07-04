@@ -13,7 +13,7 @@ function Stat({ label, value, icon: Icon, accent, index }) {
       transition={{ duration: 0.35, delay: index * 0.06, ease: "easeOut" }}
     >
       <Card className="group transition-all hover:-translate-y-0.5 hover:shadow-md">
-        <CardContent className="flex items-center gap-4">
+        <CardContent className="flex items-center gap-4" style={{ padding: "1.25rem" }}>
           <div
             className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br text-white shadow-lg ${accent}`}
           >
