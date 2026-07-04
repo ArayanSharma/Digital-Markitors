@@ -103,6 +103,7 @@ const menuData = [
       { label: "Woocommerce Development", path: "/admin/page-editor/woocommerce-development" },
       { label: " Wix Development", path: "/admin/page-editor/Wix-Development" },
       { label: "Website Maintenance Services", path: "/admin/page-editor/Website-Maintenance-Services" },
+      { label: "Full Stack Development", path: "/admin/page-editor/full-stack-development" },
     ],
   },
   {

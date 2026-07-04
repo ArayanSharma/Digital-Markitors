@@ -38,6 +38,7 @@ const pagesConfig = [
   { pageId: "Wix-Development", label: "Wix Development", path: "/Wix-Development" },
   { pageId: "Website-Maintenance-Services", label: "Website Maintenance Services", path: "/Website-Maintenance-Services" },
   { pageId: "Reseller", label: "Reseller", path: "/Reseller" },
+  { pageId: "full-stack-development", label: "Full Stack Development", path: "/full-stack-development" },
 ];
 
 export default pagesConfig;

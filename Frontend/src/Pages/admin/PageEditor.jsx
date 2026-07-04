@@ -38,6 +38,7 @@ import AdWoocommerce from "../../Components/admin/sections/AdWoocommerce";
 import AdShopifyDev from "../../Components/admin/sections/AdShopifyDev";
 import AdWixDev from "../../Components/admin/sections/AdWixDev";
 import AdWebsitemain from "../../Components/admin/sections/AdWebsitemain";
+import AdFullStack from "../../Components/admin/sections/AdFullStack";
 
 export default function PageEditor() {
   const { pageId } = useParams();
@@ -122,6 +123,8 @@ export default function PageEditor() {
         <AdWixDev />
       ) : pageId === "Website-Maintenance-Services" ? (
         <AdWebsitemain />
+      ) : pageId === "full-stack-development" ? (
+        <AdFullStack />
       ) : (
         <div style={{ marginTop: "24px" }}>
           <p>This page editor is not yet configured for this page.</p>

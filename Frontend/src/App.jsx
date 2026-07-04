@@ -56,6 +56,7 @@ import ShopifyDev from "./Pages/ShopifyDev";
 import LaraveDevelopment from "./Pages/LaraveDevelopment";
 import Woocommerce from "./Pages/Woocommerce";
 import WixDev from "./Pages/WixDev";
+import FullStack from "./Pages/FullStack";
 
 // User Pages - Content
 import AllBlogs from "./Pages/AllBlogs";
@@ -137,6 +138,7 @@ function App() {
         <Route path="woocommerce-development" element={<Woocommerce />} />
         <Route path="Wix-Development" element={<WixDev />} />
         <Route path="Website-Maintenance-Services" element={<Websitemain />} />
+        <Route path="full-stack-development" element={<FullStack />} />
 
         <Route path="Reseller" element={<Reseller />} />
         <Route path="A505" element={<A505 />} />
