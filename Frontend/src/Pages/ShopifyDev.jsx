@@ -237,7 +237,7 @@ const [activeFAQ, setActiveFAQ] = useState(null);
   const displayFaq = c?.faqData?.length
     ? c.faqData.map((item) => ({
         question: item.question,
-        answer: item.answerList?.length ? item.answerList : item.answer,
+        answer: item.isList ? item.answerList || [] : (item.answerText || item.answer),
       }))
     : faqData;
 
@@ -496,11 +496,30 @@ const [activeFAQ, setActiveFAQ] = useState(null);
 
         <div className="testimonial-wrapper">
 
-          <div className="video-box">
-            <img
-              src={video}
-              alt="Video"
-            />
+          <div className="video-box" style={{ overflow: "hidden" }}>
+            {testimonialHeader?.videoUpload || (testimonialHeader?.videoUrl && !testimonialHeader.videoUrl.includes("youtube.com") && !testimonialHeader.videoUrl.includes("youtu.be")) ? (
+              <video
+                src={testimonialHeader?.videoUpload ? resolveImage(testimonialHeader.videoUpload) : testimonialHeader?.videoUrl}
+                controls
+                className="w-full h-full object-cover"
+                poster={testimonialHeader?.videoImage ? resolveImage(testimonialHeader.videoImage) : video}
+                style={{ width: "100%", height: "100%", borderRadius: "20px", display: "block", minHeight: "280px" }}
+              />
+            ) : testimonialHeader?.videoUrl ? (
+              <iframe
+                src={testimonialHeader.videoUrl.includes("embed") ? testimonialHeader.videoUrl : testimonialHeader.videoUrl.replace("watch?v=", "embed/")}
+                title="Testimonial Video"
+                className="w-full h-full"
+                allowFullScreen
+                style={{ width: "100%", height: "100%", minHeight: "280px", border: "none", borderRadius: "20px" }}
+              />
+            ) : (
+              <img
+                src={testimonialHeader?.videoImage ? resolveImage(testimonialHeader.videoImage) : video}
+                alt="Video"
+                style={{ width: "100%", height: "100%", borderRadius: "20px" }}
+              />
+            )}
           </div>
 
 

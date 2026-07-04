@@ -167,7 +167,7 @@ export const ImageInput = ({ label, value, onChange }) => {
 };
 
 export const PageStatusBanner = ({ loading, error, onRetry }) => {
-  if (!loading && !error) return null;
+  if (!error) return null;
   return (
     <div
       className={`mb-4 rounded-2xl border px-4 py-3 text-sm flex items-center justify-between gap-3 ${

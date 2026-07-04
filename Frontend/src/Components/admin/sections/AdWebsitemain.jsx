@@ -1,6 +1,7 @@
 import { useEffect, useState, useCallback } from "react";
-import { loadPageContent, savePageContent } from "../../../utils/pageApi";
+import { loadPageContent, savePageContent, uploadFile } from "../../../utils/pageApi";
 import { uid } from "../../../utils/uid";
+import { Plus } from "lucide-react";
 import { useToast } from "../../../context/ToastContext";
 import LeadForm from "../LeadForm";
 import {
@@ -14,7 +15,20 @@ import {
   ImageInput,
   PageStatusBanner,
   SaveBar,
+  inputCls,
 } from "./common/FormKit";
+
+const CMS_ICON_OPTIONS = ["WordPress", "Shopify", "Magento", "BigCommerce"];
+
+const AddRowBtn = ({ onClick, label = "Add" }) => (
+  <button
+    type="button"
+    onClick={onClick}
+    className="flex items-center gap-1 text-xs font-medium text-brand-accent hover:text-brand-accent bg-brand-primary/10 hover:bg-brand-primary/20 px-3 py-1.5 rounded-full transition-colors"
+  >
+    <Plus size={14} /> {label}
+  </button>
+);
 
 const PAGE_SLUG = "Website-Maintenance-Services";
 
@@ -96,20 +110,7 @@ export default function AdWebsitemain() {
     servicesImage: "",
   });
 
-  // CONNECT SECTION STATE
-  const [connectSection, setConnectSection] = useState({
-    h2: "",
-    span: "",
-    p: "",
-    formFields: {
-      nameLabel: "Name",
-      emailLabel: "Email",
-      phoneLabel: "Phone Number",
-      buttonText: "SUBMIT",
-      buttonLink: "",
-    },
-    backgroundImage: "",
-  });
+
 
   // PROCESS SECTION STATE
   const [processSection, setProcessSection] = useState({
@@ -131,6 +132,8 @@ export default function AdWebsitemain() {
     title: "",
     subtitle: "",
     videoUrl: "",
+    videoUpload: "",
+    videoImage: "",
     testimonials: [
       { id: uid(), image: "", name: "", designation: "", text: "" },
       { id: uid(), image: "", name: "", designation: "", text: "" },
@@ -176,6 +179,20 @@ export default function AdWebsitemain() {
           : item
       ),
     });
+  const addCmsPoint = (id) =>
+    setCmsSection({
+      ...cmsSection,
+      cmsData: cmsSection.cmsData.map((item) =>
+        item.id === id ? { ...item, points: [...(item.points || []), ""] } : item
+      ),
+    });
+  const removeCmsPoint = (id, index) =>
+    setCmsSection({
+      ...cmsSection,
+      cmsData: cmsSection.cmsData.map((item) =>
+        item.id === id ? { ...item, points: (item.points || []).filter((_, i) => i !== index) } : item
+      ),
+    });
 
   // OUR WORK LIST HELPERS
   const updateWorkListItem = (idx, value) =>
@@ -213,22 +230,40 @@ export default function AdWebsitemain() {
       ...faqSection,
       faqData: faqSection.faqData.map((item) => (item.id === id ? { ...item, [field]: value } : item)),
     });
-  const updateFaqAnswerPoint = (id, pointIdx, value) =>
-    setFaqSection({
-      ...faqSection,
-      faqData: faqSection.faqData.map((item) =>
-        item.id === id && Array.isArray(item.answer)
-          ? { ...item, answer: item.answer.map((pt, i) => (i === pointIdx ? value : pt)) }
-          : item
-      ),
-    });
   const addFaq = () =>
     setFaqSection({
       ...faqSection,
-      faqData: [...faqSection.faqData, { id: uid(), question: "", answer: "" }],
+      faqData: [...faqSection.faqData, { id: uid(), question: "", isList: false, answer: "", answerList: [] }],
     });
   const removeFaq = (id) =>
     setFaqSection({ ...faqSection, faqData: faqSection.faqData.filter((item) => item.id !== id) });
+
+  const updateFaqAnswerPoint = (faqId, index, value) =>
+    setFaqSection({
+      ...faqSection,
+      faqData: faqSection.faqData.map((item) => {
+        if (item.id !== faqId) return item;
+        const answerList = [...(item.answerList || [])];
+        answerList[index] = value;
+        return { ...item, answerList };
+      }),
+    });
+  const addFaqAnswerPoint = (faqId) =>
+    setFaqSection({
+      ...faqSection,
+      faqData: faqSection.faqData.map((item) =>
+        item.id === faqId ? { ...item, answerList: [...(item.answerList || []), ""] } : item
+      ),
+    });
+  const removeFaqAnswerPoint = (faqId, index) =>
+    setFaqSection({
+      ...faqSection,
+      faqData: faqSection.faqData.map((item) =>
+        item.id === faqId
+          ? { ...item, answerList: (item.answerList || []).filter((_, i) => i !== index) }
+          : item
+      ),
+    });
 
   const load = useCallback(async () => {
     setLoading(true);
@@ -249,7 +284,16 @@ export default function AdWebsitemain() {
       if (data.builtSection) setBuiltSection(data.builtSection);
       if (data.connectSection) setConnectSection(data.connectSection);
       if (data.processSection) setProcessSection(data.processSection);
-      if (data.testimonialsSection) setTestimonialsSection(data.testimonialsSection);
+      if (data.testimonialsSection) {
+        setTestimonialsSection({
+          title: data.testimonialsSection.title || "",
+          subtitle: data.testimonialsSection.subtitle || "",
+          videoUrl: data.testimonialsSection.videoUrl || "",
+          videoUpload: data.testimonialsSection.videoUpload || "",
+          videoImage: data.testimonialsSection.videoImage || "",
+          testimonials: data.testimonialsSection.testimonials || [],
+        });
+      }
       if (data.contactBanner) setContactBanner(data.contactBanner);
       if (data.faqSection) setFaqSection(data.faqSection);
     }
@@ -272,7 +316,6 @@ export default function AdWebsitemain() {
       cmsSection,
       ourWorkSection,
       builtSection,
-      connectSection,
       processSection,
       testimonialsSection,
       contactBanner,
@@ -385,27 +428,32 @@ export default function AdWebsitemain() {
           {cmsSection.cmsData.map((cms, index) => (
             <div key={cms.id} className="p-4 bg-bg-secondary rounded-2xl border border-brand-primary/25 space-y-3">
               <span className="text-xs font-semibold text-text-muted">CMS {index + 1}</span>
-              <Field label="Icon (WordPress, Shopify, Magento, BigCommerce)">
+              <Field label="Icon">
                 <select
-                  value={cms.icon}
+                  className={inputCls}
+                  value={cms.icon || "WordPress"}
                   onChange={(e) => updateCmsItem(cms.id, "icon", e.target.value)}
-                  className="w-full border border-brand-primary/25 rounded-2xl px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brand-secondary focus:border-brand-secondary"
                 >
-                  <option value="">Select Icon</option>
-                  <option value="FaWordpress">WordPress</option>
-                  <option value="SiShopify">Shopify</option>
-                  <option value="FaMagento">Magento</option>
-                  <option value="SiBigcommerce">BigCommerce</option>
+                  <option value="WordPress">WordPress</option>
+                  <option value="Shopify">Shopify</option>
+                  <option value="Magento">Magento</option>
+                  <option value="BigCommerce">BigCommerce</option>
                 </select>
               </Field>
               <Field label="Title">
                 <TextInput value={cms.title} onChange={(e) => updateCmsItem(cms.id, "title", e.target.value)} />
               </Field>
-              {cms.points.map((point, pointIndex) => (
-                <Field key={pointIndex} label={`Point ${pointIndex + 1}`}>
-                  <TextInput value={point} onChange={(e) => updateCmsPoint(cms.id, pointIndex, e.target.value)} />
-                </Field>
-              ))}
+              <Field label="Points">
+                <div className="space-y-2">
+                  {(cms.points || []).map((point, pointIndex) => (
+                    <div key={pointIndex} className="flex items-center gap-3">
+                      <TextInput value={point} onChange={(e) => updateCmsPoint(cms.id, pointIndex, e.target.value)} />
+                      <RemoveBtn onClick={() => removeCmsPoint(cms.id, pointIndex)} />
+                    </div>
+                  ))}
+                  <AddRowBtn label="Add Point" onClick={() => addCmsPoint(cms.id)} />
+                </div>
+              </Field>
             </div>
           ))}
         </Section>
@@ -477,53 +525,7 @@ export default function AdWebsitemain() {
           <ImageInput label="Services Image" value={builtSection.servicesImage} onChange={(e) => setBuiltSection({ ...builtSection, servicesImage: e.target.value })} />
         </Section>
 
-        <Section title="8. Connect Section" open={openSection === "connectSection"} onToggle={() => toggle("connectSection")}>
-          <Field label="Main Title (H2)">
-            <TextInput value={connectSection.h2} onChange={(e) => setConnectSection({ ...connectSection, h2: e.target.value })} />
-          </Field>
-          <Field label="Highlighted Text (Span)">
-            <TextInput value={connectSection.span} onChange={(e) => setConnectSection({ ...connectSection, span: e.target.value })} />
-          </Field>
-          <Field label="Description">
-            <TextArea rows={3} value={connectSection.p} onChange={(e) => setConnectSection({ ...connectSection, p: e.target.value })} />
-          </Field>
-          <h4 className="text-sm font-semibold text-text-secondary">Form Fields</h4>
-          <Field label="Name Field Label">
-            <TextInput
-              value={connectSection.formFields.nameLabel}
-              onChange={(e) =>
-                setConnectSection({ ...connectSection, formFields: { ...connectSection.formFields, nameLabel: e.target.value } })
-              }
-            />
-          </Field>
-          <Field label="Email Field Label">
-            <TextInput
-              value={connectSection.formFields.emailLabel}
-              onChange={(e) =>
-                setConnectSection({ ...connectSection, formFields: { ...connectSection.formFields, emailLabel: e.target.value } })
-              }
-            />
-          </Field>
-          <Field label="Phone Field Label">
-            <TextInput
-              value={connectSection.formFields.phoneLabel}
-              onChange={(e) =>
-                setConnectSection({ ...connectSection, formFields: { ...connectSection.formFields, phoneLabel: e.target.value } })
-              }
-            />
-          </Field>
-          <ButtonFields
-            label="Submit Button"
-            value={{ text: connectSection.formFields.buttonText, link: connectSection.formFields.buttonLink }}
-            onChange={(v) =>
-              setConnectSection({
-                ...connectSection,
-                formFields: { ...connectSection.formFields, buttonText: v.text, buttonLink: v.link },
-              })
-            }
-          />
-          <ImageInput label="Background Image" value={connectSection.backgroundImage} onChange={(e) => setConnectSection({ ...connectSection, backgroundImage: e.target.value })} />
-        </Section>
+
 
         <Section title="9. Process Section" open={openSection === "processSection"} onToggle={() => toggle("processSection")}>
           <Field label="Main Title (H2)">
@@ -557,8 +559,64 @@ export default function AdWebsitemain() {
           <Field label="Subtitle">
             <TextArea rows={2} value={testimonialsSection.subtitle} onChange={(e) => setTestimonialsSection({ ...testimonialsSection, subtitle: e.target.value })} />
           </Field>
-          <Field label="Video URL (YouTube or Direct Link)">
+          <Field label="Video URL (YouTube link)">
             <TextInput value={testimonialsSection.videoUrl} onChange={(e) => setTestimonialsSection({ ...testimonialsSection, videoUrl: e.target.value })} />
+          </Field>
+          <Field label="Upload Video File">
+            <div className="flex items-center gap-3">
+              <div className="flex items-center gap-2 flex-1">
+                <input
+                  type="file"
+                  accept="video/*"
+                  onChange={async (e) => {
+                    const file = e.target.files?.[0];
+                    if (file) {
+                      try {
+                        const url = await uploadFile(file);
+                        setTestimonialsSection({ ...testimonialsSection, videoUpload: url });
+                        showToast("Video uploaded successfully");
+                      } catch (err) {
+                        showToast(err.message || "Video upload failed", "error");
+                      }
+                    }
+                  }}
+                  className={inputCls}
+                />
+              </div>
+              {testimonialsSection.videoUpload && (
+                <span className="text-xs text-brand-primary truncate max-w-xs">{testimonialsSection.videoUpload}</span>
+              )}
+            </div>
+          </Field>
+          <Field label="Upload Video Thumbnail / Placeholder Image">
+            <div className="flex items-center gap-3">
+              <div className="w-12 h-12 rounded-2xl border border-brand-primary/25 bg-bg-secondary flex items-center justify-center overflow-hidden shrink-0">
+                {testimonialsSection.videoImage ? (
+                  <img src={testimonialsSection.videoImage} alt="" className="w-full h-full object-cover" />
+                ) : (
+                  <span className="text-xs text-text-muted">No Image</span>
+                )}
+              </div>
+              <div className="flex items-center gap-2 flex-1">
+                <input
+                  type="file"
+                  accept="image/*"
+                  onChange={async (e) => {
+                    const file = e.target.files?.[0];
+                    if (file) {
+                      try {
+                        const url = await uploadFile(file);
+                        setTestimonialsSection({ ...testimonialsSection, videoImage: url });
+                        showToast("Thumbnail uploaded successfully");
+                      } catch (err) {
+                        showToast(err.message || "Thumbnail upload failed", "error");
+                      }
+                    }
+                  }}
+                  className={inputCls}
+                />
+              </div>
+            </div>
           </Field>
           <LeadForm
             title="Testimonials"
@@ -603,23 +661,30 @@ export default function AdWebsitemain() {
                 <Field label="Question">
                   <TextArea rows={2} value={faq.question} onChange={(e) => updateFaq(faq.id, "question", e.target.value)} />
                 </Field>
-                {typeof faq.answer === "string" ? (
-                  <Field label="Answer">
-                    <TextArea rows={3} value={faq.answer} onChange={(e) => updateFaq(faq.id, "answer", e.target.value)} />
+                <label className="flex items-center gap-2 text-sm text-text-secondary">
+                  <input
+                    type="checkbox"
+                    checked={!!faq.isList}
+                    onChange={(e) => updateFaq(faq.id, "isList", e.target.checked)}
+                  />
+                  Show answer as a bullet list
+                </label>
+                {faq.isList ? (
+                  <Field label="Answer Points">
+                    <div className="space-y-2">
+                      {(faq.answerList || []).map((point, pointIdx) => (
+                        <div key={pointIdx} className="flex items-center gap-3">
+                          <TextInput value={point} onChange={(e) => updateFaqAnswerPoint(faq.id, pointIdx, e.target.value)} />
+                          <RemoveBtn onClick={() => removeFaqAnswerPoint(faq.id, pointIdx)} />
+                        </div>
+                      ))}
+                      <AddRowBtn label="Add Point" onClick={() => addFaqAnswerPoint(faq.id)} />
+                    </div>
                   </Field>
                 ) : (
-                  <div className="space-y-2">
-                    <span className="block text-xs font-medium text-text-muted">Answer as List</span>
-                    {Array.isArray(faq.answer) &&
-                      faq.answer.map((answerPoint, pointIdx) => (
-                        <TextInput
-                          key={pointIdx}
-                          value={answerPoint}
-                          onChange={(e) => updateFaqAnswerPoint(faq.id, pointIdx, e.target.value)}
-                          placeholder={`Answer point ${pointIdx + 1}`}
-                        />
-                      ))}
-                  </div>
+                  <Field label="Answer Text">
+                    <TextArea rows={3} value={faq.answer} onChange={(e) => updateFaq(faq.id, "answer", e.target.value)} />
+                  </Field>
                 )}
               </div>
             ))}

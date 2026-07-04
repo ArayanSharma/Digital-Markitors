@@ -1,6 +1,7 @@
 import { useEffect, useState, useCallback } from "react";
-import { loadPageContent, savePageContent } from "../../../utils/pageApi";
+import { loadPageContent, savePageContent, uploadFile } from "../../../utils/pageApi";
 import { uid } from "../../../utils/uid";
+import { Plus } from "lucide-react";
 import { useToast } from "../../../context/ToastContext";
 import LeadForm from "../LeadForm";
 import {
@@ -14,7 +15,20 @@ import {
   ImageInput,
   PageStatusBanner,
   SaveBar,
+  inputCls,
 } from "./common/FormKit";
+
+const CMS_ICON_OPTIONS = ["WordPress", "Shopify", "Magento", "BigCommerce"];
+
+const AddRowBtn = ({ onClick, label = "Add" }) => (
+  <button
+    type="button"
+    onClick={onClick}
+    className="flex items-center gap-1 text-xs font-medium text-brand-accent hover:text-brand-accent bg-brand-primary/10 hover:bg-brand-primary/20 px-3 py-1.5 rounded-full transition-colors"
+  >
+    <Plus size={14} /> {label}
+  </button>
+);
 
 const PAGE_SLUG = "woocommerce-development";
 
@@ -61,16 +75,18 @@ export default function AdWoocommerce() {
   const [builtSection, setBuiltSection] = useState({ title: "", description: "" });
   const [services, setServices] = useState([]);
 
-  const [connectSection, setConnectSection] = useState({
-    title: "",
-    description: "",
-    button: { text: "", link: "" },
-  });
+
 
   const [processHeader, setProcessHeader] = useState({ title: "", description: "", image: "" });
   const [processData, setProcessData] = useState([]);
 
-  const [testimonialHeader, setTestimonialHeader] = useState({ title: "", subtitle: "", videoUrl: "" });
+  const [testimonialHeader, setTestimonialHeader] = useState({
+    title: "",
+    subtitle: "",
+    videoUrl: "",
+    videoUpload: "",
+    videoImage: "",
+  });
   const [testimonials, setTestimonials] = useState([]);
 
   const [contactBanner, setContactBanner] = useState({ phone: "", email: "", logo: "" });
@@ -83,25 +99,28 @@ export default function AdWoocommerce() {
   const updateCmsItem = (id, field, value) =>
     setCmsData(cmsData.map((item) => (item.id === id ? { ...item, [field]: value } : item)));
   const addCmsItem = () =>
-    setCmsData([...cmsData, { id: uid(), icon: "", title: "", points: [] }]);
+    setCmsData([...cmsData, { id: uid(), icon: CMS_ICON_OPTIONS[0], title: "", points: [] }]);
   const removeCmsItem = (id) => setCmsData(cmsData.filter((item) => item.id !== id));
   const updateCmsPoint = (id, index, value) =>
     setCmsData(
-      cmsData.map((item) =>
-        item.id === id
-          ? { ...item, points: item.points.map((p, i) => (i === index ? value : p)) }
-          : item
-      )
+      cmsData.map((item) => {
+        if (item.id !== id) return item;
+        const points = [...(item.points || [])];
+        points[index] = value;
+        return { ...item, points };
+      })
     );
   const addCmsPoint = (id) =>
     setCmsData(
-      cmsData.map((item) => (item.id === id ? { ...item, points: [...item.points, ""] } : item))
+      cmsData.map((item) =>
+        item.id === id ? { ...item, points: [...(item.points || []), ""] } : item
+      )
     );
   const removeCmsPoint = (id, index) =>
     setCmsData(
       cmsData.map((item) =>
         item.id === id
-          ? { ...item, points: item.points.filter((_, i) => i !== index) }
+          ? { ...item, points: (item.points || []).filter((_, i) => i !== index) }
           : item
       )
     );
@@ -115,27 +134,31 @@ export default function AdWoocommerce() {
   const updateFaqItem = (id, field, value) =>
     setFaqData(faqData.map((item) => (item.id === id ? { ...item, [field]: value } : item)));
   const addFaqItem = () =>
-    setFaqData([...faqData, { id: uid(), question: "", answer: "", answerList: [] }]);
+    setFaqData([
+      ...faqData,
+      { id: uid(), question: "", isList: false, answer: "", answerList: [] },
+    ]);
   const removeFaqItem = (id) => setFaqData(faqData.filter((item) => item.id !== id));
   const updateFaqPoint = (id, index, value) =>
     setFaqData(
-      faqData.map((item) =>
-        item.id === id
-          ? { ...item, answerList: item.answerList.map((p, i) => (i === index ? value : p)) }
-          : item
-      )
+      faqData.map((item) => {
+        if (item.id !== id) return item;
+        const answerList = [...(item.answerList || [])];
+        answerList[index] = value;
+        return { ...item, answerList };
+      })
     );
   const addFaqPoint = (id) =>
     setFaqData(
       faqData.map((item) =>
-        item.id === id ? { ...item, answerList: [...item.answerList, ""] } : item
+        item.id === id ? { ...item, answerList: [...(item.answerList || []), ""] } : item
       )
     );
   const removeFaqPoint = (id, index) =>
     setFaqData(
       faqData.map((item) =>
         item.id === id
-          ? { ...item, answerList: item.answerList.filter((_, i) => i !== index) }
+          ? { ...item, answerList: (item.answerList || []).filter((_, i) => i !== index) }
           : item
       )
     );
@@ -162,7 +185,15 @@ export default function AdWoocommerce() {
       if (data.connectSection) setConnectSection(data.connectSection);
       if (data.processHeader) setProcessHeader(data.processHeader);
       if (data.processData) setProcessData(data.processData);
-      if (data.testimonialHeader) setTestimonialHeader(data.testimonialHeader);
+      if (data.testimonialHeader) {
+        setTestimonialHeader({
+          title: data.testimonialHeader.title || "",
+          subtitle: data.testimonialHeader.subtitle || "",
+          videoUrl: data.testimonialHeader.videoUrl || "",
+          videoUpload: data.testimonialHeader.videoUpload || "",
+          videoImage: data.testimonialHeader.videoImage || "",
+        });
+      }
       if (data.testimonials) setTestimonials(data.testimonials);
       if (data.contactBanner) setContactBanner(data.contactBanner);
       if (data.faqHeader) setFaqHeader(data.faqHeader);
@@ -189,7 +220,6 @@ export default function AdWoocommerce() {
       ourWork,
       builtSection,
       services,
-      connectSection,
       processHeader,
       processData,
       testimonialHeader,
@@ -291,19 +321,33 @@ export default function AdWoocommerce() {
                   <span className="text-xs font-semibold text-text-muted">CMS Card {index + 1}</span>
                   <RemoveBtn onClick={() => removeCmsItem(item.id)} />
                 </div>
-                <Field label="Icon Name">
-                  <TextInput placeholder="e.g. WordPress" value={item.icon} onChange={(e) => updateCmsItem(item.id, "icon", e.target.value)} />
+                <Field label="Icon">
+                  <select
+                    className={inputCls}
+                    value={item.icon || CMS_ICON_OPTIONS[0]}
+                    onChange={(e) => updateCmsItem(item.id, "icon", e.target.value)}
+                  >
+                    {CMS_ICON_OPTIONS.map((opt) => (
+                      <option key={opt} value={opt}>
+                        {opt}
+                      </option>
+                    ))}
+                  </select>
                 </Field>
                 <Field label="Title">
                   <TextInput value={item.title} onChange={(e) => updateCmsItem(item.id, "title", e.target.value)} />
                 </Field>
-                <CardListHeader title="Points" onAdd={() => addCmsPoint(item.id)} />
-                {item.points.map((point, pointIndex) => (
-                  <div key={pointIndex} className="flex items-center gap-3">
-                    <TextInput value={point} onChange={(e) => updateCmsPoint(item.id, pointIndex, e.target.value)} />
-                    <RemoveBtn onClick={() => removeCmsPoint(item.id, pointIndex)} />
+                <Field label="Points">
+                  <div className="space-y-2">
+                    {(item.points || []).map((point, pointIndex) => (
+                      <div key={pointIndex} className="flex items-center gap-3">
+                        <TextInput value={point} onChange={(e) => updateCmsPoint(item.id, pointIndex, e.target.value)} />
+                        <RemoveBtn onClick={() => removeCmsPoint(item.id, pointIndex)} />
+                      </div>
+                    ))}
+                    <AddRowBtn label="Add Point" onClick={() => addCmsPoint(item.id)} />
                   </div>
-                ))}
+                </Field>
               </div>
             ))}
           </div>
@@ -351,15 +395,7 @@ export default function AdWoocommerce() {
           />
         </Section>
 
-        <Section title="8. Connect Section" open={openSection === "connectSection"} onToggle={() => toggle("connectSection")}>
-          <Field label="Title">
-            <TextInput value={connectSection.title} onChange={(e) => setConnectSection({ ...connectSection, title: e.target.value })} />
-          </Field>
-          <Field label="Description">
-            <TextArea rows={4} value={connectSection.description} onChange={(e) => setConnectSection({ ...connectSection, description: e.target.value })} />
-          </Field>
-          <ButtonFields label="Submit Button" value={connectSection.button} onChange={(v) => setConnectSection({ ...connectSection, button: v })} />
-        </Section>
+
 
         <Section title="9. Process Section" open={openSection === "processHeader"} onToggle={() => toggle("processHeader")}>
           <Field label="Title">
@@ -388,8 +424,64 @@ export default function AdWoocommerce() {
           <Field label="Subtitle">
             <TextArea rows={3} value={testimonialHeader.subtitle} onChange={(e) => setTestimonialHeader({ ...testimonialHeader, subtitle: e.target.value })} />
           </Field>
-          <Field label="Video URL">
-            <TextInput placeholder="YouTube or direct video URL" value={testimonialHeader.videoUrl} onChange={(e) => setTestimonialHeader({ ...testimonialHeader, videoUrl: e.target.value })} />
+          <Field label="Video URL (YouTube link)">
+            <TextInput placeholder="YouTube video URL" value={testimonialHeader.videoUrl} onChange={(e) => setTestimonialHeader({ ...testimonialHeader, videoUrl: e.target.value })} />
+          </Field>
+          <Field label="Upload Video File">
+            <div className="flex items-center gap-3">
+              <div className="flex items-center gap-2 flex-1">
+                <input
+                  type="file"
+                  accept="video/*"
+                  onChange={async (e) => {
+                    const file = e.target.files?.[0];
+                    if (file) {
+                      try {
+                        const url = await uploadFile(file);
+                        setTestimonialHeader({ ...testimonialHeader, videoUpload: url });
+                        showToast("Video uploaded successfully");
+                      } catch (err) {
+                        showToast(err.message || "Video upload failed", "error");
+                      }
+                    }
+                  }}
+                  className={inputCls}
+                />
+              </div>
+              {testimonialHeader.videoUpload && (
+                <span className="text-xs text-brand-primary truncate max-w-xs">{testimonialHeader.videoUpload}</span>
+              )}
+            </div>
+          </Field>
+          <Field label="Upload Video Thumbnail / Placeholder Image">
+            <div className="flex items-center gap-3">
+              <div className="w-12 h-12 rounded-2xl border border-brand-primary/25 bg-bg-secondary flex items-center justify-center overflow-hidden shrink-0">
+                {testimonialHeader.videoImage ? (
+                  <img src={testimonialHeader.videoImage} alt="" className="w-full h-full object-cover" />
+                ) : (
+                  <span className="text-xs text-text-muted">No Image</span>
+                )}
+              </div>
+              <div className="flex items-center gap-2 flex-1">
+                <input
+                  type="file"
+                  accept="image/*"
+                  onChange={async (e) => {
+                    const file = e.target.files?.[0];
+                    if (file) {
+                      try {
+                        const url = await uploadFile(file);
+                        setTestimonialHeader({ ...testimonialHeader, videoImage: url });
+                        showToast("Thumbnail uploaded successfully");
+                      } catch (err) {
+                        showToast(err.message || "Thumbnail upload failed", "error");
+                      }
+                    }
+                  }}
+                  className={inputCls}
+                />
+              </div>
+            </div>
           </Field>
           <LeadForm
             title="Testimonials"
@@ -434,16 +526,31 @@ export default function AdWoocommerce() {
                 <Field label="Question">
                   <TextInput value={item.question} onChange={(e) => updateFaqItem(item.id, "question", e.target.value)} />
                 </Field>
-                <Field label="Answer">
-                  <TextArea rows={3} value={item.answer} onChange={(e) => updateFaqItem(item.id, "answer", e.target.value)} />
-                </Field>
-                <CardListHeader title="Answer Points" onAdd={() => addFaqPoint(item.id)} />
-                {item.answerList.map((point, pointIndex) => (
-                  <div key={pointIndex} className="flex items-center gap-3">
-                    <TextInput value={point} onChange={(e) => updateFaqPoint(item.id, pointIndex, e.target.value)} />
-                    <RemoveBtn onClick={() => removeFaqPoint(item.id, pointIndex)} />
-                  </div>
-                ))}
+                <label className="flex items-center gap-2 text-sm text-text-secondary">
+                  <input
+                    type="checkbox"
+                    checked={!!item.isList}
+                    onChange={(e) => updateFaqItem(item.id, "isList", e.target.checked)}
+                  />
+                  Show answer as a bullet list
+                </label>
+                {item.isList ? (
+                  <Field label="Answer Points">
+                    <div className="space-y-2">
+                      {(item.answerList || []).map((point, pointIndex) => (
+                        <div key={pointIndex} className="flex items-center gap-3">
+                          <TextInput value={point} onChange={(e) => updateFaqPoint(item.id, pointIndex, e.target.value)} />
+                          <RemoveBtn onClick={() => removeFaqPoint(item.id, pointIndex)} />
+                        </div>
+                      ))}
+                      <AddRowBtn label="Add Point" onClick={() => addFaqPoint(item.id)} />
+                    </div>
+                  </Field>
+                ) : (
+                  <Field label="Answer Text">
+                    <TextArea rows={3} value={item.answer} onChange={(e) => updateFaqItem(item.id, "answer", e.target.value)} />
+                  </Field>
+                )}
               </div>
             ))}
           </div>

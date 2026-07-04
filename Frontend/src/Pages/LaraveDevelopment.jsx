@@ -427,29 +427,7 @@ const [activeFAQ, setActiveFAQ] = useState(null);
 </section>
 
       
-<section className="connect-section">
-  <div className="connect-overlay">
-    <div className="connect-container">
-      <div className="connect-content">
-        <h2>
-          Let's <span>{connectSection?.title || "connect"}</span>
-        </h2>
 
-        <p>
-          {connectSection?.description || "Need Dynamic Web Designing Solutions? Contact us to discuss your needs and business objectives"}
-        </p>
-      </div>
-
-      <form className="connect-form">
-        <input type="text" placeholder="Name" />
-        <input type="email" placeholder="Email" />
-        <input type="text" placeholder="Phone Number" />
-
-        <button type="submit">{connectSection?.button?.text || "SUBMIT"}</button>
-      </form>
-    </div>
-  </div>
-</section>
 
 <section className="process-section">
   <div className="container">
@@ -496,11 +474,30 @@ const [activeFAQ, setActiveFAQ] = useState(null);
 
         <div className="testimonial-wrapper">
 
-          <div className="video-box">
-            <img
-              src={video}
-              alt="Video"
-            />
+          <div className="video-box" style={{ overflow: "hidden" }}>
+            {testimonialHeader?.videoUpload || (testimonialHeader?.videoUrl && !testimonialHeader.videoUrl.includes("youtube.com") && !testimonialHeader.videoUrl.includes("youtu.be")) ? (
+              <video
+                src={testimonialHeader?.videoUpload ? resolveImage(testimonialHeader.videoUpload) : testimonialHeader?.videoUrl}
+                controls
+                className="w-full h-full object-cover"
+                poster={testimonialHeader?.videoImage ? resolveImage(testimonialHeader.videoImage) : video}
+                style={{ width: "100%", height: "100%", borderRadius: "20px", display: "block", minHeight: "280px" }}
+              />
+            ) : testimonialHeader?.videoUrl ? (
+              <iframe
+                src={testimonialHeader.videoUrl.includes("embed") ? testimonialHeader.videoUrl : testimonialHeader.videoUrl.replace("watch?v=", "embed/")}
+                title="Testimonial Video"
+                className="w-full h-full"
+                allowFullScreen
+                style={{ width: "100%", height: "100%", minHeight: "280px", border: "none", borderRadius: "20px" }}
+              />
+            ) : (
+              <img
+                src={testimonialHeader?.videoImage ? resolveImage(testimonialHeader.videoImage) : video}
+                alt="Video"
+                style={{ width: "100%", height: "100%", borderRadius: "20px" }}
+              />
+            )}
           </div>
 
 

@@ -234,7 +234,12 @@ const [activeFAQ, setActiveFAQ] = useState(null);
     : testimonials;
   const contactBanner = c?.contactBanner;
   const faqSection = c?.faqSection;
-  const displayFaq = faqSection?.faqData?.length ? faqSection.faqData : faqData;
+  const displayFaq = faqSection?.faqData?.length
+    ? faqSection.faqData.map((item) => ({
+        question: item.question,
+        answer: item.isList ? item.answerList || [] : item.answer,
+      }))
+    : faqData;
 
   return (
     <div>
@@ -428,29 +433,7 @@ const [activeFAQ, setActiveFAQ] = useState(null);
 </section>
 
       
-<section className="connect-section">
-  <div className="connect-overlay">
-    <div className="connect-container">
-      <div className="connect-content">
-        <h2>
-          {connectSection?.h2 || "Let's"} <span>{connectSection?.span || "connect"}</span>
-        </h2>
 
-        <p>
-          {connectSection?.p || "Need Dynamic Web Designing Solutions? Contact us to discuss your needs and business objectives"}
-        </p>
-      </div>
-
-      <form className="connect-form">
-        <input type="text" placeholder={connectSection?.formFields?.nameLabel || "Name"} />
-        <input type="email" placeholder={connectSection?.formFields?.emailLabel || "Email"} />
-        <input type="text" placeholder={connectSection?.formFields?.phoneLabel || "Phone Number"} />
-
-        <button type="submit">{connectSection?.formFields?.buttonText || "SUBMIT"}</button>
-      </form>
-    </div>
-  </div>
-</section>
 
 <section className="process-section">
   <div className="container">
@@ -497,11 +480,30 @@ const [activeFAQ, setActiveFAQ] = useState(null);
 
         <div className="testimonial-wrapper">
 
-          <div className="video-box">
-            <img
-              src={video}
-              alt="Video"
-            />
+          <div className="video-box" style={{ overflow: "hidden" }}>
+            {testimonialsSection?.videoUpload || (testimonialsSection?.videoUrl && !testimonialsSection.videoUrl.includes("youtube.com") && !testimonialsSection.videoUrl.includes("youtu.be")) ? (
+              <video
+                src={testimonialsSection?.videoUpload ? resolveImage(testimonialsSection.videoUpload) : testimonialsSection?.videoUrl}
+                controls
+                className="w-full h-full object-cover"
+                poster={testimonialsSection?.videoImage ? resolveImage(testimonialsSection.videoImage) : video}
+                style={{ width: "100%", height: "100%", borderRadius: "20px", display: "block", minHeight: "280px" }}
+              />
+            ) : testimonialsSection?.videoUrl ? (
+              <iframe
+                src={testimonialsSection.videoUrl.includes("embed") ? testimonialsSection.videoUrl : testimonialsSection.videoUrl.replace("watch?v=", "embed/")}
+                title="Testimonial Video"
+                className="w-full h-full"
+                allowFullScreen
+                style={{ width: "100%", height: "100%", minHeight: "280px", border: "none", borderRadius: "20px" }}
+              />
+            ) : (
+              <img
+                src={testimonialsSection?.videoImage ? resolveImage(testimonialsSection.videoImage) : video}
+                alt="Video"
+                style={{ width: "100%", height: "100%", borderRadius: "20px" }}
+              />
+            )}
           </div>
 
 

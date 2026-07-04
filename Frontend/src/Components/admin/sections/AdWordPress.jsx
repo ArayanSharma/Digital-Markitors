@@ -1,5 +1,7 @@
 import { useEffect, useState, useCallback } from "react";
-import { loadPageContent, savePageContent } from "../../../utils/pageApi";
+import { loadPageContent, savePageContent, uploadFile } from "../../../utils/pageApi";
+import { uid } from "../../../utils/uid";
+import { Plus } from "lucide-react";
 import { useToast } from "../../../context/ToastContext";
 import LeadForm from "../LeadForm";
 import {
@@ -13,7 +15,20 @@ import {
   ImageInput,
   PageStatusBanner,
   SaveBar,
+  inputCls,
 } from "./common/FormKit";
+
+const CMS_ICON_OPTIONS = ["WordPress", "Shopify", "Magento", "BigCommerce"];
+
+const AddRowBtn = ({ onClick, label = "Add" }) => (
+  <button
+    type="button"
+    onClick={onClick}
+    className="flex items-center gap-1 text-xs font-medium text-brand-accent hover:text-brand-accent bg-brand-primary/10 hover:bg-brand-primary/20 px-3 py-1.5 rounded-full transition-colors"
+  >
+    <Plus size={14} /> {label}
+  </button>
+);
 
 const PAGE_SLUG = "wordpress-development";
 
@@ -89,6 +104,8 @@ export default function AdWordPress() {
     title: "",
     subtitle: "",
     videoUrl: "",
+    videoUpload: "",
+    videoImage: "",
   });
 
   const [testimonials, setTestimonials] = useState([]);
@@ -120,6 +137,71 @@ export default function AdWordPress() {
   const removeOurWorkBullet = (index) =>
     setOurWork({ ...ourWork, bullets: ourWork.bullets.filter((_, i) => i !== index) });
 
+  /* ---------- cmsData ---------- */
+  const updateCms = (id, field, value) =>
+    setCmsData(cmsData.map((item) => (item.id === id ? { ...item, [field]: value } : item)));
+  const addCms = () =>
+    setCmsData([...cmsData, { id: uid(), icon: CMS_ICON_OPTIONS[0], title: "", points: [] }]);
+  const removeCms = (id) => setCmsData(cmsData.filter((item) => item.id !== id));
+
+  const updateCmsPoint = (cmsId, index, value) =>
+    setCmsData(
+      cmsData.map((item) => {
+        if (item.id !== cmsId) return item;
+        const points = [...(item.points || [])];
+        points[index] = value;
+        return { ...item, points };
+      })
+    );
+  const addCmsPoint = (cmsId) =>
+    setCmsData(
+      cmsData.map((item) =>
+        item.id === cmsId ? { ...item, points: [...(item.points || []), ""] } : item
+      )
+    );
+  const removeCmsPoint = (cmsId, index) =>
+    setCmsData(
+      cmsData.map((item) =>
+        item.id === cmsId
+          ? { ...item, points: (item.points || []).filter((_, i) => i !== index) }
+          : item
+      )
+    );
+
+  /* ---------- faqData ---------- */
+  const updateFaq = (id, field, value) =>
+    setFaqData(faqData.map((item) => (item.id === id ? { ...item, [field]: value } : item)));
+  const addFaq = () =>
+    setFaqData([
+      ...faqData,
+      { id: uid(), question: "", isList: false, answerText: "", answerList: [] },
+    ]);
+  const removeFaq = (id) => setFaqData(faqData.filter((item) => item.id !== id));
+
+  const updateFaqAnswerListItem = (faqId, index, value) =>
+    setFaqData(
+      faqData.map((item) => {
+        if (item.id !== faqId) return item;
+        const answerList = [...(item.answerList || [])];
+        answerList[index] = value;
+        return { ...item, answerList };
+      })
+    );
+  const addFaqAnswerListItem = (faqId) =>
+    setFaqData(
+      faqData.map((item) =>
+        item.id === faqId ? { ...item, answerList: [...(item.answerList || []), ""] } : item
+      )
+    );
+  const removeFaqAnswerListItem = (faqId, index) =>
+    setFaqData(
+      faqData.map((item) =>
+        item.id === faqId
+          ? { ...item, answerList: (item.answerList || []).filter((_, i) => i !== index) }
+          : item
+      )
+    );
+
   const load = useCallback(async () => {
     setLoading(true);
     setLoadError("");
@@ -142,7 +224,15 @@ export default function AdWordPress() {
       if (data.connectSection) setConnectSection(data.connectSection);
       if (data.processHeader) setProcessHeader(data.processHeader);
       if (data.processData) setProcessData(data.processData);
-      if (data.testimonialHeader) setTestimonialHeader(data.testimonialHeader);
+      if (data.testimonialHeader) {
+        setTestimonialHeader({
+          title: data.testimonialHeader.title || "",
+          subtitle: data.testimonialHeader.subtitle || "",
+          videoUrl: data.testimonialHeader.videoUrl || "",
+          videoUpload: data.testimonialHeader.videoUpload || "",
+          videoImage: data.testimonialHeader.videoImage || "",
+        });
+      }
       if (data.testimonials) setTestimonials(data.testimonials);
       if (data.contactBanner) setContactBanner(data.contactBanner);
       if (data.faqHeader) setFaqHeader(data.faqHeader);
@@ -264,17 +354,44 @@ export default function AdWordPress() {
             <TextArea rows={4} value={cmsSection.description} onChange={(e) => setCmsSection({ ...cmsSection, description: e.target.value })} />
           </Field>
 
-          <LeadForm
-            title="CMS Cards"
-            addLabel="Add Card"
-            items={cmsData}
-            onChange={setCmsData}
-            fields={[
-              { name: "icon", label: "Icon Name", type: "text" },
-              { name: "title", label: "Title", type: "text", required: true },
-              { name: "points", label: "Points", type: "multiline", rows: 4, placeholder: "One point per line" },
-            ]}
-          />
+          <div className="md:col-span-2 space-y-3">
+            <CardListHeader title="CMS Cards" onAdd={addCms} />
+            {cmsData.map((item, index) => (
+              <div key={item.id} className="p-4 bg-bg-secondary rounded-2xl border border-brand-primary/25 space-y-3">
+                <div className="flex items-center justify-between gap-3">
+                  <span className="text-xs font-semibold text-text-muted">CMS {index + 1}</span>
+                  <RemoveBtn onClick={() => removeCms(item.id)} />
+                </div>
+                <Field label="Icon">
+                  <select
+                    className={inputCls}
+                    value={item.icon}
+                    onChange={(e) => updateCms(item.id, "icon", e.target.value)}
+                  >
+                    {CMS_ICON_OPTIONS.map((opt) => (
+                      <option key={opt} value={opt}>
+                        {opt}
+                      </option>
+                    ))}
+                  </select>
+                </Field>
+                <Field label="Title">
+                  <TextInput value={item.title} onChange={(e) => updateCms(item.id, "title", e.target.value)} />
+                </Field>
+                <Field label="Points">
+                  <div className="space-y-2">
+                    {(item.points || []).map((point, pi) => (
+                      <div key={pi} className="flex items-center gap-3">
+                        <TextInput value={point} onChange={(e) => updateCmsPoint(item.id, pi, e.target.value)} />
+                        <RemoveBtn onClick={() => removeCmsPoint(item.id, pi)} />
+                      </div>
+                    ))}
+                    <AddRowBtn label="Add Point" onClick={() => addCmsPoint(item.id)} />
+                  </div>
+                </Field>
+              </div>
+            ))}
+          </div>
         </Section>
 
         <Section title="Our Work Section" open={openSection === "ourWork"} onToggle={() => toggle("ourWork")}>
@@ -357,8 +474,64 @@ export default function AdWordPress() {
           <Field label="Subtitle">
             <TextArea rows={3} value={testimonialHeader.subtitle} onChange={(e) => setTestimonialHeader({ ...testimonialHeader, subtitle: e.target.value })} />
           </Field>
-          <Field label="Video URL">
+          <Field label="Video URL (YouTube link)">
             <TextInput value={testimonialHeader.videoUrl} onChange={(e) => setTestimonialHeader({ ...testimonialHeader, videoUrl: e.target.value })} />
+          </Field>
+          <Field label="Upload Video File">
+            <div className="flex items-center gap-3">
+              <div className="flex items-center gap-2 flex-1">
+                <input
+                  type="file"
+                  accept="video/*"
+                  onChange={async (e) => {
+                    const file = e.target.files?.[0];
+                    if (file) {
+                      try {
+                        const url = await uploadFile(file);
+                        setTestimonialHeader({ ...testimonialHeader, videoUpload: url });
+                        showToast("Video uploaded successfully");
+                      } catch (err) {
+                        showToast(err.message || "Video upload failed", "error");
+                      }
+                    }
+                  }}
+                  className={inputCls}
+                />
+              </div>
+              {testimonialHeader.videoUpload && (
+                <span className="text-xs text-brand-primary truncate max-w-xs">{testimonialHeader.videoUpload}</span>
+              )}
+            </div>
+          </Field>
+          <Field label="Upload Video Thumbnail / Placeholder Image">
+            <div className="flex items-center gap-3">
+              <div className="w-12 h-12 rounded-2xl border border-brand-primary/25 bg-bg-secondary flex items-center justify-center overflow-hidden shrink-0">
+                {testimonialHeader.videoImage ? (
+                  <img src={testimonialHeader.videoImage} alt="" className="w-full h-full object-cover" />
+                ) : (
+                  <span className="text-xs text-text-muted">No Image</span>
+                )}
+              </div>
+              <div className="flex items-center gap-2 flex-1">
+                <input
+                  type="file"
+                  accept="image/*"
+                  onChange={async (e) => {
+                    const file = e.target.files?.[0];
+                    if (file) {
+                      try {
+                        const url = await uploadFile(file);
+                        setTestimonialHeader({ ...testimonialHeader, videoImage: url });
+                        showToast("Thumbnail uploaded successfully");
+                      } catch (err) {
+                        showToast(err.message || "Thumbnail upload failed", "error");
+                      }
+                    }
+                  }}
+                  className={inputCls}
+                />
+              </div>
+            </div>
           </Field>
 
           <LeadForm
@@ -394,17 +567,45 @@ export default function AdWordPress() {
           </Field>
           <ImageInput label="FAQ Image" value={faqHeader.image} onChange={(e) => setFaqHeader({ ...faqHeader, image: e.target.value })} />
 
-          <LeadForm
-            title="FAQs"
-            addLabel="Add FAQ"
-            items={faqData}
-            onChange={setFaqData}
-            fields={[
-              { name: "question", label: "Question", type: "text", required: true },
-              { name: "answer", label: "Answer", type: "textarea", rows: 3 },
-              { name: "answerList", label: "Answer Points", type: "multiline", rows: 4, placeholder: "One point per line" },
-            ]}
-          />
+          <div className="md:col-span-2 space-y-3">
+            <CardListHeader title="FAQ Items" onAdd={addFaq} />
+            {faqData.map((item, index) => (
+              <div key={item.id} className="p-4 bg-bg-secondary rounded-2xl border border-brand-primary/25 space-y-3">
+                <div className="flex items-center justify-between gap-3">
+                  <span className="text-xs font-semibold text-text-muted">FAQ {index + 1}</span>
+                  <RemoveBtn onClick={() => removeFaq(item.id)} />
+                </div>
+                <Field label="Question">
+                  <TextInput value={item.question} onChange={(e) => updateFaq(item.id, "question", e.target.value)} />
+                </Field>
+                <label className="flex items-center gap-2 text-sm text-text-secondary">
+                  <input
+                    type="checkbox"
+                    checked={!!item.isList}
+                    onChange={(e) => updateFaq(item.id, "isList", e.target.checked)}
+                  />
+                  Show answer as a bullet list
+                </label>
+                {item.isList ? (
+                  <Field label="Answer Points">
+                    <div className="space-y-2">
+                      {(item.answerList || []).map((point, pi) => (
+                        <div key={pi} className="flex items-center gap-3">
+                          <TextInput value={point} onChange={(e) => updateFaqAnswerListItem(item.id, pi, e.target.value)} />
+                          <RemoveBtn onClick={() => removeFaqAnswerListItem(item.id, pi)} />
+                        </div>
+                      ))}
+                      <AddRowBtn label="Add Point" onClick={() => addFaqAnswerListItem(item.id)} />
+                    </div>
+                  </Field>
+                ) : (
+                  <Field label="Answer Text">
+                    <TextArea rows={3} value={item.answerText} onChange={(e) => updateFaq(item.id, "answerText", e.target.value)} />
+                  </Field>
+                )}
+              </div>
+            ))}
+          </div>
         </Section>
 
         <SaveBar status={status} onSave={handleSave} />

@@ -1,6 +1,7 @@
 import { useEffect, useState, useCallback } from "react";
-import { loadPageContent, savePageContent } from "../../../utils/pageApi";
+import { loadPageContent, savePageContent, uploadFile } from "../../../utils/pageApi";
 import { uid } from "../../../utils/uid";
+import { Plus } from "lucide-react";
 import { useToast } from "../../../context/ToastContext";
 import LeadForm from "../LeadForm";
 import {
@@ -16,6 +17,18 @@ import {
   SaveBar,
   inputCls,
 } from "./common/FormKit";
+
+const CMS_ICON_OPTIONS = ["WordPress", "Shopify", "Magento", "BigCommerce"];
+
+const AddRowBtn = ({ onClick, label = "Add" }) => (
+  <button
+    type="button"
+    onClick={onClick}
+    className="flex items-center gap-1 text-xs font-medium text-brand-accent hover:text-brand-accent bg-brand-primary/10 hover:bg-brand-primary/20 px-3 py-1.5 rounded-full transition-colors"
+  >
+    <Plus size={14} /> {label}
+  </button>
+);
 
 const PAGE_SLUG = "laravel-development";
 
@@ -74,11 +87,7 @@ export default function AdLaraveDevelopment() {
 
   const [services, setServices] = useState([]);
 
-  const [connectSection, setConnectSection] = useState({
-    title: "",
-    description: "",
-    button: { text: "", link: "" },
-  });
+
 
   const [processHeader, setProcessHeader] = useState({
     title: "",
@@ -92,6 +101,8 @@ export default function AdLaraveDevelopment() {
     title: "",
     subtitle: "",
     videoUrl: "",
+    videoUpload: "",
+    videoImage: "",
   });
 
   const [testimonials, setTestimonials] = useState([]);
@@ -115,8 +126,6 @@ export default function AdLaraveDevelopment() {
   // CMS Cards
   const updateCmsCard = (id, field, value) =>
     setCmsData(cmsData.map((item) => (item.id === id ? { ...item, [field]: value } : item)));
-  const addCmsCard = () =>
-    setCmsData([...cmsData, { id: uid(), icon: "WordPress", title: "", points: [] }]);
   const removeCmsCard = (id) => setCmsData(cmsData.filter((item) => item.id !== id));
 
   const updateCmsPoint = (cardId, index, value) =>
@@ -162,7 +171,10 @@ export default function AdLaraveDevelopment() {
   const updateFaq = (id, field, value) =>
     setFaqData(faqData.map((item) => (item.id === id ? { ...item, [field]: value } : item)));
   const addFaq = () =>
-    setFaqData([...faqData, { id: uid(), question: "", answer: "", isList: false, answerList: [] }]);
+    setFaqData([
+      ...faqData,
+      { id: uid(), question: "", isList: false, answer: "", answerList: [] },
+    ]);
   const removeFaq = (id) => setFaqData(faqData.filter((item) => item.id !== id));
 
   const updateFaqAnswerPoint = (faqId, index, value) =>
@@ -189,6 +201,9 @@ export default function AdLaraveDevelopment() {
       )
     );
 
+  const addCmsCard = () =>
+    setCmsData([...cmsData, { id: uid(), icon: CMS_ICON_OPTIONS[0], title: "", points: [] }]);
+
   const load = useCallback(async () => {
     setLoading(true);
     setLoadError("");
@@ -211,7 +226,15 @@ export default function AdLaraveDevelopment() {
       if (data.connectSection) setConnectSection(data.connectSection);
       if (data.processHeader) setProcessHeader(data.processHeader);
       if (data.processData) setProcessData(data.processData);
-      if (data.testimonialHeader) setTestimonialHeader(data.testimonialHeader);
+      if (data.testimonialHeader) {
+        setTestimonialHeader({
+          title: data.testimonialHeader.title || "",
+          subtitle: data.testimonialHeader.subtitle || "",
+          videoUrl: data.testimonialHeader.videoUrl || "",
+          videoUpload: data.testimonialHeader.videoUpload || "",
+          videoImage: data.testimonialHeader.videoImage || "",
+        });
+      }
       if (data.testimonials) setTestimonials(data.testimonials);
       if (data.contactBanner) setContactBanner(data.contactBanner);
       if (data.faqHeader) setFaqHeader(data.faqHeader);
@@ -238,7 +261,6 @@ export default function AdLaraveDevelopment() {
       ourWork,
       builtSection,
       services,
-      connectSection,
       processHeader,
       processData,
       testimonialHeader,
@@ -361,15 +383,17 @@ export default function AdLaraveDevelopment() {
                 <Field label="Title">
                   <TextInput value={item.title} onChange={(e) => updateCmsCard(item.id, "title", e.target.value)} />
                 </Field>
-                <div className="space-y-2">
-                  <CardListHeader title="Points" onAdd={() => addCmsPoint(item.id)} />
-                  {(item.points || []).map((point, pointIndex) => (
-                    <div key={pointIndex} className="flex items-center gap-3">
-                      <TextInput value={point} onChange={(e) => updateCmsPoint(item.id, pointIndex, e.target.value)} />
-                      <RemoveBtn onClick={() => removeCmsPoint(item.id, pointIndex)} />
-                    </div>
-                  ))}
-                </div>
+                <Field label="Points">
+                  <div className="space-y-2">
+                    {(item.points || []).map((point, pointIndex) => (
+                      <div key={pointIndex} className="flex items-center gap-3">
+                        <TextInput value={point} onChange={(e) => updateCmsPoint(item.id, pointIndex, e.target.value)} />
+                        <RemoveBtn onClick={() => removeCmsPoint(item.id, pointIndex)} />
+                      </div>
+                    ))}
+                    <AddRowBtn label="Add Point" onClick={() => addCmsPoint(item.id)} />
+                  </div>
+                </Field>
               </div>
             ))}
           </div>
@@ -417,15 +441,7 @@ export default function AdLaraveDevelopment() {
           />
         </Section>
 
-        <Section title="Connect Section" open={openSection === "connectSection"} onToggle={() => toggle("connectSection")}>
-          <Field label="Title">
-            <TextInput value={connectSection.title} onChange={(e) => setConnectSection({ ...connectSection, title: e.target.value })} />
-          </Field>
-          <Field label="Description">
-            <TextArea rows={4} value={connectSection.description} onChange={(e) => setConnectSection({ ...connectSection, description: e.target.value })} />
-          </Field>
-          <ButtonFields label="Submit Button" value={connectSection.button} onChange={(v) => setConnectSection({ ...connectSection, button: v })} />
-        </Section>
+
 
         <Section title="Process Section" open={openSection === "processHeader"} onToggle={() => toggle("processHeader")}>
           <Field label="Title">
@@ -449,8 +465,64 @@ export default function AdLaraveDevelopment() {
         </Section>
 
         <Section title="Testimonials Section" open={openSection === "testimonialHeader"} onToggle={() => toggle("testimonialHeader")}>
-          <Field label="Title">
-            <TextInput value={testimonialHeader.title} onChange={(e) => setTestimonialHeader({ ...testimonialHeader, title: e.target.value })} />
+          <Field label="Video URL (YouTube link)">
+            <TextInput value={testimonialHeader.videoUrl} onChange={(e) => setTestimonialHeader({ ...testimonialHeader, videoUrl: e.target.value })} />
+          </Field>
+          <Field label="Upload Video File">
+            <div className="flex items-center gap-3">
+              <div className="flex items-center gap-2 flex-1">
+                <input
+                  type="file"
+                  accept="video/*"
+                  onChange={async (e) => {
+                    const file = e.target.files?.[0];
+                    if (file) {
+                      try {
+                        const url = await uploadFile(file);
+                        setTestimonialHeader({ ...testimonialHeader, videoUpload: url });
+                        showToast("Video uploaded successfully");
+                      } catch (err) {
+                        showToast(err.message || "Video upload failed", "error");
+                      }
+                    }
+                  }}
+                  className={inputCls}
+                />
+              </div>
+              {testimonialHeader.videoUpload && (
+                <span className="text-xs text-brand-primary truncate max-w-xs">{testimonialHeader.videoUpload}</span>
+              )}
+            </div>
+          </Field>
+          <Field label="Upload Video Thumbnail / Placeholder Image">
+            <div className="flex items-center gap-3">
+              <div className="w-12 h-12 rounded-2xl border border-brand-primary/25 bg-bg-secondary flex items-center justify-center overflow-hidden shrink-0">
+                {testimonialHeader.videoImage ? (
+                  <img src={testimonialHeader.videoImage} alt="" className="w-full h-full object-cover" />
+                ) : (
+                  <span className="text-xs text-text-muted">No Image</span>
+                )}
+              </div>
+              <div className="flex items-center gap-2 flex-1">
+                <input
+                  type="file"
+                  accept="image/*"
+                  onChange={async (e) => {
+                    const file = e.target.files?.[0];
+                    if (file) {
+                      try {
+                        const url = await uploadFile(file);
+                        setTestimonialHeader({ ...testimonialHeader, videoImage: url });
+                        showToast("Thumbnail uploaded successfully");
+                      } catch (err) {
+                        showToast(err.message || "Thumbnail upload failed", "error");
+                      }
+                    }
+                  }}
+                  className={inputCls}
+                />
+              </div>
+            </div>
           </Field>
           <Field label="Subtitle">
             <TextArea rows={3} value={testimonialHeader.subtitle} onChange={(e) => setTestimonialHeader({ ...testimonialHeader, subtitle: e.target.value })} />
@@ -513,15 +585,17 @@ export default function AdLaraveDevelopment() {
                 </label>
 
                 {item.isList ? (
-                  <div className="space-y-2">
-                    <CardListHeader title="Answer Points" onAdd={() => addFaqAnswerPoint(item.id)} />
-                    {(item.answerList || []).map((point, pointIndex) => (
-                      <div key={pointIndex} className="flex items-center gap-3">
-                        <TextInput value={point} onChange={(e) => updateFaqAnswerPoint(item.id, pointIndex, e.target.value)} />
-                        <RemoveBtn onClick={() => removeFaqAnswerPoint(item.id, pointIndex)} />
-                      </div>
-                    ))}
-                  </div>
+                  <Field label="Answer Points">
+                    <div className="space-y-2">
+                      {(item.answerList || []).map((point, pointIndex) => (
+                        <div key={pointIndex} className="flex items-center gap-3">
+                          <TextInput value={point} onChange={(e) => updateFaqAnswerPoint(item.id, pointIndex, e.target.value)} />
+                          <RemoveBtn onClick={() => removeFaqAnswerPoint(item.id, pointIndex)} />
+                        </div>
+                      ))}
+                      <AddRowBtn label="Add Point" onClick={() => addFaqAnswerPoint(item.id)} />
+                    </div>
+                  </Field>
                 ) : (
                   <Field label="Answer Text">
                     <TextArea rows={3} value={item.answer} onChange={(e) => updateFaq(item.id, "answer", e.target.value)} />
