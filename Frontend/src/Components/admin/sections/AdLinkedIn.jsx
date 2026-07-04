@@ -34,11 +34,7 @@ export default function AdLinkedIn() {
     backgroundImageUrl: "",
   });
 
-  const [videoSection, setVideoSection] = useState({
-    title: "Optional Video Section",
-    description: "Enter a video URL if you have one for the LinkedIn Ads page.",
-    videoUrl: "",
-  });
+
 
   const [aboutSection, setAboutSection] = useState({
     title: "LinkedIn Marketing Services in India",
@@ -150,73 +146,6 @@ export default function AdLinkedIn() {
     { id: uid(), title: "Out Turn:", description: "Achieve measurable results in record time." },
   ]);
 
-  const [industriesSection, setIndustriesSection] = useState({
-    heading: "INDUSTRY WE WORK WITH",
-  });
-
-  const [industries, setIndustries] = useState([
-    {
-      id: uid(),
-      imageUrl: "",
-      title: "Healthcare",
-      desc:
-        "We provide specialized digital marketing solutions to hospitals, clinics and other health institutions to help them build trust and grow their brand.",
-      readMoreLink: "",
-    },
-    {
-      id: uid(),
-      imageUrl: "",
-      title: "E-Commerce",
-      desc:
-        "We help online retailers and marketplaces with robust strategies to elevate their online presence and turn casual browsers into loyal customers.",
-      readMoreLink: "",
-    },
-    {
-      id: uid(),
-      imageUrl: "",
-      title: "Travel",
-      desc:
-        "We offer a complete suite of digital marketing solutions for travel brands, helping them showcase their offerings in a unique way and drive bookings.",
-      readMoreLink: "",
-    },
-  ]);
-
-  const [caseStudiesSection, setCaseStudiesSection] = useState({
-    heading: "Case Studies",
-  });
-
-  const [caseStudies, setCaseStudies] = useState([
-    {
-      id: uid(),
-      title: "The Moto Men – High-Intent Google Ads Leads with 12.5% Conversion",
-      imageUrl: "",
-      descriptions: [
-        "For The Moto Men, we executed a Noida-focused PPC campaign to drive high-intent enquiries for premium car detailing services. Nearly 80% of the enquiries were highly relevant, aligned with both location and service intent. From these qualified enquiries, the campaign achieved a conversion rate of up to 12.5%, delivering consistent and measurable business impact. The strategy focused on precise location targeting, intent-driven keywords, and continuous optimisation to maintain lead quality while minimising wasted ad spend.",
-      ],
-      viewCaseStudyLink: "",
-      viewLatestWorkLink: "",
-    },
-    {
-      id: uid(),
-      title: "Trusted Hair Transplant Clinic – PPC Performance Case Study (14.52% Conversion)",
-      imageUrl: "",
-      descriptions: [
-        "We executed a high-intent Google Search Ads campaign for a hair transplant clinic, targeting users actively searching for treatment-related queries. The campaign delivered a conversion rate of 14.52%, indicating strong intent alignment and effective ad optimisation. The strategy focused on quality enquiries and consistent performance rather than inflated traffic, helping the clinic generate relevant leads and measurable growth.",
-      ],
-      viewCaseStudyLink: "",
-      viewLatestWorkLink: "",
-    },
-    {
-      id: uid(),
-      title: "IOD Global – Display Campaign Case Study",
-      imageUrl: "",
-      descriptions: [
-        "For IOD Global, we executed a Google Display Campaign focused on increasing brand visibility and recall among the right audience segments. The campaign was designed to build consistent exposure through targeted placements and audience-based targeting. The strategy prioritised relevant impressions, controlled reach, and brand presence. Continuous optimisation ensured stable performance and efficient delivery aligned with the brand’s objectives while avoiding irrelevant traffic.",
-      ],
-      viewCaseStudyLink: "",
-      viewLatestWorkLink: "",
-    },
-  ]);
 
   const [whyChooseDigicoreSection, setWhyChooseDigicoreSection] = useState({
     title: "Why choose Digicore Inc. as your LinkedIn Marketing agency in India?",
@@ -300,7 +229,6 @@ export default function AdLinkedIn() {
     }
     if (data) {
       if (data.banner) setBanner(data.banner);
-      if (data.videoSection) setVideoSection(data.videoSection);
       if (data.aboutSection) setAboutSection(data.aboutSection);
       if (data.visibilitySection) setVisibilitySection(data.visibilitySection);
       if (data.performanceSection) setPerformanceSection(data.performanceSection);
@@ -311,10 +239,6 @@ export default function AdLinkedIn() {
       if (data.whyChooseSection?.buttons) setWhyChooseButtons(data.whyChooseSection.buttons);
       if (data.timelineSection) setTimelineSection(data.timelineSection);
       if (data.timelineSection?.items) setTimelineItems(data.timelineSection.items);
-      if (data.industriesSection) setIndustriesSection(data.industriesSection);
-      if (data.industriesSection?.industries) setIndustries(data.industriesSection.industries);
-      if (data.caseStudiesSection) setCaseStudiesSection(data.caseStudiesSection);
-      if (data.caseStudiesSection?.caseStudies) setCaseStudies(data.caseStudiesSection.caseStudies);
       if (data.whyChooseDigicoreSection) setWhyChooseDigicoreSection(data.whyChooseDigicoreSection);
       if (data.faqSection) setFaqSection(data.faqSection);
       if (data.faqSection?.faqItems) setFaqItems(data.faqSection.faqItems);
@@ -332,7 +256,6 @@ export default function AdLinkedIn() {
     e?.preventDefault();
     const payload = {
       banner,
-      videoSection,
       aboutSection,
       visibilitySection,
       performanceSection,
@@ -340,8 +263,6 @@ export default function AdLinkedIn() {
       servicesSection: { ...servicesSection, services },
       whyChooseSection: { ...whyChooseSection, buttons: whyChooseButtons },
       timelineSection: { ...timelineSection, items: timelineItems },
-      industriesSection: { ...industriesSection, industries },
-      caseStudiesSection: { ...caseStudiesSection, caseStudies },
       whyChooseDigicoreSection,
       faqSection: { ...faqSection, faqItems },
     };
@@ -383,17 +304,6 @@ export default function AdLinkedIn() {
           <ImageInput label="Banner Background Image" value={banner.backgroundImageUrl} onChange={(e) => setBanner({ ...banner, backgroundImageUrl: e.target.value })} />
         </Section>
 
-        <Section title="2. Optional Video Section" open={openSection === "videoSection"} onToggle={() => toggle("videoSection")}>
-          <Field label="Section Title">
-            <TextInput value={videoSection.title} onChange={(e) => setVideoSection({ ...videoSection, title: e.target.value })} />
-          </Field>
-          <Field label="Video URL">
-            <TextInput value={videoSection.videoUrl} onChange={(e) => setVideoSection({ ...videoSection, videoUrl: e.target.value })} />
-          </Field>
-          <Field label="Video Description">
-            <TextArea rows={4} value={videoSection.description} onChange={(e) => setVideoSection({ ...videoSection, description: e.target.value })} />
-          </Field>
-        </Section>
 
         <Section title="3. About Section" open={openSection === "aboutSection"} onToggle={() => toggle("aboutSection")}>
           <Field label="Heading">
@@ -491,42 +401,6 @@ export default function AdLinkedIn() {
           />
         </Section>
 
-        <Section title="10. Industries Section" open={openSection === "industriesSection"} onToggle={() => toggle("industriesSection")}>
-          <Field label="Heading">
-            <TextInput value={industriesSection.heading} onChange={(e) => setIndustriesSection({ ...industriesSection, heading: e.target.value })} />
-          </Field>
-          <LeadForm
-            title="Industry Cards"
-            addLabel="Add Industry"
-            items={industries}
-            onChange={setIndustries}
-            fields={[
-              { name: "imageUrl", label: "Image", type: "image" },
-              { name: "title", label: "Title", type: "text", required: true },
-              { name: "desc", label: "Description", type: "textarea", rows: 3 },
-              { name: "readMoreLink", label: "Read More Link", type: "text" },
-            ]}
-          />
-        </Section>
-
-        <Section title="11. Case Studies Section" open={openSection === "caseStudiesSection"} onToggle={() => toggle("caseStudiesSection")}>
-          <Field label="Section Heading">
-            <TextInput value={caseStudiesSection.heading} onChange={(e) => setCaseStudiesSection({ ...caseStudiesSection, heading: e.target.value })} />
-          </Field>
-          <LeadForm
-            title="Case Study Cards"
-            addLabel="Add Case Study"
-            items={caseStudies}
-            onChange={setCaseStudies}
-            fields={[
-              { name: "title", label: "Title", type: "text", required: true },
-              { name: "imageUrl", label: "Image", type: "image" },
-              { name: "descriptions", label: "Descriptions", type: "multiline", rows: 5, placeholder: "One paragraph per line" },
-              { name: "viewCaseStudyLink", label: "View Case Study Link", type: "text" },
-              { name: "viewLatestWorkLink", label: "View Our Latest Work Link", type: "text" },
-            ]}
-          />
-        </Section>
 
         <Section title="12. Why choose Digicore Section" open={openSection === "whyChooseDigicoreSection"} onToggle={() => toggle("whyChooseDigicoreSection")}>
           <Field label="Heading">

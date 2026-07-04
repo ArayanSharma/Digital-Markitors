@@ -35,12 +35,7 @@ export default function AdYoutube() {
     backgroundImageUrl: "",
   });
 
-  /* ---------- VIDEO SECTION ---------- */
-  const [videoSection, setVideoSection] = useState({
-    title: "Optional Video Section",
-    description: "Enter a video URL if you have one for the YouTube Ads page.",
-    videoUrl: "",
-  });
+
 
   /* ---------- ABOUT SECTION ---------- */
   const [aboutSection, setAboutSection] = useState({
@@ -108,42 +103,6 @@ export default function AdYoutube() {
     { id: uid(), title: "Partner & Grow", description: "Drive high-impact traffic and measurable growth." },
   ]);
 
-  /* ---------- INDUSTRIES SECTION ---------- */
-  const [industriesSection, setIndustriesSection] = useState({ heading: "Industry we work with" });
-  const [industries, setIndustries] = useState([
-    { id: uid(), imageUrl: "", title: "Healthcare", desc: "We provide specialized digital marketing solutions to hospitals, clinics and other health institutions to help them build trust and grow their brand.", readMoreLink: "" },
-    { id: uid(), imageUrl: "", title: "E-Commerce", desc: "We help online retailers and marketplaces with robust strategies to elevate their online presence and turn casual browsers into loyal customers.", readMoreLink: "" },
-    { id: uid(), imageUrl: "", title: "Travel", desc: "We offer a complete suite of digital marketing solutions for travel brands, helping them showcase their offerings in a unique way and drive bookings.", readMoreLink: "" },
-  ]);
-
-  /* ---------- CASE STUDIES SECTION ---------- */
-  const [caseStudiesSection, setCaseStudiesSection] = useState({ heading: "Case Studies" });
-  const [caseStudies, setCaseStudies] = useState([
-    {
-      id: uid(),
-      title: "Bajaj Finserv Gold Loans SEO Case Study: 400 Cr. + disbursals of gold loans",
-      imageUrl: "",
-      descriptions: ["When Bajaj Finserv approached Techmagnate for their Gold Loans LoB, the NBFC was making an entry into a market saturated with established brands and heavy hitters. Their objective was to increase the overall volume of organic traffic and leads for their new offering. Competing against well-established players required a strong SEO strategy focused on visibility, authority, and search demand generation. Through a data-driven SEO campaign, Bajaj Finserv achieved significant growth in organic traffic, lead generation, and ultimately crossed 400 Cr.+ in gold loan disbursals."],
-      viewCaseStudyLink: "",
-      viewLatestWorkLink: "",
-    },
-    {
-      id: uid(),
-      title: "Bajaj Finserv Gold Loans SEO Case Study: 400 Cr. + disbursals of gold loans",
-      imageUrl: "",
-      descriptions: ["When Bajaj Finserv approached Techmagnate for their Gold Loans LoB, the NBFC was making an entry into a market saturated with established brands and heavy hitters. Their objective was to increase the overall volume of organic traffic and leads for their new offering. The SEO strategy focused on improving rankings, expanding keyword visibility, and attracting high-intent search traffic. The campaign delivered measurable business growth, helping the brand establish a strong online presence and drive substantial loan disbursals through organic search."],
-      viewCaseStudyLink: "",
-      viewLatestWorkLink: "",
-    },
-    {
-      id: uid(),
-      title: "Bajaj Finserv Gold Loans SEO Case Study: 400 Cr. + disbursals of gold loans",
-      imageUrl: "",
-      descriptions: ["Operating in a highly competitive financial sector, Bajaj Finserv needed a scalable SEO framework to support growth for its Gold Loans business. Our team implemented a comprehensive SEO roadmap covering technical optimisation, content expansion, authority building, and intent-driven keyword targeting. The result was exceptional growth in traffic, leads, and customer acquisition, contributing to more than 400 Cr.+ in gold loan disbursals."],
-      viewCaseStudyLink: "",
-      viewLatestWorkLink: "",
-    },
-  ]);
 
   /* ---------- WHY CHOOSE DIGICORE SECTION ---------- */
   const [whyChooseDigicoreSection, setWhyChooseDigicoreSection] = useState({
@@ -195,7 +154,6 @@ export default function AdYoutube() {
     }
     if (data) {
       if (data.banner) setBanner(data.banner);
-      if (data.videoSection) setVideoSection(data.videoSection);
       if (data.aboutSection) setAboutSection(data.aboutSection);
       if (data.visibilitySection) setVisibilitySection(data.visibilitySection);
       if (data.performanceSection) setPerformanceSection(data.performanceSection);
@@ -222,18 +180,6 @@ export default function AdYoutube() {
         setTimelineSection({ imageUrl: data.timelineSection.imageUrl });
         if (data.timelineSection.items) {
           setTimelineItems(data.timelineSection.items.map((item) => ({ id: uid(), ...item })));
-        }
-      }
-      if (data.industriesSection) {
-        setIndustriesSection({ heading: data.industriesSection.heading });
-        if (data.industriesSection.industries) {
-          setIndustries(data.industriesSection.industries.map((item) => ({ id: uid(), ...item })));
-        }
-      }
-      if (data.caseStudiesSection) {
-        setCaseStudiesSection({ heading: data.caseStudiesSection.heading });
-        if (data.caseStudiesSection.caseStudies) {
-          setCaseStudies(data.caseStudiesSection.caseStudies.map((item) => ({ id: uid(), ...item })));
         }
       }
       if (data.whyChooseDigicoreSection) {
@@ -264,7 +210,6 @@ export default function AdYoutube() {
     e?.preventDefault();
     const payload = {
       banner,
-      videoSection,
       aboutSection,
       visibilitySection,
       performanceSection,
@@ -272,8 +217,6 @@ export default function AdYoutube() {
       servicesSection: { ...servicesSection, services },
       whyChooseSection: { ...whyChooseSection, buttons: whyChooseButtons },
       timelineSection: { ...timelineSection, items: timelineItems },
-      industriesSection: { ...industriesSection, industries },
-      caseStudiesSection: { ...caseStudiesSection, caseStudies },
       whyChooseDigicoreSection: { ...whyChooseDigicoreSection, points },
       faqSection: { ...faqSection, faqItems },
     };
@@ -313,17 +256,6 @@ export default function AdYoutube() {
           <ImageInput label="Banner Background Image" value={banner.backgroundImageUrl} onChange={(e) => setBanner({ ...banner, backgroundImageUrl: e.target.value })} />
         </Section>
 
-        <Section title="2. Optional Video Section" open={openSection === "videoSection"} onToggle={() => toggle("videoSection")}>
-          <Field label="Section Title">
-            <TextInput value={videoSection.title} onChange={(e) => setVideoSection({ ...videoSection, title: e.target.value })} />
-          </Field>
-          <Field label="Video URL">
-            <TextInput value={videoSection.videoUrl} onChange={(e) => setVideoSection({ ...videoSection, videoUrl: e.target.value })} placeholder="Enter video URL if available" />
-          </Field>
-          <Field label="Video Description">
-            <TextArea rows={4} value={videoSection.description} onChange={(e) => setVideoSection({ ...videoSection, description: e.target.value })} />
-          </Field>
-        </Section>
 
         <Section title="3. About Section" open={openSection === "aboutSection"} onToggle={() => toggle("aboutSection")}>
           <Field label="Heading">
@@ -423,42 +355,6 @@ export default function AdYoutube() {
           />
         </Section>
 
-        <Section title="10. Industries Section" open={openSection === "industriesSection"} onToggle={() => toggle("industriesSection")}>
-          <Field label="Heading">
-            <TextInput value={industriesSection.heading} onChange={(e) => setIndustriesSection({ ...industriesSection, heading: e.target.value })} />
-          </Field>
-          <LeadForm
-            title="Industries"
-            addLabel="Add Industry"
-            items={industries}
-            onChange={setIndustries}
-            fields={[
-              { name: "imageUrl", label: "Image", type: "image" },
-              { name: "title", label: "Title", required: true },
-              { name: "desc", label: "Description", type: "textarea", rows: 3 },
-              { name: "readMoreLink", label: "Read More Link" },
-            ]}
-          />
-        </Section>
-
-        <Section title="11. Case Studies Section" open={openSection === "caseStudiesSection"} onToggle={() => toggle("caseStudiesSection")}>
-          <Field label="Section Heading">
-            <TextInput value={caseStudiesSection.heading} onChange={(e) => setCaseStudiesSection({ ...caseStudiesSection, heading: e.target.value })} />
-          </Field>
-          <LeadForm
-            title="Case Studies"
-            addLabel="Add Case Study"
-            items={caseStudies}
-            onChange={setCaseStudies}
-            fields={[
-              { name: "title", label: "Title", required: true },
-              { name: "imageUrl", label: "Image", type: "image" },
-              { name: "descriptions", label: "Descriptions", type: "multiline", rows: 5, placeholder: "One paragraph per line" },
-              { name: "viewCaseStudyLink", label: "View Case Study Link" },
-              { name: "viewLatestWorkLink", label: "View Our Latest Work Link" },
-            ]}
-          />
-        </Section>
 
         <Section title="12. Why Choose Digicore Section" open={openSection === "whyChooseDigicoreSection"} onToggle={() => toggle("whyChooseDigicoreSection")}>
           <Field label="Heading">

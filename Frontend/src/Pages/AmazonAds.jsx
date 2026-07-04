@@ -58,6 +58,7 @@ const AmazonAds = () => {
   const timelineSection = c?.timelineSection;
   const whyChooseDigicoreSection = c?.whyChooseDigicoreSection;
   const faqSection = c?.faqSection;
+  const helpCardsSection = c?.helpCardsSection;
 
   const [counts, setCounts] = useState({
     count1: 0,
@@ -431,10 +432,10 @@ const displayFaq = faqSection?.faqItems?.length ? faqSection.faqItems : faqData;
     <div className="seo-heading">
       <div className="seo-line"></div>
 
-      <h2>{seoAgencySection?.title || (<>Why do I need Amazon account <br />management service provider?</>)}</h2>
+      <h2>{seoAgencySection?.heading || (<>Why do I need Amazon account <br />management service provider?</>)}</h2>
 
       <p>
-  {seoAgencySection?.description || "From saving time and efforts to aligning the seller account management goals properly, it is essential to hire an experienced professionals. At Digicore Inc., we ensure comprehensive Amazon seller account management support is offered to clients, thereby, helping them in achieving long-term success. As a part of our services, we streamline operations, optimize sales performance, and improve visibility & performance of sellers in the marketplace. At Digicore Inc., we help our clients in complying with Amazon’s updated policies and uncover the other algorithm-based changes to enhance store’s performance. Besides, we ensure that our Amazon SEO expertise and end-to-end fulfilment aspects are timely addressed through account management services. The whole idea is to provide excellent customer service while adhering to Amazon policies."}
+  {seoAgencySection?.headingDescription || "From saving time and efforts to aligning the seller account management goals properly, it is essential to hire an experienced professionals. At Digicore Inc., we ensure comprehensive Amazon seller account management support is offered to clients, thereby, helping them in achieving long-term success. As a part of our services, we streamline operations, optimize sales performance, and improve visibility & performance of sellers in the marketplace. At Digicore Inc., we help our clients in complying with Amazon’s updated policies and uncover the other algorithm-based changes to enhance store’s performance. Besides, we ensure that our Amazon SEO expertise and end-to-end fulfilment aspects are timely addressed through account management services. The whole idea is to provide excellent customer service while adhering to Amazon policies."}
       </p>
     </div>
 
@@ -442,16 +443,16 @@ const displayFaq = faqSection?.faqItems?.length ? faqSection.faqItems : faqData;
 
       <div className="seo-left">
 
-        <h3>The Problem</h3>
+        <h3>{seoAgencySection?.problemTitle || "The Problem"}</h3>
 
         <p>
-       Many Amazon sellers face challenges such as profitability getting delayed, pricing wars by competitors for stealing customers with slashed price, not able to comprehend latest compliance & regulatory aspects of Amazon, and inventory management. Additionally, the execution of return policy, and addressing Amazon fees and expenses along with massive competition in the marketplace are some of the issues that need to be resolved professionally.
+       {seoAgencySection?.problemDescription || "Many Amazon sellers face challenges such as profitability getting delayed, pricing wars by competitors for stealing customers with slashed price, not able to comprehend latest compliance & regulatory aspects of Amazon, and inventory management. Additionally, the execution of return policy, and addressing Amazon fees and expenses along with massive competition in the marketplace are some of the issues that need to be resolved professionally."}
         </p>
 
-        <h3>The Solution</h3>
+        <h3>{seoAgencySection?.solutionTitle || "The Solution"}</h3>
 
         <p>
-    At Digicore Inc., we emphasize on the use of strategically planned Amazon seller account management services to support business growth with data-based insights. With the comprehensive support extended to Amazon sellers, the account setup and optimization, inventory & order management, product listing & SEO optimization, customer services and review management are aligned together to improve sales & visibility of the brand. With our customized and well-planned Amazon seller account management services, the risk of account suspension due to non-compliance with the marketplace can be reduced.
+    {seoAgencySection?.solutionDescription || "At Digicore Inc., we emphasize on the use of strategically planned Amazon seller account management services to support business growth with data-based insights. With the comprehensive support extended to Amazon sellers, the account setup and optimization, inventory & order management, product listing & SEO optimization, customer services and review management are aligned together to improve sales & visibility of the brand. With our customized and well-planned Amazon seller account management services, the risk of account suspension due to non-compliance with the marketplace can be reduced."}
         </p>
 
       </div>
@@ -459,7 +460,7 @@ const displayFaq = faqSection?.faqItems?.length ? faqSection.faqItems : faqData;
       <div className="seo-right">
 
         <p>
-     Our qualified seller account management professionals maximize profitability by handling the time- consuming task with utmost expertise. Digicore Inc. maintains transparency, customization, and ensures the expertise related to Amazon seller account management services address the business growth of clients in a short span of time. Our proactive account managers stay updated with updated algorithm changes, Amazon compliance policies, and streamline all the tasks of seller account management to help businesses focus on their growth
+     {seoAgencySection?.additionalDescription || "Our qualified seller account management professionals maximize profitability by handling the time- consuming task with utmost expertise. Digicore Inc. maintains transparency, customization, and ensures the expertise related to Amazon seller account management services address the business growth of clients in a short span of time. Our proactive account managers stay updated with updated algorithm changes, Amazon compliance policies, and streamline all the tasks of seller account management to help businesses focus on their growth"}
         </p>
 
       </div>
@@ -719,14 +720,9 @@ Out Turn:</h3>
       </section>
 
     
-  <Industry />
-    <Casestudy />
-
- 
-
 <section className="dominate-section">
   <div className="dominate-heading">
-    <h2>How Can We Help You Grow</h2>
+    <h2>{helpCardsSection?.heading || "How Can We Help You Grow"}</h2>
 
     <div className="dominate-line"></div>
 
@@ -736,12 +732,12 @@ Out Turn:</h3>
   </div>
 
    <div className="dominate-cards">
-  {helpCards.map((item, index) => (
+  {((helpCardsSection?.helpCards && helpCardsSection.helpCards.length > 0) ? helpCardsSection.helpCards : helpCards).map((item, index) => (
     <div className="dominate-card" key={index}>
       
       <div className="dominate-icon">
         <img
-          src={item.icon}
+          src={resolveImage(item.iconUrl) || item.icon}
           alt={item.title}
           className="dominate-icon-img"
         />
@@ -749,7 +745,7 @@ Out Turn:</h3>
 
       <h3>{item.title}</h3>
 
-      <p>{item.desc}</p>
+      <p>{item.desc || item.description}</p>
 
     </div>
   ))}

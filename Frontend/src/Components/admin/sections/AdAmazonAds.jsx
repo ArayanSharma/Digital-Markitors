@@ -34,12 +34,6 @@ export default function AdAmazonAds() {
     backgroundImageUrl: "",
   });
 
-  const [videoSection, setVideoSection] = useState({
-    title: "Optional Video Section",
-    description: "Enter a video URL if you have one for the Amazon Ads page.",
-    videoUrl: "",
-  });
-
   const [aboutSection, setAboutSection] = useState({
     title: "Best Google Amazon Ads Management Services Agency",
     description:
@@ -59,9 +53,20 @@ export default function AdAmazonAds() {
   });
 
   const [seoAgencySection, setSeoAgencySection] = useState({
-    title: "Why do I need Google Display Ad management services?",
-    description:
-      "At Digicore Inc., we prioritize improved visibility and clarity of advertising. With our 360-degrees’ Google Display ad management services, we engage your targeted audience and captivate them right where they browse the most. Whether it is any specific application, website, search engine, YouTube, multiple platforms are covered in addressing the display advertising goals. Our seasoned display ad specialists play a vital role in boosting brand awareness, attracting engagement, driving conversion and nurture prospects. Digicore Inc. utilizes data-driven optimization to ensure ads perform in an exceptional manner and complements your paid media strategy. Besides, our display advertising management services offer sustainable business growth and improved ROI.",
+    heading: "Why Do I Need a PPC Agency in Delhi?",
+    headingDescription: "",
+    problemTitle: "The Problem",
+    problemDescription: "",
+    solutionTitle: "The Solution",
+    solutionDescription: "",
+    additionalDescription: "",
+  });
+
+  const [helpCardsSection, setHelpCardsSection] = useState({
+    heading: "How Can We Help You Grow",
+    helpCards: [
+      { id: uid(), iconUrl: "", title: "", desc: "" },
+    ],
   });
 
   const [servicesSection, setServicesSection] = useState({
@@ -147,71 +152,6 @@ export default function AdAmazonAds() {
     ],
   });
 
-  const [industriesSection, setIndustriesSection] = useState({
-    heading: "INDUSTRY WE WORK WITH",
-    industries: [
-      {
-        id: uid(),
-        imageUrl: "",
-        title: "Healthcare",
-        desc:
-          "We provide specialized digital marketing solutions to hospitals, clinics and other health institutions to help them build trust and grow their brand.",
-        readMoreLink: "",
-      },
-      {
-        id: uid(),
-        imageUrl: "",
-        title: "E-Commerce",
-        desc:
-          "We help online retailers and marketplaces with robust strategies to elevate their online presence and turn casual browsers into loyal customers.",
-        readMoreLink: "",
-      },
-      {
-        id: uid(),
-        imageUrl: "",
-        title: "Travel",
-        desc:
-          "We offer a complete suite of digital marketing solutions for travel brands, helping them showcase their offerings in a unique way and drive bookings.",
-        readMoreLink: "",
-      },
-    ],
-  });
-
-  const [caseStudiesSection, setCaseStudiesSection] = useState({
-    heading: "Case Studies",
-    caseStudies: [
-      {
-        id: uid(),
-        title: "The Moto Men – High-Intent Google Ads Leads with 12.5% Conversion",
-        imageUrl: "",
-        descriptions: [
-          "For The Moto Men, we executed a Noida-focused PPC campaign to drive high-intent enquiries for premium car detailing services. Nearly 80% of the enquiries were highly relevant, aligned with both location and service intent. From these qualified enquiries, the campaign achieved a conversion rate of up to 12.5%, delivering consistent and measurable business impact. The strategy focused on precise location targeting, intent-driven keywords, and continuous optimisation to maintain lead quality while minimising wasted ad spend.",
-        ],
-        viewCaseStudyLink: "",
-        viewLatestWorkLink: "",
-      },
-      {
-        id: uid(),
-        title: "Trusted Hair Transplant Clinic – PPC Performance Case Study (14.52% Conversion)",
-        imageUrl: "",
-        descriptions: [
-          "We executed a high-intent Google Search Ads campaign for a hair transplant clinic, targeting users actively searching for treatment-related queries. The campaign delivered a conversion rate of 14.52%, indicating strong intent alignment and effective ad optimisation. The strategy focused on quality enquiries and consistent performance rather than inflated traffic, helping the clinic generate relevant leads and measurable growth.",
-        ],
-        viewCaseStudyLink: "",
-        viewLatestWorkLink: "",
-      },
-      {
-        id: uid(),
-        title: "IOD Global – Display Campaign Case Study",
-        imageUrl: "",
-        descriptions: [
-          "For IOD Global, we executed a Google Display Campaign focused on increasing brand visibility and recall among the right audience segments. The campaign was designed to build consistent exposure through targeted placements and audience-based targeting. The strategy prioritised relevant impressions, controlled reach, and brand presence. Continuous optimisation ensured stable performance and efficient delivery aligned with the brand’s objectives while avoiding irrelevant traffic.",
-        ],
-        viewCaseStudyLink: "",
-        viewLatestWorkLink: "",
-      },
-    ],
-  });
 
   const [whyChooseDigicoreSection, setWhyChooseDigicoreSection] = useState({
     title: "Why choose Digicore Inc. for Google Display ad management services?",
@@ -268,28 +208,6 @@ export default function AdAmazonAds() {
       items: performanceSection.items.map((item, i) => (i === index ? value : item)),
     });
 
-  // caseStudiesSection.caseStudies
-  const updateCaseStudy = (id, field, value) =>
-    setCaseStudiesSection({
-      ...caseStudiesSection,
-      caseStudies: caseStudiesSection.caseStudies.map((item) =>
-        item.id === id ? { ...item, [field]: value } : item
-      ),
-    });
-  const addCaseStudy = () =>
-    setCaseStudiesSection({
-      ...caseStudiesSection,
-      caseStudies: [
-        ...caseStudiesSection.caseStudies,
-        { id: uid(), title: "", imageUrl: "", descriptions: [], viewCaseStudyLink: "", viewLatestWorkLink: "" },
-      ],
-    });
-  const removeCaseStudy = (id) =>
-    setCaseStudiesSection({
-      ...caseStudiesSection,
-      caseStudies: caseStudiesSection.caseStudies.filter((item) => item.id !== id),
-    });
-
   // whyChooseDigicoreSection.points (plain string array, index-keyed)
   const updatePoint = (index, value) =>
     setWhyChooseDigicoreSection({
@@ -335,7 +253,6 @@ export default function AdAmazonAds() {
     }
     if (data) {
       if (data.banner) setBanner(data.banner);
-      if (data.videoSection) setVideoSection(data.videoSection);
       if (data.aboutSection) setAboutSection(data.aboutSection);
       if (data.visibilitySection) setVisibilitySection(data.visibilitySection);
       if (data.performanceSection) setPerformanceSection(data.performanceSection);
@@ -343,10 +260,9 @@ export default function AdAmazonAds() {
       if (data.servicesSection) setServicesSection(data.servicesSection);
       if (data.whyChooseSection) setWhyChooseSection(data.whyChooseSection);
       if (data.timelineSection) setTimelineSection(data.timelineSection);
-      if (data.industriesSection) setIndustriesSection(data.industriesSection);
-      if (data.caseStudiesSection) setCaseStudiesSection(data.caseStudiesSection);
       if (data.whyChooseDigicoreSection) setWhyChooseDigicoreSection(data.whyChooseDigicoreSection);
       if (data.faqSection) setFaqSection(data.faqSection);
+      if (data.helpCardsSection) setHelpCardsSection(data.helpCardsSection);
     }
     setLoading(false);
   }, []);
@@ -361,7 +277,6 @@ export default function AdAmazonAds() {
     e?.preventDefault();
     const payload = {
       banner,
-      videoSection,
       aboutSection,
       visibilitySection,
       performanceSection,
@@ -369,10 +284,9 @@ export default function AdAmazonAds() {
       servicesSection,
       whyChooseSection,
       timelineSection,
-      industriesSection,
-      caseStudiesSection,
       whyChooseDigicoreSection,
       faqSection,
+      helpCardsSection,
     };
 
     setStatus("saving");
@@ -412,17 +326,6 @@ export default function AdAmazonAds() {
           <ImageInput label="Banner Background Image" value={banner.backgroundImageUrl} onChange={(e) => setBanner({ ...banner, backgroundImageUrl: e.target.value })} />
         </Section>
 
-        <Section title="2. Optional Video Section" open={openSection === "videoSection"} onToggle={() => toggle("videoSection")}>
-          <Field label="Section Title">
-            <TextInput value={videoSection.title} onChange={(e) => setVideoSection({ ...videoSection, title: e.target.value })} />
-          </Field>
-          <Field label="Video URL">
-            <TextInput value={videoSection.videoUrl} onChange={(e) => setVideoSection({ ...videoSection, videoUrl: e.target.value })} />
-          </Field>
-          <Field label="Video Description">
-            <TextArea rows={4} value={videoSection.description} onChange={(e) => setVideoSection({ ...videoSection, description: e.target.value })} />
-          </Field>
-        </Section>
 
         <Section title="3. About Section" open={openSection === "aboutSection"} onToggle={() => toggle("aboutSection")}>
           <Field label="Heading">
@@ -460,11 +363,26 @@ export default function AdAmazonAds() {
         </Section>
 
         <Section title="6. Why Display Ads Section" open={openSection === "seoAgencySection"} onToggle={() => toggle("seoAgencySection")}>
-          <Field label="Title">
-            <TextInput value={seoAgencySection.title} onChange={(e) => setSeoAgencySection({ ...seoAgencySection, title: e.target.value })} />
+          <Field label="Heading">
+            <TextInput value={seoAgencySection.heading} onChange={(e) => setSeoAgencySection({ ...seoAgencySection, heading: e.target.value })} />
           </Field>
-          <Field label="Description">
-            <TextArea rows={6} value={seoAgencySection.description} onChange={(e) => setSeoAgencySection({ ...seoAgencySection, description: e.target.value })} />
+          <Field label="Heading Description">
+            <TextArea rows={5} value={seoAgencySection.headingDescription} onChange={(e) => setSeoAgencySection({ ...seoAgencySection, headingDescription: e.target.value })} />
+          </Field>
+          <Field label="Problem Title">
+            <TextInput value={seoAgencySection.problemTitle} onChange={(e) => setSeoAgencySection({ ...seoAgencySection, problemTitle: e.target.value })} />
+          </Field>
+          <Field label="Problem Description">
+            <TextArea rows={5} value={seoAgencySection.problemDescription} onChange={(e) => setSeoAgencySection({ ...seoAgencySection, problemDescription: e.target.value })} />
+          </Field>
+          <Field label="Solution Title">
+            <TextInput value={seoAgencySection.solutionTitle} onChange={(e) => setSeoAgencySection({ ...seoAgencySection, solutionTitle: e.target.value })} />
+          </Field>
+          <Field label="Solution Description">
+            <TextArea rows={5} value={seoAgencySection.solutionDescription} onChange={(e) => setSeoAgencySection({ ...seoAgencySection, solutionDescription: e.target.value })} />
+          </Field>
+          <Field label="Additional Description">
+            <TextArea rows={5} value={seoAgencySection.additionalDescription} onChange={(e) => setSeoAgencySection({ ...seoAgencySection, additionalDescription: e.target.value })} />
           </Field>
         </Section>
 
@@ -519,59 +437,21 @@ export default function AdAmazonAds() {
             ]}
           />
         </Section>
-
-        <Section title="10. Industries Section" open={openSection === "industriesSection"} onToggle={() => toggle("industriesSection")}>
-          <Field label="Heading">
-            <TextInput value={industriesSection.heading} onChange={(e) => setIndustriesSection({ ...industriesSection, heading: e.target.value })} />
+        <Section title="Help Cards Section" open={openSection === "helpCardsSection"} onToggle={() => toggle("helpCardsSection")}>
+          <Field label="Section Heading">
+            <TextInput value={helpCardsSection.heading} onChange={(e) => setHelpCardsSection({ ...helpCardsSection, heading: e.target.value })} />
           </Field>
           <LeadForm
-            title="Industry Cards"
-            addLabel="Add Industry"
-            items={industriesSection.industries}
-            onChange={(next) => setIndustriesSection({ ...industriesSection, industries: next })}
+            title="Help Cards"
+            addLabel="Add Card"
+            items={helpCardsSection.helpCards}
+            onChange={(next) => setHelpCardsSection({ ...helpCardsSection, helpCards: next })}
             fields={[
-              { name: "imageUrl", label: "Image", type: "image" },
-              { name: "title", label: "Title", type: "text", required: true },
-              { name: "desc", label: "Description", type: "textarea", rows: 3 },
-              { name: "readMoreLink", label: "Read More Link", type: "text" },
+              { name: "iconUrl", label: "Icon URL", type: "image" },
+              { name: "title", label: "Title", required: true },
+              { name: "desc", label: "Description", type: "textarea" },
             ]}
           />
-        </Section>
-
-        <Section title="11. Case Studies Section" open={openSection === "caseStudiesSection"} onToggle={() => toggle("caseStudiesSection")}>
-          <Field label="Section Heading">
-            <TextInput value={caseStudiesSection.heading} onChange={(e) => setCaseStudiesSection({ ...caseStudiesSection, heading: e.target.value })} />
-          </Field>
-          <div className="md:col-span-2 space-y-3">
-            <CardListHeader title="Case Study Cards" onAdd={addCaseStudy} />
-            {caseStudiesSection.caseStudies.map((item, index) => (
-              <div key={item.id} className="p-4 bg-bg-secondary rounded-2xl border border-brand-primary/15 space-y-3">
-                <div className="flex items-center justify-between gap-3">
-                  <span className="text-xs font-semibold text-text-muted">Case Study {index + 1}</span>
-                  <RemoveBtn onClick={() => removeCaseStudy(item.id)} />
-                </div>
-                <Field label="Title">
-                  <TextInput value={item.title} onChange={(e) => updateCaseStudy(item.id, "title", e.target.value)} />
-                </Field>
-                <ImageInput label="Image" value={item.imageUrl} onChange={(e) => updateCaseStudy(item.id, "imageUrl", e.target.value)} />
-                <Field label="Descriptions (separate paragraphs with a blank line)">
-                  <TextArea
-                    rows={5}
-                    value={item.descriptions.join("\n\n")}
-                    onChange={(e) =>
-                      updateCaseStudy(item.id, "descriptions", e.target.value.split(/\n\s*\n/).filter(Boolean))
-                    }
-                  />
-                </Field>
-                <Field label="View Case Study Link">
-                  <TextInput value={item.viewCaseStudyLink} onChange={(e) => updateCaseStudy(item.id, "viewCaseStudyLink", e.target.value)} />
-                </Field>
-                <Field label="View Our Latest Work Link">
-                  <TextInput value={item.viewLatestWorkLink} onChange={(e) => updateCaseStudy(item.id, "viewLatestWorkLink", e.target.value)} />
-                </Field>
-              </div>
-            ))}
-          </div>
         </Section>
 
         <Section title="12. Why Choose Digicore Section" open={openSection === "whyChooseDigicoreSection"} onToggle={() => toggle("whyChooseDigicoreSection")}>
