@@ -21,7 +21,11 @@ import {
   FolderOpen,
   Copy,
   Globe,
-  FileText
+  FileText,
+  Building2,
+  Briefcase,
+  PhoneCall,
+  HelpCircle
 } from "lucide-react";
 import {
   FaFacebook,
@@ -44,6 +48,38 @@ const getSocialIcon = (platform) => {
   if (p.includes("youtube") || p === "yt") return <FaYoutube className="text-[#FF0000] shrink-0" size={18} />;
   if (p.includes("pinterest") || p === "pin") return <FaPinterest className="text-[#BD081C] shrink-0" size={18} />;
   return <FaGlobe className="text-slate-400 shrink-0" size={18} />;
+};
+
+const getSocialIconBlock = (platform) => {
+  const p = (platform || "").toLowerCase();
+  let bg = "bg-slate-400";
+  let Icon = FaGlobe;
+
+  if (p.includes("facebook") || p === "fb") {
+    bg = "bg-[#1877F2]";
+    Icon = FaFacebook;
+  } else if (p.includes("twitter") || p === "tw" || p === "x") {
+    bg = "bg-black";
+    Icon = FaTwitter;
+  } else if (p.includes("linkedin") || p === "li") {
+    bg = "bg-[#0A66C2]";
+    Icon = FaLinkedin;
+  } else if (p.includes("instagram") || p === "ig") {
+    bg = "bg-[#E1306C]";
+    Icon = FaInstagram;
+  } else if (p.includes("pinterest") || p === "pin") {
+    bg = "bg-[#BD081C]";
+    Icon = FaPinterest;
+  } else if (p.includes("youtube") || p === "yt") {
+    bg = "bg-[#FF0000]";
+    Icon = FaYoutube;
+  }
+
+  return (
+    <div className={`w-[36px] h-[36px] rounded-lg ${bg} text-white flex items-center justify-center shrink-0`}>
+      <Icon size={16} />
+    </div>
+  );
 };
 
 const API = import.meta.env.VITE_API_URL || "http://localhost:5000";
@@ -134,11 +170,12 @@ function InputField({ label, icon: Icon, value, onChange, placeholder, subtitle 
   };
 
   return (
-    <div className="flex flex-col gap-1.5 w-full">
-      {label && <span className="text-xs font-bold text-slate-700 tracking-wide">{label}</span>}
+    <div className="flex flex-col w-full" style={{ gap: "0.4rem", marginBottom: "1.5rem" }}>
+      {label && <span className="text-xs font-bold text-slate-700 tracking-wide" style={{ marginBottom: "0.2rem", display: "block" }}>{label}</span>}
       <div
         ref={containerRef}
-        className="flex items-center h-[48px] rounded-xl border border-slate-200 bg-white px-4 transition-all duration-200 hover:border-slate-300"
+        className="flex items-center h-[48px] rounded-xl border border-slate-200 bg-white transition-all duration-200 hover:border-slate-300"
+        style={{ paddingLeft: "1rem", paddingRight: "1rem" }}
       >
         {Icon && <Icon size={16} className="text-slate-400 mr-2.5 shrink-0" />}
         <input
@@ -151,7 +188,7 @@ function InputField({ label, icon: Icon, value, onChange, placeholder, subtitle 
           className="w-full bg-transparent text-sm text-slate-800 outline-none placeholder-slate-400 font-medium"
         />
       </div>
-      {subtitle && <span className="text-[11px] text-slate-400 font-medium leading-none">{subtitle}</span>}
+      {subtitle && <span className="text-[11px] text-slate-400 font-medium leading-none" style={{ marginTop: "0.2rem" }}>{subtitle}</span>}
     </div>
   );
 }
@@ -216,7 +253,7 @@ function ConfirmDeleteDialog({ onConfirm, children }) {
 
 function NavItemRow({ item, onChange, onDelete }) {
   return (
-    <div className="flex items-center gap-3 p-3 rounded-lg border border-slate-100 bg-slate-50/50">
+    <div className="flex items-center gap-3 p-3 rounded-lg border border-slate-100 bg-slate-50/50" style={{ marginBottom: "0.75rem" }}>
       <InputField
         value={item.label}
         onChange={(v) => onChange({ ...item, label: v })}
@@ -306,6 +343,53 @@ function CategoryEditorBlock({ category, onChange, onDelete }) {
   );
 }
 
+const getTabMeta = (tabId, label) => {
+  const id = (tabId || "").toLowerCase();
+  const lbl = (label || "").toLowerCase();
+
+  if (id.includes("company") || lbl.includes("company")) {
+    return {
+      Icon: Building2,
+      bg: "bg-blue-50 text-blue-600",
+      defaultDesc: "Information about our company"
+    };
+  }
+  if (id.includes("services") || lbl.includes("services")) {
+    return {
+      Icon: Briefcase,
+      bg: "bg-blue-50 text-blue-600",
+      defaultDesc: "Explore our services"
+    };
+  }
+  if (id.includes("industry") || lbl.includes("industry")) {
+    return {
+      Icon: Building2,
+      bg: "bg-purple-50 text-purple-600",
+      defaultDesc: "Industries we serve"
+    };
+  }
+  if (id.includes("blog") || lbl.includes("blog")) {
+    return {
+      Icon: FileText,
+      bg: "bg-orange-50 text-orange-600",
+      defaultDesc: "Latest news and articles"
+    };
+  }
+  if (id.includes("contact") || lbl.includes("contact")) {
+    return {
+      Icon: PhoneCall,
+      bg: "bg-teal-50 text-teal-600",
+      defaultDesc: "Get in touch with us"
+    };
+  }
+
+  return {
+    Icon: HelpCircle,
+    bg: "bg-slate-50 text-slate-600",
+    defaultDesc: "Custom navigation link"
+  };
+};
+
 function NavigationCardRow({ tab, onChange, onDelete }) {
   const [expanded, setExpanded] = useState(false);
 
@@ -318,40 +402,62 @@ function NavigationCardRow({ tab, onChange, onDelete }) {
   const deleteCategory = (idx) =>
     onChange({ ...tab, categories: tab.categories.filter((_, i) => i !== idx) });
 
-  const typeLabel =
-    tab.type === "direct" ? "Direct Link" : tab.type === "simpleDropdown" ? "Dropdown List" : "Category Dropdown";
+  const { Icon, bg, defaultDesc } = getTabMeta(tab.id, tab.label);
+  const desc = tab.description || defaultDesc;
 
   return (
-    <div className="border border-slate-200 rounded-xl bg-white shadow-sm hover:shadow-md transition-all duration-300">
-      <div className="flex items-center justify-between gap-4 p-4">
-        <div className="flex items-center gap-3">
-          <div className="text-slate-400 cursor-grab">
+    <div className="border border-slate-200 rounded-2xl bg-white shadow-sm hover:shadow-md transition-all duration-300">
+      <div className="flex items-center justify-between gap-4 p-5">
+        <div className="flex items-center gap-4">
+          <div className="text-slate-400 cursor-grab shrink-0">
             <GripVertical size={16} />
           </div>
           <button
             onClick={() => setExpanded(!expanded)}
-            className="p-1 hover:bg-slate-50 rounded-lg text-slate-400 hover:text-slate-600 transition-colors"
+            className="p-1 hover:bg-slate-50 rounded-lg text-slate-400 hover:text-slate-600 transition-colors shrink-0"
           >
-            {expanded ? <ChevronDown size={16} /> : <ChevronRight size={16} />}
+            {expanded ? <ChevronDown size={18} /> : <ChevronRight size={18} />}
           </button>
-          <div className="w-8 h-8 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center">
-            {tab.type === "direct" ? <LinkIcon size={15} /> : tab.type === "simpleDropdown" ? <Menu size={15} /> : <FolderOpen size={15} />}
+          
+          <div className={`w-10 h-10 rounded-full ${bg} flex items-center justify-center shrink-0`}>
+            <Icon size={18} />
           </div>
-          <span className="font-bold text-slate-800 text-sm">{tab.label}</span>
+
+          <div className="flex flex-col">
+            <span className="font-bold text-slate-800 text-sm">{tab.label}</span>
+            <span className="text-[11px] font-semibold text-slate-400 mt-0.5">{desc}</span>
+          </div>
         </div>
 
-        <div className="flex items-center gap-4">
-          <span className="text-xs font-semibold text-slate-400">{typeLabel}</span>
+        <div className="flex items-center gap-3">
+          {tab.type === "direct" && (
+            <span className="px-3.5 py-1.5 text-xs font-bold rounded-full bg-purple-50 text-purple-600 border border-purple-100 flex items-center gap-1.5 shrink-0">
+              Direct Link <ChevronDown size={11} />
+            </span>
+          )}
+          {tab.type === "simpleDropdown" && (
+            <span className="px-3.5 py-1.5 text-xs font-bold rounded-full bg-blue-50 text-blue-600 border border-blue-100 flex items-center gap-1.5 shrink-0">
+              Dropdown List <ChevronDown size={11} />
+            </span>
+          )}
+          {tab.type === "categorizedDropdown" && (
+            <span className="px-3.5 py-1.5 text-xs font-bold rounded-full bg-emerald-50 text-emerald-600 border border-emerald-100 flex items-center gap-1.5 shrink-0">
+              Category Dropdown <ChevronDown size={11} />
+            </span>
+          )}
+
           <button
             onClick={() => setExpanded(!expanded)}
-            className="p-1.5 hover:bg-slate-100 rounded-lg text-slate-500 transition-colors"
+            className="w-9 h-9 bg-slate-50 hover:bg-slate-100 text-slate-600 rounded-xl flex items-center justify-center border border-slate-200 transition-all shrink-0 cursor-pointer"
             title="Edit Layout Structure"
           >
             <Settings size={15} />
           </button>
+
           <ToggleSwitch checked={tab.isActive} onChange={(v) => onChange({ ...tab, isActive: v })} />
+
           <ConfirmDeleteDialog onConfirm={onDelete}>
-            <button className="p-2 text-slate-400 hover:text-red-600 rounded-lg hover:bg-red-50 transition-colors cursor-pointer">
+            <button className="w-9 h-9 bg-red-50 hover:bg-red-100 text-red-500 rounded-xl flex items-center justify-center border border-red-100 transition-all shrink-0 cursor-pointer">
               <Trash2 size={15} />
             </button>
           </ConfirmDeleteDialog>
@@ -365,6 +471,12 @@ function NavigationCardRow({ tab, onChange, onDelete }) {
               label="Tab Title Label"
               value={tab.label}
               onChange={(v) => onChange({ ...tab, label: v })}
+            />
+            <InputField
+              label="Tab Description"
+              value={tab.description || ""}
+              onChange={(v) => onChange({ ...tab, description: v })}
+              placeholder="e.g. Information about our company"
             />
             {tab.type === "direct" && (
               <InputField
@@ -553,7 +665,7 @@ export default function HeaderNavEditor() {
 
   if (loading || !config) {
     return (
-      <div className="min-h-screen bg-slate-50 flex items-center justify-center">
+      <div className="min-h-screen bg-white flex items-center justify-center">
         <div className="flex flex-col items-center gap-3">
           <div className="w-10 h-10 border-4 border-blue-600 border-t-transparent rounded-full animate-spin" />
           <span className="text-sm font-semibold text-slate-500">Loading Configuration...</span>
@@ -563,7 +675,7 @@ export default function HeaderNavEditor() {
   }
 
   return (
-    <div ref={containerRef} className="min-h-screen bg-slate-50 p-8 space-y-8 max-w-7xl mx-auto pb-16">
+    <div ref={containerRef} className="min-h-screen bg-white p-8 max-w-7xl mx-auto pb-16" style={{ display: "flex", flexDirection: "column", gap: "2rem" }}>
       
       {/* Header Bar */}
       <div className="section-card-anim flex flex-col md:flex-row md:items-center md:justify-between gap-6 pt-4">
@@ -599,10 +711,10 @@ export default function HeaderNavEditor() {
       <div className="section-card-anim bg-white rounded-3xl border border-slate-200 p-8 shadow-[0_10px_35px_rgba(15,23,42,.05)] space-y-6">
         
         {/* Row 1: Logo configurations */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-start">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-start" style={{ marginBottom: "1.5rem" }}>
           
           {/* Logo Image Box */}
-          <div className="flex flex-col gap-2">
+          <div className="flex flex-col gap-2" style={{ marginBottom: "1.5rem" }}>
             <span className="text-xs font-bold text-slate-700 tracking-wide">Logo Image</span>
             <div className="flex items-center gap-3">
               <div className="h-16 w-32 border border-slate-200 bg-slate-50 rounded-xl flex items-center justify-center p-2 overflow-hidden">
@@ -631,7 +743,7 @@ export default function HeaderNavEditor() {
             
             {/* Logo Image URL Input with Copy Icon */}
             {config.logo.url && (
-              <div className="flex items-center h-[48px] rounded-xl border border-slate-200 bg-slate-50/50 px-3 mt-1.5">
+              <div className="flex items-center h-[48px] rounded-xl border border-slate-200 bg-slate-50/50 mt-1.5" style={{ paddingLeft: "1rem", paddingRight: "1rem" }}>
                 <input
                   type="text"
                   value={config.logo.url}
@@ -670,7 +782,7 @@ export default function HeaderNavEditor() {
         </div>
 
         {/* Row 2: Phone, Email, CTA Label */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6" style={{ marginBottom: "1.5rem" }}>
           <InputField
             label="Phone Number"
             value={config.phone}
@@ -700,7 +812,7 @@ export default function HeaderNavEditor() {
         </div>
 
         {/* Row 3: CTA Link and Social Links Side by Side */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-start">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-start" style={{ marginBottom: "1.5rem" }}>
           <InputField
             label="CTA Button Link"
             value={config.ctaButton.link}
@@ -714,35 +826,44 @@ export default function HeaderNavEditor() {
           <div className="md:col-span-2 flex flex-col gap-2">
             <span className="text-xs font-bold text-slate-700 tracking-wide">Social Links</span>
             
-            <div className="border border-slate-100 rounded-2xl p-4 bg-slate-50/50 space-y-3">
-              {config.socialLinks.map((s, idx) => (
-                <div key={s.id} className="flex items-center gap-4 bg-white px-4 py-2.5 rounded-xl border border-slate-200 shadow-sm hover:border-slate-300 transition-all duration-200">
-                  <div className="flex items-center gap-2.5 min-w-[120px] shrink-0">
-                    {getSocialIcon(s.platform)}
-                    <span className="text-xs font-bold text-slate-700">{s.platform}</span>
-                  </div>
-                  
-                  <div className="flex-1 flex items-center h-[38px] rounded-lg border border-slate-200 bg-white px-3 focus-within:border-blue-600 focus-within:ring-2 focus-within:ring-blue-100 transition-all">
-                    <input
-                      type="text"
-                      value={s.url}
-                      onChange={(e) => updateSocialLink(idx, { ...s, url: e.target.value })}
-                      placeholder="Profile URL"
-                      className="w-full bg-transparent text-xs text-slate-700 font-semibold outline-none"
-                    />
-                  </div>
+            <div className="border border-slate-100 rounded-2xl p-4 bg-slate-50/50 space-y-4">
+              <div 
+                style={{ 
+                  display: "grid", 
+                  gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", 
+                  gap: "1rem" 
+                }}
+              >
+                {config.socialLinks.map((s, idx) => (
+                  <div 
+                    key={s.id} 
+                    className="flex items-center gap-3 bg-white px-3 py-2.5 rounded-xl border border-slate-200 shadow-sm hover:border-slate-300 transition-all duration-200"
+                  >
+                    {getSocialIconBlock(s.platform)}
+                    
+                    <div className="flex-1 flex items-center">
+                      <input
+                        type="text"
+                        value={s.url}
+                        onChange={(e) => updateSocialLink(idx, { ...s, url: e.target.value })}
+                        placeholder={`${s.platform} URL`}
+                        className="w-full bg-transparent text-xs text-slate-700 font-semibold outline-none border-none p-0 focus:ring-0"
+                        style={{ border: "none", outline: "none", boxShadow: "none" }}
+                      />
+                    </div>
 
-                  <ConfirmDeleteDialog onConfirm={() => deleteSocialLink(idx)}>
-                    <button
-                      type="button"
-                      className="p-2 text-slate-400 hover:text-red-600 border border-slate-200 hover:border-red-200 hover:bg-red-50 rounded-lg cursor-pointer shrink-0 transition-colors"
-                      title="Delete social link"
-                    >
-                      <Trash2 size={14} />
-                    </button>
-                  </ConfirmDeleteDialog>
-                </div>
-              ))}
+                    <ConfirmDeleteDialog onConfirm={() => deleteSocialLink(idx)}>
+                      <button
+                        type="button"
+                        className="p-1.5 text-slate-400 hover:text-red-600 border border-slate-200 hover:border-red-200 hover:bg-red-50 rounded-lg cursor-pointer shrink-0 transition-colors"
+                        title="Delete social link"
+                      >
+                        <Trash2 size={13} />
+                      </button>
+                    </ConfirmDeleteDialog>
+                  </div>
+                ))}
+              </div>
 
               <button
                 type="button"
@@ -758,9 +879,9 @@ export default function HeaderNavEditor() {
 
       {/* Navigation Card */}
       <div className="section-card-anim bg-white rounded-3xl border border-slate-200 p-8 shadow-[0_10px_35px_rgba(15,23,42,.05)] space-y-4">
-        <h2 className="text-lg font-bold text-slate-900 tracking-tight mb-2">Navigation Tabs</h2>
+        <h2 className="text-lg font-bold text-slate-900 tracking-tight" style={{ marginBottom: "1.5rem" }}>Navigation Tabs</h2>
         
-        <div className="space-y-3">
+        <div className="space-y-3" style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
           {config.rootTabs.map((tab, idx) => (
             <NavigationCardRow
               key={tab.id}
@@ -771,24 +892,27 @@ export default function HeaderNavEditor() {
           ))}
         </div>
 
-        <div className="flex flex-wrap gap-2.5 pt-4 border-t border-slate-100">
+        <div 
+          className="flex flex-wrap gap-3 p-4 bg-slate-50/50 rounded-2xl " 
+          style={{ border: "1px dashed #cbd5e1", marginTop: "1.5rem" }}
+        >
           <button
             onClick={() => setConfig({ ...config, rootTabs: [...config.rootTabs, { id: `tab-${Date.now()}`, label: "New Link", type: "direct", isActive: true, directLink: "/" }] })}
-            className="flex items-center gap-1.5 px-4 py-2 bg-emerald-50 hover:bg-emerald-100 text-emerald-700 border border-emerald-150 text-xs font-bold rounded-xl transition-all cursor-pointer shadow-sm"
+            className="flex items-center gap-1.5 px-4 py-2.5 bg-emerald-50 hover:bg-emerald-100 text-emerald-700 border border-emerald-200 text-xs font-bold rounded-xl transition-all cursor-pointer shadow-sm"
           >
-            <Plus size={13} /> Add Link Tab
+            <Plus size={14} /> Add Link Tab
           </button>
           <button
             onClick={() => setConfig({ ...config, rootTabs: [...config.rootTabs, { id: `tab-${Date.now()}`, label: "New Dropdown", type: "simpleDropdown", isActive: true, items: [], promoImage: { url: "", alt: "", link: "" } }] })}
-            className="flex items-center gap-1.5 px-4 py-2 bg-blue-50 hover:bg-blue-100 text-blue-700 border border-blue-150 text-xs font-bold rounded-xl transition-all cursor-pointer shadow-sm"
+            className="flex items-center gap-1.5 px-4 py-2.5 bg-blue-50 hover:bg-blue-100 text-blue-700 border border-blue-200 text-xs font-bold rounded-xl transition-all cursor-pointer shadow-sm"
           >
-            <Plus size={13} /> Add Dropdown Tab
+            <Plus size={14} /> Add Dropdown Tab
           </button>
           <button
             onClick={() => setConfig({ ...config, rootTabs: [...config.rootTabs, { id: `tab-${Date.now()}`, label: "New Mega Menu", type: "categorizedDropdown", isActive: true, categories: [] }] })}
-            className="flex items-center gap-1.5 px-4 py-2 bg-purple-50 hover:bg-purple-100 text-purple-700 border border-purple-150 text-xs font-bold rounded-xl transition-all cursor-pointer shadow-sm"
+            className="flex items-center gap-1.5 px-4 py-2.5 bg-purple-50 hover:bg-purple-100 text-purple-700 border border-purple-200 text-xs font-bold rounded-xl transition-all cursor-pointer shadow-sm"
           >
-            <Plus size={13} /> Add Mega Menu Tab
+            <Plus size={14} /> Add Mega Menu Tab
           </button>
         </div>
       </div>

@@ -260,8 +260,8 @@ export const ValidationMessage = ({ message }) => {
 export const Field = ({ label, children, full }) => {
   const isFull = full ?? children?.type !== TextInput;
   return (
-    <label className={`block ${isFull ? "md:col-span-2" : ""}`}>
-      <span className="block text-xs font-semibold text-slate-500 mb-1.5 uppercase tracking-wider">
+    <label className={`block ${isFull ? "md:col-span-2" : ""}`} style={{ marginBottom: "1.25rem", display: "block" }}>
+      <span className="block text-xs font-semibold text-slate-500 uppercase tracking-wider" style={{ marginBottom: "0.5rem", display: "block" }}>
         {label}
       </span>
       {children}
@@ -455,7 +455,7 @@ export const ImageUploader = ImageInput;
 
 // Premium custom form header
 export const PageHeader = ({ icon: Icon, title, description, breadcrumbs = [], actions = null }) => (
-  <div className="mb-8 flex flex-col md:flex-row md:items-center md:justify-between gap-4 py-4">
+  <div className="mb-8 flex flex-col md:flex-row md:items-center md:justify-between gap-4 py-4" style={{ marginBottom: "2rem" }}>
     <div className="flex items-center gap-4">
       {Icon && (
         <div className="h-12 w-12 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center shrink-0">
