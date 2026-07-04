@@ -309,7 +309,10 @@ const Header = () => {
           <nav className={`nav-menu ${menuOpen ? "active" : ""}`}>
             <ul>
               {/* Company dropdown */}
-              <li className={`dropdown ${companyOpen ? "open" : ""}`}>
+              <li
+                className={`dropdown ${companyOpen ? "open" : ""}`}
+                onMouseLeave={() => setCompanyOpen(false)}
+              >
                 {companyActive ? (
                   <>
                     <div
@@ -341,7 +344,10 @@ const Header = () => {
               </li>
 
               {/* Our Services mega menu */}
-              <li className={`dropdown services-dropdown ${servicesOpen ? "open" : ""}`}>
+              <li
+                className={`dropdown services-dropdown ${servicesOpen ? "open" : ""}`}
+                onMouseLeave={() => setServicesOpen(false)}
+              >
                 {servicesActive ? (
                   <>
                     <div
@@ -409,7 +415,10 @@ const Header = () => {
               </li>
 
               {/* Industry dropdown */}
-              <li className={`dropdown ${industryOpen ? "open" : ""}`}>
+              <li
+                className={`dropdown ${industryOpen ? "open" : ""}`}
+                onMouseLeave={() => setIndustryOpen(false)}
+              >
                 {industryActive ? (
                   <>
                     <div
