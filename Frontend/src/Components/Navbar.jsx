@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from "react";
-import { ChevronDown, LogOut, User, Settings, Search, Bell, PanelLeft } from "lucide-react";
+import { ChevronDown, LogOut, User, Settings, PanelLeft } from "lucide-react";
 
 import { useAdminUI } from "../context/AdminUIContext";
 import "../Styles/Navbar.css";
@@ -44,16 +44,6 @@ export default function Navbar() {
       </div>
 
       <div className="navbar-right">
-        <div className="search-box">
-          <Search size={16} />
-          <input type="text" placeholder="Search..." />
-        </div>
-
-        <button type="button" className="notification-btn" aria-label="Notifications">
-          <Bell size={18} />
-          <span className="notification-badge" />
-        </button>
-
         <div className="user-dropdown" ref={dropdownRef}>
           <button className="user-btn" onClick={() => setDropdownOpen(!dropdownOpen)}>
             <div className="user-avatar">A</div>
@@ -67,15 +57,7 @@ export default function Navbar() {
           </button>
 
           <div className={`dropdown-menu ${dropdownOpen ? "dropdown-menu-open" : ""}`}>
-            <button type="button">
-              <User size={16} />
-              Profile
-            </button>
-
-            <button type="button">
-              <Settings size={16} />
-              Settings
-            </button>
+            
 
             <button type="button" className="logout-btn" onClick={handleLogout}>
               <LogOut size={16} />

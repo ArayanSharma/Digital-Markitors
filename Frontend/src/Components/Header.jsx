@@ -286,7 +286,7 @@ const Header = () => {
 
       <header className="navbar">
         <div className="container navbar-container">
-          <div className="logo">
+          <div className="logo" >
             <Link to={resolvedHeaderData.logo?.link || "/"}>
               <div
                 className="logo-bg"
