@@ -57,6 +57,7 @@ import LaraveDevelopment from "./Pages/LaraveDevelopment";
 import Woocommerce from "./Pages/Woocommerce";
 import WixDev from "./Pages/WixDev";
 import FullStack from "./Pages/FullStack";
+import AndroidandIso from "./Pages/AndroidandIso";
 
 // User Pages - Content
 import AllBlogs from "./Pages/AllBlogs";
@@ -139,6 +140,7 @@ function App() {
         <Route path="Wix-Development" element={<WixDev />} />
         <Route path="Website-Maintenance-Services" element={<Websitemain />} />
         <Route path="full-stack-development" element={<FullStack />} />
+        <Route path="android-ios-development" element={<AndroidandIso />} />
 
         <Route path="Reseller" element={<Reseller />} />
         <Route path="A505" element={<A505 />} />
