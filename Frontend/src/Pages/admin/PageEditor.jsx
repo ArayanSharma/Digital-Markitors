@@ -45,10 +45,6 @@ export default function PageEditor() {
 
   return (
     <div className="adm-shell" style={{ padding: "24px", minHeight: "100vh" }}>
-      <h1 style={{ fontSize: 24, fontWeight: 700, color: "var(--color-text-primary)" }}>Page Editor</h1>
-      <p style={{ color: "var(--color-text-muted)", marginBottom: 16 }}>
-        Edit content for the page: <strong style={{ color: "var(--color-brand-accent)" }}>{pageId}</strong>
-      </p>
 
       {pageId === "home" ? (
         <AdHome />

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Modal from "../ui/Modal";
+import { ImageInput } from "./common/FormKit";
 import "../../../Styles/AdminForm.css";
 
 const API = import.meta.env.VITE_API_URL || "http://localhost:5000";
@@ -440,6 +441,15 @@ export default function AdCasestudy() {
                   onChange={handleInputChange}
                   placeholder="Enter full description"
                   rows="4"
+                />
+              </div>
+
+              {/* Blog Image Section */}
+              <div className="form-group border border-slate-200 rounded-2xl p-4 bg-slate-50/30">
+                <ImageInput
+                  label="Blog Image"
+                  value={formData.coverImage}
+                  onChange={(e) => setFormData((prev) => ({ ...prev, coverImage: e.target.value }))}
                 />
               </div>
 

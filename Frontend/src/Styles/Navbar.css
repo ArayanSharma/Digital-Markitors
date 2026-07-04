@@ -1,12 +1,11 @@
 /* ==========================================================================
-   Admin Navbar — Scoped with .adm-navbar prefix to avoid conflict
-   with the public site .navbar class from Header.css
+   Admin Navbar — Modern SaaS Light Theme
    ========================================================================== */
 
 .adm-navbar {
   height: 76px;
 
-  background: rgba(9, 9, 11, 0.75);
+  background: rgba(255, 255, 255, 0.85);
   backdrop-filter: blur(18px);
   -webkit-backdrop-filter: blur(18px);
 
@@ -16,7 +15,7 @@
 
   padding: 0 28px;
 
-  border-bottom: 1px solid rgba(124, 58, 237, 0.2);
+  border-bottom: 1px solid var(--border);
 
   position: sticky;
   top: 0;
@@ -39,31 +38,32 @@
   height: 38px;
   flex-shrink: 0;
 
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(124, 58, 237, 0.25);
+  background: var(--surface);
+  border: 1px solid var(--border);
   border-radius: 10px;
-  color: #d1d5db;
+  color: var(--text-light);
   cursor: pointer;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.03);
 
   transition: 300ms ease;
 }
 
 .adm-navbar .sidebar-collapse-btn:hover {
-  color: #fff;
-  border-color: #a855f7;
-  background: rgba(124, 58, 237, 0.15);
+  color: var(--primary);
+  border-color: var(--primary);
+  background: var(--primary-light);
 }
 
 .adm-navbar .navbar-left h2 {
   font-size: 20px;
   font-weight: 700;
-  color: #ffffff;
+  color: var(--text);
   margin: 0;
 }
 
 .adm-navbar .navbar-left p {
   font-size: 13px;
-  color: #9ca3af;
+  color: var(--text-light);
   margin-top: 2px;
 }
 
@@ -81,7 +81,7 @@
   width: 260px;
   height: 42px;
 
-  border: 1.5px solid rgba(124, 58, 237, 0.25);
+  border: 1px solid var(--border);
   border-radius: 12px;
 
   display: flex;
@@ -89,17 +89,18 @@
 
   padding: 0 14px;
 
-  background: rgba(255, 255, 255, 0.03);
+  background: var(--surface);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, .04);
   transition: border-color 300ms ease, box-shadow 300ms ease;
 }
 
 .adm-navbar .search-box:focus-within {
-  border-color: #a855f7;
-  box-shadow: 0 0 0 3px rgba(168, 85, 247, 0.25);
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
 }
 
 .adm-navbar .search-box svg {
-  color: #9ca3af;
+  color: var(--text-light);
   flex-shrink: 0;
 }
 
@@ -113,11 +114,11 @@
   margin-left: 10px;
 
   font-size: 14px;
-  color: #ffffff;
+  color: var(--text);
 }
 
 .adm-navbar .search-box input::placeholder {
-  color: #6b7280;
+  color: var(--text-light);
 }
 
 /* NOTIFICATION */
@@ -127,9 +128,10 @@
   height: 42px;
 
   border-radius: 12px;
-  border: 1.5px solid rgba(124, 58, 237, 0.25);
+  border: 1px solid var(--border);
 
-  background: rgba(255, 255, 255, 0.03);
+  background: var(--surface);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.03);
 
   cursor: pointer;
 
@@ -139,16 +141,16 @@
   align-items: center;
   justify-content: center;
 
-  color: #d1d5db;
+  color: var(--text-light);
 
   transition: 300ms ease;
 }
 
 .adm-navbar .notification-btn:hover {
-  color: #fff;
-  border-color: #a855f7;
-  background: rgba(124, 58, 237, 0.15);
-  transform: rotate(-8deg);
+  color: var(--primary);
+  border-color: var(--primary);
+  background: var(--primary-light);
+  transform: rotate(-4deg);
 }
 
 .adm-navbar .notification-badge {
@@ -162,8 +164,8 @@
 
   border-radius: 50%;
 
-  background: #ef4444;
-  box-shadow: 0 0 0 2px rgba(9, 9, 11, 0.9);
+  background: var(--danger);
+  box-shadow: 0 0 0 2px var(--surface);
 
   animation: navbar-pulse 2s ease-in-out infinite;
 }
@@ -171,10 +173,10 @@
 @keyframes navbar-pulse {
   0%,
   100% {
-    box-shadow: 0 0 0 2px rgba(9, 9, 11, 0.9), 0 0 0 0 rgba(239, 68, 68, 0.6);
+    box-shadow: 0 0 0 2px var(--surface), 0 0 0 0 rgba(239, 68, 68, 0.4);
   }
   50% {
-    box-shadow: 0 0 0 2px rgba(9, 9, 11, 0.9), 0 0 0 5px rgba(239, 68, 68, 0);
+    box-shadow: 0 0 0 2px var(--surface), 0 0 0 5px rgba(239, 68, 68, 0);
   }
 }
 
@@ -193,10 +195,11 @@
   gap: 12px;
 
   cursor: pointer;
-  color: #d1d5db;
+  color: var(--text);
 }
 
 .adm-navbar .user-btn svg {
+  color: var(--text-light);
   transition: transform 300ms ease;
 }
 
@@ -210,8 +213,8 @@
 
   border-radius: 12px;
 
-  background: linear-gradient(135deg, #7c3aed, #a855f7);
-  box-shadow: 0 6px 16px rgba(124, 58, 237, 0.4);
+  background: linear-gradient(135deg, #2563EB 0%, #3B82F6 100%);
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
 
   color: white;
 
@@ -222,14 +225,18 @@
   justify-content: center;
 }
 
+.adm-navbar .user-info {
+  text-align: left;
+}
+
 .adm-navbar .user-info h4 {
   margin: 0;
-  color: #ffffff;
+  color: var(--text);
   font-size: 14px;
 }
 
 .adm-navbar .user-info span {
-  color: #9ca3af;
+  color: var(--text-light);
   font-size: 12px;
 }
 
@@ -243,14 +250,14 @@
 
   width: 200px;
 
-  background: #18181b;
-  border: 1px solid rgba(124, 58, 237, 0.3);
+  background: var(--surface);
+  border: 1px solid var(--border);
 
   border-radius: 14px;
 
   overflow: hidden;
 
-  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.5), 0 0 30px rgba(124, 58, 237, 0.15);
+  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
 
   opacity: 0;
   transform: scale(0.94) translateY(-6px);
@@ -278,7 +285,7 @@
 
   padding: 13px 18px;
 
-  color: #d1d5db;
+  color: var(--text);
   font-size: 14px;
   cursor: pointer;
 
@@ -286,17 +293,17 @@
 }
 
 .adm-navbar .dropdown-menu button:hover {
-  background: rgba(124, 58, 237, 0.15);
-  color: #fff;
+  background: var(--primary-light);
+  color: var(--primary);
 }
 
 .adm-navbar .logout-btn {
-  color: #ef4444 !important;
+  color: var(--danger) !important;
 }
 
 .adm-navbar .logout-btn:hover {
-  background: rgba(239, 68, 68, 0.12) !important;
-  color: #ef4444 !important;
+  background: rgba(239, 68, 68, 0.06) !important;
+  color: var(--danger) !important;
 }
 
 /* RESPONSIVE */

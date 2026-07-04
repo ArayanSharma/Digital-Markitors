@@ -7,54 +7,248 @@ import {
   Save,
   Image as ImageIcon,
   Loader2,
+  Upload,
+  AlertCircle,
+  FileText,
+  Calendar,
+  CheckCircle,
+  Sparkles
 } from "lucide-react";
 import { uploadFile } from "../../../../utils/pageApi";
-
 export const inputCls =
-  "w-full bg-white border border-brand-primary/20 rounded-2xl px-3.5 py-2.5 text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-brand-primary/30 focus:border-brand-primary transition-colors";
+  "w-full bg-white border border-slate-200 rounded-xl px-4 h-[50px] text-sm shadow-sm focus:outline-none focus:ring-4 focus:ring-blue-500/10 focus:border-blue-600 transition-all duration-200 hover:border-slate-400";
 
-export const Section = ({ title, children, open, onToggle }) => (
-  <div className="border border-brand-primary/15 rounded-2xl mb-5 bg-bg-card overflow-hidden shadow-sm w-full">
+// Premium form card wrapper
+export const FormCard = ({ children, className = "" }) => (
+  <div className={`bg-white rounded-2xl border border-slate-200 shadow-[0_10px_30px_rgba(15,23,42,.06)] hover:shadow-[0_18px_45px_rgba(37,99,235,.12)] transition-all duration-300 p-8 mb-6 ${className}`}>
+    {children}
+  </div>
+);
+
+// SectionCard: Collapsible card section with styling
+export const Section = ({ title, children, open, onToggle, icon: Icon, description }) => (
+  <div className="border border-slate-200 rounded-2xl mb-6 bg-white overflow-hidden shadow-[0_2px_8px_rgba(0,0,0,0.02)] w-full transition-all duration-300 hover:shadow-[0_4px_12px_rgba(15,23,42,0.04)]">
     <button
       type="button"
       onClick={onToggle}
-      className="w-full flex items-center justify-between px-5 py-4 bg-bg-secondary hover:bg-brand-primary/5 transition-colors"
+      className="w-full flex items-center justify-between px-6 py-4 hover:bg-slate-50 transition-colors border-b border-slate-100"
     >
-      <span className="font-semibold text-brand-primary text-sm tracking-wide uppercase">
-        {title}
-      </span>
+      <div className="flex items-center gap-3 text-left">
+        {Icon ? <Icon className="w-5 h-5 text-blue-600" /> : <Sparkles className="w-5 h-5 text-blue-600" />}
+        <div>
+          <span className="font-semibold text-slate-900 text-sm tracking-wide uppercase">
+            {title}
+          </span>
+          {description && <p className="text-xs text-slate-500 mt-0.5">{description}</p>}
+        </div>
+      </div>
       {open ? (
-        <ChevronUp size={18} className="text-brand-primary" />
+        <ChevronUp size={18} className="text-blue-600" />
       ) : (
-        <ChevronDown size={18} className="text-text-muted" />
+        <ChevronDown size={18} className="text-slate-400" />
       )}
     </button>
     {open && (
-      <div className="adm-section-grid p-5 grid grid-cols-1 md:grid-cols-2 gap-x-5 gap-y-4 items-start">
+      <div className="adm-section-grid p-6 grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-5 items-start">
         {children}
       </div>
     )}
   </div>
 );
 
-export const TextInput = (props) => {
-  const { required, ...rest } = props;
-  return <input {...rest} className={inputCls} />;
+export const SectionCard = Section;
+
+// Inputs with icons and focus states
+export const TextInput = ({ icon: Icon, error, ...props }) => {
+  return (
+    <div className="relative w-full">
+      {Icon && (
+        <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
+          <Icon className="w-5 h-5" />
+        </div>
+      )}
+      <input
+        {...props}
+        className={`w-full bg-white border ${error ? "border-red-500 focus:ring-red-500/10 focus:border-red-500" : "border-slate-200 focus:ring-blue-500/10 focus:border-blue-600"} rounded-xl ${Icon ? "pl-11" : "px-4"} h-[50px] text-sm shadow-sm focus:outline-none focus:ring-4 transition-all duration-200 hover:border-slate-400`}
+      />
+    </div>
+  );
 };
 
-export const TextArea = (props) => {
-  const { required, rows, ...rest } = props;
-  return <textarea {...rest} rows={rows || 3} className={inputCls} />;
+export const TextArea = ({ icon: Icon, error, rows, ...props }) => {
+  return (
+    <div className="relative w-full">
+      {Icon && (
+        <div className="absolute top-3 left-0 pl-3.5 flex items-start pointer-events-none text-slate-400">
+          <Icon className="w-5 h-5" />
+        </div>
+      )}
+      <textarea
+        {...props}
+        rows={rows || 4}
+        className={`w-full bg-white border ${error ? "border-red-500 focus:ring-red-500/10 focus:border-red-500" : "border-slate-200 focus:ring-blue-500/10 focus:border-blue-600"} rounded-xl ${Icon ? "pl-11" : "px-4"} py-3 text-sm shadow-sm focus:outline-none focus:ring-4 transition-all duration-200 hover:border-slate-400 min-h-[140px]`}
+      />
+    </div>
+  );
 };
 
-// Short atomic inputs (a bare TextInput) sit at half width on desktop so two
-// can share a row; anything richer (textarea, custom composite content) spans
-// the full row so it never gets squeezed into a half-width column.
+export const SelectInput = ({ options = [], icon: Icon, error, ...props }) => {
+  return (
+    <div className="relative w-full">
+      {Icon && (
+        <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
+          <Icon className="w-5 h-5" />
+        </div>
+      )}
+      <select
+        {...props}
+        className={`w-full bg-white border appearance-none ${error ? "border-red-500 focus:ring-red-500/10 focus:border-red-500" : "border-slate-200 focus:ring-blue-500/10 focus:border-blue-600"} rounded-xl ${Icon ? "pl-11 pr-10" : "pl-4 pr-10"} h-[50px] text-sm shadow-sm focus:outline-none focus:ring-4 transition-all duration-200 hover:border-slate-400`}
+      >
+        {options.map((opt, i) => (
+          <option key={i} value={typeof opt === "object" ? opt.value : opt}>
+            {typeof opt === "object" ? opt.label : opt}
+          </option>
+        ))}
+      </select>
+      <div className="absolute inset-y-0 right-0 pr-3.5 flex items-center pointer-events-none text-slate-400">
+        <ChevronDown size={18} />
+      </div>
+    </div>
+  );
+};
+
+export const DateInput = ({ icon: Icon, ...props }) => {
+  return (
+    <div className="relative w-full">
+      <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
+        {Icon ? <Icon className="w-5 h-5" /> : <Calendar className="w-5 h-5" />}
+      </div>
+      <input
+        type="date"
+        {...props}
+        className="w-full bg-white border border-slate-200 rounded-xl pl-11 pr-4 h-[50px] text-sm shadow-sm focus:outline-none focus:ring-4 focus:ring-blue-500/10 focus:border-blue-600 transition-all duration-200 hover:border-slate-400"
+      />
+    </div>
+  );
+};
+
+// Checkbox, Radio, and Switch (iOS toggle)
+export const Checkbox = ({ label, checked, onChange, ...props }) => (
+  <label className="flex items-center gap-3 cursor-pointer group">
+    <div className="relative flex items-center justify-center">
+      <input
+        type="checkbox"
+        checked={checked}
+        onChange={onChange}
+        {...props}
+        className="sr-only"
+      />
+      <div className={`w-5 h-5 rounded border transition-all duration-200 flex items-center justify-center ${checked ? "bg-blue-600 border-blue-600 shadow-sm" : "bg-white border-slate-300 group-hover:border-slate-400"}`}>
+        {checked && (
+          <svg className="w-3.5 h-3.5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+          </svg>
+        )}
+      </div>
+    </div>
+    {label && <span className="text-sm font-medium text-slate-700 select-none">{label}</span>}
+  </label>
+);
+
+export const Switch = ({ label, checked, onChange, ...props }) => (
+  <label className="flex items-center gap-3 cursor-pointer group">
+    <div className="relative">
+      <input
+        type="checkbox"
+        checked={checked}
+        onChange={onChange}
+        {...props}
+        className="sr-only"
+      />
+      <div className={`w-11 h-6 rounded-full transition-colors duration-200 ${checked ? "bg-blue-600" : "bg-slate-200"}`} />
+      <div className={`absolute left-0.5 top-0.5 bg-white w-5 h-5 rounded-full shadow-sm transition-transform duration-200 ${checked ? "translate-x-5" : ""}`} />
+    </div>
+    {label && <span className="text-sm font-medium text-slate-700 select-none">{label}</span>}
+  </label>
+);
+
+export const Radio = ({ label, checked, onChange, name, value, ...props }) => (
+  <label className="flex items-center gap-3 cursor-pointer group">
+    <div className="relative flex items-center justify-center">
+      <input
+        type="radio"
+        name={name}
+        value={value}
+        checked={checked}
+        onChange={onChange}
+        {...props}
+        className="sr-only"
+      />
+      <div className={`w-5 h-5 rounded-full border transition-all duration-200 flex items-center justify-center ${checked ? "border-blue-600" : "bg-white border-slate-300 group-hover:border-slate-400"}`}>
+        {checked && <div className="w-2.5 h-2.5 rounded-full bg-blue-600 animate-scale-in" />}
+      </div>
+    </div>
+    {label && <span className="text-sm font-medium text-slate-700 select-none">{label}</span>}
+  </label>
+);
+
+// Buttons
+export const PrimaryButton = ({ children, loading, disabled, icon: Icon, onClick, ...props }) => (
+  <button
+    type="button"
+    onClick={onClick}
+    disabled={disabled || loading}
+    {...props}
+    className="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-700 hover:to-blue-600 disabled:opacity-50 text-white text-sm font-semibold h-12 px-6 rounded-xl shadow-sm hover:shadow-md hover:-translate-y-[1px] active:scale-[0.98] transition-all duration-200 cursor-pointer"
+  >
+    {loading ? (
+      <Loader2 className="w-4 h-4 animate-spin" />
+    ) : Icon ? (
+      <Icon className="w-4 h-4" />
+    ) : null}
+    {children}
+  </button>
+);
+
+export const SecondaryButton = ({ children, icon: Icon, onClick, ...props }) => (
+  <button
+    type="button"
+    onClick={onClick}
+    {...props}
+    className="inline-flex items-center justify-center gap-2 bg-white border border-slate-200 hover:bg-slate-50 text-slate-700 text-sm font-semibold h-12 px-6 rounded-xl shadow-sm hover:-translate-y-[1px] active:scale-[0.98] transition-all duration-200 cursor-pointer"
+  >
+    {Icon && <Icon className="w-4 h-4 text-slate-500" />}
+    {children}
+  </button>
+);
+
+export const DangerButton = ({ children, icon: Icon, onClick, ...props }) => (
+  <button
+    type="button"
+    onClick={onClick}
+    {...props}
+    className="inline-flex items-center justify-center gap-2 bg-red-50 border border-red-200 hover:bg-red-100 text-red-600 text-sm font-semibold h-12 px-6 rounded-xl shadow-sm hover:-translate-y-[1px] active:scale-[0.98] transition-all duration-200 cursor-pointer"
+  >
+    {Icon && <Icon className="w-4 h-4 text-red-600" />}
+    {children}
+  </button>
+);
+
+export const ValidationMessage = ({ message }) => {
+  if (!message) return null;
+  return (
+    <div className="flex items-center gap-1.5 text-xs text-red-600 mt-1 animate-pulse">
+      <AlertCircle className="w-3.5 h-3.5" />
+      <span>{message}</span>
+    </div>
+  );
+};
+
 export const Field = ({ label, children, full }) => {
   const isFull = full ?? children?.type !== TextInput;
   return (
     <label className={`block ${isFull ? "md:col-span-2" : ""}`}>
-      <span className="block text-xs font-medium text-text-muted mb-1">
+      <span className="block text-xs font-semibold text-slate-500 mb-1.5 uppercase tracking-wider">
         {label}
       </span>
       {children}
@@ -63,7 +257,7 @@ export const Field = ({ label, children, full }) => {
 };
 
 export const ButtonFields = ({ label, value, onChange }) => (
-  <div className="md:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-3 p-3 bg-bg-secondary rounded-2xl border border-brand-primary/15">
+  <div className="md:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-4 p-4 bg-slate-50 rounded-2xl border border-slate-200">
     <Field label={`${label} — Text`} full={false}>
       <TextInput
         type="text"
@@ -83,12 +277,12 @@ export const ButtonFields = ({ label, value, onChange }) => (
 );
 
 export const CardListHeader = ({ title, onAdd }) => (
-  <div className="md:col-span-2 flex items-center justify-between">
-    <h4 className="text-sm font-semibold text-text-secondary">{title}</h4>
+  <div className="md:col-span-2 flex items-center justify-between py-2 border-b border-slate-100 mb-2">
+    <h4 className="text-sm font-bold text-slate-800 tracking-wide uppercase">{title}</h4>
     <button
       type="button"
       onClick={onAdd}
-      className="flex items-center gap-1 text-xs font-medium text-brand-primary hover:text-white bg-brand-primary/10 hover:bg-brand-primary px-3 py-1.5 rounded-full transition-colors"
+      className="flex items-center gap-1 text-xs font-semibold text-blue-600 hover:text-white bg-blue-50 hover:bg-blue-600 border border-blue-200 px-4.5 py-2 rounded-full transition-all duration-200 active:scale-95 cursor-pointer shadow-sm"
     >
       <Plus size={14} /> Add Card
     </button>
@@ -99,30 +293,44 @@ export const RemoveBtn = ({ onClick }) => (
   <button
     type="button"
     onClick={onClick}
-    className="text-text-muted hover:text-red-500 transition-colors"
+    className="text-slate-400 hover:text-red-500 hover:bg-red-50 p-2 rounded-lg transition-colors cursor-pointer"
     title="Remove"
   >
     <Trash2 size={16} />
   </button>
 );
 
+// Premium Drag-and-Drop Image Uploader with progress bar and success animations
 export const ImageInput = ({ label, value, onChange }) => {
   const fileRef = useRef(null);
   const [uploading, setUploading] = useState(false);
+  const [dragActive, setDragActive] = useState(false);
+  const [progress, setProgress] = useState(0);
   const [error, setError] = useState("");
 
   const handleFile = async (file) => {
     if (!file) return;
     setUploading(true);
     setError("");
+    setProgress(15);
+    const interval = setInterval(() => {
+      setProgress((prev) => (prev < 90 ? prev + 10 : prev));
+    }, 150);
+
     try {
       const url = await uploadFile(file);
+      clearInterval(interval);
+      setProgress(100);
       onChange({ target: { value: url } });
     } catch (err) {
       console.error(err);
       setError(err.message || "Upload failed");
     } finally {
-      setUploading(false);
+      clearInterval(interval);
+      setTimeout(() => {
+        setUploading(false);
+        setProgress(0);
+      }, 500);
     }
   };
 
@@ -132,59 +340,154 @@ export const ImageInput = ({ label, value, onChange }) => {
     e.target.value = "";
   };
 
+  const handleDrag = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    if (e.type === "dragenter" || e.type === "dragover") {
+      setDragActive(true);
+    } else if (e.type === "dragleave") {
+      setDragActive(false);
+    }
+  };
+
+  const handleDrop = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setDragActive(false);
+    if (e.dataTransfer.files && e.dataTransfer.files[0]) {
+      handleFile(e.dataTransfer.files[0]);
+    }
+  };
+
   return (
     <Field label={label}>
-      <div className="flex items-center gap-3">
-        <div className="w-12 h-12 rounded-2xl border border-brand-primary/25 bg-bg-secondary flex items-center justify-center overflow-hidden shrink-0">
-          {value ? (
-            <img src={value} alt="" className="w-full h-full object-cover" />
-          ) : (
-            <ImageIcon size={18} className="text-text-muted" />
-          )}
-        </div>
-        <div className="flex items-center gap-2 flex-1">
-          {/* hide the text input; only provide upload control (no filename shown) */}
-          <input
-            type="file"
-            accept="image/*"
-            ref={fileRef}
-            onChange={onFileChange}
-            className="hidden"
-          />
-          <button
-            type="button"
-            onClick={() => fileRef.current && fileRef.current.click()}
-            disabled={uploading}
-            className="px-3 py-2 bg-bg-secondary rounded-md border border-brand-primary/25 text-sm text-text-secondary hover:bg-bg-card disabled:opacity-60 shrink-0"
-          >
-            {uploading ? "Uploading..." : "Upload"}
-          </button>
-        </div>
+      <div 
+        onDragEnter={handleDrag}
+        onDragOver={handleDrag}
+        onDragLeave={handleDrag}
+        onDrop={handleDrop}
+        className={`relative flex flex-col items-center justify-center p-6 border-2 border-dashed rounded-2xl transition-all duration-300 bg-white ${
+          dragActive 
+            ? "border-blue-600 bg-blue-50/20 shadow-[0_0_20px_rgba(37,99,235,0.1)]" 
+            : "border-slate-200 hover:border-blue-500 hover:bg-slate-50/50"
+        }`}
+      >
+        {value ? (
+          <div className="w-full flex flex-col items-center gap-4">
+            <div className="relative group w-32 h-32 rounded-xl overflow-hidden border border-slate-200 shadow-md">
+              <img src={value} alt="" className="w-full h-full object-cover" />
+              <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                <button
+                  type="button"
+                  onClick={() => onChange({ target: { value: "" } })}
+                  className="p-2 bg-red-600 hover:bg-red-700 text-white rounded-full transition-transform hover:scale-110 shadow-lg cursor-pointer"
+                >
+                  <Trash2 size={16} />
+                </button>
+              </div>
+            </div>
+            <div className="text-center">
+              <p className="text-xs font-semibold text-slate-700 flex items-center justify-center gap-1">
+                <CheckCircle size={14} className="text-green-500" />
+                Upload Successful
+              </p>
+              <button
+                type="button"
+                onClick={() => fileRef.current && fileRef.current.click()}
+                className="text-xs text-blue-600 hover:underline mt-1 font-medium cursor-pointer"
+              >
+                Replace Image
+              </button>
+            </div>
+          </div>
+        ) : (
+          <div className="flex flex-col items-center text-center cursor-pointer" onClick={() => fileRef.current && fileRef.current.click()}>
+            <div className="w-12 h-12 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center mb-3">
+              <Upload size={20} />
+            </div>
+            <p className="text-sm font-semibold text-slate-800">
+              Drag & drop image here or <span className="text-blue-600 hover:underline">browse</span>
+            </p>
+            <p className="text-xs text-slate-400 mt-1">Supports PNG, JPG, WEBP, SVG</p>
+          </div>
+        )}
+
+        <input
+          type="file"
+          accept="image/*"
+          ref={fileRef}
+          onChange={onFileChange}
+          className="hidden"
+        />
+
+        {uploading && (
+          <div className="absolute inset-0 bg-white/95 flex flex-col items-center justify-center p-6 rounded-2xl animate-fade-in">
+            <Loader2 className="w-8 h-8 text-blue-600 animate-spin mb-3" />
+            <p className="text-sm font-semibold text-slate-800">Uploading Image...</p>
+            <div className="w-48 bg-slate-100 rounded-full h-1.5 mt-3 overflow-hidden">
+              <div 
+                className="bg-blue-600 h-full rounded-full transition-all duration-300"
+                style={{ width: `${progress}%` }}
+              />
+            </div>
+          </div>
+        )}
       </div>
-      {error && <span className="block text-xs text-red-500 mt-1">{error}</span>}
+      {error && <span className="block text-xs text-red-500 mt-2 font-medium">{error}</span>}
     </Field>
   );
 };
+
+export const FileUploader = ImageInput;
+export const ImageUploader = ImageInput;
+
+// Premium custom form header
+export const PageHeader = ({ icon: Icon, title, description, breadcrumbs = [], actions = null }) => (
+  <div className="mb-8 flex flex-col md:flex-row md:items-center md:justify-between gap-4 p-6 bg-white rounded-2xl border border-slate-200 shadow-[0_10px_30px_rgba(15,23,42,.06)] hover:shadow-[0_12px_35px_rgba(15,23,42,0.08)] transition-all duration-300">
+    <div className="flex items-center gap-4">
+      {Icon && (
+        <div className="h-12 w-12 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center shrink-0">
+          <Icon className="w-6 h-6" />
+        </div>
+      )}
+      <div>
+        {breadcrumbs.length > 0 && (
+          <div className="flex items-center gap-1.5 text-xs text-slate-500 mb-1 font-medium">
+            {breadcrumbs.map((b, i) => (
+              <span key={i} className="flex items-center gap-1.5">
+                {i > 0 && <span className="text-slate-300">/</span>}
+                <span>{b}</span>
+              </span>
+            ))}
+          </div>
+        )}
+        <h2 className="text-xl font-bold text-slate-900">{title}</h2>
+        <p className="text-sm text-slate-500">{description}</p>
+      </div>
+    </div>
+    {actions && <div className="flex items-center gap-3">{actions}</div>}
+  </div>
+);
 
 export const PageStatusBanner = ({ loading, error, onRetry }) => {
   if (!error) return null;
   return (
     <div
-      className={`mb-4 rounded-2xl border px-4 py-3 text-sm flex items-center justify-between gap-3 ${
+      className={`mb-6 rounded-2xl border px-5 py-4 text-sm flex items-center justify-between gap-3 ${
         error
-          ? "border-red-500/30 bg-red-500/10 text-red-400"
-          : "border-brand-primary/25 bg-bg-secondary text-text-secondary"
+          ? "border-red-200 bg-red-50 text-red-600"
+          : "border-slate-200 bg-slate-50 text-slate-600"
       }`}
     >
-      <span className="flex items-center gap-2">
-        {loading && <Loader2 size={14} className="animate-spin" />}
-        {loading ? "Loading saved content..." : error}
+      <span className="flex items-center gap-2 font-semibold">
+        {loading && <Loader2 size={16} className="animate-spin" />}
+        {loading ? "Loading content..." : error}
       </span>
       {error && onRetry && (
         <button
           type="button"
           onClick={onRetry}
-          className="text-xs font-semibold text-red-400 hover:text-red-300 underline shrink-0"
+          className="text-xs font-bold text-red-600 hover:text-red-700 underline shrink-0 cursor-pointer"
         >
           Retry
         </button>
@@ -194,14 +497,18 @@ export const PageStatusBanner = ({ loading, error, onRetry }) => {
 };
 
 export const SaveBar = ({ status, onSave, label = "Save All Changes" }) => (
-  <div className="sticky bottom-0 -mx-4 mt-6 border-t border-brand-primary/25 bg-bg-card/95 backdrop-blur px-4 py-3 flex justify-end shadow-[0_-2px_8px_rgba(0,0,0,0.04)]">
+  <div className="sticky bottom-0 -mx-6 mt-8 border-t border-slate-200 bg-white/95 backdrop-blur px-6 py-4 flex justify-end shadow-[0_-8px_30px_rgba(15,23,42,0.04)] z-50">
     <button
       type="button"
       onClick={onSave}
       disabled={status === "saving"}
-      className="flex items-center gap-2 bg-brand-primary hover:bg-brand-secondary disabled:opacity-70 text-white text-sm font-semibold px-6 py-3 rounded-2xl transition-colors"
+      className="flex items-center gap-2 bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-700 hover:to-blue-600 disabled:opacity-70 text-white text-sm font-semibold px-6 py-3 rounded-xl transition-all duration-200 hover:-translate-y-[1px] active:scale-[0.98] shadow-md cursor-pointer"
     >
-      <Save size={16} />
+      {status === "saving" ? (
+        <Loader2 size={16} className="animate-spin" />
+      ) : (
+        <Save size={16} />
+      )}
       {status === "saving"
         ? "Saving..."
         : status === "saved"
