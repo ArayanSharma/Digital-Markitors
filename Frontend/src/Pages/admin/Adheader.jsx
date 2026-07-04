@@ -285,7 +285,7 @@ function CategoryEditorBlock({ category, onChange, onDelete }) {
     onChange({ ...category, items: category.items.filter((_, i) => i !== idx) });
 
   return (
-    <div className="border border-slate-200 rounded-xl p-3 bg-white space-y-3">
+    <div className="border border-slate-200 rounded-xl bg-white" style={{ padding: "1rem", display: "flex", flexDirection: "column", gap: "1rem" }}>
       <div className="flex items-center justify-between gap-4">
         <div className="flex items-center gap-2">
           <button
@@ -307,7 +307,7 @@ function CategoryEditorBlock({ category, onChange, onDelete }) {
       </div>
 
       {expanded && (
-        <div className="space-y-3 pt-3 border-t border-slate-100">
+        <div className="pt-3 border-t border-slate-100" style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
           <div className="grid grid-cols-2 gap-3">
             <InputField
               label="Category Name"
@@ -465,7 +465,7 @@ function NavigationCardRow({ tab, onChange, onDelete }) {
       </div>
 
       {expanded && (
-        <div className="p-4 border-t border-slate-100 bg-slate-50/30 space-y-4">
+        <div className="bg-slate-50/30" style={{ padding: "1.5rem", borderTop: "1px solid #e2e8f0", display: "flex", flexDirection: "column", gap: "1.25rem" }}>
           <div className="grid grid-cols-2 gap-4">
             <InputField
               label="Tab Title Label"
@@ -665,7 +665,7 @@ export default function HeaderNavEditor() {
 
   if (loading || !config) {
     return (
-      <div className="min-h-screen bg-white flex items-center justify-center">
+      <div className="flex items-center justify-center py-20 bg-transparent">
         <div className="flex flex-col items-center gap-3">
           <div className="w-10 h-10 border-4 border-blue-600 border-t-transparent rounded-full animate-spin" />
           <span className="text-sm font-semibold text-slate-500">Loading Configuration...</span>
@@ -675,7 +675,7 @@ export default function HeaderNavEditor() {
   }
 
   return (
-    <div ref={containerRef} className="min-h-screen bg-white p-8 max-w-7xl mx-auto pb-16" style={{ display: "flex", flexDirection: "column", gap: "2rem" }}>
+    <div ref={containerRef} className="max-w-7xl mx-auto pb-16" style={{ display: "flex", flexDirection: "column", gap: "2rem", padding: "2rem" }}>
       
       {/* Header Bar */}
       <div className="section-card-anim flex flex-col md:flex-row md:items-center md:justify-between gap-6 pt-4">
@@ -691,24 +691,14 @@ export default function HeaderNavEditor() {
           type="button"
           onClick={handleSave}
           disabled={saving}
-          className="h-[48px] px-8 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-xl shadow-md hover:shadow-lg transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer disabled:opacity-60 shrink-0"
+          className="fixed bottom-6 right-8 bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold h-[42px] px-10 rounded-xl shadow-lg hover:shadow-xl transition-all duration-200 flex items-center justify-center gap-2 cursor-pointer disabled:opacity-60 z-50 hover:-translate-y-[2px]"
         >
-          {savedFlash ? (
-            <>
-              <Check size={16} />
-              Saved
-            </>
-          ) : (
-            <>
-              <Save size={16} />
-              {saving ? "Saving..." : "Save Changes"}
-            </>
-          )}
+          {savedFlash ? "Saved" : (saving ? "Saving..." : "Save Changes")}
         </button>
       </div>
 
       {/* Main Settings Card */}
-      <div className="section-card-anim bg-white rounded-3xl border border-slate-200 p-8 shadow-[0_10px_35px_rgba(15,23,42,.05)] space-y-6">
+      <div className="section-card-anim bg-white rounded-3xl border border-slate-200 shadow-[0_10px_35px_rgba(15,23,42,.05)] space-y-6" style={{ padding: "2rem" }}>
         
         {/* Row 1: Logo configurations */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-start" style={{ marginBottom: "1.5rem" }}>
@@ -878,7 +868,7 @@ export default function HeaderNavEditor() {
       </div>
 
       {/* Navigation Card */}
-      <div className="section-card-anim bg-white rounded-3xl border border-slate-200 p-8 shadow-[0_10px_35px_rgba(15,23,42,.05)] space-y-4">
+      <div className="section-card-anim bg-white rounded-3xl border border-slate-200 shadow-[0_10px_35px_rgba(15,23,42,.05)] space-y-4" style={{ paddingLeft: "2rem", paddingRight: "2rem", paddingTop: "2rem", paddingBottom: "2rem" }}>
         <h2 className="text-lg font-bold text-slate-900 tracking-tight" style={{ marginBottom: "1.5rem" }}>Navigation Tabs</h2>
         
         <div className="space-y-3" style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
@@ -893,7 +883,7 @@ export default function HeaderNavEditor() {
         </div>
 
         <div 
-          className="flex flex-wrap gap-3 p-4 bg-slate-50/50 rounded-2xl " 
+          className="flex flex-wrap gap-3 p-4 bg-slate-50/50 rounded-2xl" 
           style={{ border: "1px dashed #cbd5e1", marginTop: "1.5rem" }}
         >
           <button

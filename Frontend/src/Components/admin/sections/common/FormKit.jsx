@@ -508,18 +508,14 @@ export const PageStatusBanner = ({ loading, error, onRetry }) => {
 };
 
 export const SaveBar = ({ status, onSave, label = "Save All Changes" }) => (
-  <div className="sticky bottom-0 -mx-6 mt-8 border-t border-slate-200 bg-white/95 backdrop-blur px-6 py-4 flex justify-end shadow-[0_-8px_30px_rgba(15,23,42,0.04)] z-50">
+  <div className="fixed bottom-6 right-8 z-50">
     <button
       type="button"
       onClick={onSave}
       disabled={status === "saving"}
-      className="flex items-center gap-2 bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-700 hover:to-blue-600 disabled:opacity-70 text-white text-sm font-semibold px-6 py-3 rounded-xl transition-all duration-200 hover:-translate-y-[1px] active:scale-[0.98] shadow-md cursor-pointer"
+      className="h-[40px] px-10 flex items-center justify-center gap-2 bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-700 hover:to-blue-600 disabled:opacity-70 text-white text-sm font-semibold rounded-xl transition-all duration-200 hover:-translate-y-[1px] active:scale-[0.98] shadow-sm cursor-pointer"
     >
-      {status === "saving" ? (
-        <Loader2 size={16} className="animate-spin" />
-      ) : (
-        <Save size={16} />
-      )}
+      {status === "saving" && <Loader2 size={16} className="animate-spin" />}
       {status === "saving"
         ? "Saving..."
         : status === "saved"

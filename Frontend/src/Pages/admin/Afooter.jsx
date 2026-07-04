@@ -230,7 +230,12 @@ export default function Afooter() {
 
         <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
           {toast && <span className={`af-toast ${toast.type}`}>{toast.message}</span>}
-          <button className="af-save-btn" onClick={handleSave} disabled={saving}>
+          <button 
+            className="af-save-btn" 
+            onClick={handleSave} 
+            disabled={saving}
+            style={{ position: "fixed", bottom: "24px", right: "32px", zIndex: 100, boxShadow: "0 10px 25px rgba(37, 99, 235, 0.4)", padding: "0 40px" }}
+          >
             {saving ? "Saving..." : "Save Changes"}
           </button>
         </div>
