@@ -1,20 +1,52 @@
 import { useState, useEffect, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import {
-  ChevronDown,
-  ChevronRight,
-  Trash2,
+  Mail,
+  Phone,
+  Link as LinkIcon,
+  Tag,
   Image as ImageIcon,
-  Link2,
+  Upload,
   Save,
+  Trash2,
+  GripVertical,
+  ChevronRight,
+  ChevronDown,
+  Settings,
+  Plus,
+  Menu,
   Check,
   X,
+  ExternalLink,
+  FolderOpen,
+  Copy,
+  Globe,
+  FileText
 } from "lucide-react";
+import {
+  FaFacebook,
+  FaTwitter,
+  FaLinkedin,
+  FaInstagram,
+  FaYoutube,
+  FaPinterest,
+  FaGlobe
+} from "react-icons/fa";
+import gsap from "gsap";
+import Modal from "../../Components/admin/ui/Modal";
+
+const getSocialIcon = (platform) => {
+  const p = (platform || "").toLowerCase();
+  if (p.includes("facebook") || p === "fb") return <FaFacebook className="text-[#1877F2] shrink-0" size={18} />;
+  if (p.includes("twitter") || p === "tw" || p === "x") return <FaTwitter className="text-[#1DA1F2] shrink-0" size={18} />;
+  if (p.includes("linkedin") || p === "li") return <FaLinkedin className="text-[#0A66C2] shrink-0" size={18} />;
+  if (p.includes("instagram") || p === "ig") return <FaInstagram className="text-[#E1306C] shrink-0" size={18} />;
+  if (p.includes("youtube") || p === "yt") return <FaYoutube className="text-[#FF0000] shrink-0" size={18} />;
+  if (p.includes("pinterest") || p === "pin") return <FaPinterest className="text-[#BD081C] shrink-0" size={18} />;
+  return <FaGlobe className="text-slate-400 shrink-0" size={18} />;
+};
 
 const API = import.meta.env.VITE_API_URL || "http://localhost:5000";
-
-/* ------------------------------------------------------------------ */
-/*  Default config — used as fallback when no DB document exists yet   */
-/* ------------------------------------------------------------------ */
 
 const defaultConfig = {
   logo: { url: "/assets/digicore-logo.svg", alt: "Digicore", link: "/" },
@@ -63,69 +95,6 @@ const defaultConfig = {
           items: [
             { id: "seo-services", label: "SEO Services", link: "/seo-services", isActive: true },
             { id: "ai-seo-services", label: "AI SEO Services", link: "/ai-seo-services", isActive: true },
-            { id: "geo", label: "GEO", link: "/geo", isActive: true },
-            { id: "aeo", label: "AEO", link: "/aeo", isActive: true },
-            { id: "technical-seo", label: "Technical SEO", link: "/technical-seo", isActive: true },
-            { id: "ecommerce-seo", label: "Ecommerce SEO", link: "/ecommerce-seo", isActive: true },
-            { id: "seo-audit", label: "SEO Audit", link: "/seo-audit", isActive: true },
-            { id: "link-building", label: "Link Building", link: "/link-building", isActive: true },
-            { id: "seo-reseller", label: "SEO Reseller", link: "/seo-reseller", isActive: true },
-          ],
-        },
-        {
-          id: "smo",
-          name: "SMO",
-          isActive: true,
-          promoImage: {
-            url: "https://images.unsplash.com/photo-1611262588024-d12430b98920?w=400&q=80",
-            alt: "SMO",
-            link: "",
-          },
-          items: [
-            { id: "smo-services", label: "SMO Services", link: "/smo-services", isActive: true },
-            { id: "social-media-mgmt", label: "Social Media Management", link: "/social-media-management", isActive: true },
-          ],
-        },
-        {
-          id: "performance-marketing",
-          name: "Performance Marketing",
-          isActive: true,
-          promoImage: {
-            url: "https://images.unsplash.com/photo-1533750349088-cd871a92f312?w=400&q=80",
-            alt: "Performance Marketing",
-            link: "",
-          },
-          items: [
-            { id: "ppc", label: "PPC / Google Ads", link: "/ppc", isActive: true },
-            { id: "meta-ads", label: "Meta Ads", link: "/meta-ads", isActive: true },
-          ],
-        },
-        {
-          id: "web-design",
-          name: "Web Design",
-          isActive: true,
-          promoImage: {
-            url: "https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=400&q=80",
-            alt: "Web Design",
-            link: "",
-          },
-          items: [
-            { id: "web-design-dev", label: "Web Design & Development", link: "/web-design-development", isActive: true },
-            { id: "ui-ux", label: "UI/UX Design", link: "/ui-ux-design", isActive: true },
-          ],
-        },
-        {
-          id: "orm",
-          name: "ORM",
-          isActive: true,
-          promoImage: {
-            url: "https://images.unsplash.com/photo-1552664730-d307ca884978?w=400&q=80",
-            alt: "ORM",
-            link: "",
-          },
-          items: [
-            { id: "orm-services", label: "ORM Services", link: "/orm-services", isActive: true },
-            { id: "review-management", label: "Review Management", link: "/review-management", isActive: true },
           ],
         },
       ],
@@ -142,12 +111,6 @@ const defaultConfig = {
       },
       items: [
         { id: "education", label: "Education", link: "/industry/education", isActive: true },
-        { id: "healthcare", label: "Healthcare", link: "/industry/healthcare", isActive: true },
-        { id: "b2b", label: "B2B", link: "/industry/b2b", isActive: true },
-        { id: "hospitality", label: "Hospitality", link: "/industry/hospitality", isActive: true },
-        { id: "ecommerce-industry", label: "E-Commerce", link: "/industry/ecommerce", isActive: true },
-        { id: "travel", label: "Travel", link: "/industry/travel", isActive: false },
-        { id: "financial-professional", label: "Financial & Professional", link: "/industry/financial-professional", isActive: true },
       ],
     },
     { id: "blog", label: "Blog", type: "direct", isActive: true, directLink: "/blog" },
@@ -156,22 +119,56 @@ const defaultConfig = {
 };
 
 /* ------------------------------------------------------------------ */
-/*  Small reusable pieces                                              */
+/*  CRM Micro Components                                              */
 /* ------------------------------------------------------------------ */
 
-function Toggle({ checked, onChange }) {
+function InputField({ label, icon: Icon, value, onChange, placeholder, subtitle }) {
+  const containerRef = useRef(null);
+
+  const handleFocus = () => {
+    gsap.to(containerRef.current, { borderColor: "#3b82f6", boxShadow: "0 0 0 4px rgba(59, 130, 246, 0.1)", duration: 0.2 });
+  };
+
+  const handleBlur = () => {
+    gsap.to(containerRef.current, { borderColor: "#e2e8f0", boxShadow: "none", duration: 0.2 });
+  };
+
+  return (
+    <div className="flex flex-col gap-1.5 w-full">
+      {label && <span className="text-xs font-bold text-slate-700 tracking-wide">{label}</span>}
+      <div
+        ref={containerRef}
+        className="flex items-center h-[48px] rounded-xl border border-slate-200 bg-white px-4 transition-all duration-200 hover:border-slate-300"
+      >
+        {Icon && <Icon size={16} className="text-slate-400 mr-2.5 shrink-0" />}
+        <input
+          type="text"
+          value={value || ""}
+          onChange={(e) => onChange(e.target.value)}
+          placeholder={placeholder}
+          onFocus={handleFocus}
+          onBlur={handleBlur}
+          className="w-full bg-transparent text-sm text-slate-800 outline-none placeholder-slate-400 font-medium"
+        />
+      </div>
+      {subtitle && <span className="text-[11px] text-slate-400 font-medium leading-none">{subtitle}</span>}
+    </div>
+  );
+}
+
+function ToggleSwitch({ checked, onChange }) {
   return (
     <button
       type="button"
       role="switch"
       aria-checked={checked}
       onClick={() => onChange(!checked)}
-      className={`relative inline-flex h-6 w-11 shrink-0 items-center rounded-full transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-success ${
-        checked ? "bg-success" : "bg-brand-primary/30"
+      className={`relative inline-flex h-6 w-11 shrink-0 items-center rounded-full transition-colors duration-300 focus:outline-none cursor-pointer ${
+        checked ? "bg-blue-600" : "bg-slate-200"
       }`}
     >
       <span
-        className={`inline-block h-4 w-4 transform rounded-full bg-bg-card shadow transition-transform ${
+        className={`inline-block h-4 w-4 transform rounded-full bg-white shadow-md transition-transform duration-300 ${
           checked ? "translate-x-6" : "translate-x-1"
         }`}
       />
@@ -179,179 +176,70 @@ function Toggle({ checked, onChange }) {
   );
 }
 
-function ConfirmDeleteButton({ onConfirm, title = "Delete this?" }) {
-  const [confirming, setConfirming] = useState(false);
-
-  if (confirming) {
-    return (
-      <div className="flex items-center gap-1 rounded-md bg-danger/10 px-1.5 py-1">
-        <span className="text-xs text-danger mr-1 hidden sm:inline">{title}</span>
-        <button
-          type="button"
-          onClick={() => {
-            onConfirm();
-            setConfirming(false);
-          }}
-          className="rounded bg-danger p-1 text-black hover:bg-danger"
-          aria-label="Confirm delete"
-        >
-          <Check size={13} />
-        </button>
-        <button
-          type="button"
-          onClick={() => setConfirming(false)}
-          className="rounded bg-brand-primary/20 p-1 text-black hover:bg-brand-primary/30"
-          aria-label="Cancel delete"
-        >
-          <X size={13} />
-        </button>
-      </div>
-    );
-  }
+function ConfirmDeleteDialog({ onConfirm, children }) {
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <button
-      type="button"
-      onClick={() => setConfirming(true)}
-      className="rounded-md p-1.5 text-black hover:bg-danger/10 hover:text-black"
-      aria-label="Delete"
-    >
-      <Trash2 size={15} />
-    </button>
-  );
-}
-
-function TextField({ label, value, onChange, placeholder, icon }) {
-  return (
-    <label className="flex flex-col gap-1">
-        <span className="text-xs font-medium text-black">{label}</span>
-      <div className="flex items-center gap-1.5 rounded-2xl border border-brand-primary/25 bg-bg-card px-2.5 py-1.5 focus-within:border-brand-secondary">
-        {icon}
-        <input
-          type="text"
-          value={value}
-          placeholder={placeholder}
-          onChange={(e) => onChange(e.target.value)}
-          className="w-full bg-transparent text-sm text-black outline-none placeholder:text-black"
-        />
-      </div>
-    </label>
-  );
-}
-
-function ImageUploadField({ label, value, onChange }) {
-  const fileRef = useRef(null);
-  const [uploading, setUploading] = useState(false);
-
-  const handleFile = async (file) => {
-    if (!file) return;
-    setUploading(true);
-    try {
-      const fd = new FormData();
-      fd.append("file", file);
-      const res = await fetch(`${API}/api/upload`, {
-        method: "POST",
-        body: fd,
-      });
-      const data = await res.json();
-      if (res.ok && data.url) {
-        const fullUrl = data.url.startsWith("http") ? data.url : `${API}${data.url}`;
-        onChange(fullUrl);
-      } else {
-        alert("Upload failed: " + (data.message || JSON.stringify(data)));
-      }
-    } catch (err) {
-      console.error("Image upload failed:", err);
-      alert("Image upload failed");
-    } finally {
-      setUploading(false);
-    }
-  };
-
-  return (
-    <label className="flex flex-col gap-1">
-        <span className="text-xs font-medium text-black">{label}</span>
-      <div className="flex flex-col gap-2 rounded-2xl border border-brand-primary/25 bg-bg-card px-2.5 py-2">
-        <div className="flex items-center gap-3">
-          <div className="h-16 w-16 overflow-hidden rounded-2xl border border-brand-primary/25 bg-bg-secondary">
-            {value ? (
-              <img src={value} alt={label} className="h-full w-full object-cover" />
-            ) : (
-              <div className="flex h-full w-full items-center justify-center text-black">
-                <ImageIcon size={18} />
-              </div>
-            )}
+    <>
+      <div onClick={(e) => { e.stopPropagation(); setIsOpen(true); }}>{children}</div>
+      <Modal open={isOpen} onClose={() => setIsOpen(false)} title="Confirm Delete">
+        <div className="p-6 space-y-4">
+          <p className="text-sm text-slate-600 font-medium">
+            Are you sure you want to delete this item? This action is irreversible.
+          </p>
+          <div className="flex justify-end gap-3 pt-3 border-t border-slate-100">
+            <button
+              onClick={() => setIsOpen(false)}
+              className="px-5 py-2.5 bg-white border border-slate-200 hover:bg-slate-50 text-slate-700 font-semibold rounded-xl transition-all cursor-pointer"
+            >
+              Cancel
+            </button>
+            <button
+              onClick={() => {
+                onConfirm();
+                setIsOpen(false);
+              }}
+              className="px-5 py-2.5 bg-red-600 hover:bg-red-700 text-white font-semibold rounded-xl transition-all cursor-pointer"
+            >
+              Confirm Delete
+            </button>
           </div>
-          <button
-            type="button"
-            onClick={() => fileRef.current?.click()}
-            className="rounded-md bg-bg-card px-3 py-2 text-sm text-black hover:bg-brand-primary/20"
-          >
-            {uploading ? "Uploading..." : "Upload image"}
-          </button>
         </div>
-        <input
-          type="text"
-          value={value || ""}
-          placeholder="Image URL or uploaded path"
-          onChange={(e) => onChange(e.target.value)}
-          className="w-full rounded-md border border-brand-primary/25 bg-bg-secondary px-3 py-2 text-sm text-black outline-none focus:border-brand-secondary"
-        />
-        <input
-          type="file"
-          accept="image/*"
-          ref={fileRef}
-          className="hidden"
-          onChange={(e) => handleFile(e.target.files?.[0])}
-        />
-      </div>
-    </label>
+      </Modal>
+    </>
   );
 }
 
 /* ------------------------------------------------------------------ */
-/*  Item row — the leaf-level editable nav entry                       */
+/*  Editable nested layout items                                       */
 /* ------------------------------------------------------------------ */
 
-function createNewNavItem() {
-  return {
-    id: `item-${Date.now()}-${Math.random().toString(36).slice(2, 5)}`,
-    label: "New item",
-    link: "/",
-    isActive: true,
-  };
-}
-
-function ItemRow({ item, onChange, onDelete }) {
+function NavItemRow({ item, onChange, onDelete }) {
   return (
-    <div
-      className={`grid grid-cols-[1fr_1fr_auto_auto] items-center gap-2 rounded-2xl border px-2.5 py-2 transition-opacity ${
-        item.isActive ? "border-brand-primary/25 bg-bg-card" : "border-brand-primary/25 bg-bg-secondary opacity-60"
-      }`}
-    >
-      <input
-        type="text"
+    <div className="flex items-center gap-3 p-3 rounded-lg border border-slate-100 bg-slate-50/50">
+      <InputField
         value={item.label}
-        onChange={(e) => onChange({ ...item, label: e.target.value })}
-        className="min-w-0 rounded-md border border-transparent bg-transparent px-1.5 py-1 text-sm text-black outline-none hover:border-brand-primary/25 focus:border-brand-secondary"
+        onChange={(v) => onChange({ ...item, label: v })}
+        placeholder="Link Name"
       />
-      <input
-        type="text"
+      <InputField
         value={item.link}
-        onChange={(e) => onChange({ ...item, link: e.target.value })}
-        className="min-w-0 rounded-md border border-transparent bg-transparent px-1.5 py-1 text-sm text-black outline-none hover:border-brand-primary/25 focus:border-brand-secondary"
+        onChange={(v) => onChange({ ...item, link: v })}
+        placeholder="Redirection Link"
       />
-      <Toggle checked={item.isActive} onChange={(v) => onChange({ ...item, isActive: v })} />
-      <ConfirmDeleteButton onConfirm={onDelete} title="Delete item?" />
+      <div className="flex items-center gap-4 shrink-0">
+        <ToggleSwitch checked={item.isActive} onChange={(v) => onChange({ ...item, isActive: v })} />
+        <ConfirmDeleteDialog onConfirm={onDelete}>
+          <button className="p-2 text-slate-400 hover:text-red-600 rounded-lg hover:bg-red-50 transition-colors cursor-pointer">
+            <Trash2 size={15} />
+          </button>
+        </ConfirmDeleteDialog>
+      </div>
     </div>
   );
 }
 
-/* ------------------------------------------------------------------ */
-/*  Category block — SEO / SMO / etc inside "Our Services"             */
-/* ------------------------------------------------------------------ */
-
-function CategoryBlock({ category, onChange, onDelete }) {
+function CategoryEditorBlock({ category, onChange, onDelete }) {
   const [expanded, setExpanded] = useState(false);
 
   const updateItem = (idx, updated) =>
@@ -360,58 +248,45 @@ function CategoryBlock({ category, onChange, onDelete }) {
     onChange({ ...category, items: category.items.filter((_, i) => i !== idx) });
 
   return (
-    <div className={`rounded-2xl border ${category.isActive ? "border-brand-primary/25" : "border-brand-primary/25 bg-bg-secondary/60"}`}>
-      <div className="flex items-center gap-2 px-3 py-2.5">
-        <button
-          type="button"
-          onClick={() => setExpanded((e) => !e)}
-          className="rounded p-0.5 text-black hover:bg-bg-card"
-        >
-          {expanded ? <ChevronDown size={16} /> : <ChevronRight size={16} />}
-        </button>
-        <input
-          type="text"
-          value={category.name}
-          onChange={(e) => onChange({ ...category, name: e.target.value })}
-          className="min-w-0 flex-1 rounded-md border border-transparent bg-transparent px-1.5 py-1 text-sm font-semibold text-black outline-none hover:border-brand-primary/25 focus:border-brand-secondary"
-        />
-        <span className="text-xs text-black hidden sm:inline">
-          {category.items.length} item{category.items.length !== 1 ? "s" : ""}
-        </span>
-        <Toggle checked={category.isActive} onChange={(v) => onChange({ ...category, isActive: v })} />
-        <ConfirmDeleteButton onConfirm={onDelete} title="Delete category?" />
+    <div className="border border-slate-200 rounded-xl p-3 bg-white space-y-3">
+      <div className="flex items-center justify-between gap-4">
+        <div className="flex items-center gap-2">
+          <button
+            onClick={() => setExpanded(!expanded)}
+            className="p-1 hover:bg-slate-50 rounded-lg text-slate-400 hover:text-slate-600 transition-colors"
+          >
+            {expanded ? <ChevronDown size={16} /> : <ChevronRight size={16} />}
+          </button>
+          <span className="font-bold text-xs text-slate-700">{category.name || "Unnamed Category"}</span>
+        </div>
+        <div className="flex items-center gap-3">
+          <ToggleSwitch checked={category.isActive} onChange={(v) => onChange({ ...category, isActive: v })} />
+          <ConfirmDeleteDialog onConfirm={onDelete}>
+            <button className="p-1 text-slate-400 hover:text-red-600 rounded-lg hover:bg-red-50 cursor-pointer">
+              <Trash2 size={15} />
+            </button>
+          </ConfirmDeleteDialog>
+        </div>
       </div>
 
       {expanded && (
-        <div className="space-y-3 border-t border-brand-primary/20 px-3 py-3">
-          <div className="grid grid-cols-2 gap-2 sm:grid-cols-3">
-            <ImageUploadField
-              label="Promo image"
-              value={category.promoImage?.url || ""}
+        <div className="space-y-3 pt-3 border-t border-slate-100">
+          <div className="grid grid-cols-2 gap-3">
+            <InputField
+              label="Category Name"
+              value={category.name}
+              onChange={(v) => onChange({ ...category, name: v })}
+            />
+            <InputField
+              label="Promo Image Link URL"
+              value={category.promoImage?.url}
               onChange={(v) => onChange({ ...category, promoImage: { ...category.promoImage, url: v } })}
             />
-            <TextField
-              label="Image alt text"
-              value={category.promoImage?.alt || ""}
-              onChange={(v) => onChange({ ...category, promoImage: { ...category.promoImage, alt: v } })}
-            />
-            <TextField
-              label="Image link (optional)"
-              value={category.promoImage?.link || ""}
-              onChange={(v) => onChange({ ...category, promoImage: { ...category.promoImage, link: v } })}
-              icon={<Link2 size={13} className="text-black" />}
-            />
           </div>
-
-          <div className="space-y-1.5">
-            <div className="grid grid-cols-[1fr_1fr_auto_auto] gap-2 px-2.5 text-xs font-medium text-black">
-              <span>Label</span>
-              <span>Link</span>
-              <span>Active</span>
-              <span></span>
-            </div>
+          <div className="space-y-2">
+            <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">Category Sub-items</span>
             {category.items.map((item, idx) => (
-              <ItemRow
+              <NavItemRow
                 key={item.id}
                 item={item}
                 onChange={(updated) => updateItem(idx, updated)}
@@ -419,11 +294,10 @@ function CategoryBlock({ category, onChange, onDelete }) {
               />
             ))}
             <button
-              type="button"
-              onClick={() => onChange({ ...category, items: [...category.items, createNewNavItem()] })}
-              className="rounded-md border border-brand-primary/25 bg-bg-secondary px-3 py-2 text-sm font-medium text-black hover:bg-bg-card"
+              onClick={() => onChange({ ...category, items: [...category.items, { id: `item-${Date.now()}`, label: "New Link", link: "/", isActive: true }] })}
+              className="flex items-center gap-1.5 px-3 py-1.5 border border-slate-200 hover:border-slate-350 rounded-lg text-[11px] font-semibold text-slate-600 hover:bg-slate-50 transition-all cursor-pointer"
             >
-              + Add item
+              <Plus size={12} /> Add Category Link
             </button>
           </div>
         </div>
@@ -432,11 +306,7 @@ function CategoryBlock({ category, onChange, onDelete }) {
   );
 }
 
-/* ------------------------------------------------------------------ */
-/*  Root tab card — Company / Our Services / Industry / Blog / Contact */
-/* ------------------------------------------------------------------ */
-
-function RootTabCard({ tab, onChange, onDelete }) {
+function NavigationCardRow({ tab, onChange, onDelete }) {
   const [expanded, setExpanded] = useState(false);
 
   const updateItem = (idx, updated) =>
@@ -449,75 +319,81 @@ function RootTabCard({ tab, onChange, onDelete }) {
     onChange({ ...tab, categories: tab.categories.filter((_, i) => i !== idx) });
 
   const typeLabel =
-    tab.type === "direct" ? "Direct link" : tab.type === "simpleDropdown" ? "Dropdown list" : "Category dropdown";
+    tab.type === "direct" ? "Direct Link" : tab.type === "simpleDropdown" ? "Dropdown List" : "Category Dropdown";
 
   return (
-    <div className={`rounded-2xl border bg-bg-card shadow-sm ${tab.isActive ? "border-brand-primary/25" : "border-brand-primary/25 bg-bg-secondary/50"}`}>
-      <div className="flex items-center gap-3 px-4 py-3.5">
-        <button
-          type="button"
-          onClick={() => setExpanded((e) => !e)}
-          className="rounded p-1 text-black hover:bg-bg-card"
-        >
-          {expanded ? <ChevronDown size={18} /> : <ChevronRight size={18} />}
-        </button>
+    <div className="border border-slate-200 rounded-xl bg-white shadow-sm hover:shadow-md transition-all duration-300">
+      <div className="flex items-center justify-between gap-4 p-4">
+        <div className="flex items-center gap-3">
+          <div className="text-slate-400 cursor-grab">
+            <GripVertical size={16} />
+          </div>
+          <button
+            onClick={() => setExpanded(!expanded)}
+            className="p-1 hover:bg-slate-50 rounded-lg text-slate-400 hover:text-slate-600 transition-colors"
+          >
+            {expanded ? <ChevronDown size={16} /> : <ChevronRight size={16} />}
+          </button>
+          <div className="w-8 h-8 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center">
+            {tab.type === "direct" ? <LinkIcon size={15} /> : tab.type === "simpleDropdown" ? <Menu size={15} /> : <FolderOpen size={15} />}
+          </div>
+          <span className="font-bold text-slate-800 text-sm">{tab.label}</span>
+        </div>
 
-        <input
-          type="text"
-          value={tab.label}
-          onChange={(e) => onChange({ ...tab, label: e.target.value })}
-          className="min-w-0 flex-1 rounded-md border border-transparent bg-transparent px-2 py-1 text-base font-semibold text-black outline-none hover:border-brand-primary/25 focus:border-brand-secondary"
-        />
-
-        <span className="hidden rounded-full bg-bg-card px-2.5 py-1 text-xs font-medium text-black sm:inline">
-          {typeLabel}
-        </span>
-
-        <Toggle checked={tab.isActive} onChange={(v) => onChange({ ...tab, isActive: v })} />
-        <ConfirmDeleteButton onConfirm={onDelete} title="Delete this tab?" />
+        <div className="flex items-center gap-4">
+          <span className="text-xs font-semibold text-slate-400">{typeLabel}</span>
+          <button
+            onClick={() => setExpanded(!expanded)}
+            className="p-1.5 hover:bg-slate-100 rounded-lg text-slate-500 transition-colors"
+            title="Edit Layout Structure"
+          >
+            <Settings size={15} />
+          </button>
+          <ToggleSwitch checked={tab.isActive} onChange={(v) => onChange({ ...tab, isActive: v })} />
+          <ConfirmDeleteDialog onConfirm={onDelete}>
+            <button className="p-2 text-slate-400 hover:text-red-600 rounded-lg hover:bg-red-50 transition-colors cursor-pointer">
+              <Trash2 size={15} />
+            </button>
+          </ConfirmDeleteDialog>
+        </div>
       </div>
 
       {expanded && (
-        <div className="space-y-4 border-t border-brand-primary/20 px-4 py-4">
-          {tab.type === "direct" && (
-            <TextField
-              label="Link"
-              value={tab.directLink}
-              onChange={(v) => onChange({ ...tab, directLink: v })}
-              icon={<Link2 size={13} className="text-black" />}
+        <div className="p-4 border-t border-slate-100 bg-slate-50/30 space-y-4">
+          <div className="grid grid-cols-2 gap-4">
+            <InputField
+              label="Tab Title Label"
+              value={tab.label}
+              onChange={(v) => onChange({ ...tab, label: v })}
             />
-          )}
+            {tab.type === "direct" && (
+              <InputField
+                label="Direct Redirection Path URL"
+                value={tab.directLink}
+                onChange={(v) => onChange({ ...tab, directLink: v })}
+              />
+            )}
+          </div>
 
           {tab.type === "simpleDropdown" && (
-            <>
-              <div className="grid grid-cols-2 gap-2 sm:grid-cols-3">
-                <ImageUploadField
-                  label="Promo image"
-                  value={tab.promoImage?.url || ""}
-                  onChange={(v) => onChange({ ...tab, promoImage: { ...tab.promoImage, url: v } })}
-                />
-                <TextField
-                  label="Image alt text"
-                  value={tab.promoImage?.alt || ""}
+            <div className="space-y-4">
+              <div className="grid grid-cols-2 gap-4">
+                <InputField
+                  label="Promo Image Alt"
+                  value={tab.promoImage?.alt}
                   onChange={(v) => onChange({ ...tab, promoImage: { ...tab.promoImage, alt: v } })}
                 />
-                <TextField
-                  label="Image link (optional)"
-                  value={tab.promoImage?.link || ""}
-                  onChange={(v) => onChange({ ...tab, promoImage: { ...tab.promoImage, link: v } })}
-                  icon={<Link2 size={13} className="text-text-muted" />}
+                <InputField
+                  label="Promo Image URL"
+                  value={tab.promoImage?.url}
+                  onChange={(v) => onChange({ ...tab, promoImage: { ...tab.promoImage, url: v } })}
                 />
               </div>
 
-              <div className="space-y-1.5">
-                <div className="grid grid-cols-[1fr_1fr_auto_auto] gap-2 px-2.5 text-xs font-medium text-black">
-                  <span>Label</span>
-                  <span>Link</span>
-                  <span>Active</span>
-                  <span></span>
-                </div>
+              <div className="space-y-2">
+                <span className="text-xs font-bold text-slate-400 uppercase tracking-wider block">Dropdown List Items</span>
                 {tab.items.map((item, idx) => (
-                  <ItemRow
+                  <NavItemRow
                     key={item.id}
                     item={item}
                     onChange={(updated) => updateItem(idx, updated)}
@@ -525,26 +401,32 @@ function RootTabCard({ tab, onChange, onDelete }) {
                   />
                 ))}
                 <button
-                  type="button"
-                  onClick={() => onChange({ ...tab, items: [...tab.items, createNewNavItem()] })}
-                  className="rounded-md border border-brand-primary/25 bg-bg-secondary px-3 py-2 text-sm font-medium text-black hover:bg-bg-card"
+                  onClick={() => onChange({ ...tab, items: [...tab.items, { id: `item-${Date.now()}`, label: "New Item", link: "/", isActive: true }] })}
+                  className="flex items-center gap-1.5 px-3 py-1.5 border border-slate-200 hover:border-slate-350 rounded-lg text-xs font-semibold text-slate-600 hover:bg-slate-50 transition-all cursor-pointer"
                 >
-                  + Add item
+                  <Plus size={14} /> Add Dropdown Link
                 </button>
               </div>
-            </>
+            </div>
           )}
 
           {tab.type === "categorizedDropdown" && (
             <div className="space-y-3">
+              <span className="text-xs font-bold text-slate-400 uppercase tracking-wider block">Mega Menu Categories</span>
               {tab.categories.map((category, idx) => (
-                <CategoryBlock
+                <CategoryEditorBlock
                   key={category.id}
                   category={category}
                   onChange={(updated) => updateCategory(idx, updated)}
                   onDelete={() => deleteCategory(idx)}
                 />
               ))}
+              <button
+                onClick={() => onChange({ ...tab, categories: [...tab.categories, { id: `cat-${Date.now()}`, name: "New Category", isActive: true, items: [], promoImage: { url: "", alt: "", link: "" } }] })}
+                className="flex items-center gap-1.5 px-3 py-1.5 border border-slate-200 hover:border-slate-350 rounded-lg text-xs font-semibold text-slate-600 hover:bg-slate-50 transition-all cursor-pointer"
+              >
+                <Plus size={14} /> Add Mega Menu Category
+              </button>
             </div>
           )}
         </div>
@@ -554,88 +436,7 @@ function RootTabCard({ tab, onChange, onDelete }) {
 }
 
 /* ------------------------------------------------------------------ */
-/*  Global header settings — logo, contact, CTA, socials               */
-/* ------------------------------------------------------------------ */
-
-function GlobalSettings({ config, onChange }) {
-  const updateSocial = (idx, updated) =>
-    onChange({ ...config, socialLinks: config.socialLinks.map((s, i) => (i === idx ? updated : s)) });
-  const deleteSocial = (idx) =>
-    onChange({ ...config, socialLinks: config.socialLinks.filter((_, i) => i !== idx) });
-
-  return (
-    <div className="rounded-2xl border border-brand-primary/25 bg-bg-card p-4 shadow-sm">
-      <h2 className="mb-3 text-sm font-semibold text-white">Global header settings</h2>
-
-      <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
-        <ImageUploadField
-          label="Logo image"
-          value={config.logo.url}
-          onChange={(url) => onChange({ ...config, logo: { ...config.logo, url: url } })}
-        />
-        <TextField
-          label="Logo alt text"
-          value={config.logo.alt}
-          onChange={(v) => onChange({ ...config, logo: { ...config.logo, alt: v } })}
-        />
-        <TextField
-          label="Logo link"
-          value={config.logo.link}
-          onChange={(v) => onChange({ ...config, logo: { ...config.logo, link: v } })}
-          icon={<Link2 size={13} className="text-text-muted" />}
-        />
-
-        <TextField
-          label="Phone number"
-          value={config.phone}
-          onChange={(v) => onChange({ ...config, phone: v })}
-        />
-        <TextField
-          label="Email"
-          value={config.email}
-          onChange={(v) => onChange({ ...config, email: v })}
-        />
-        <TextField
-          label="CTA button label"
-          value={config.ctaButton.label}
-          onChange={(v) => onChange({ ...config, ctaButton: { ...config.ctaButton, label: v } })}
-        />
-        <TextField
-          label="CTA button link"
-          value={config.ctaButton.link}
-          onChange={(v) => onChange({ ...config, ctaButton: { ...config.ctaButton, link: v } })}
-          icon={<Link2 size={13} className="text-text-muted" />}
-        />
-      </div>
-
-      <div className="mt-4">
-        <span className="mb-1.5 block text-xs font-medium text-text-muted">Social links</span>
-        <div className="space-y-1.5">
-          {config.socialLinks.map((s, idx) => (
-            <div key={s.id} className="grid grid-cols-[110px_1fr_auto] items-center gap-2 rounded-2xl border border-brand-primary/25 px-2.5 py-1.5">
-              <input
-                type="text"
-                value={s.platform}
-                onChange={(e) => updateSocial(idx, { ...s, platform: e.target.value })}
-                className="min-w-0 rounded-md border border-transparent bg-transparent px-1.5 py-1 text-sm font-medium text-black outline-none hover:border-brand-primary/25 focus:border-brand-secondary"
-              />
-              <input
-                type="text"
-                value={s.url}
-                onChange={(e) => updateSocial(idx, { ...s, url: e.target.value })}
-                className="min-w-0 rounded-md border border-transparent bg-transparent px-1.5 py-1 text-sm text-black outline-none hover:border-brand-primary/25 focus:border-brand-secondary"
-              />
-              <ConfirmDeleteButton onConfirm={() => deleteSocial(idx)} title="Delete?" />
-            </div>
-          ))}
-        </div>
-      </div>
-    </div>
-  );
-}
-
-/* ------------------------------------------------------------------ */
-/*  Main export                                                        */
+/*  Main Component Editor                                             */
 /* ------------------------------------------------------------------ */
 
 export default function HeaderNavEditor() {
@@ -643,8 +444,12 @@ export default function HeaderNavEditor() {
   const [loading, setLoading] = useState(true);
   const [savedFlash, setSavedFlash] = useState(false);
   const [saving, setSaving] = useState(false);
+  const [uploading, setUploading] = useState(false);
 
-  // Fetch existing header config on mount
+  const containerRef = useRef(null);
+  const saveBtnRef = useRef(null);
+  const fileRef = useRef(null);
+
   useEffect(() => {
     const fetchHeader = async () => {
       try {
@@ -653,7 +458,6 @@ export default function HeaderNavEditor() {
           const data = await res.json();
           setConfig(data.config || defaultConfig);
         } else {
-          // No document in DB yet — use defaults
           setConfig(defaultConfig);
         }
       } catch (err) {
@@ -666,13 +470,62 @@ export default function HeaderNavEditor() {
     fetchHeader();
   }, []);
 
+  useEffect(() => {
+    if (!loading && containerRef.current) {
+      gsap.fromTo(
+        containerRef.current.querySelectorAll(".section-card-anim"),
+        { opacity: 0, y: 30 },
+        { opacity: 1, y: 0, duration: 0.5, stagger: 0.15, ease: "power3.out" }
+      );
+    }
+  }, [loading]);
+
   const updateRootTab = (idx, updated) =>
     setConfig((prev) => ({ ...prev, rootTabs: prev.rootTabs.map((t, i) => (i === idx ? updated : t)) }));
+  
   const deleteRootTab = (idx) =>
     setConfig((prev) => ({ ...prev, rootTabs: prev.rootTabs.filter((_, i) => i !== idx) }));
 
+  const updateSocialLink = (idx, updated) =>
+    setConfig((prev) => ({ ...prev, socialLinks: prev.socialLinks.map((s, i) => (i === idx ? updated : s)) }));
+
+  const deleteSocialLink = (idx) =>
+    setConfig((prev) => ({ ...prev, socialLinks: prev.socialLinks.filter((_, i) => i !== idx) }));
+
+  const handleLogoUpload = async (file) => {
+    if (!file) return;
+    setUploading(true);
+    try {
+      const fd = new FormData();
+      fd.append("file", file);
+      const res = await fetch(`${API}/api/upload`, {
+        method: "POST",
+        body: fd,
+      });
+      const data = await res.json();
+      if (res.ok && data.url) {
+        const fullUrl = data.url.startsWith("http") ? data.url : `${API}${data.url}`;
+        setConfig((prev) => ({ ...prev, logo: { ...prev.logo, url: fullUrl } }));
+      } else {
+        alert("Upload failed");
+      }
+    } catch (err) {
+      console.error(err);
+      alert("Upload failed");
+    } finally {
+      setUploading(false);
+    }
+  };
+
   const handleSave = async () => {
     setSaving(true);
+    
+    // Save button click animation
+    gsap.timeline()
+      .to(saveBtnRef.current, { scale: 0.95, duration: 0.1 })
+      .to(saveBtnRef.current, { scale: 1.05, duration: 0.15, ease: "power2.out" })
+      .to(saveBtnRef.current, { scale: 1, duration: 0.1 });
+
     try {
       const res = await fetch(`${API}/api/header`, {
         method: "PUT",
@@ -681,64 +534,262 @@ export default function HeaderNavEditor() {
       });
       if (res.ok) {
         setSavedFlash(true);
-        setTimeout(() => setSavedFlash(false), 1800);
+        setTimeout(() => setSavedFlash(false), 2000);
       } else {
         alert("Failed to save header config.");
       }
     } catch (err) {
-      console.error("Failed to save header config:", err);
+      console.error(err);
       alert("Error saving header config.");
     } finally {
       setSaving(false);
     }
   };
 
+  const copyToClipboard = (text) => {
+    navigator.clipboard.writeText(text);
+    alert("URL Copied!");
+  };
+
   if (loading || !config) {
     return (
-      <div className="min-h-screen bg-bg-secondary flex items-center justify-center">
-        <p className="text-text-muted">Loading header config…</p>
+      <div className="min-h-screen bg-slate-50 flex items-center justify-center">
+        <div className="flex flex-col items-center gap-3">
+          <div className="w-10 h-10 border-4 border-blue-600 border-t-transparent rounded-full animate-spin" />
+          <span className="text-sm font-semibold text-slate-500">Loading Configuration...</span>
+        </div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-bg-secondary px-4 py-8 sm:px-8">
-      <div className="mx-auto max-w-4xl">
-        <div className="mb-6 flex items-center justify-between">
-          <div>
-            <h1 className="text-lg font-bold text-white">Header navigation</h1>
-            <p className="text-sm text-text-muted">
-              Edit labels, links, categories, and visibility. Inactive items redirect visitors to{" "}
-              <code className="rounded bg-bg-card px-1 py-0.5 text-xs">/A505</code>.
-            </p>
+    <div ref={containerRef} className="min-h-screen bg-slate-50 p-8 space-y-8 max-w-7xl mx-auto pb-16">
+      
+      {/* Header Bar */}
+      <div className="section-card-anim flex flex-col md:flex-row md:items-center md:justify-between gap-6 pt-4">
+        <div>
+          <h1 className="text-4xl font-extrabold text-slate-900 tracking-tight">Header Navigation</h1>
+          <p className="text-sm text-slate-400 mt-2 font-medium">
+            Edit labels, links, categories, and visibility. Inactive items redirect visitors to <code className="rounded bg-white border border-slate-200 px-1.5 py-0.5 text-xs">/A505</code>.
+          </p>
+        </div>
+        
+        <button
+          ref={saveBtnRef}
+          type="button"
+          onClick={handleSave}
+          disabled={saving}
+          className="h-[48px] px-8 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-xl shadow-md hover:shadow-lg transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer disabled:opacity-60 shrink-0"
+        >
+          {savedFlash ? (
+            <>
+              <Check size={16} />
+              Saved
+            </>
+          ) : (
+            <>
+              <Save size={16} />
+              {saving ? "Saving..." : "Save Changes"}
+            </>
+          )}
+        </button>
+      </div>
+
+      {/* Main Settings Card */}
+      <div className="section-card-anim bg-white rounded-3xl border border-slate-200 p-8 shadow-[0_10px_35px_rgba(15,23,42,.05)] space-y-6">
+        
+        {/* Row 1: Logo configurations */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-start">
+          
+          {/* Logo Image Box */}
+          <div className="flex flex-col gap-2">
+            <span className="text-xs font-bold text-slate-700 tracking-wide">Logo Image</span>
+            <div className="flex items-center gap-3">
+              <div className="h-16 w-32 border border-slate-200 bg-slate-50 rounded-xl flex items-center justify-center p-2 overflow-hidden">
+                {config.logo.url ? (
+                  <img src={config.logo.url} alt="Logo" className="h-full object-contain" />
+                ) : (
+                  <ImageIcon size={20} className="text-slate-400" />
+                )}
+              </div>
+              <button
+                type="button"
+                onClick={() => fileRef.current?.click()}
+                className="h-11 px-4 border border-slate-200 hover:bg-slate-50 text-slate-700 text-xs font-bold rounded-xl flex items-center justify-center gap-2 cursor-pointer transition-all duration-200"
+              >
+                <Upload size={14} />
+                {uploading ? "Uploading..." : "Upload Image"}
+              </button>
+              <input
+                type="file"
+                accept="image/*"
+                ref={fileRef}
+                className="hidden"
+                onChange={(e) => handleLogoUpload(e.target.files?.[0])}
+              />
+            </div>
+            
+            {/* Logo Image URL Input with Copy Icon */}
+            {config.logo.url && (
+              <div className="flex items-center h-[48px] rounded-xl border border-slate-200 bg-slate-50/50 px-3 mt-1.5">
+                <input
+                  type="text"
+                  value={config.logo.url}
+                  readOnly
+                  className="w-full bg-transparent text-[11px] text-slate-500 font-mono outline-none"
+                />
+                <button
+                  type="button"
+                  onClick={() => copyToClipboard(config.logo.url)}
+                  className="p-1.5 hover:bg-slate-200 rounded-lg text-slate-400 hover:text-slate-600 transition-colors"
+                  title="Copy URL"
+                >
+                  <Copy size={13} />
+                </button>
+              </div>
+            )}
+            <span className="text-[11px] text-slate-400 font-semibold mt-1">Image uploaded</span>
           </div>
-          <button
-            type="button"
-            onClick={handleSave}
-            disabled={saving}
-            className="flex items-center gap-1.5 rounded-2xl bg-danger px-4 py-2 text-sm font-semibold text-white hover:bg-danger disabled:opacity-60"
-          >
-            {savedFlash ? <Check size={15} /> : <Save size={15} />}
-            {savedFlash ? "Saved" : saving ? "Saving…" : "Save changes"}
-          </button>
+
+          <InputField
+            label="Logo Alt Text"
+            value={config.logo.alt}
+            onChange={(v) => setConfig({ ...config, logo: { ...config.logo, alt: v } })}
+            placeholder="Digicore"
+            subtitle="Helps with accessibility and SEO."
+          />
+
+          <InputField
+            label="Logo Link"
+            value={config.logo.link}
+            onChange={(v) => setConfig({ ...config, logo: { ...config.logo, link: v } })}
+            placeholder="/"
+            icon={LinkIcon}
+            subtitle="Redirects to this URL on logo click."
+          />
         </div>
 
-        <div className="space-y-6">
-          <GlobalSettings config={config} onChange={setConfig} />
+        {/* Row 2: Phone, Email, CTA Label */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <InputField
+            label="Phone Number"
+            value={config.phone}
+            onChange={(v) => setConfig({ ...config, phone: v })}
+            placeholder="+91 9818888064"
+            icon={Phone}
+            subtitle="Display phone number in header."
+          />
 
-          <div>
-            <h2 className="mb-2 text-sm font-semibold text-white">Navigation tabs</h2>
-            <div className="space-y-3">
-              {config.rootTabs.map((tab, idx) => (
-                <RootTabCard
-                  key={tab.id}
-                  tab={tab}
-                  onChange={(updated) => updateRootTab(idx, updated)}
-                  onDelete={() => deleteRootTab(idx)}
-                />
+          <InputField
+            label="Email"
+            value={config.email}
+            onChange={(v) => setConfig({ ...config, email: v })}
+            placeholder="hello@digitalmarkitors.com"
+            icon={Mail}
+            subtitle="Display email in header."
+          />
+
+          <InputField
+            label="CTA Button Label"
+            value={config.ctaButton.label}
+            onChange={(v) => setConfig({ ...config, ctaButton: { ...config.ctaButton, label: v } })}
+            placeholder="Free Consultation"
+            icon={Tag}
+            subtitle="Text for the main call-to-action button."
+          />
+        </div>
+
+        {/* Row 3: CTA Link and Social Links Side by Side */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-start">
+          <InputField
+            label="CTA Button Link"
+            value={config.ctaButton.link}
+            onChange={(v) => setConfig({ ...config, ctaButton: { ...config.ctaButton, link: v } })}
+            placeholder="/free-consultation"
+            icon={LinkIcon}
+            subtitle="Redirects when CTA button is clicked."
+          />
+
+          {/* Social Links Sub-Card */}
+          <div className="md:col-span-2 flex flex-col gap-2">
+            <span className="text-xs font-bold text-slate-700 tracking-wide">Social Links</span>
+            
+            <div className="border border-slate-100 rounded-2xl p-4 bg-slate-50/50 space-y-3">
+              {config.socialLinks.map((s, idx) => (
+                <div key={s.id} className="flex items-center gap-4 bg-white px-4 py-2.5 rounded-xl border border-slate-200 shadow-sm hover:border-slate-300 transition-all duration-200">
+                  <div className="flex items-center gap-2.5 min-w-[120px] shrink-0">
+                    {getSocialIcon(s.platform)}
+                    <span className="text-xs font-bold text-slate-700">{s.platform}</span>
+                  </div>
+                  
+                  <div className="flex-1 flex items-center h-[38px] rounded-lg border border-slate-200 bg-white px-3 focus-within:border-blue-600 focus-within:ring-2 focus-within:ring-blue-100 transition-all">
+                    <input
+                      type="text"
+                      value={s.url}
+                      onChange={(e) => updateSocialLink(idx, { ...s, url: e.target.value })}
+                      placeholder="Profile URL"
+                      className="w-full bg-transparent text-xs text-slate-700 font-semibold outline-none"
+                    />
+                  </div>
+
+                  <ConfirmDeleteDialog onConfirm={() => deleteSocialLink(idx)}>
+                    <button
+                      type="button"
+                      className="p-2 text-slate-400 hover:text-red-600 border border-slate-200 hover:border-red-200 hover:bg-red-50 rounded-lg cursor-pointer shrink-0 transition-colors"
+                      title="Delete social link"
+                    >
+                      <Trash2 size={14} />
+                    </button>
+                  </ConfirmDeleteDialog>
+                </div>
               ))}
+
+              <button
+                type="button"
+                onClick={() => setConfig({ ...config, socialLinks: [...config.socialLinks, { id: `social-${Date.now()}`, platform: "New Link", url: "https://" }] })}
+                className="flex items-center gap-1.5 px-3 py-2 bg-white border border-slate-200 hover:border-slate-350 text-xs font-semibold text-slate-600 hover:bg-slate-50 rounded-lg transition-all cursor-pointer shadow-sm"
+              >
+                <Plus size={14} /> Add Social Channel
+              </button>
             </div>
           </div>
+        </div>
+      </div>
+
+      {/* Navigation Card */}
+      <div className="section-card-anim bg-white rounded-3xl border border-slate-200 p-8 shadow-[0_10px_35px_rgba(15,23,42,.05)] space-y-4">
+        <h2 className="text-lg font-bold text-slate-900 tracking-tight mb-2">Navigation Tabs</h2>
+        
+        <div className="space-y-3">
+          {config.rootTabs.map((tab, idx) => (
+            <NavigationCardRow
+              key={tab.id}
+              tab={tab}
+              onChange={(updated) => updateRootTab(idx, updated)}
+              onDelete={() => deleteRootTab(idx)}
+            />
+          ))}
+        </div>
+
+        <div className="flex flex-wrap gap-2.5 pt-4 border-t border-slate-100">
+          <button
+            onClick={() => setConfig({ ...config, rootTabs: [...config.rootTabs, { id: `tab-${Date.now()}`, label: "New Link", type: "direct", isActive: true, directLink: "/" }] })}
+            className="flex items-center gap-1.5 px-4 py-2 bg-emerald-50 hover:bg-emerald-100 text-emerald-700 border border-emerald-150 text-xs font-bold rounded-xl transition-all cursor-pointer shadow-sm"
+          >
+            <Plus size={13} /> Add Link Tab
+          </button>
+          <button
+            onClick={() => setConfig({ ...config, rootTabs: [...config.rootTabs, { id: `tab-${Date.now()}`, label: "New Dropdown", type: "simpleDropdown", isActive: true, items: [], promoImage: { url: "", alt: "", link: "" } }] })}
+            className="flex items-center gap-1.5 px-4 py-2 bg-blue-50 hover:bg-blue-100 text-blue-700 border border-blue-150 text-xs font-bold rounded-xl transition-all cursor-pointer shadow-sm"
+          >
+            <Plus size={13} /> Add Dropdown Tab
+          </button>
+          <button
+            onClick={() => setConfig({ ...config, rootTabs: [...config.rootTabs, { id: `tab-${Date.now()}`, label: "New Mega Menu", type: "categorizedDropdown", isActive: true, categories: [] }] })}
+            className="flex items-center gap-1.5 px-4 py-2 bg-purple-50 hover:bg-purple-100 text-purple-700 border border-purple-150 text-xs font-bold rounded-xl transition-all cursor-pointer shadow-sm"
+          >
+            <Plus size={13} /> Add Mega Menu Tab
+          </button>
         </div>
       </div>
     </div>
