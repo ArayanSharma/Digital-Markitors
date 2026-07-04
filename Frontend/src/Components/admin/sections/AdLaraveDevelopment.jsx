@@ -5,6 +5,7 @@ import { Plus } from "lucide-react";
 import { useToast } from "../../../context/ToastContext";
 import LeadForm from "../LeadForm";
 import {
+  PageHeader,
   Section,
   Field,
   TextInput,
@@ -295,7 +296,9 @@ export default function AdLaraveDevelopment() {
 
         <PageStatusBanner loading={loading} error={loadError} onRetry={load} />
 
-        <Section title="Hero Banner" open={openSection === "hero"} onToggle={() => toggle("hero")}>
+        
+        <div className="bg-white rounded-2xl border border-slate-200 shadow-[0_8px_24px_rgba(15,23,42,.06)] hover:shadow-[0_16px_36px_rgba(37,99,235,.10)] transition-all duration-300 p-8 space-y-8 mt-8">
+          <Section title="Hero Banner" open={openSection === "hero"} onToggle={() => toggle("hero")}>
           <Field label="Subtitle">
             <TextInput value={hero.subtitle} onChange={(e) => setHero({ ...hero, subtitle: e.target.value })} />
           </Field>
@@ -605,6 +608,8 @@ export default function AdLaraveDevelopment() {
             ))}
           </div>
         </Section>
+        </div>
+
 
         <SaveBar status={status} onSave={handleSave} />
       </form>

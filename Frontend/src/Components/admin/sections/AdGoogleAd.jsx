@@ -4,6 +4,7 @@ import { uid } from "../../../utils/uid";
 import { useToast } from "../../../context/ToastContext";
 import LeadForm from "../LeadForm";
 import {
+  PageHeader,
   Section,
   Field,
   TextInput,
@@ -293,16 +294,14 @@ export default function AdminGoogleAdForm() {
   return (
     <div className="min-h-screen bg-bg-card py-8 px-4 md:px-8 lg:px-10">
       <form onSubmit={handleSave} className="w-full">
-        <div className="mb-6">
-          <h1 className="text-xl font-bold text-brand-primary">
-            Google Shopping Ads Page — Admin
-          </h1>
-        </div>
+        <PageHeader title="Google Shopping Ads Page - Admin" description="Edit all Google page sections from the admin panel." status={status} />
 
         <PageStatusBanner loading={loading} error={loadError} onRetry={load} />
 
         {/* HERO */}
-        <Section title="1. Hero / Banner" open={openSection === "hero"} onToggle={() => toggle("hero")}>
+        
+        <div className="bg-white rounded-2xl border border-slate-200 shadow-[0_8px_24px_rgba(15,23,42,.06)] hover:shadow-[0_16px_36px_rgba(37,99,235,.10)] transition-all duration-300 p-8 space-y-8 mt-8">
+          <Section title="1. Hero / Banner" open={openSection === "hero"} onToggle={() => toggle("hero")}>
           <Field label="Title">
             <TextInput value={data.hero.title} onChange={(e) => updateField("hero", "title", e.target.value)} />
           </Field>
@@ -482,6 +481,8 @@ export default function AdminGoogleAdForm() {
             ]}
           />
         </Section>
+        </div>
+
 
         <SaveBar status={status} onSave={handleSave} />
       </form>

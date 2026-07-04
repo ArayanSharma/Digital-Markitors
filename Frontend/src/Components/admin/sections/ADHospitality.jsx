@@ -4,6 +4,7 @@ import { uid } from "../../../utils/uid";
 import { useToast } from "../../../context/ToastContext";
 import LeadForm from "../LeadForm";
 import {
+  PageHeader,
   Section,
   Field,
   TextInput,
@@ -187,7 +188,9 @@ export default function ADHospitality() {
         <PageStatusBanner loading={loading} error={loadError} onRetry={load} />
 
         {/* HERO */}
-        <Section title="1. Hero / Banner" open={openSection === "hero"} onToggle={() => toggle("hero")}>
+        
+        <div className="bg-white rounded-2xl border border-slate-200 shadow-[0_8px_24px_rgba(15,23,42,.06)] hover:shadow-[0_16px_36px_rgba(37,99,235,.10)] transition-all duration-300 p-8 space-y-8 mt-8">
+          <Section title="1. Hero / Banner" open={openSection === "hero"} onToggle={() => toggle("hero")}>
           <Field label="Title">
             <TextInput value={pageData.hero.title} onChange={(e) => updateSection("hero", "title", e.target.value)} />
           </Field>
@@ -376,6 +379,8 @@ export default function ADHospitality() {
             ]}
           />
         </Section>
+        </div>
+
 
         <SaveBar status={status} onSave={handleSave} />
       </form>

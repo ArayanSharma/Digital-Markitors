@@ -355,43 +355,52 @@ export default function Dashboard() {
           
           <button
             onClick={() => navigate("/admin/contacts")}
-            className="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-sm hover:shadow-md hover:border-blue-300 transition-all duration-300 text-center flex flex-col items-center justify-center gap-3"
+            className="group bg-white p-5 rounded-2xl border border-slate-200/80 shadow-[0_2px_8px_rgba(15,23,42,0.03)] hover:shadow-[0_12px_24px_rgba(37,99,235,0.08)] hover:border-blue-500 hover:-translate-y-1 active:scale-[0.98] transition-all duration-300 text-center flex flex-col items-center justify-center gap-3 cursor-pointer"
           >
-            <FiPlusCircle size={22} className="text-blue-600" />
-            <span className="text-xs font-bold text-slate-700">Add Enquiry</span>
+            <div className="w-11 h-11 bg-blue-50 text-blue-600 rounded-xl flex items-center justify-center group-hover:bg-blue-600 group-hover:text-white transition-all duration-300 shadow-sm">
+              <FiPlusCircle size={20} />
+            </div>
+            <span className="text-xs font-bold text-slate-700 group-hover:text-slate-905 transition-colors">Add Enquiry</span>
           </button>
 
           <button
             onClick={() => navigate("/admin/blog")}
-            className="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-sm hover:shadow-md hover:border-blue-300 transition-all duration-300 text-center flex flex-col items-center justify-center gap-3"
+            className="group bg-white p-5 rounded-2xl border border-slate-200/80 shadow-[0_2px_8px_rgba(15,23,42,0.03)] hover:shadow-[0_12px_24px_rgba(37,99,235,0.08)] hover:border-blue-500 hover:-translate-y-1 active:scale-[0.98] transition-all duration-300 text-center flex flex-col items-center justify-center gap-3 cursor-pointer"
           >
-            <FiFolderPlus size={22} className="text-blue-600" />
-            <span className="text-xs font-bold text-slate-700">Create Blog</span>
+            <div className="w-11 h-11 bg-blue-50 text-blue-600 rounded-xl flex items-center justify-center group-hover:bg-blue-600 group-hover:text-white transition-all duration-300 shadow-sm">
+              <FiFolderPlus size={20} />
+            </div>
+            <span className="text-xs font-bold text-slate-700 group-hover:text-slate-905 transition-colors">Create Blog</span>
           </button>
 
-          {/* Trigger Premium Create Service page */}
           <button
             onClick={() => navigate("/admin/services/create")}
-            className="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-sm hover:shadow-md hover:border-blue-300 transition-all duration-300 text-center flex flex-col items-center justify-center gap-3 scale-105 ring-2 ring-blue-500 ring-offset-2"
+            className="group bg-white p-5 rounded-2xl border border-blue-200 shadow-[0_4px_12px_rgba(37,99,235,0.05)] hover:shadow-[0_16px_32px_rgba(37,99,235,0.12)] hover:border-blue-500 hover:-translate-y-1.5 active:scale-[0.98] transition-all duration-300 text-center flex flex-col items-center justify-center gap-3 cursor-pointer ring-2 ring-blue-500/10 ring-offset-1"
           >
-            <FiPlusCircle size={22} className="text-blue-600 animate-pulse" />
-            <span className="text-xs font-bold text-slate-900">Add Service</span>
+            <div className="w-11 h-11 bg-blue-600 text-white rounded-xl flex items-center justify-center group-hover:bg-blue-750 transition-all duration-300 shadow-md animate-pulse">
+              <FiPlusCircle size={20} />
+            </div>
+            <span className="text-xs font-bold text-slate-900 group-hover:text-blue-600 transition-colors">Add Service</span>
           </button>
 
           <button
             onClick={() => navigate("/admin/case-study")}
-            className="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-sm hover:shadow-md hover:border-blue-300 transition-all duration-300 text-center flex flex-col items-center justify-center gap-3"
+            className="group bg-white p-5 rounded-2xl border border-slate-200/80 shadow-[0_2px_8px_rgba(15,23,42,0.03)] hover:shadow-[0_12px_24px_rgba(37,99,235,0.08)] hover:border-blue-500 hover:-translate-y-1 active:scale-[0.98] transition-all duration-300 text-center flex flex-col items-center justify-center gap-3 cursor-pointer"
           >
-            <FiCompass size={22} className="text-blue-600" />
-            <span className="text-xs font-bold text-slate-700">Add Case Study</span>
+            <div className="w-11 h-11 bg-blue-50 text-blue-600 rounded-xl flex items-center justify-center group-hover:bg-blue-600 group-hover:text-white transition-all duration-300 shadow-sm">
+              <FiCompass size={20} />
+            </div>
+            <span className="text-xs font-bold text-slate-700 group-hover:text-slate-905 transition-colors">Add Case Study</span>
           </button>
 
           <button
             onClick={() => navigate("/admin/testimonials")}
-            className="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-sm hover:shadow-md hover:border-blue-300 transition-all duration-300 text-center flex flex-col items-center justify-center gap-3"
+            className="group bg-white p-5 rounded-2xl border border-slate-200/80 shadow-[0_2px_8px_rgba(15,23,42,0.03)] hover:shadow-[0_12px_24px_rgba(37,99,235,0.08)] hover:border-blue-500 hover:-translate-y-1 active:scale-[0.98] transition-all duration-300 text-center flex flex-col items-center justify-center gap-3 cursor-pointer"
           >
-            <FiCalendar size={22} className="text-blue-600" />
-            <span className="text-xs font-bold text-slate-700">Add Testimonial</span>
+            <div className="w-11 h-11 bg-blue-50 text-blue-600 rounded-xl flex items-center justify-center group-hover:bg-blue-600 group-hover:text-white transition-all duration-300 shadow-sm">
+              <FiCalendar size={20} />
+            </div>
+            <span className="text-xs font-bold text-slate-700 group-hover:text-slate-905 transition-colors">Add Testimonial</span>
           </button>
 
         </div>

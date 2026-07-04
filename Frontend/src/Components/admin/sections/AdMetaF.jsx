@@ -4,6 +4,7 @@ import { uid } from "../../../utils/uid";
 import { useToast } from "../../../context/ToastContext";
 import LeadForm from "../LeadForm";
 import {
+  PageHeader,
   Section,
   Field,
   TextInput,
@@ -277,14 +278,13 @@ export default function AdMetaF() {
   return (
     <div className="min-h-screen bg-bg-card py-8 px-4 md:px-8 lg:px-10">
       <form onSubmit={handleSave} className="w-full">
-        <div className="mb-6">
-          <h1 className="text-xl font-bold text-brand-primary">Meta Facebook Ads Page Content — Admin</h1>
-          <p className="text-sm text-text-muted">Edit all Meta Facebook Ads page sections from the admin panel.</p>
-        </div>
+        <PageHeader title="Meta Facebook Ads Page Content - Admin" description="Edit all Meta Facebook Ads page sections from the admin panel." status={status} />
 
         <PageStatusBanner loading={loading} error={loadError} onRetry={load} />
 
-        <Section title="1. Banner Section" open={openSection === "banner"} onToggle={() => toggle("banner")}>
+        
+        <div className="bg-white rounded-2xl border border-slate-200 shadow-[0_8px_24px_rgba(15,23,42,.06)] hover:shadow-[0_16px_36px_rgba(37,99,235,.10)] transition-all duration-300 p-8 space-y-8 mt-8">
+          <Section title="1. Banner Section" open={openSection === "banner"} onToggle={() => toggle("banner")}>
           <Field label="Title">
             <TextInput value={banner.title} onChange={(e) => setBanner({ ...banner, title: e.target.value })} />
           </Field>
@@ -428,6 +428,8 @@ export default function AdMetaF() {
             ]}
           />
         </Section>
+        </div>
+
 
         <SaveBar status={status} onSave={handleSave} />
       </form>

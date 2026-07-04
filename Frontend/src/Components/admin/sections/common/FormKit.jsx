@@ -37,7 +37,7 @@ export const Section = ({ title, children, open, onToggle, icon: Icon, descripti
         {Icon ? <Icon className="w-5 h-5 text-blue-600" /> : <Sparkles className="w-5 h-5 text-blue-600" />}
         <div>
           <span className="font-semibold text-slate-900 text-sm tracking-wide uppercase">
-            {title}
+            {title ? title.replace(/^\d+\.\s*/, "") : ""}
           </span>
           {description && <p className="text-xs text-slate-500 mt-0.5">{description}</p>}
         </div>
@@ -361,16 +361,15 @@ export const ImageInput = ({ label, value, onChange }) => {
 
   return (
     <Field label={label}>
-      <div 
+      <div
         onDragEnter={handleDrag}
         onDragOver={handleDrag}
         onDragLeave={handleDrag}
         onDrop={handleDrop}
-        className={`relative flex flex-col items-center justify-center p-6 border-2 border-dashed rounded-2xl transition-all duration-300 bg-white ${
-          dragActive 
-            ? "border-blue-600 bg-blue-50/20 shadow-[0_0_20px_rgba(37,99,235,0.1)]" 
+        className={`relative flex flex-col items-center justify-center p-6 border-2 border-dashed rounded-2xl transition-all duration-300 bg-white ${dragActive
+            ? "border-blue-600 bg-blue-50/20 shadow-[0_0_20px_rgba(37,99,235,0.1)]"
             : "border-slate-200 hover:border-blue-500 hover:bg-slate-50/50"
-        }`}
+          }`}
       >
         {value ? (
           <div className="w-full flex flex-col items-center gap-4">
@@ -425,7 +424,7 @@ export const ImageInput = ({ label, value, onChange }) => {
             <Loader2 className="w-8 h-8 text-blue-600 animate-spin mb-3" />
             <p className="text-sm font-semibold text-slate-800">Uploading Image...</p>
             <div className="w-48 bg-slate-100 rounded-full h-1.5 mt-3 overflow-hidden">
-              <div 
+              <div
                 className="bg-blue-600 h-full rounded-full transition-all duration-300"
                 style={{ width: `${progress}%` }}
               />
@@ -473,11 +472,10 @@ export const PageStatusBanner = ({ loading, error, onRetry }) => {
   if (!error) return null;
   return (
     <div
-      className={`mb-6 rounded-2xl border px-5 py-4 text-sm flex items-center justify-between gap-3 ${
-        error
+      className={`mb-6 rounded-2xl border px-5 py-4 text-sm flex items-center justify-between gap-3 ${error
           ? "border-red-200 bg-red-50 text-red-600"
           : "border-slate-200 bg-slate-50 text-slate-600"
-      }`}
+        }`}
     >
       <span className="flex items-center gap-2 font-semibold">
         {loading && <Loader2 size={16} className="animate-spin" />}
@@ -512,10 +510,10 @@ export const SaveBar = ({ status, onSave, label = "Save All Changes" }) => (
       {status === "saving"
         ? "Saving..."
         : status === "saved"
-        ? "Saved ✓"
-        : status === "error"
-        ? "Save failed — Retry"
-        : label}
+          ? "Saved ✓"
+          : status === "error"
+            ? "Save failed — Retry"
+            : label}
     </button>
   </div>
 );
