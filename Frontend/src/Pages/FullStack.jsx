@@ -1,6 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Tools from "../Components/Sections/Tools";
+import Brands from "../Components/Sections/Brands";
 import {
   ArrowRight,
   ExternalLink,
@@ -20,6 +22,8 @@ import {
   Rocket,
   Headphones,
   Braces,
+  Plus,
+  Minus,
 } from "lucide-react";
 import {
   SiMongodb,
@@ -35,6 +39,9 @@ import {
 } from "react-icons/si";
 import { FaJava, FaGithub } from "react-icons/fa";
 import { usePageContent, resolveImage } from "../hooks/usePageContent";
+import Banner from "../Components/Cards/Seohero";
+import FAQ from "../Components/Sections/FAQ";
+import TestimonialSection from "../Components/Sections/Testimonials";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -168,13 +175,13 @@ const defaultStats = {
   experience: { value: 5, suffix: "+", label: "Years Experience" },
 };
 
-const defaultCta = {
-  heading: "Ready to Build Your Next Project?",
-  description: "Let's turn your idea into a scalable, secure, high-performance web application.",
-  primaryBtn: { text: "Contact Us", link: "/contact" },
-  secondaryBtn: { text: "Get Quote", link: "/contact" },
-  backgroundImage: "",
-};
+const defaultFaq = [
+  { id: "f1", question: "What technologies do you use for full stack development?", answer: "We primarily use the MERN stack (MongoDB, Express.js, React, Node.js) and frameworks like Next.js, Django, or Python depending on your project requirements.", visible: true },
+  { id: "f2", question: "Do you design the user interface as well?", answer: "Yes, we have expert UI/UX designers who create modern, intuitive, and responsive interface designs before we begin coding.", visible: true },
+  { id: "f3", question: "How do you ensure application security?", answer: "We follow industry best practices, including secure authentication, data encryption, input validation, and secure cloud configurations to protect your app from threats.", visible: true },
+  { id: "f4", question: "Can you integrate third-party APIs?", answer: "Absolutely. We routinely integrate APIs for payment gateways (Stripe, PayPal), social logins, CRM systems, maps, and other third-party services.", visible: true },
+  { id: "f5", question: "Do you offer post-launch support?", answer: "Yes, we provide ongoing maintenance, security updates, server monitoring, and performance optimization support after deployment.", visible: true },
+];
 
 const defaultSeo = {
   metaTitle: "Full Stack Development Services | Digital Markitors",
@@ -232,6 +239,7 @@ function StatCounter({ value, suffix, label }) {
 export default function FullStack() {
   const { content: c } = usePageContent(PAGE_SLUG);
   const rootRef = useRef(null);
+  const [openFaq, setOpenFaq] = useState(null);
 
   const hero = { ...defaultHero, ...(c?.hero || {}) };
   const technologies = c?.technologies?.length ? c.technologies : defaultTechnologies;
@@ -245,7 +253,7 @@ export default function FullStack() {
     technologies: { ...defaultStats.technologies, ...(c?.statistics?.technologies || {}) },
     experience: { ...defaultStats.experience, ...(c?.statistics?.experience || {}) },
   };
-  const cta = { ...defaultCta, ...(c?.cta || {}) };
+  const faqs = (c?.faq?.length ? c.faq : defaultFaq).filter((f) => f.visible !== false);
   const seo = { ...defaultSeo, ...(c?.seo || {}) };
 
   /* SEO tags */
@@ -344,72 +352,16 @@ export default function FullStack() {
     <div ref={rootRef} className="overflow-x-hidden bg-white">
       {/* ================= HERO ================= */}
       {hero.visible !== false && (
-        <section className="relative hero-gradient overflow-hidden">
-          <div
-            className="absolute inset-0 opacity-[0.07]"
-            style={{
-              backgroundImage:
-                "linear-gradient(rgba(255,255,255,0.6) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.6) 1px, transparent 1px)",
-              backgroundSize: "44px 44px",
-            }}
-          />
-          <div className="glow-cyan" style={{ top: "-80px", left: "-100px" }} />
-          <div className="glow-purple" style={{ bottom: "-100px", right: "-80px" }} />
-
-          {FLOATING_ICON_KEYS.map((key, i) => {
-            const tech = TECH_ICON_MAP[key];
-            if (!tech) return null;
-            const { Icon } = tech;
-            const positions = [
-              { top: "18%", left: "8%" },
-              { top: "68%", left: "14%" },
-              { top: "22%", right: "10%" },
-              { top: "72%", right: "16%" },
-              { top: "45%", left: "3%" },
-              { top: "40%", right: "4%" },
-            ];
-            return (
-              <div
-                key={key}
-                className="hidden md:flex float-animation absolute glass-card w-14 h-14 rounded-2xl items-center justify-center"
-                style={{ ...positions[i], animationDelay: `${i * 0.6}s` }}
-              >
-                <Icon size={26} color={tech.color} />
-              </div>
-            );
-          })}
-
-          {hero.backgroundImage && (
-            <img
-              src={resolveImage(hero.backgroundImage)}
-              alt=""
-              className="absolute inset-0 w-full h-full object-cover opacity-20"
-            />
-          )}
-
-          <div className="relative z-10 container-custom py-32 md:py-40 flex flex-col items-center text-center">
-            <span className="fs-hero-fade inline-flex items-center gap-2 text-cyan-300 text-xs md:text-sm font-semibold tracking-[0.2em] uppercase mb-6 px-4 py-1.5 rounded-full glass-card">
-              <Sparkles size={14} /> {hero.subtitle}
-            </span>
-            <h1 className="fs-hero-fade heading-xl text-white max-w-4xl">
-              {hero.title}
-            </h1>
-            <p className="fs-hero-fade text-muted max-w-2xl mt-6 text-base md:text-lg">
-              {hero.description}
-            </p>
-            <div className="fs-hero-fade flex flex-col sm:flex-row items-center gap-4 mt-10">
-              <a href={hero.primaryBtn?.link || "/contact"} className="primary-btn inline-flex items-center gap-2">
-                {hero.primaryBtn?.text || "Start Project"} <ArrowRight size={18} />
-              </a>
-              <a
-                href={hero.secondaryBtn?.link || "/case-studies"}
-                className="glass-card text-white font-semibold px-8 py-3.5 rounded-2xl hover:-translate-y-1 transition-transform duration-300"
-              >
-                {hero.secondaryBtn?.text || "View Portfolio"}
-              </a>
-            </div>
-          </div>
-        </section>
+        <Banner
+          subtitle={hero.subtitle}
+          title={hero.title}
+          description={hero.description}
+          primaryBtnText={hero.primaryBtn?.text || "Start Project"}
+          primaryBtnLink={hero.primaryBtn?.link || "/contact"}
+          secondaryBtnText={hero.secondaryBtn?.text || "View Portfolio"}
+          secondaryBtnLink={hero.secondaryBtn?.link || "/case-studies"}
+          backgroundImage={hero.backgroundImage ? resolveImage(hero.backgroundImage) : ""}
+        />
       )}
 
       {/* ================= TECHNOLOGIES ================= */}
@@ -576,6 +528,9 @@ export default function FullStack() {
         </div>
       </section>
 
+      <TestimonialSection />
+
+
       {/* ================= WHY CHOOSE US ================= */}
       <section className="container-custom py-24 md:py-28">
         <div className="fs-reveal text-center max-w-2xl mx-auto mb-16">
@@ -599,39 +554,56 @@ export default function FullStack() {
         </div>
       </section>
 
-      {/* ================= STATISTICS ================= */}
-      <section className="bg-bg-secondary py-20">
-        <div className="container-custom grid grid-cols-2 lg:grid-cols-4 gap-10">
-          <StatCounter value={stats.projects.value} suffix={stats.projects.suffix} label={stats.projects.label} />
-          <StatCounter value={stats.clients.value} suffix={stats.clients.suffix} label={stats.clients.label} />
-          <StatCounter value={stats.technologies.value} suffix={stats.technologies.suffix} label={stats.technologies.label} />
-          <StatCounter value={stats.experience.value} suffix={stats.experience.suffix} label={stats.experience.label} />
-        </div>
-      </section>
+      <Tools />
 
-      {/* ================= CTA ================= */}
-      <section className="relative hero-gradient overflow-hidden">
-        <div className="glow-cyan" style={{ top: "-60px", right: "-60px" }} />
-        <div className="glow-purple" style={{ bottom: "-80px", left: "-40px" }} />
-        {cta.backgroundImage && (
-          <img src={resolveImage(cta.backgroundImage)} alt="" className="absolute inset-0 w-full h-full object-cover opacity-20" />
-        )}
-        <div className="fs-reveal relative z-10 container-custom py-24 text-center flex flex-col items-center">
-          <h2 className="text-3xl md:text-5xl font-extrabold text-white max-w-3xl">{cta.heading}</h2>
-          <p className="text-muted max-w-xl mt-5">{cta.description}</p>
-          <div className="flex flex-col sm:flex-row items-center gap-4 mt-10">
-            <a href={cta.primaryBtn?.link || "/contact"} className="primary-btn inline-flex items-center gap-2">
-              {cta.primaryBtn?.text || "Contact Us"} <ArrowRight size={18} />
-            </a>
-            <a
-              href={cta.secondaryBtn?.link || "/contact"}
-              className="glass-card text-white font-semibold px-8 py-3.5 rounded-2xl hover:-translate-y-1 transition-transform duration-300"
-            >
-              {cta.secondaryBtn?.text || "Get Quote"}
-            </a>
+      <Brands />
+
+      {/* ================= FAQ ================= */}
+      {faqs.length > 0 && (
+        <section className="container-custom py-24 md:py-28 border-t border-slate-100">
+          <div className="fs-reveal text-center max-w-2xl mx-auto mb-16">
+            <span className="text-brand-accent font-semibold tracking-[0.2em] text-xs uppercase">FAQ</span>
+            <h2 className="text-3xl md:text-4xl font-extrabold text-brand-primary mt-3">Frequently Asked Questions</h2>
+            <p className="text-text-muted mt-4">
+              Find answers to common questions about our full stack development services and process.
+            </p>
           </div>
-        </div>
-      </section>
+
+          <div className="max-w-3xl mx-auto space-y-4">
+            {faqs.map((item, i) => (
+              <div
+                key={item.id || i}
+                className="fs-reveal rounded-2xl border border-slate-200 bg-white overflow-hidden transition-all duration-300 hover:shadow-[0_8px_24px_rgba(15,23,42,0.06)]"
+              >
+                <button
+                  type="button"
+                  onClick={() => setOpenFaq(openFaq === i ? null : i)}
+                  className="w-full flex items-center justify-between gap-4 text-left px-6 py-5 cursor-pointer bg-transparent border-0"
+                >
+                  <span className="font-semibold text-brand-primary text-base md:text-lg leading-relaxed">
+                    {item.question}
+                  </span>
+                  {openFaq === i ? (
+                    <Minus className="w-5 h-5 shrink-0 text-brand-accent" />
+                  ) : (
+                    <Plus className="w-5 h-5 shrink-0 text-brand-primary" />
+                  )}
+                </button>
+                <div
+                  className="grid transition-all duration-300 ease-in-out"
+                  style={{ gridTemplateRows: openFaq === i ? "1fr" : "0fr" }}
+                >
+                  <div className="overflow-hidden">
+                    <p className="px-6 pb-5 text-sm text-text-muted leading-relaxed border-t border-slate-100 pt-4">
+                      {item.answer}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
     </div>
   );
 }

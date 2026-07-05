@@ -50,10 +50,19 @@ const SERVICE_ICON_OPTIONS = [
   "Firebase",
   "AppStoreDeployment",
   "GooglePlayPublishing",
+  "EnterpriseApps",
+  "EcommerceApps",
+  "FoodDeliveryApps",
+  "HealthcareApps",
+  "FinTechApps",
+  "BookingApps",
+  "SocialMediaApps",
+  "EducationApps",
+  "CustomBusinessApps",
 ];
 
 const SUPPORTED_TECH_HINT =
-  "Auto-matches a logo for: React Native, Flutter, Kotlin, Java, Swift, Firebase, Node.js, Express, MongoDB, REST API, GraphQL, AWS.";
+  "Auto-matches a logo for: Kotlin, Java, Swift, SwiftUI, Flutter, React Native, Node.js, Express, Django, MongoDB, MySQL, PostgreSQL, SQLite, AWS, Google Cloud, Firebase, Appwrite, Android Studio, Xcode, GitHub, Docker, Figma, Postman.";
 
 const TABS = [
   { value: "hero", label: "Hero", icon: Sparkles },
@@ -580,9 +589,9 @@ export default function AdAndroidandIso() {
                 <TabSectionHeader icon={BarChart3} title="Statistics" description="The animated counters shown on the public page." />
                 {[
                   { key: "apps", title: "Apps Delivered Counter" },
-                  { key: "clients", title: "Happy Clients Counter" },
+                  { key: "clients", title: "Client Retention Counter" },
                   { key: "countries", title: "Countries Served Counter" },
-                  { key: "satisfaction", title: "Client Satisfaction Counter" },
+                  { key: "satisfaction", title: "Years Experience Counter" },
                 ].map(({ key, title }) => (
                   <div key={key} className="p-4 bg-slate-50 rounded-2xl border border-slate-200 space-y-3">
                     <h4 className="text-sm font-bold text-slate-700">{title}</h4>

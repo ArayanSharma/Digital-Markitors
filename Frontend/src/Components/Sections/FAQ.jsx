@@ -1,6 +1,5 @@
 
 import React, { useState } from "react";
-import "../../Styles/faq.css";
 import { Plus, Minus } from "lucide-react";
 
 const faqData = [
@@ -68,39 +67,35 @@ const FAQ = () => {
   };
 
   return (
-    <section className="faq-section">
-      <div className="faq-header">
-        <h2>FAQ</h2>
-        <div className="faq-line"></div>
+    <section className="py-[70px] px-0 bg-white">
+      <div className="[text-align:center] mb-[35px]">
+        <h2 className="text-[48px] font-bold text-[#333] mb-[10px]">FAQ</h2>
+        <div className="w-12 h-1.5 bg-[#003366] mx-auto rounded-[50px]"></div>
       </div>
 
-      <div className="faq-container">
+      <div className="max-w-[1200px] mx-auto">
         {faqData.map((faq, index) => (
           <div
             key={index}
-            className={`faq-item ${
-              activeIndex === index ? "active" : ""
-            }`}
+            className="border border-[#d8d8d8] mb-[10px] bg-white overflow-hidden"
           >
             <button
-              className="faq-question"
+              className="w-full bg-transparent border-0 flex justify-between items-center py-[18px] px-[15px] cursor-pointer transition-colors duration-300 text-left"
               onClick={() => toggleFAQ(index)}
             >
-              <span>{faq.question}</span>
+              <span className="text-[16px] font-bold text-[#333] leading-[1.7] max-w-[90%]">{faq.question}</span>
 
               {activeIndex === index ? (
-                <Minus size={28} />
+                <Minus className="w-[26px] h-[26px] shrink-0 text-[#111827]" />
               ) : (
-                <Plus size={28} />
+                <Plus className="w-[26px] h-[26px] shrink-0 text-[#111827]" />
               )}
             </button>
 
             <div
-              className={`faq-answer ${
-                activeIndex === index ? "show" : ""
-              }`}
+              className={`overflow-hidden transition-[max-height] duration-[350ms] ${activeIndex === index ? "max-h-[300px]" : "max-h-0"}`}
             >
-              <p>{faq.answer}</p>
+              <p className="text-[18px] text-[#555] leading-[1.8] pt-0 px-[22px] pb-5">{faq.answer}</p>
             </div>
           </div>
         ))}

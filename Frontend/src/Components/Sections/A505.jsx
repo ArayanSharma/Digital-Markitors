@@ -52,49 +52,18 @@ export default function ServiceUnavailable() {
 
   if (loading) {
     return (
-      <div style={styles.container}>
-        <p style={styles.message}>Loading page content…</p>
+      <div className="min-h-screen flex flex-col items-center justify-center [text-align:center] bg-white p-5">
+        <p className="text-[15px] text-[#6b6b6b] m-0">Loading page content…</p>
       </div>
     );
   }
 
   return (
-    <div style={styles.container}>
-      {error ? <p style={styles.error}>{error}</p> : null}
-      <h1 style={styles.code}>{pageData.statusCode}</h1>
-      <h2 style={styles.title}>{pageData.title}</h2>
-      <p style={styles.message}>{pageData.message}</p>
+    <div className="min-h-screen flex flex-col items-center justify-center [text-align:center] bg-white p-5">
+      {error ? <p>{error}</p> : null}
+      <h1 className="text-[96px] font-bold text-[#3f3f3f] m-0 leading-[1.1]">{pageData.statusCode}</h1>
+      <h2 className="text-[28px] font-bold text-[#3f3f3f] my-[10px] mx-0">{pageData.title}</h2>
+      <p className="text-[15px] text-[#6b6b6b] m-0">{pageData.message}</p>
     </div>
   );
 }
-
-const styles = {
-  container: {
-    minHeight: '100vh',
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'center',
-    textAlign: 'center',
-    backgroundColor: '#ffffff',
-    padding: '20px',
-  },
-  code: {
-    fontSize: '96px',
-    fontWeight: 700,
-    color: '#3f3f3f',
-    margin: 0,
-    lineHeight: 1.1,
-  },
-  title: {
-    fontSize: '28px',
-    fontWeight: 700,
-    color: '#3f3f3f',
-    margin: '10px 0',
-  },
-  message: {
-    fontSize: '15px',
-    color: '#6b6b6b',
-    margin: 0,
-  },
-};

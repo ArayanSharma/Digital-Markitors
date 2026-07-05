@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import "../../Styles/Tools.css";
 
 import locobuzz from "../../assets/locobuzz.webp";
 import ahrefs from "../../assets/ahref.webp";
@@ -57,17 +56,24 @@ function Tools() {
   }, []);
 
   return (
-    <section className="tools-section">
-      <div className="tools-header">
-        <h2>TOOLS WE WORK WITH</h2>
-        <span></span>
+    <section className="py-[60px] px-5 bg-white overflow-hidden max-[769px]:py-[50px] max-[769px]:px-[15px] max-[481px]:py-10 max-[481px]:px-[10px] font-body border-b border-[#e5e7eb]">
+      <div className="text-center mb-10">
+        <h2 className="text-[42px] max-[769px]:text-[30px] max-[481px]:text-2xl max-[481px]:leading-[1.3] font-heading font-extrabold text-[#2b2b2e] uppercase mb-4 tracking-[1px]">TOOLS WE WORK WITH</h2>
+        <span className="inline-block w-[70px] h-[5px] max-[769px]:w-[50px] max-[769px]:h-1 max-[481px]:w-10 max-[481px]:h-[3px] bg-[#e31e24] rounded-[10px]"></span>
       </div>
 
-      <div className="tools-slider">
-        <div className="tools-track">
+      <div className="w-full overflow-hidden bg-[#f5f5f5] py-[50px] relative">
+        <div className="flex items-center w-max gap-[30px] max-[769px]:gap-5 max-[481px]:gap-[15px] animate-scroll-right hover:[animation-play-state:paused]">
           {[...tools, ...tools].map((tool, index) => (
-            <div className="tool-card" key={index}>
-              <img src={tool.image} alt={tool.altText} />
+            <div
+              className="w-[240px] min-w-[240px] h-[70px] flex justify-center items-center mx-5 bg-transparent max-[993px]:min-w-[180px] max-[993px]:h-[90px] max-[769px]:w-[180px] max-[769px]:mx-5 max-[769px]:px-3 max-[769px]:py-2 max-[481px]:w-[140px] max-[481px]:min-w-[140px] max-[481px]:h-[72px] max-[481px]:mx-3 max-[481px]:p-2 max-[481px]:rounded-lg"
+              key={index}
+            >
+              <img
+                src={tool.image}
+                alt={tool.altText}
+                className="w-[200px] h-[110px] max-w-[160px] max-h-[90px] object-contain [transition:transform_0.3s_ease] hover:scale-110 max-[993px]:h-[60px] max-[769px]:h-[56px] max-[769px]:max-w-[110px] max-[481px]:h-[44px]"
+              />
             </div>
           ))}
         </div>

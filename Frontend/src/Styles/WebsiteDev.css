@@ -1,8 +1,8 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+/* Universal margin/padding/box-sizing reset removed: Tailwind's preflight
+   (@import "tailwindcss" in index.css) already applies the identical reset.
+   Keeping a duplicate here as a plain (unlayered) rule silently overrides
+   every Tailwind margin/padding utility app-wide, since unlayered CSS always
+   beats @layer'd utilities regardless of specificity - see migration notes. */
 
 .web-design {
   padding: 60px 20px;
@@ -137,12 +137,6 @@
   }
 }
 
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
 
 .cms-section {
   background: #dfe6e6;
@@ -1343,15 +1337,11 @@
 }
 
 
-*{
-  box-sizing: border-box;
-}
-
-img{
-  max-width:100%;
-  height:auto;
-  display:block;
-}
+/* Universal box-sizing and img resets removed here: Tailwind's preflight
+   already applies box-sizing:border-box globally and max-width:100%/height:auto/
+   display:block on img (and video). A duplicate unlayered rule would silently
+   override any Tailwind utility targeting these properties - see migration notes
+   in index.css. */
 
 body{
   overflow-x:hidden;

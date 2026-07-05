@@ -4,7 +4,6 @@ import React, { useEffect, useState ,useRef} from "react";
 import Banner from "../Components/Cards/Seohero";
 
 import ServiceCard from "../Components/Cards/ServiceCard";
-import "../Styles/faq.css";
 
 import impact from "../assets/impact.webp";
 
@@ -446,17 +445,17 @@ const faqData = [
 
 
 
-      <section className="about-section">
- <div className="divider"></div>
-        <div className="about-container">
+      <section className="w-full py-[100px] px-5 max-[769px]:py-[60px] bg-white">
+        <div className="w-[60px] h-[4px] bg-[#e67e22] mx-auto mb-[25px] rounded-[10px] max-[769px]:w-[50px] max-[769px]:mb-[20px]"></div>
+        <div className="max-w-[1300px] mx-auto [text-align:center] pt-[60px] px-5 pb-20 max-[769px]:p-[50px_15px]">
 
-          <h1>
+          <h1 className="font-[410] text-[50px] leading-[48px] max-[993px]:text-[38.4px] max-[993px]:leading-[49.92px] max-[993px]:mb-[50px] max-[769px]:text-[27.2px] max-[769px]:leading-[38.08px] max-[769px]:mb-[35px] text-[#1B3A6B] m-0">
            {about?.heading || "Best SEO Company in Delhi NCR"}
           </h1>
 
 
 
-          <p>
+          <p className="font-normal text-[18px] leading-[28px] max-[769px]:text-[16px] max-[769px]:leading-[28.8px] text-[rgb(61,61,61)]">
             {about?.body || `Digicore Inc is a leading SEO company in Delhi NCR, helping brands become unmissable on every online and social media platform. We offer end-to-end SEO solutions to ensure your brand doesn’t just exist but it shines where it matters most. In this era of AEO SEO and GEO SEO, success is not just limited to simple SEO practices. Now it is about being found, trusted and chosen.  Digicore Inc is a results-driven digital marketing & SEO agency known for outstanding SEO strategies and solutions. We empower ambitious B2B & B2C brands to rise above the noise, engage the right audience, and grow fearlessly in today’s digital-first world. We combine cutting-edge tools, customer focused content, advanced technical expertise backed by proven results with proven strategies to create digital experiences that don’t just attract attention, but also engage, convert and last longer than you can imagine.`}
           </p>
 
@@ -464,42 +463,42 @@ const faqData = [
 
       </section>
 
-      <section className="visibility-section">
+      <section className="w-full bg-white max-[993px]:py-[60px] max-[993px]:px-5">
 
-        <div className="visibility-container">
+        <div className="max-w-[1200px] mx-auto flex flex-col min-[993px]:flex-row justify-between items-start gap-[40px] min-[993px]:gap-[20px] min-[993px]:mx-[100px]">
 
-          <div className="visibility-content">
+          <div className="flex-1">
 
-            <h2>
+            <h2 className="w-full font-medium text-[24px] leading-[26px] max-[993px]:text-[42px] max-[993px]:leading-[54.6px] max-[769px]:text-[42px] max-[769px]:leading-[54.6px] text-[#1B3A6B] m-0 pb-[10px]">
               {visibility?.heading || "Lead Every Search with Delhi’s Most Trusted SEO Agency"}
             </h2>
 
-            <p>
+            <p className="font-normal text-[18px] leading-[28px] max-[769px]:text-[16px] max-[769px]:leading-[27.2px] text-[rgb(61,61,61)] m-0">
               {visibility?.body || `Search behaviour has changed dramatically! Consumers now search brands through multiple channels, including Google, social media platforms, marketplaces, video content and even AI-powered recommendations. To be visible everywhere is the need of this hour.  Digicore Inc – the best SEO company in Delhi, NCR, deliver tailored SEO solutions fitting to your brand’s need to ensure measurable outcomes. We build visibility that compounds over time.`}<br /> <br />
               {!visibility?.body && "We manage every facet of SEO—from technical optimisations to off-site authority building to help your brand stand out in this crowded digital world, gets noticed and becomes unmissable in record time. Our AI-focused SEO team crafts fresh, keyword-optimized web pages and blog posts aligned with user search intent, driving strong organic results and visibility across AI-driven search platforms. At  Digicore Inc, we utilize proven SEO tactics and best practices to expand your visibility, improve your content, strengthen your brand and turn clicks into lead. With effective SEO, you don’t just rank; you connect, engage and grow your business sustainably and effortlessly."}
             </p>
 
-            <div className="orange-line"></div>
+            <div className="w-[120px] h-[4px] bg-[#003366] mt-[40px]"></div>
 
           </div>
 
-          <div className="visibility-image">
-            <img src={visibility?.image ? resolveImage(visibility.image) : graphImg} alt="Graph" />
+          <div className="flex-1 flex justify-center min-[993px]:justify-end">
+            <img src={visibility?.image ? resolveImage(visibility.image) : graphImg} alt="Graph" className="w-full max-w-[700px] h-auto object-cover" />
           </div>
 
         </div>
 
       </section>
 
-      <section className="counter-section">
+      <section className="w-full py-[40px] px-[60px] bg-white">
 
-        <div className="counter-container">
+        <div className="max-w-[1200px] mx-auto grid grid-cols-2 gap-[70px] max-[993px]:gap-[20px]">
 
           {counterItems.map((item, index) => (
-            <div className="count-row" key={item.id ?? index}>
+            <div className="flex flex-row max-[769px]:flex-col items-start gap-[20px] max-[769px]:gap-[10px]" key={item.id ?? index}>
 
-              <h5>
-                <span className="counter">
+              <h5 className="font-semibold text-[70px] max-[769px]:text-[50px] max-[481px]:text-[42px] leading-[77px] text-[rgb(61,61,61)] m-0">
+                <span className="text-[rgb(61,61,61)]">
                   {counts[index] ?? item.value ?? 0}
                 </span>
                 <span style={{ color: "#2E75B6" }}>
@@ -507,7 +506,7 @@ const faqData = [
                 </span>
               </h5>
 
-              <p>
+              <p className="font-normal text-[16px] max-[993px]:text-[20px] max-[769px]:text-[16px] leading-[28px] text-[rgb(61,61,61)] m-0">
                 {item.description}
               </p>
 
@@ -519,82 +518,83 @@ const faqData = [
       </section>
 
 
-         <div className="about-container">
-<div className="divider"></div>
+         <div className="max-w-[1300px] mx-auto [text-align:center] pt-[60px] px-5 pb-20 max-[769px]:p-[50px_15px]">
+<div className="w-[60px] h-[4px] bg-[#e67e22] mx-auto mb-[25px] rounded-[10px] max-[769px]:w-[50px] max-[769px]:mb-[20px]"></div>
           <h1>
-             {video?.title ? <h1 className="video-title">{video.title}</h1> : null}
+             {video?.title ? <h1>{video.title}</h1> : null}
 
           </h1>
 
-           <section className="video-section">
-      <div className="video-container">
-           
+           <section className="flex items-center justify-center">
+      <div className="w-full max-w-[900px] rounded-[30px] max-[769px]:rounded-[20px] overflow-hidden shadow-[0_15px_40px_rgba(0,0,0,0.12)]">
+
         <iframe
           src={video?.url || "https://www.youtube.com/embed/RugY9uuIJhY"}
           title=" Digicore Inc Video"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowFullScreen
+          className="w-full h-[510px] max-[993px]:h-[420px] max-[769px]:h-[250px] border-0 block"
         ></iframe>
       </div>
     </section>
         </div>
 
 
-     <section className="performance-section">
-  <div className="performance-container">
-    <div className="performance-left">
-      <h2>{performance?.labelTrack || "TRACK"}</h2>
-      <h2>{performance?.labelAnalyze || "ANALYZE"}</h2>
-      <h2>{performance?.labelScale || "SCALE"}</h2>
-      <h2>{performance?.labelRepeat || "REPEAT"}</h2>
+     <section className="w-full p-0 m-0">
+  <div className="grid grid-cols-[40%_60%] max-[992px]:grid-cols-1 gap-[15px] w-full">
+    <div className="bg-[#003366] min-h-[290px] max-[992px]:min-h-0 flex flex-col justify-center pl-[300px] max-[992px]:px-10 max-[992px]:py-[60px] max-[992px]:pl-10 max-[769px]:px-[25px] max-[769px]:py-[50px]">
+      <h2 className="m-0 font-roboto font-semibold text-[70px] leading-[100px] max-[992px]:text-[55px] max-[992px]:leading-[62px] max-[769px]:text-[42px] max-[769px]:leading-[50px] text-white uppercase">{performance?.labelTrack || "TRACK"}</h2>
+      <h2 className="m-0 font-roboto font-semibold text-[70px] leading-[100px] max-[992px]:text-[55px] max-[992px]:leading-[62px] max-[769px]:text-[42px] max-[769px]:leading-[50px] text-white uppercase">{performance?.labelAnalyze || "ANALYZE"}</h2>
+      <h2 className="m-0 font-roboto font-semibold text-[70px] leading-[100px] max-[992px]:text-[55px] max-[992px]:leading-[62px] max-[769px]:text-[42px] max-[769px]:leading-[50px] text-white uppercase">{performance?.labelScale || "SCALE"}</h2>
+      <h2 className="m-0 font-roboto font-semibold text-[70px] leading-[100px] max-[992px]:text-[55px] max-[992px]:leading-[62px] max-[769px]:text-[42px] max-[769px]:leading-[50px] text-white uppercase">{performance?.labelRepeat || "REPEAT"}</h2>
     </div>
 
-    <div className="performance-right">
-      <img src={performance?.image ? resolveImage(performance.image) : seoRimg} alt="SEO Performance" />
+    <div className="min-h-[390px] max-[992px]:min-h-[350px] max-[769px]:min-h-[250px] overflow-hidden">
+      <img src={performance?.image ? resolveImage(performance.image) : seoRimg} alt="SEO Performance" className="w-full h-full block object-cover" />
     </div>
   </div>
 </section>
 
 
 
-            <section className="seo-agency-section">
-  <div className="seo-container">
+            <section className="bg-[#f5f5f5] py-[60px] px-5 max-[769px]:py-[50px] max-[769px]:px-[15px]">
+  <div className="max-w-[1400px] mx-auto">
 
-    <div className="seo-heading">
-      <div className="seo-line"></div>
+    <div className="[text-align:center] mb-[50px] max-[769px]:mb-[35px]">
+      <div className="w-[55px] h-1 max-[769px]:w-[45px] bg-[#003366] mx-auto mb-[18px] rounded-[10px]"></div>
 
-      <h2>{seoAgency?.heading || "WHY DO I NEED AN SEO AGENCY IN DELHI?"}</h2>
+      <h2 className="text-[44.8px] max-[993px]:text-[35.2px] max-[769px]:text-[25.6px] font-bold text-[#003366] uppercase leading-[1.2] mb-[30px] max-[769px]:mb-5">{seoAgency?.heading || "WHY DO I NEED AN SEO AGENCY IN DELHI?"}</h2>
 
-      <p>
+      <p className="max-w-[1100px] mx-auto [text-align:left] text-base max-[769px]:text-[0.95rem] leading-[1.8] max-[769px]:leading-[1.7] text-[#333]">
        {seoAgency?.description || "In today’s digital era, Delhi has become one of the most competitive markets, and it is very difficult for new businesses to visible organically, get clients and sales. Businesses across every industry compete for the same audience, locations, and keywords. As a result, it is difficult to be visible on the first page of Google, AI answers without a targeted SEO strategy. Ranking a website is not a one-day game. It requires a clear and data based SEO strategy. A trusted and professional SEO company in Delhi can helps your business rank locally, attract high-intent commercial organic traffic, and generate consistent, quality lead."}
       </p>
     </div>
 
-    <div className="seo-content">
+    <div className="grid grid-cols-2 max-[993px]:gap-[40px] max-[769px]:grid-cols-1 max-[769px]:gap-[15px] gap-[70px]">
 
-      <div className="seo-left">
+      <div>
 
-        <h3>{seoAgency?.problemTitle || "The Problem"}</h3>
+        <h3 className="text-[2rem] max-[993px]:text-[1.7rem] max-[769px]:text-[1.4rem] text-[#003366] font-semibold mb-[15px] max-[769px]:mb-3 [&:not(:first-child)]:mt-[30px] max-[769px]:[&:not(:first-child)]:mt-5">{seoAgency?.problemTitle || "The Problem"}</h3>
 
-        <p>
+        <p className="text-[17px] max-[769px]:text-[15px] leading-[1.9] max-[769px]:leading-[1.8] text-[#555] mb-[25px]">
          {seoAgency?.problemText || "Most businesses still rely only on traditional SEO, assuming it is enough to get visibility online. However, with AI-powered search engines like ChatGPT, Gemini, and Perplexity, users now receive direct answers instead of browsing multiple websites. As a result, many brands struggle to appear in AI-generated results, answers, and recommendations."}
         </p>
 
-        <h3>{seoAgency?.solutionTitle || "The Solution"}</h3>
+        <h3 className="text-[2rem] max-[993px]:text-[1.7rem] max-[769px]:text-[1.4rem] text-[#003366] font-semibold mb-[15px] max-[769px]:mb-3 [&:not(:first-child)]:mt-[30px] max-[769px]:[&:not(:first-child)]:mt-5">{seoAgency?.solutionTitle || "The Solution"}</h3>
 
-        <p>
+        <p className="text-[17px] max-[769px]:text-[15px] leading-[1.9] max-[769px]:leading-[1.8] text-[#555] mb-[25px]">
      {seoAgency?.solutionText || "SEO is the foundation that powers both AEO and GEO. When combined with structured content, clear answers, and strong authority signals, SEO helps your brand get recognized by AI engines. By aligning SEO with AEO and GEO strategies, your business becomes discoverable not just on Google—but also inside AI-generated answers, summaries, and comparisons."}
         </p>
 
       </div>
 
-      <div className="seo-right">
+      <div className="pt-[15px] max-[769px]:pt-0">
 
-        <p>
+        <p className="text-[17px] max-[769px]:text-[15px] leading-[1.9] max-[769px]:leading-[1.8] text-[#555] mb-[25px]">
       {seoAgency?.rightParagraph1 || "AI, ever-changing algorithms and shifting consumer buying behaviours are all redefining digital marketing in this era. To stay ahead, brands must adapt quickly, think strategically and remain visible across every channel. That’s when Digicore Inc., the trusted SEO company in Delhi steps in."}
         </p>
 
-        <p>
+        <p className="text-[17px] max-[769px]:text-[15px] leading-[1.9] max-[769px]:leading-[1.8] text-[#555] mb-[25px]">
        {seoAgency?.rightParagraph2 || "A forward-thinking SEO agency can help you keep up with the change and cut through the noise. Whether you’re a startup looking to establish presence or an established brand aiming to scale, we can help you with unmatchable SEO strategies so that you can grow with confidence. Every strategy we deploy is guided by insights, analytics, and performance data. We have experience across multiple industries and we utilize cutting-edge tools and technology to deliver sustainable growth. Turn every click, search and interaction into real growth with Digicore Inc.!"}
         </p>
 
@@ -606,35 +606,34 @@ const faqData = [
 </section>
 
 
- <section className="discover-services">
+ <section>
 
-  <div className="discover-container">
+  <div className="max-w-[1500px] mx-auto [text-align:center]">
 
-    <div className="divider"></div>
+    <div className="w-[60px] h-1 bg-[#e67e22] mx-auto mb-[25px] rounded-[10px] max-[769px]:w-[50px] max-[769px]:mb-5"></div>
 
-    <h2>
+    <h2 className="text-[60px] max-[993px]:text-[42px] uppercase text-[#003366] font-bold mb-[40px] leading-[1.2] max-[993px]:leading-[1.3]">
 {discover?.heading || "SEO Services in Delhi"}
     </h2>
 
-    <p>
+    <p className="text-[22px] max-[993px]:text-[19px] max-[769px]:text-[16px] leading-[1.9] max-[769px]:leading-[1.8] text-[#444] [text-align:center]">
  {discover?.description || "At Digicore Inc., we don’t just offer SEO services—we become your trusted digital growth partner. As pioneers in the digital marketing landscape, we’ve been empowering brands with our AI-powered, data-driven SEO services and helping them connect and engage the right audience."}
     </p>
 
   </div>
 
-  <div className="services-cards">
+  <div>
 
-    <div className="services-grid">
+    <div className="grid grid-cols-3 max-[993px]:grid-cols-2 max-[769px]:grid-cols-1 gap-[24px]">
 
       {displayServices.map((service, index) => (
 
        <div
   key={service.id || index}
-  className="services-card"
 >
 
           {/* KEEP YOUR EXISTING ICON */}
-          <div className="service-icon">
+          <div className="w-[55px] h-[55px] object-contain mb-[18px]">
             <img
               src={service.icon}
               alt={service.title}
@@ -645,7 +644,7 @@ const faqData = [
 
           <p>{service.description}</p>
 
-          <div className="service-arrow">
+          <div>
             →
           </div>
 

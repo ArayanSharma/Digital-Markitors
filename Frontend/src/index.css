@@ -1,25 +1,104 @@
 @import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap');
 
 @theme {
   --color-bg-primary: #ffffff;
-  --color-bg-secondary: #f1f5f9;
+  --color-bg-secondary: #f4f4f5;
+  /* Light Gray Section */
   --color-bg-card: #ffffff;
-  --color-brand-primary: #001f3f;
-  --color-brand-secondary: #0a3d66;
-  --color-brand-accent: #145a8c;
-  --color-text-primary: #001f3f;
-  --color-text-secondary: #33475b;
-  --color-text-muted: #64748b;
-  --color-success: #16a34a;
-  --color-warning: #d97706;
-  --color-danger: #dc2626;
+  --color-brand-primary: #e31e24;
+  /* Primary Red */
+  --color-brand-primary-hover: #c4151a;
+  /* Primary Red Hover */
+  --color-brand-secondary: #8b0000;
+  /* Deep Maroon */
+  --color-brand-dark: #1c1c1e;
+  /* Charcoal Black */
+  --color-text-primary: #2b2b2e;
+  /* Soft Black Text */
+  --color-text-secondary: #4b5563;
+  /* Slate Gray Text */
+  --color-text-muted: #4b5563;
+  --color-success: #22c55e;
+  /* Success Green */
+  --color-warning: #f5a623;
+  /* Gold Accent */
+  --color-danger: #e31e24;
+  --color-border-divider: #e5e7eb;
+
+  /* Font stacks */
+  --font-heading: "Poppins", "Sora", "Space Grotesk", sans-serif;
+  --font-body: "Inter", "Manrope", sans-serif;
+  --font-roboto: "Roboto", sans-serif;
+
+  /* Keyframes reused by migrated components — see animate-* utilities below */
+  --animate-fade-in-up-menu: fadeInUpMenu 0.3s ease;
+  --animate-blog-card-in: blogCardFadeInUp 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+  --animate-blog-shine: blogShineSweep 1s ease;
+  --animate-marquee: marquee 25s linear infinite;
+  --animate-scroll-right: scrollRight 25s linear infinite;
 }
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
 }
+
+@keyframes scrollRight {
+  from {
+    transform: translateX(-50%);
+  }
+
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeInUpMenu {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes blogCardFadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes blogShineSweep {
+  0% {
+    transform: translateX(-150%) skewX(-20deg);
+  }
+
+  100% {
+    transform: translateX(150%) skewX(-20deg);
+  }
+}
+
+/* Universal margin/padding/box-sizing reset removed: Tailwind's preflight,
+   imported one line above via `@import "tailwindcss"`, already applies this
+   exact reset. Keeping a duplicate here as a plain (unlayered) rule silently
+   overrides every Tailwind margin/padding utility app-wide, since unlayered
+   CSS always wins over @layer'd utilities regardless of specificity - this
+   was the root cause of a real regression found while migrating Footer.jsx. */
 
 html {
   scroll-behavior: smooth;
@@ -67,12 +146,10 @@ body {
 }
 
 .hero-gradient {
-  background: linear-gradient(
-    135deg,
-    #020617 0%,
-    #0f172a 40%,
-    #1e293b 100%
-  );
+  background: linear-gradient(135deg,
+      #020617 0%,
+      #0f172a 40%,
+      #1e293b 100%);
 }
 
 .glow-cyan {
@@ -168,6 +245,58 @@ body {
 
 .fade-up {
   animation: fadeInUp 1s ease forwards;
+}
+
+/* ── Button shine sweep — used by the shared hero Banner (Seohero.jsx) ─────
+   A diagonal light sweep on hover. Kept as hand-written CSS rather than
+   Tailwind utilities: it needs a ::before pseudo-element whose `left`
+   position transitions on hover, which isn't expressible as a utility class. */
+.btn-shine {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-shine::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -120%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.25), transparent);
+  transition: left 0.8s;
+}
+
+.btn-shine:hover::before {
+  left: 70%;
+}
+
+/* ── Hero2 dark overlay — Components/Sections/Hero2.jsx ───────────────────
+   Diagonal-fade dark scrim over the banner background. Kept as hand-written
+   CSS: a ::before pseudo-element with a gradient background isn't expressible
+   as a Tailwind utility class. */
+.hero2-overlay::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg,
+      rgba(5, 5, 10, 0.82) 0%,
+      rgba(5, 5, 10, 0.72) 25%,
+      rgba(5, 5, 10, 0.35) 60%,
+      rgba(5, 5, 10, 0.1) 100%);
+  z-index: 1;
+}
+
+/* ── Testimonials Swiper slide centering — Testimonials.jsx ───────────────
+   Swiper renders its own `.swiper-slide` element internally; there's no way
+   to attach a Tailwind className to it directly. Scoped under .testimonialSwiper
+   so it wins over swiper/css's own .swiper-slide rule regardless of stylesheet
+   import order (equal specificity otherwise means "last imported" wins). */
+.testimonialSwiper .swiper-slide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 50px 0;
 }
 
 /* ── Scrollbar — scoped to admin shell only ───────────────────────────────

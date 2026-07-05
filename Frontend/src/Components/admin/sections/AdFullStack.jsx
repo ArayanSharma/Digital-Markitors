@@ -12,6 +12,7 @@ import {
   Search as SearchIcon,
   ChevronLeft,
   ChevronRight,
+  HelpCircle,
 } from "lucide-react";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "../../ui/tabs";
 import { loadPageContent, savePageContent } from "../../../utils/pageApi";
@@ -58,7 +59,7 @@ const TABS = [
   { value: "features", label: "Features", icon: CheckSquare },
   { value: "projects", label: "Projects", icon: FolderKanban },
   { value: "statistics", label: "Statistics", icon: BarChart3 },
-  { value: "cta", label: "CTA", icon: Megaphone },
+  { value: "faq", label: "FAQ", icon: HelpCircle },
   { value: "seo", label: "SEO", icon: SearchIcon },
 ];
 
@@ -164,13 +165,7 @@ export default function AdFullStack() {
     experience: { value: "", label: "" },
   });
 
-  const [cta, setCta] = useState({
-    heading: "",
-    description: "",
-    primaryBtn: { text: "", link: "" },
-    secondaryBtn: { text: "", link: "" },
-    backgroundImage: "",
-  });
+  const [faq, setFaq] = useState([]);
 
   const [seo, setSeo] = useState({
     metaTitle: "",
@@ -251,6 +246,16 @@ export default function AdFullStack() {
   );
   const projectPagination = usePagination(filteredProjects, 4);
 
+  /* ---------- FAQ ---------- */
+  const addFaqItem = () => setFaq([...faq, { id: uid(), question: "", answer: "", visible: true }]);
+  const updateFaqItem = (id, field, value) =>
+    setFaq(faq.map((item) => (item.id === id ? { ...item, [field]: value } : item)));
+  const removeFaqItem = (id) => {
+    if (!window.confirm("Remove this FAQ item?")) return;
+    setFaq(faq.filter((item) => item.id !== id));
+    showToast("FAQ item removed");
+  };
+
   /* ---------- Load / Save ---------- */
   const load = useCallback(async () => {
     setLoading(true);
@@ -268,7 +273,7 @@ export default function AdFullStack() {
       if (data.features) setFeatures(data.features);
       if (data.projects) setProjects(data.projects);
       if (data.statistics) setStatistics((prev) => ({ ...prev, ...data.statistics }));
-      if (data.cta) setCta((prev) => ({ ...prev, ...data.cta }));
+      if (data.faq) setFaq(data.faq);
       if (data.seo) setSeo((prev) => ({ ...prev, ...data.seo }));
     }
     setLoading(false);
@@ -282,7 +287,7 @@ export default function AdFullStack() {
 
   const handleSave = async (e) => {
     e?.preventDefault();
-    const payload = { hero, technologies, process, features, projects, statistics, cta, seo };
+    const payload = { hero, technologies, process, features, projects, statistics, faq, seo };
     setStatus("saving");
     try {
       await savePageContent(PAGE_SLUG, payload);
@@ -585,18 +590,42 @@ export default function AdFullStack() {
               </TabPanel>
             </TabsContent>
 
-            {/* ================= CTA ================= */}
-            <TabsContent value="cta">
+            {/* ================= FAQ ================= */}
+            <TabsContent value="faq">
               <TabPanel>
-                <Field label="Heading" full>
-                  <TextInput value={cta.heading} onChange={(e) => setCta({ ...cta, heading: e.target.value })} />
-                </Field>
-                <Field label="Description" full>
-                  <TextArea rows={3} value={cta.description} onChange={(e) => setCta({ ...cta, description: e.target.value })} />
-                </Field>
-                <ButtonFields label="Primary Button" value={cta.primaryBtn} onChange={(v) => setCta({ ...cta, primaryBtn: v })} />
-                <ButtonFields label="Secondary Button" value={cta.secondaryBtn} onChange={(v) => setCta({ ...cta, secondaryBtn: v })} />
-                <ImageInput label="Background Image" value={cta.backgroundImage} onChange={(e) => setCta({ ...cta, backgroundImage: e.target.value })} />
+                <div className="md:col-span-2 flex items-center gap-4 pb-5 mb-1 border-b border-slate-100">
+                  <div className="w-12 h-12 rounded-xl bg-blue-600 text-white flex items-center justify-center shrink-0 shadow-md shadow-blue-500/20">
+                    <HelpCircle size={22} />
+                  </div>
+                  <div>
+                    <h3 className="font-bold text-slate-900 text-base tracking-tight">FAQ</h3>
+                    <p className="text-xs font-semibold text-slate-500 mt-1">Manage the frequently asked questions shown on the public page.</p>
+                  </div>
+                </div>
+                <ListHeader title="Questions" count={faq.length} onAdd={addFaqItem} addLabel="Add Question" />
+                {faq.length === 0 ? (
+                  <div className="md:col-span-2">
+                    <EmptyState message='No questions yet — click "Add Question" to create the first one.' />
+                  </div>
+                ) : (
+                  <div className="md:col-span-2 space-y-3">
+                    {faq.map((item) => (
+                      <div key={item.id} className="p-4 bg-slate-50 rounded-2xl border border-slate-200 space-y-3">
+                        <div className="flex items-center justify-between gap-3">
+                          <span className="text-xs font-semibold text-slate-500">FAQ Item</span>
+                          <RemoveBtn onClick={() => removeFaqItem(item.id)} />
+                        </div>
+                        <Field label="Question">
+                          <TextInput value={item.question} onChange={(e) => updateFaqItem(item.id, "question", e.target.value)} />
+                        </Field>
+                        <Field label="Answer">
+                          <TextArea rows={3} value={item.answer} onChange={(e) => updateFaqItem(item.id, "answer", e.target.value)} />
+                        </Field>
+                        <Switch label="Visible" checked={item.visible !== false} onChange={(e) => updateFaqItem(item.id, "visible", e.target.checked)} />
+                      </div>
+                    ))}
+                  </div>
+                )}
               </TabPanel>
             </TabsContent>
 

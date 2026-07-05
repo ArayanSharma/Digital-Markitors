@@ -1,9 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+/* Universal margin/padding/box-sizing reset removed: Tailwind's preflight
+   (@import "tailwindcss" in index.css) already applies the identical reset.
+   Keeping a duplicate here as a plain (unlayered) rule silently overrides
+   every Tailwind margin/padding utility app-wide, since unlayered CSS always
+   beats @layer'd utilities regardless of specificity - see migration notes. */
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-    font-family: "Roboto", sans-serif;
+  font-family: "Roboto", sans-serif;
 }
 
 body {

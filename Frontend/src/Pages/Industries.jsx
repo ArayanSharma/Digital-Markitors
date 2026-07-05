@@ -55,26 +55,28 @@ const Industries = () => {
   }
 
   return (
-    <section className="all-ind-page">
-      <div className="all-ind-container">
+    <section className="bg-[#f4f4f5] py-[100px] px-5 font-body min-h-[70vh]">
+      <div className="max-w-[1250px] mx-auto">
 
         {/* Page header */}
-        <div className="all-ind-header">
-          <h1>Industries We Work With</h1>
-          <div className="all-ind-header-line" />
-          <p>
+        <div className="text-center mb-12">
+          <h1 className="text-[44px] max-[769px]:text-[32px] font-heading font-extrabold text-[#2b2b2e] mb-4 uppercase">
+            Industries We Work With
+          </h1>
+          <div className="w-[60px] h-[5px] bg-[#e31e24] mx-auto rounded-[30px] mb-6" />
+          <p className="text-[17px] leading-[1.7] text-[#4b5563] max-w-[600px] mx-auto">
             We tailor our digital marketing strategies to the unique needs
             of every industry we serve.
           </p>
         </div>
 
-        {error && <div className="all-ind-error">{error}</div>}
+        {error && <div className="bg-red-50 text-red-500 border border-red-200 rounded-xl p-4 text-center max-w-[600px] mx-auto mb-8">{error}</div>}
 
         {/* Search */}
-        <div className="all-ind-search-wrap">
+        <div className="flex justify-center mb-12">
           <input
             type="text"
-            className="all-ind-search"
+            className="w-full max-w-[500px] bg-white border border-[#e5e7eb] rounded-xl px-5 py-3.5 focus:outline-none focus:border-[#e31e24]/40 focus:ring-1 focus:ring-[#e31e24]/40 shadow-sm transition-all text-[#1c1c1e] text-[15px]"
             placeholder="Search industries..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
@@ -83,7 +85,7 @@ const Industries = () => {
 
         {/* Industry grid */}
         {filteredIndustries.length === 0 ? (
-          <div className="all-ind-empty">
+          <div className="text-center py-12 text-[#6b7280]">
             <p>
               {searchTerm
                 ? "No industries match your search."
@@ -91,7 +93,7 @@ const Industries = () => {
             </p>
           </div>
         ) : (
-          <div className="all-ind-grid">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 justify-items-center">
             {filteredIndustries.map((industry) => (
               <IndustryCard key={industry._id} industry={industry} />
             ))}

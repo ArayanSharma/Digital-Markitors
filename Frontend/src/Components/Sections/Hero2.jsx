@@ -45,43 +45,57 @@ const Hero2 = ({ hero = {} }) => {
 
   }, []);
 
+  const highlightTitle = (text) => {
+    if (!text) return "";
+    const keywords = ["Digicore", "Results", "Visibility", "Grow", "Marketing", "SEO", "Agency", "Traffic", "Conversions", "Search", "Optimization", "B2B", "Digital", "Growth"];
+    const words = text.split(" ");
+    return words.map((word, idx) => {
+      const cleanWord = word.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, "");
+      if (keywords.includes(cleanWord)) {
+        return <span key={idx} className="text-[#e31e24]">{word} </span>;
+      }
+      return word + " ";
+    });
+  };
+
   return (
     <>
-<section className="banner-section">
-  <div className="banner-container">
+      <section className="relative overflow-hidden flex items-center h-[550px] bg-[#f4f4f5] bg-no-repeat [background-position:right_center] bg-contain max-[769px]:h-[450px] max-[769px]:py-[70px] max-[769px]:px-5 max-[769px]:bg-center max-[769px]:bg-cover border-b border-[#e5e7eb] font-body">
+        {/* Energy blob */}
+        <div className="absolute top-1/2 left-2/3 -translate-y-1/2 w-[400px] h-[400px] bg-[#e31e24]/8 rounded-full blur-[110px] pointer-events-none z-0"></div>
 
-    <div className="banner-content">
-      <p className="banner-subtitle">
-        {subtitle}
-      </p>
+        <div className="w-full max-w-[1400px] h-full mx-auto px-[50px] flex items-center justify-between relative z-[2] max-[993px]:flex-col max-[993px]:[text-align:center] max-[993px]:gap-[50px] max-[993px]:px-[30px] max-[769px]:gap-[25px] max-[769px]:px-0 max-[769px]:h-auto">
 
-      <h1 className="banner-title">
-        {title}
-      </h1>
+          <div className="flex-[0_0_50%] max-w-[50%] max-[993px]:flex-[0_0_100%] max-[993px]:max-w-full">
+            <p className="block text-xs md:text-sm text-[#e31e24] font-bold tracking-[2px] uppercase mb-[18px] font-heading">
+              {subtitle}
+            </p>
 
-      <p className="banner-description">
-        {description}
-      </p>
+            <h1 className="text-[#2b2b2e] text-[28px] leading-[1.2] min-[576px]:text-[36px] min-[992px]:text-[42px] min-[992px]:leading-[1.1] min-[1200px]:text-[52px] font-heading font-extrabold mb-6 tracking-tight max-w-[650px]">
+              {highlightTitle(title)}
+            </h1>
 
-      <div className="banner-buttons">
-        <button className="banner-btn banner-primary">
-          {primaryBtn.text}
-        </button>
+            <p className="max-w-[620px] mb-[35px] font-normal text-base md:text-lg leading-[1.8] text-[#4b5563] max-[993px]:text-base">
+              {description}
+            </p>
 
-        <button className="banner-btn banner-secondary">
-          {secondaryBtn.text}
-        </button>
-      </div>
-    </div>
+            <div className="flex gap-[18px] max-[769px]:flex-col max-[769px]:justify-center max-[769px]:flex-wrap">
+              <button className="border-0 cursor-pointer no-underline text-[15px] font-bold py-[15px] px-[34px] rounded-lg transition-all duration-300 hover:scale-[1.03] max-[769px]:w-full bg-[#e31e24] text-white shadow-[0_6px_20px_rgba(227,30,36,0.35)] hover:bg-[#c4151a]">
+                {primaryBtn.text}
+              </button>
 
-    <div className="banner-image">
-      <img src={resolveImage(image)} alt="Digital Marketing" />
-    </div>
+              <button className="cursor-pointer no-underline text-[15px] font-bold py-[15px] px-[34px] rounded-lg transition-all duration-300 hover:scale-[1.03] max-[769px]:w-full bg-transparent text-[#1c1c1e] border border-[#1c1c1e] hover:bg-[#1c1c1e] hover:text-white">
+                {secondaryBtn.text}
+              </button>
+            </div>
+          </div>
 
-  </div>
-</section>
+          <div className="block flex-[0_0_50%] max-w-[50%] max-[993px]:flex-[0_0_100%] max-[993px]:max-w-full max-[769px]:mt-5">
+            <img src={resolveImage(image)} alt="Digital Marketing" className="w-full max-w-[900px] h-auto object-contain [filter:drop-shadow(0_15px_35px_rgba(0,0,0,0.08))] max-[769px]:hidden rounded-2xl" />
+          </div>
 
-      
+        </div>
+      </section>
     </>
   );
 };

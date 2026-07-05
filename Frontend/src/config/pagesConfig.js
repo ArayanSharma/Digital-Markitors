@@ -39,6 +39,7 @@ const pagesConfig = [
   { pageId: "Website-Maintenance-Services", label: "Website Maintenance Services", path: "/Website-Maintenance-Services" },
   { pageId: "Reseller", label: "Reseller", path: "/Reseller" },
   { pageId: "full-stack-development", label: "Full Stack Development", path: "/full-stack-development" },
+  { pageId: "android-ios-development", label: "Android & iOS Development", path: "/android-ios-development" },
 ];
 
 export default pagesConfig;

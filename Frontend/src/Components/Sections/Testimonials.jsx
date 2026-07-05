@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import "../../Styles/TestimonialsSec.css";
 
 import user1 from "../../assets/pawandeep-singh.webp";
 import user2 from "../../assets/milan-deep.webp";
@@ -83,12 +82,12 @@ export default function TestimonialSection() {
     <>
 
 
-      <div className="testimonial-heading" style={{ backgroundColor: "#fff" }}>
-        <h2>TESTIMONIALS</h2>
-        <span></span>
+      <div className="bg-white [text-align:center] pt-10 pb-[50px] font-body">
+        <h2 className="text-[42px] max-[769px]:text-[32px] font-heading font-extrabold text-[#2b2b2e] mb-[15px] uppercase">TESTIMONIALS</h2>
+        <span className="block w-[60px] h-[5px] bg-[#e31e24] mx-auto rounded-[30px]"></span>
       </div>
 
-      <section className="testimonial-section">
+      <section className="relative min-h-[650px] max-[769px]:min-h-[auto] flex justify-center items-center py-20 px-0 max-[769px]:px-5 max-[769px]:pb-[100px] bg-[#f4f4f5] font-body">
 
         <Swiper
           modules={[Autoplay, Navigation]}
@@ -103,30 +102,33 @@ export default function TestimonialSection() {
             nextEl: ".right",
             prevEl: ".left",
           }}
-          className="testimonialSwiper"
+          className="testimonialSwiper w-full"
         >
 
           {testimonials.map((item, index) => (
 
             <SwiperSlide key={index}>
 
-              <div className="testimonial-card">
+              <div className="relative w-[650px] max-w-[90%] mx-auto min-h-[420px] h-auto bg-white rounded-[40px] py-[90px] px-[70px] pb-20 [text-align:center] border-t-[5px] border-t-[#e31e24] shadow-[0_15px_40px_rgba(227,30,36,0.06)] z-[2] max-[769px]:w-full max-[769px]:max-w-full max-[769px]:min-h-[auto] max-[769px]:py-[70px] max-[769px]:px-[25px] max-[769px]:pb-[60px] max-[769px]:rounded-[30px] hover:-translate-y-2 hover:shadow-[0_25px_50px_rgba(227,30,36,0.12)] hover:transition-all hover:duration-300">
+                
+                {/* Big quotation mark */}
+                <div className="absolute top-8 left-10 text-[#e31e24] opacity-15 text-[120px] font-serif leading-none select-none">“</div>
 
-                <div className="profile-img">
-                  <img src={item.image} alt={item.name} />
+                <div className="absolute top-[-40px] max-[769px]:top-[-35px] left-1/2 -translate-x-1/2 w-[85px] h-[85px] max-[769px]:w-[70px] max-[769px]:h-[70px] rounded-full overflow-hidden border-[4px] border-[#e31e24] bg-white shadow-md">
+                  <img src={item.image} alt={item.name} className="w-full h-full object-cover" />
                 </div>
 
-                <h3>{item.name}</h3>
+                <h3 className="text-[#1c1c1e] text-[26px] max-[769px]:text-[20px] font-heading font-extrabold uppercase mb-2 mt-4">{item.name}</h3>
 
-                <h5>{item.role}</h5>
+                <h5 className="text-[#6b7280] text-[14px] max-[769px]:text-xs font-medium mb-[30px] max-[769px]:mb-5 tracking-wide">{item.role}</h5>
 
-                <p>{item.review}</p>
+                <p className="text-[#4b5563] text-[15px] leading-[1.7] max-[769px]:leading-[1.6] max-w-full mx-auto whitespace-normal [overflow-wrap:anywhere] break-words">{item.review}</p>
 
-                <div className="stars">
+                <div className="mt-[30px] text-[#f5a623] text-2xl max-[769px]:text-xl tracking-[4px]">
                   {"★".repeat(item.rating || 5)}{"☆".repeat(5 - (item.rating || 5))}
                 </div>
 
-                <div className="card-pointer"></div>
+                <div className="absolute bottom-[-40px] max-[769px]:bottom-[-28px] left-1/2 -translate-x-1/2 w-0 h-0 border-l-[35px] border-l-transparent max-[769px]:border-l-[25px] border-r-[35px] border-r-transparent max-[769px]:border-r-[25px] border-t-[45px] border-t-white max-[769px]:border-t-[30px]"></div>
 
               </div>
 
@@ -136,11 +138,11 @@ export default function TestimonialSection() {
 
         </Swiper>
 
-        <button className="nav-btn left">
+        <button className="nav-btn left absolute top-1/2 -translate-y-1/2 transition-all duration-300 w-16 h-16 max-[769px]:w-[46px] max-[769px]:h-[46px] rounded-full text-[#e31e24] border-2 border-[#e31e24]/60 shadow-[0_8px_20px_rgba(227,30,36,0.06)] bg-white text-2xl max-[769px]:text-lg cursor-pointer z-10 hover:bg-[#e31e24] hover:text-white left-[10%] min-[769px]:max-[901px]:left-[2%] max-[769px]:top-auto max-[769px]:bottom-[15px] max-[769px]:translate-y-0 max-[769px]:left-1/2 max-[769px]:ml-[-58px]">
           ←
         </button>
 
-        <button className="nav-btn right">
+        <button className="nav-btn right absolute top-1/2 -translate-y-1/2 transition-all duration-300 w-16 h-16 max-[769px]:w-[46px] max-[769px]:h-[46px] rounded-full text-[#e31e24] border-2 border-[#e31e24]/60 shadow-[0_8px_20px_rgba(227,30,36,0.06)] bg-white text-2xl max-[769px]:text-lg cursor-pointer z-10 hover:bg-[#e31e24] hover:text-white right-[10%] min-[769px]:max-[901px]:right-[2%] max-[769px]:top-auto max-[769px]:bottom-[15px] max-[769px]:translate-y-0 max-[769px]:left-1/2 max-[769px]:right-auto max-[769px]:ml-3">
           →
         </button>
 
