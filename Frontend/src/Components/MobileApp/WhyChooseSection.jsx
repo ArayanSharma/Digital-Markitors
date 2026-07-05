@@ -28,14 +28,14 @@ export default function WhyChooseSection() {
         {REASONS.map((r, i) => (
           <div
             key={i}
-            className="group relative rounded-2xl p-6 bg-white border border-slate-200 hover:border-blue-300 hover:-translate-y-1.5 hover:shadow-[0_18px_40px_rgba(59,130,246,0.15)] transition-all duration-300"
+            className="group relative rounded-2xl p-6 bg-white border border-slate-200 hover:border-[#e31e24]/30 hover:-translate-y-1.5 hover:shadow-[0_18px_40px_rgba(227,30,36,0.12)] transition-all duration-300"
           >
-            <div className="w-11 h-11 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center mb-4 transition-transform duration-500 group-hover:rotate-[360deg] group-hover:bg-blue-600 group-hover:text-white">
+            <div className="w-11 h-11 rounded-xl bg-[#e31e24]/8 text-[#e31e24] flex items-center justify-center mb-4 transition-transform duration-500 group-hover:rotate-[360deg] group-hover:bg-[#e31e24] group-hover:text-white">
               <r.Icon size={20} />
             </div>
             <h3 className="font-bold text-slate-900 text-sm">{r.title}</h3>
             <p className="text-xs text-slate-500 mt-2 leading-relaxed">{r.desc}</p>
-            <span className="block h-0.5 w-0 group-hover:w-10 bg-blue-500 rounded-full mt-4 transition-all duration-500" />
+            <span className="block h-0.5 w-0 group-hover:w-10 bg-[#e31e24] rounded-full mt-4 transition-all duration-500" />
           </div>
         ))}
       </div>

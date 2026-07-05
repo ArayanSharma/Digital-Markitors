@@ -92,7 +92,7 @@
 
 .career-left h2 {
   font-size: 38px;
-  color: #1f2f46;
+  color: #2B2B2E;
   margin-bottom: 25px;
   position: relative;
 }
@@ -101,20 +101,20 @@
   content: "";
   width: 80px;
   height: 3px;
-  background: #29b7c8;
+  background: #E31E24;
   display: block;
   margin-top: 10px;
 }
 
 .career-left p {
-  color: #444;
+  color: #4B5563;
   font-size: 16px;
   line-height: 1.9;
   margin-bottom: 20px;
 }
 
 .career-left a {
-  color: #29b7c8;
+  color: #E31E24;
   text-decoration: none;
 }
 
@@ -150,13 +150,13 @@
   padding: 32px 28px;
   border-radius: 8px;
   z-index: 2;
-  box-shadow: 0 12px 30px rgba(31, 47, 70, 0.08);
+  box-shadow: 0 12px 30px rgba(28, 28, 30, 0.08);
 }
 
 .formbg h3 {
   text-align: center;
   margin-bottom: 25px;
-  color: #1f2f46;
+  color: #2B2B2E;
   font-size: 32px;
 }
 
@@ -170,11 +170,11 @@
 .formbg input[type="email"] {
   width: 100%;
   border: none;
-  border-bottom: 2px solid #e6eef0;
+  border-bottom: 2px solid #E5E7EB;
   padding: 12px 0;
   outline: none;
   background: transparent;
-  color: #1f2f46;
+  color: #2B2B2E;
   transition: none;
 }
 
@@ -186,7 +186,7 @@
 }
 
 .formbg input:focus {
-  border-bottom-color: #28a7bb;
+  border-bottom-color: #E31E24;
   box-shadow: none;
   outline: none;
 }
@@ -199,7 +199,7 @@
 .formbg button {
   width: 100%;
   border: none;
-  background: #28a7bb;
+  background: #E31E24;
   color: #fff;
   padding: 14px;
   border-radius: 30px;
@@ -209,7 +209,7 @@
 }
 
 .formbg button:hover {
-  background: #1c91a4;
+  background: #C4151A;
 }
 
 

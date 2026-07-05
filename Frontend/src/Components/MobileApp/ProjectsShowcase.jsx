@@ -16,19 +16,19 @@ export default function ProjectsShowcase({ projects }) {
           {projects.map((p) => (
             <div
               key={p.id || p.name}
-              className="group relative rounded-3xl bg-white border border-slate-200 p-6 md:p-7 flex gap-6 items-center overflow-hidden hover:-translate-y-1.5 hover:shadow-[0_24px_56px_rgba(59,130,246,0.16)] hover:border-blue-300 transition-all duration-400"
+              className="group relative rounded-3xl bg-white border border-slate-200 p-6 md:p-7 flex gap-6 items-center overflow-hidden hover:-translate-y-1.5 hover:shadow-[0_24px_56px_rgba(227,30,36,0.12)] hover:border-[#e31e24]/30 transition-all duration-400"
             >
               {p.featured && (
-                <span className="absolute top-5 right-5 text-[10px] font-bold uppercase tracking-wide text-white bg-blue-600 px-2.5 py-1 rounded-full z-10">
+                <span className="absolute top-5 right-5 text-[10px] font-bold uppercase tracking-wide text-white bg-[#e31e24] px-2.5 py-1 rounded-full z-10">
                   Featured
                 </span>
               )}
               <PhoneMockup os="ios" image={p.coverImage} className="w-[110px] h-[220px] shrink-0 group-hover:-translate-y-1.5 transition-transform duration-500">
-                {!p.coverImage && <AppScreenSkeleton tone={p.featured ? "blue" : "slate"} />}
+                {!p.coverImage && <AppScreenSkeleton tone={p.featured ? "red" : "slate"} />}
               </PhoneMockup>
 
               <div className="min-w-0">
-                <span className="text-xs font-bold text-blue-600 uppercase tracking-wide">{p.category}</span>
+                <span className="text-xs font-bold text-[#e31e24] uppercase tracking-wide">{p.category}</span>
                 <h3 className="font-bold text-slate-900 text-lg mt-1">{p.name}</h3>
                 <p className="text-sm text-slate-500 mt-2 leading-relaxed line-clamp-3">{p.description}</p>
 
@@ -45,14 +45,14 @@ export default function ProjectsShowcase({ projects }) {
                 <div className="flex items-center gap-3 mt-5">
                   <a
                     href={p.playStore || p.appStore || "#"}
-                    className="inline-flex items-center gap-1.5 text-xs font-semibold text-white bg-slate-900 hover:bg-blue-600 rounded-xl px-4 py-2.5 transition-colors duration-200"
+                    className="inline-flex items-center gap-1.5 text-xs font-semibold text-white bg-slate-900 hover:bg-[#e31e24] rounded-xl px-4 py-2.5 transition-colors duration-200"
                   >
                     <ExternalLink size={13} /> View Case Study
                   </a>
                   {p.github && (
                     <a
                       href={p.github}
-                      className="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-700 border border-slate-200 hover:border-blue-400 rounded-xl px-4 py-2.5 transition-colors duration-200"
+                      className="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-700 border border-slate-200 hover:border-[#e31e24] rounded-xl px-4 py-2.5 transition-colors duration-200"
                     >
                       <FaGithub size={13} /> Code
                     </a>

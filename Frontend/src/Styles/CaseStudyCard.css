@@ -6,7 +6,7 @@
   background: #ffffff;
   border-radius: 14px;
   overflow: hidden;
-  border: 1px solid #eee;
+  border: 1px solid #E5E7EB;
   box-shadow: 0 4px 18px rgba(0, 0, 0, 0.06);
   transition: transform 0.35s ease, box-shadow 0.35s ease;
   cursor: pointer;
@@ -18,7 +18,7 @@
 
 .cs-card:hover {
   transform: translateY(-6px);
-  box-shadow: 0 14px 36px rgba(0, 51, 102, 0.14);
+  box-shadow: 0 14px 36px rgba(227, 30, 36, 0.14);
 }
 
 .cs-card-image {
@@ -45,7 +45,7 @@
   position: absolute;
   top: 14px;
   left: 14px;
-  background: linear-gradient(135deg, #003366, #1a5c99);
+  background: linear-gradient(135deg, #E31E24, #8B0000);
   color: #ffffff;
   font-size: 11px;
   font-weight: 700;
@@ -67,7 +67,7 @@
 .cs-card-client {
   font-size: 12px;
   font-weight: 600;
-  color: #ea8215;
+  color: #E31E24;
   text-transform: uppercase;
   letter-spacing: 0.5px;
   margin-bottom: 8px;
@@ -76,14 +76,14 @@
 .cs-card-body h3 {
   font-size: 19px;
   font-weight: 700;
-  color: #003366;
+  color: #2B2B2E;
   line-height: 1.35;
   margin-bottom: 10px;
 }
 
 .cs-card-body p {
   font-size: 14.5px;
-  color: #666;
+  color: #4B5563;
   line-height: 1.6;
   margin-bottom: 18px;
   display: -webkit-box;
@@ -94,7 +94,7 @@
 
 .cs-card-btn {
   align-self: flex-start;
-  background: #003366;
+  background: #E31E24;
   color: #ffffff;
   border: none;
   padding: 11px 24px;
@@ -108,7 +108,7 @@
 }
 
 .cs-card-btn:hover {
-  background: #ea8215;
+  background: #C4151A;
 }
 
 @media (max-width: 480px) {

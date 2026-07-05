@@ -3,7 +3,7 @@
 ========================= */
 
 .testimonial-heading {
-  background: #F8FAFC;
+  background: #F4F4F5;
   text-align: center;
   padding: 40px 0 50px;
 }
@@ -11,7 +11,7 @@
 .testimonial-heading h2 {
   font-size: 42px;
   font-weight: 600;
-  color: #1B3A6B;
+  color: #E31E24;
   margin-bottom: 15px;
   text-transform: uppercase;
 }
@@ -20,7 +20,7 @@
   display: block;
   width: 60px;
   height: 5px;
-  background: #2563EB;
+  background: #E31E24;
   margin: auto;
   border-radius: 30px;
 }
@@ -40,7 +40,7 @@
   padding: 80px 0;
 
   background:
-    #F8FAFC;
+    #F4F4F5;
 }
 
 /* =========================
@@ -64,9 +64,9 @@
   padding: 90px 70px 80px;
 
   text-align: center;
-  border-top: 5px solid #2563EB;
+  border-top: 5px solid #E31E24;
 
-  box-shadow:0 15px 40px rgba(37, 99, 235, 0.12);
+  box-shadow:0 15px 40px rgba(227, 30, 36, 0.12);
 
   z-index: 2;
 }
@@ -89,7 +89,7 @@
   border-radius: 50%;
   overflow: hidden;
 
-  background: EEF4FF;
+  background: #F4F4F5;
   border: 5px solid #FFFFFF;
 }
 
@@ -104,7 +104,7 @@
 ========================= */
 
 .testimonial-card h3 {
-  color: #1B3A6B;
+  color: #E31E24;
   font-size: 28px;
   font-weight: 700;
   text-transform: uppercase;
@@ -117,7 +117,7 @@
 ========================= */
 
 .testimonial-card h5 {
-  color: #6B7280;
+  color: #4B5563;
   font-size: 15px;
   font-weight: 500;
 
@@ -150,7 +150,7 @@
 .stars {
   margin-top: 30px;
 
-  color: #F59E0B;
+  color: #F5A623;
 
   font-size: 24px;
   letter-spacing: 4px;
@@ -192,12 +192,12 @@
  width: 64px;
   height: 64px;
 
-   color: #2563EB;
+   color: #E31E24;
 
 border-radius: 50%;
-border: 2px solid #2563EB;
+border: 2px solid #E31E24;
 
- box-shadow: 0 8px 20px rgba(37, 99, 235, 0.12);
+ box-shadow: 0 8px 20px rgba(227, 30, 36, 0.12);
 
  background: #FFFFFF;
   font-size: 24px;
@@ -218,7 +218,7 @@ border: 2px solid #2563EB;
 
 .nav-btn:hover,
 .testimonial-btn:hover {
-   background: #2563EB;
+   background: #E31E24;
   color: #FFFFFF;
 }
 
@@ -333,7 +333,7 @@ border: 2px solid #2563EB;
 .testimonial-card:hover {
   transform: translateY(-8px);
 
-  box-shadow: 0 25px 50px rgba(37, 99, 235, 0.18);
+  box-shadow: 0 25px 50px rgba(227, 30, 36, 0.18);
 
   transition: all 0.35s ease;
 }

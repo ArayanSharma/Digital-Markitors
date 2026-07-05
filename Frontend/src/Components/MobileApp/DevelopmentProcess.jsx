@@ -64,18 +64,18 @@ export default function DevelopmentProcess({ steps }) {
             preserveAspectRatio="none"
             fill="none"
           >
-            <path d={d} stroke="#dbeafe" strokeWidth="1.4" />
-            <path ref={pathRef} d={d} stroke="#3B82F6" strokeWidth="1.4" strokeLinecap="round" />
+            <path d={d} stroke="rgba(227,30,36,0.18)" strokeWidth="1.4" />
+            <path ref={pathRef} d={d} stroke="#e31e24" strokeWidth="1.4" strokeLinecap="round" />
           </svg>
 
-          <div className="absolute left-4 md:hidden top-0 bottom-0 w-0.5 bg-gradient-to-b from-blue-400 via-blue-500 to-sky-400" />
+          <div className="absolute left-4 md:hidden top-0 bottom-0 w-0.5 bg-gradient-to-b from-red-400 via-[#e31e24] to-red-400" />
 
           {steps.map((step, i) => {
             const isLeft = i % 2 === 0;
             return (
               <div key={i} className="relative grid grid-cols-2 gap-x-14 items-center pl-12 md:pl-0" style={{ height: ROW_HEIGHT }}>
                 <div className="absolute left-4 md:left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10 mp-timeline-dot">
-                  <div className="w-11 h-11 rounded-full bg-white border-2 border-blue-500 text-blue-600 flex items-center justify-center font-extrabold text-sm shadow-[0_6px_18px_rgba(59,130,246,0.25)]">
+                  <div className="w-11 h-11 rounded-full bg-white border-2 border-[#e31e24] text-[#e31e24] flex items-center justify-center font-extrabold text-sm shadow-[0_6px_18px_rgba(227,30,36,0.2)]">
                     {i + 1}
                   </div>
                 </div>

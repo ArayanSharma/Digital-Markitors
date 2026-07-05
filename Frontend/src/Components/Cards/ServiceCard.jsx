@@ -2,24 +2,20 @@ import React from "react";
 
 const ServiceCard = ({ icon, title, description }) => {
   return (
-    <div className="group bg-white py-[35px] px-7 max-[769px]:py-7 max-[769px]:px-[22px] rounded-3xl max-[501px]:rounded-[18px] shadow-[0_4px_18px_rgba(0,0,0,0.08)] transition-all duration-[400ms] ease-in-out cursor-pointer flex flex-col min-h-[420px] max-[993px]:min-h-[auto] relative overflow-hidden hover:-translate-y-[10px] hover:shadow-[0_12px_30px_rgba(0,0,0,0.12)]">
+    <div className="group relative overflow-hidden bg-white rounded-[20px] p-8 text-center border border-transparent shadow-[0_4px_20px_rgba(0,0,0,0.05)] transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_15px_30px_rgba(227,30,36,0.12)] hover:border-[#e31e24]/20 flex flex-col justify-between h-full">
+      <div>
+        <div className="w-16 h-16 rounded-full bg-[#fee2e2] flex items-center justify-center mb-6 mx-auto transition-transform duration-300 group-hover:scale-110">
+          <img src={icon} alt={title} className="w-8 h-8 object-contain" />
+        </div>
 
-      <span className="absolute top-0 left-0 w-0 h-1 bg-[#f57c14] transition-[width] duration-[400ms] ease-in-out group-hover:w-full" aria-hidden="true"></span>
+        <h3 className="text-[20px] font-heading font-bold text-[#2b2b2e] mb-4 leading-tight">{title}</h3>
 
-      <img
-        src={icon}
-        alt={title}
-        className="w-[60px] h-[60px] max-[769px]:w-[50px] max-[769px]:h-[50px] object-contain mb-[25px] transition-transform duration-[400ms] ease-in-out group-hover:scale-[1.08]"
-      />
+        <p className="text-[15px] leading-[1.6] text-[#4b5563] mb-6">{description}</p>
+      </div>
 
-      <h3 className="text-[30px] max-[993px]:text-2xl max-[769px]:text-[22px] max-[501px]:text-xl font-bold text-[#111] leading-[1.4] mb-[18px]">{title}</h3>
-
-      <p className="text-[19px] max-[993px]:text-[17px] max-[769px]:text-base max-[501px]:text-[15px] leading-[1.8] max-[769px]:leading-[1.7] text-[#555] flex-1">{description}</p>
-
-      <span className="text-4xl max-[769px]:text-[30px] text-[#f57c14] font-bold mt-[25px] transition-transform duration-300 ease-in-out group-hover:translate-x-[10px]">
+      <div className="w-10 h-10 bg-transparent text-[#e31e24] rounded-full flex items-center justify-center text-xl mx-auto border border-[#e31e24]/10 group-hover:bg-[#e31e24] group-hover:text-white transition-colors duration-300">
         →
-      </span>
-
+      </div>
     </div>
   );
 };

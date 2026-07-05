@@ -42,10 +42,10 @@ export default function FeaturesBento() {
         {FEATURES.map((f, i) => (
           <div
             key={i}
-            className={`group relative rounded-3xl p-6 bg-gradient-to-br from-slate-50 to-white border border-slate-200 overflow-hidden hover:-translate-y-1 hover:border-blue-300 transition-all duration-300 flex flex-col justify-between ${f.span || ""}`}
+            className={`group relative rounded-3xl p-6 bg-gradient-to-br from-slate-50 to-white border border-slate-200 overflow-hidden hover:-translate-y-1 hover:border-[#e31e24]/30 transition-all duration-300 flex flex-col justify-between ${f.span || ""}`}
           >
-            <div className="absolute -right-10 -bottom-10 w-32 h-32 rounded-full bg-blue-500/0 group-hover:bg-blue-500/10 blur-2xl transition-all duration-500" />
-            <div className="relative w-11 h-11 rounded-xl bg-gradient-to-br from-blue-500 to-sky-400 text-white flex items-center justify-center transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3">
+            <div className="absolute -right-10 -bottom-10 w-32 h-32 rounded-full bg-[#e31e24]/0 group-hover:bg-[#e31e24]/8 blur-2xl transition-all duration-500" />
+            <div className="relative w-11 h-11 rounded-xl bg-gradient-to-br from-[#e31e24] to-[#c4151a] text-white flex items-center justify-center transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3">
               <f.icon size={20} />
             </div>
             <div className="relative">

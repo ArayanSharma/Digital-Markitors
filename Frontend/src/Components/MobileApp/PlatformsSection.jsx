@@ -46,11 +46,11 @@ export default function PlatformsSection() {
           {PLATFORMS.map((p) => (
             <div
               key={p.id}
-              className="group relative rounded-3xl bg-white border border-slate-200 p-8 overflow-hidden transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_24px_60px_rgba(59,130,246,0.18)]"
+              className="group relative rounded-3xl bg-white border border-slate-200 p-8 overflow-hidden transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_24px_60px_rgba(227,30,36,0.14)] hover:border-[#e31e24]/20"
             >
               <div
                 className="absolute inset-x-0 top-0 h-1 scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-500"
-                style={{ background: `linear-gradient(90deg, ${p.color}, #3B82F6)` }}
+                style={{ background: `linear-gradient(90deg, ${p.color}, #e31e24)` }}
               />
               <div
                 className="w-16 h-16 rounded-2xl flex items-center justify-center mb-6 transition-transform duration-500 group-hover:scale-110 group-hover:rotate-6"
@@ -64,7 +64,7 @@ export default function PlatformsSection() {
 
               <div className="flex flex-wrap gap-2 mt-5">
                 {p.chips.map((chip) => (
-                  <span key={chip} className="text-xs font-semibold text-blue-700 bg-blue-50 border border-blue-100 px-3 py-1 rounded-full">
+                  <span key={chip} className="text-xs font-semibold text-[#e31e24] bg-[#e31e24]/8 border border-[#e31e24]/15 px-3 py-1 rounded-full">
                     {chip}
                   </span>
                 ))}
@@ -73,7 +73,7 @@ export default function PlatformsSection() {
               <ul className="mt-6 space-y-2.5 border-t border-slate-100 pt-5">
                 {p.benefits.map((b) => (
                   <li key={b} className="flex items-start gap-2.5 text-sm text-slate-600">
-                    <Check size={16} className="text-blue-500 shrink-0 mt-0.5" /> {b}
+                    <Check size={16} className="text-[#e31e24] shrink-0 mt-0.5" /> {b}
                   </li>
                 ))}
               </ul>

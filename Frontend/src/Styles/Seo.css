@@ -3,7 +3,7 @@
 .hero {
   width: 100%;
   min-height: 100vh;
-  background: linear-gradient(to right, #02002f, #022a6b);
+  background: linear-gradient(to right, #1C1C1E, #8B0000);
   display: flex;
   align-items: center;
   overflow: hidden;
@@ -31,7 +31,7 @@
 .hero-content h1 {
   font-size: 68px;
   line-height: 1.1;
-  color: #ff8c1a;
+  color: #E31E24;
   font-weight: 700;
   margin-bottom: 30px;
 }
@@ -51,7 +51,7 @@
 
 .hero-btn {
   padding: 18px 34px;
-  background: #ff8c1a;
+  background: #E31E24;
   color: white;
   border: none;
   border-radius: 6px;
@@ -61,16 +61,16 @@
 }
 
 .hero-btn:hover {
-  background: #e77808;
+  background: #C4151A;
 }
 
 .hero-btn.outline {
   background: transparent;
-  border: 1px solid #ff8c1a;
+  border: 1px solid #E31E24;
 }
 
 .hero-btn.outline:hover {
-  background: #ff8c1a;
+  background: #E31E24;
 }
 
 .hero-image {
@@ -100,11 +100,11 @@
   font-size: 42px;
   font-weight: 700;
   margin-bottom: 20px;
-  color: #222;
+  color: #2B2B2E;
 }
 
 .topheading span {
-  color: #ff7a00;
+  color: #E31E24;
 }
 
 .shrtdesc {
@@ -115,7 +115,7 @@
 .shrtdesc p {
   font-size: 16px;
   line-height: 1.8;
-  color: #555;
+  color: #4B5563;
 }
 
 .text-center {
@@ -139,7 +139,7 @@
 .overview-content p {
   font-size: 16px;
   line-height: 1.9;
-  color: #555;
+  color: #4B5563;
   margin-bottom: 20px;
   text-align: justify;
 }
@@ -188,7 +188,7 @@
 
 .wydmbc {
   padding: 80px 20px;
-  background: #edf7f8;
+  background: #F4F4F5;
 }
 
 .wydm-title {
@@ -206,7 +206,7 @@
   max-width: 1000px;
   margin: 0 auto 60px;
   text-align: center;
-  color: #444;
+  color: #4B5563;
   line-height: 1.8;
 }
 
@@ -223,7 +223,7 @@
   bottom: 0;
   left: 50%;
   width: 1px;
-  background: #999;
+  background: #E5E7EB;
 }
 
 .wydm-grid::after {
@@ -233,7 +233,7 @@
   right: 0;
   top: 50%;
   height: 1px;
-  background: #999;
+  background: #E5E7EB;
 }
 
 .wydm-item {
@@ -257,7 +257,7 @@
 .count-box {
   display: inline-block;
   padding: 6px 20px;
-  border: 1px solid #999;
+  border: 1px solid #E5E7EB;
   border-radius: 4px;
   font-size: 32px;
   font-weight: 700;
@@ -267,7 +267,7 @@
 .wydm-item p {
   max-width: 380px;
   margin: auto;
-  color: #444;
+  color: #4B5563;
   line-height: 1.8;
 }
 
@@ -282,7 +282,7 @@
   }
 
   .wydm-item {
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid #E5E7EB;
   }
 
   .wydm-title {
@@ -294,7 +294,7 @@
 
 .contact-banner {
   padding: 50px 0;
-  background: #f5f5f5;
+  background: #F4F4F5;
 }
 
 .contact-wrapper {
@@ -319,7 +319,7 @@
 }
 
 .contact-left {
-  background: #555;
+  background: #4B5563;
   border-radius: 8px 0 0 8px;
   padding-right: 50px;
 }
@@ -327,8 +327,8 @@
 .contact-right {
   background: linear-gradient(
     90deg,
-    #3dd2e8,
-    #33c9e2
+    #F5A623,
+    #D98E1D
   );
   border-radius: 0 8px 8px 0;
   padding-left: 50px;
@@ -397,7 +397,7 @@
   font-size: 42px;
   margin-bottom: 60px;
   font-weight: 300;
-  color: #333;
+  color: #2B2B2E;
 }
 
 .section-title span {
@@ -413,7 +413,7 @@
 .industry-card {
   display: flex;
   flex-direction: column;
-  background: #c9c9c9;
+  background: #1C1C1E;
   padding: 30px;
   border-radius: 8px;
 }
@@ -483,11 +483,11 @@
 }
 
 .mission-box {
-  background: #eaf4f6;
+  background: #F4F4F5;
 }
 
 .vision-box {
-  background: #35bfd2;
+  background: #F5A623;
   color: #fff;
 }
 

@@ -6,7 +6,7 @@
   background: #ffffff;
   border-radius: 20px;
   overflow: hidden;
-  border-top: 5px solid #2563eb;
+  border-top: 5px solid #E31E24;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
   transition: transform 0.35s ease, box-shadow 0.35s ease;
   cursor: pointer;
@@ -18,14 +18,14 @@
 
 .ind-card:hover {
   transform: translateY(-8px);
-  box-shadow: 0 15px 35px rgba(234, 130, 21, 0.2);
+  box-shadow: 0 15px 35px rgba(227, 30, 36, 0.2);
 }
 
 .ind-card-image {
   width: 100%;
   height: 200px;
   overflow: hidden;
-  background: #eef2fb;
+  background: #F4F4F5;
 }
 
 .ind-card-image img {
@@ -51,7 +51,7 @@
 .ind-card-body h3 {
   font-size: 21px;
   font-weight: 700;
-  color: #1b3a6b;
+  color: #E31E24;
   margin-bottom: 12px;
   line-height: 1.3;
 }
@@ -69,10 +69,10 @@
 
 .ind-card-btn {
   align-self: flex-start;
-  border: 2px solid #2563eb;
+  border: 2px solid #E31E24;
   border-radius: 50px;
   background: transparent;
-  color: #2563eb;
+  color: #E31E24;
   padding: 10px 24px;
   font-size: 14px;
   font-weight: 600;
@@ -81,7 +81,7 @@
 }
 
 .ind-card-btn:hover {
-  background: #2563eb;
+  background: #E31E24;
   color: #ffffff;
 }
 

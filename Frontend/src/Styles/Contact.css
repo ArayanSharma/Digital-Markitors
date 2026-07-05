@@ -1,11 +1,11 @@
 .dm-contact-section {
-  background: #2f343d;
+  background: #1C1C1E;
   min-height: 100vh;
   padding: 140px 20px 80px;
   color: #fff;
 }
 .privacy-box {
-  background: #2d333b;
+  background: #2B2B2E;
   padding: 18px 28px;
 }
 
@@ -42,12 +42,12 @@
 
 
 .dm-contact-icon {
-  color: #f58a1f;
+  color: #E31E24;
   margin-bottom: 20px;
 }
 
 .dm-contact-left h3 {
-  color: #f58a1f;
+  color: #E31E24;
   font-size: 22px;
   font-weight: 700;
   margin-bottom: 12px;
@@ -96,7 +96,7 @@
 }
 
 .dm-contact-heading h1 {
-  color: #ffe100;
+  color: #E31E24;
   font-size: 72px;
   font-weight: 800;
   line-height: 1;
@@ -136,7 +136,7 @@
   border-radius: 30px;
   padding: 15px 18px;
   font-size: 14px;
-  color: #333;
+  color: #2B2B2E;
 }
 
 .dm-form-group textarea {
@@ -170,8 +170,8 @@
 
 .dm-submit-btn {
   margin-top: 25px;
-  background: #f58a1f;
-  color: #000;
+  background: #E31E24;
+  color: #fff;
   border: none;
   border-radius: 30px;
   padding: 14px 50px;
@@ -182,6 +182,7 @@
 }
 
 .dm-submit-btn:hover {
+  background: #C4151A;
   opacity: 0.9;
 }
 
@@ -204,9 +205,9 @@
 }
 
 .dm-social-links a:hover {
-  background: #f58a1f;
-  border-color: #f58a1f;
-  color: #000;
+  background: #C4151A;
+  border-color: #C4151A;
+  color: #fff;
 }
 
 
@@ -273,7 +274,7 @@
 
 
 .dm-touch-section {
-  background: #f4f4f4;
+  background: #F4F4F5;
   padding: 100px 20px;
   margin-top: 80px;
 }
@@ -282,7 +283,7 @@
   text-align: center;
   font-size: 64px;
   font-weight: 400;
-  color: #222;
+  color: #2B2B2E;
   margin-bottom: 80px;
 }
 
@@ -295,7 +296,7 @@
 }
 
 .dm-touch-card h3 {
-  color: #f0a500;
+  color: #E31E24;
   font-size: 18px;
   font-weight: 700;
   margin-bottom: 25px;
@@ -303,7 +304,7 @@
 }
 
 .dm-touch-card p {
-  color: #222;
+  color: #4B5563;
   font-size: 18px;
   line-height: 1.7;
   margin-bottom: 10px;
@@ -312,7 +313,7 @@
 .dm-touch-card strong {
   display: block;
   font-size: 18px;
-  color: #000;
+  color: #2B2B2E;
   margin-top: 10px;
 }
 
@@ -340,7 +341,7 @@
 
 
 .touch-section {
-  background: #f4f4f4;
+  background: #F4F4F5;
   padding: 80px 0;
 }
 
@@ -354,7 +355,7 @@
   text-align: center;
   font-size: 64px;
   font-weight: 300;
-  color: #222;
+  color: #2B2B2E;
   margin-bottom: 80px;
 }
 
@@ -365,7 +366,7 @@
 }
 
 .touch-card h3 {
-  color: #f4a300;
+  color: #E31E24;
   font-size: 30px;
   font-weight: 700;
   line-height: 1.2;
@@ -374,7 +375,7 @@
 }
 
 .touch-card p {
-  color: #000;
+  color: #4B5563;
   font-size: 18px;
   line-height: 1.7;
   margin: 0;
@@ -385,7 +386,7 @@
   margin-top: 10px;
   font-size: 18px;
   font-weight: 700;
-  color: #000;
+  color: #2B2B2E;
 }
 
 @media (max-width: 992px) {
@@ -600,9 +601,9 @@
 }
 
 .form-message.success {
-  background: #d4edda;
-  color: #155724;
-  border: 1px solid #c3e6cb;
+  background: #DCFCE7;
+  color: #15803D;
+  border: 1px solid #86EFAC;
 }
 
 .form-message.error {

@@ -92,4 +92,4 @@ export const TECH_META = {
 
 export const TECH_CATEGORIES = ["Mobile", "Backend", "Database", "Cloud", "Tools"];
 
-export const DEFAULT_TECH_ICON = { Icon: Braces, color: "#3B82F6" };
+export const DEFAULT_TECH_ICON = { Icon: Braces, color: "#e31e24" };

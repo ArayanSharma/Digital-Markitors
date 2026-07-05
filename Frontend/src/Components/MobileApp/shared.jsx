@@ -53,7 +53,11 @@ export function PhoneMockup({ os = "ios", image, className = "", children }) {
 }
 
 export function AppScreenSkeleton({ tone = "blue" }) {
-  const bar = tone === "blue" ? "from-blue-500 to-sky-400" : "from-slate-700 to-slate-500";
+  const bar = tone === "blue"
+    ? "from-blue-500 to-sky-400"
+    : tone === "red"
+      ? "from-[#e31e24] to-[#f5a623]"
+      : "from-slate-700 to-slate-500";
   return (
     <div className="w-full h-full p-4 flex flex-col gap-3">
       <div className={`h-16 rounded-2xl bg-gradient-to-r ${bar} opacity-90`} />
@@ -76,8 +80,8 @@ export function SectionKicker({ eyebrow, title, description, align = "center", c
   const alignCls = align === "left" ? "text-left mx-0" : "text-center mx-auto";
   return (
     <div className={`mp-reveal max-w-2xl mb-14 md:mb-16 ${alignCls} ${className}`}>
-      <span className="inline-flex items-center gap-2 text-blue-600 font-bold tracking-[0.2em] text-[11px] uppercase">
-        <span className="w-6 h-px bg-blue-500" />
+      <span className="inline-flex items-center gap-2 text-[#e31e24] font-bold tracking-[0.2em] text-[11px] uppercase">
+        <span className="w-6 h-px bg-[#e31e24]" />
         {eyebrow}
       </span>
       <h2 className="text-3xl md:text-4xl lg:text-[2.6rem] font-extrabold text-slate-900 mt-3 leading-tight">{title}</h2>

@@ -291,7 +291,6 @@ export default function AndroidandIso() {
 
       <MobileFAQ faqs={faqs} />
 
-      <CTASection cta={cta} />
 
       <style>{`
         .mp-ripple-host { position: relative; }

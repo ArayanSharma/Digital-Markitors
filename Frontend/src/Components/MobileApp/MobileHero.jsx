@@ -62,44 +62,57 @@ export default function MobileHero({ hero }) {
     return () => clearInterval(id);
   }, [hero?.heroImage]);
 
-  const tones = ["blue", "slate", "blue"];
+  const tones = ["red", "slate", "red"];
+
+  const highlightTitle = (text) => {
+    if (!text) return "";
+    const keywords = ["Digicore", "Results", "Visibility", "Grow", "Marketing", "SEO", "Agency", "Traffic", "Conversions", "Search", "Optimization", "B2B", "Digital", "Growth", "Losing", "losing", "Losing at Search", "Android", "iOS", "Apps", "Mobile", "Studio", "Engineering", "Development", "DigiCore"];
+    const words = text.split(" ");
+    return words.map((word, idx) => {
+      const cleanWord = word.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, "");
+      if (keywords.includes(cleanWord)) {
+        return <span key={idx} className="text-[#e31e24]">{word} </span>;
+      }
+      return word + " ";
+    });
+  };
 
   return (
-    <section className="relative overflow-hidden bg-gradient-to-br from-[#020617] via-[#071a33] to-[#0b2a4d]">
+    <section className="relative overflow-hidden bg-[#f4f4f5] border-b border-[#e5e7eb] font-body text-[#4b5563]">
       {/* grid + glow backdrop */}
       <div
         className="absolute inset-0 opacity-[0.07]"
-        style={{ backgroundImage: "radial-gradient(rgba(147,197,253,0.9) 1px, transparent 1px)", backgroundSize: "30px 30px" }}
+        style={{ backgroundImage: "radial-gradient(rgba(227,30,36,0.3) 1px, transparent 1px)", backgroundSize: "30px 30px" }}
       />
-      <div className="mp-blob absolute w-[420px] h-[420px] rounded-full bg-blue-500/25 blur-[130px]" style={{ top: "-120px", left: "-100px" }} />
-      <div className="mp-blob-alt absolute w-[380px] h-[380px] rounded-full bg-sky-400/20 blur-[120px]" style={{ bottom: "-100px", right: "-60px" }} />
+      <div className="mp-blob absolute w-[420px] h-[420px] rounded-full bg-[#e31e24]/6 blur-[130px]" style={{ top: "-120px", left: "-100px" }} />
+      <div className="mp-blob-alt absolute w-[380px] h-[380px] rounded-full bg-[#f5a623]/6 blur-[120px]" style={{ bottom: "-100px", right: "-60px" }} />
       {hero.backgroundImage && (
-        <img src={resolveImage(hero.backgroundImage)} alt="" className="absolute inset-0 w-full h-full object-cover opacity-20" />
+        <img src={resolveImage(hero.backgroundImage)} alt="" className="absolute inset-0 w-full h-full object-cover opacity-10" />
       )}
 
       <div ref={sceneRef} className="relative z-10 container-custom pt-28 pb-16 md:pt-36 md:pb-20 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
         {/* Left: copy */}
         <div>
-          <span className="mp-hero-fade inline-flex items-center gap-2 text-blue-300 text-xs md:text-sm font-semibold tracking-[0.15em] mb-6 px-4 py-1.5 rounded-full bg-white/10 border border-white/15 backdrop-blur-md">
+          <span className="mp-hero-fade inline-flex items-center gap-2 text-[#e31e24] text-xs md:text-sm font-semibold tracking-[0.15em] mb-6 px-4 py-1.5 rounded-full bg-[#e31e24]/8 border border-[#e31e24]/15 backdrop-blur-md">
             {hero.badge}
           </span>
-          <h1 className="mp-hero-fade text-4xl md:text-5xl lg:text-[3.35rem] font-extrabold leading-[1.1] text-white max-w-xl">
-            {hero.title}
+          <h1 className="mp-hero-fade text-4xl md:text-5xl lg:text-[3.35rem] font-extrabold leading-[1.1] text-[#2b2b2e] font-heading max-w-xl">
+            {highlightTitle(hero.title)}
           </h1>
-          <p className="mp-hero-fade text-slate-300 max-w-lg mt-6 text-base md:text-lg leading-relaxed">{hero.description}</p>
+          <p className="mp-hero-fade text-[#4b5563] max-w-lg mt-6 text-base md:text-lg leading-relaxed">{hero.description}</p>
 
           <div className="mp-hero-fade flex flex-col sm:flex-row items-start sm:items-center gap-4 mt-10">
             <RippleButton
               as="a"
               href={hero.primaryBtn?.link || "/contact"}
-              className="relative overflow-hidden inline-flex items-center gap-2 text-white font-semibold px-8 py-3.5 rounded-2xl bg-gradient-to-r from-blue-500 to-sky-400 bg-[length:200%_auto] mp-gradient-shift hover:shadow-[0_16px_38px_rgba(59,130,246,0.4)] hover:-translate-y-1 transition-all duration-300"
+              className="relative overflow-hidden inline-flex items-center gap-2 text-white font-bold px-[34px] py-[15px] rounded-lg bg-[#e31e24] shadow-[0_6px_20px_rgba(227,30,36,0.35)] transition-all duration-300 hover:bg-[#c4151a] hover:scale-[1.03] hover:shadow-[0_12px_25px_rgba(227,30,36,0.45)] cursor-pointer"
             >
               {hero.primaryBtn?.text || "Start Your App Project"} <ArrowRight size={18} />
             </RippleButton>
             <RippleButton
               as="a"
               href={hero.secondaryBtn?.link || "/contact"}
-              className="relative overflow-hidden inline-flex items-center gap-2 text-white font-semibold px-8 py-3.5 rounded-2xl bg-white/10 border border-white/15 backdrop-blur-md hover:-translate-y-1 hover:bg-white/15 transition-all duration-300"
+              className="relative overflow-hidden inline-flex items-center gap-2 text-[#1c1c1e] font-bold px-[34px] py-[15px] rounded-lg bg-transparent border border-[#1c1c1e] transition-all duration-300 hover:bg-[#1c1c1e] hover:text-white hover:scale-[1.03] cursor-pointer"
             >
               <PlayCircle size={18} /> {hero.secondaryBtn?.text || "View Mobile Portfolio"}
             </RippleButton>
@@ -107,8 +120,8 @@ export default function MobileHero({ hero }) {
 
           <div className="mp-hero-fade flex items-center gap-4 mt-10">
             <div className="flex -space-x-3">
-              {["bg-blue-500", "bg-sky-500", "bg-indigo-500"].map((c, i) => (
-                <div key={i} className={`w-9 h-9 rounded-full ${c} border-2 border-[#071a33] flex items-center justify-center text-[10px] font-bold text-white`}>
+              {["bg-[#e31e24]", "bg-amber-500", "bg-slate-700"].map((c, i) => (
+                <div key={i} className={`w-9 h-9 rounded-full ${c} border-2 border-[#f4f4f5] flex items-center justify-center text-[10px] font-bold text-white`}>
                   {["JD", "AK", "ML"][i]}
                 </div>
               ))}
@@ -119,25 +132,25 @@ export default function MobileHero({ hero }) {
                   <Star key={i} size={13} className="fill-amber-400 text-amber-400" />
                 ))}
               </div>
-              <p className="text-xs text-slate-400 mt-0.5">Trusted by 80+ founders worldwide</p>
+              <p className="text-xs text-[#4b5563] mt-0.5">Trusted by 80+ founders worldwide</p>
             </div>
           </div>
         </div>
 
         {/* Right: device scene */}
         <div className="relative h-[440px] md:h-[500px] flex items-center justify-center">
-          <div className="absolute w-72 h-72 rounded-full bg-blue-500/30 blur-[90px]" />
+          <div className="absolute w-72 h-72 rounded-full bg-[#e31e24]/10 blur-[90px]" />
 
           <div className="mp-hero-chip absolute top-2 right-0 md:right-8 bg-white rounded-2xl shadow-xl px-4 py-3 flex items-center gap-2 z-30 mp-float">
-            <Bell size={16} className="text-blue-500" />
+            <Bell size={16} className="text-[#e31e24]" />
             <span className="text-xs font-semibold text-slate-700">New order received!</span>
           </div>
           <div className="mp-hero-chip absolute bottom-16 left-0 md:left-0 bg-white rounded-2xl shadow-xl px-4 py-3 flex items-center gap-2 z-30 mp-float-delayed">
-            <ShieldCheck size={16} className="text-sky-500" />
+            <ShieldCheck size={16} className="text-green-600" />
             <span className="text-xs font-semibold text-slate-700">Secure Login</span>
           </div>
           <div className="mp-hero-chip absolute bottom-2 right-4 md:right-10 bg-white rounded-2xl shadow-xl px-4 py-3 flex items-center gap-2 z-30 mp-float">
-            <Zap size={16} className="text-blue-500" />
+            <Zap size={16} className="text-[#e31e24]" />
             <span className="text-xs font-semibold text-slate-700">99.9% Uptime</span>
           </div>
 
@@ -172,10 +185,10 @@ export default function MobileHero({ hero }) {
       </div>
 
       {/* infinite marquee — trusted stack ticker */}
-      <div className="relative border-t border-white/10 py-6 overflow-hidden">
+      <div className="relative border-t border-[#e5e7eb] py-6 overflow-hidden bg-white">
         <div className="mp-marquee flex items-center gap-12 w-max">
           {[...MARQUEE_ICONS, ...MARQUEE_ICONS].map(({ Icon, color, name }, i) => (
-            <div key={`${name}-${i}`} className="flex items-center gap-2.5 text-slate-400 shrink-0">
+            <div key={`${name}-${i}`} className="flex items-center gap-2.5 text-[#4b5563] shrink-0">
               <Icon size={18} color={color} />
               <span className="text-xs font-semibold tracking-wide">{name}</span>
             </div>

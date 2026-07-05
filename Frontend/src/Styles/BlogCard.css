@@ -24,7 +24,7 @@
 .blogs-heading h2 {
   font-size: 38px;
   font-weight: 500;
-  color: #003366;
+  color: #2B2B2E;
   text-transform: uppercase;
   margin-bottom: 10px;
 }
@@ -32,7 +32,7 @@
 .blogs-line {
   width: 55px;
   height: 4px;
-  background: #ea8215;
+  background: #E31E24;
   margin: 0 auto 20px;
   border-radius: 20px;
 }
@@ -40,7 +40,7 @@
 .blogs-heading h6 {
   font-size: 25px;
   font-weight: 600;
-  color: #003366;
+  color: #2B2B2E;
   margin-bottom: 25px;
   line-height: 1.5;
   white-space: pre-line;
@@ -107,7 +107,7 @@
   border: 1px solid #e6e6e6;
   border-radius: 14px;
   overflow: hidden;
-  box-shadow: 0 4px 14px rgba(0, 34, 68, 0.08);
+  box-shadow: 0 4px 14px rgba(28, 28, 30, 0.08);
   transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
     box-shadow 0.4s cubic-bezier(0.22, 1, 0.36, 1);
   will-change: transform;
@@ -123,7 +123,7 @@
 
 .blog-card:hover {
   transform: translateY(-10px);
-  box-shadow: 0 22px 40px rgba(0, 34, 68, 0.18);
+  box-shadow: 0 22px 40px rgba(227, 30, 36, 0.18);
 }
 
 /* shine / sheen sweep effect on hover */
@@ -197,7 +197,7 @@
 }
 
 .blog-title h5 {
-  color: #f4a300;
+  color: #E31E24;
   font-size: 15px;
   font-weight: 600;
   line-height: 1.4;
@@ -230,7 +230,7 @@
 }
 
 .blog-content p {
-  color: #555;
+  color: #4B5563;
   font-size: 15px;
   line-height: 1.6;
   margin-bottom: 12px;
@@ -245,7 +245,7 @@
 }
 
 .read-more-btn {
-  background: #1f1978;
+  background: #E31E24;
   color: white;
   border: none;
   padding: 12px 22px;

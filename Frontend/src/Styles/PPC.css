@@ -53,7 +53,7 @@
 .seo-line {
   width: 80px;
   height: 4px;
-  background: #003366;
+  background: #E31E24;
   margin: 0 auto 15px;
   border-radius: 20px;
 }
@@ -61,7 +61,7 @@
 .seo-heading h2 {
   font-size: 45px;
   font-weight: 500;
-  color: #003366;
+  color: #E31E24;
   margin-bottom: 20px;
   text-transform: uppercase;
   
@@ -72,7 +72,7 @@
   margin: auto;
   font-size: 18px;
   line-height: 1.8;
-  color: #555;
+  color: #4B5563;
 }
 
 .seo-content {
@@ -82,7 +82,7 @@
 }
 
 .seo-left h3 {
-  color: #003366;
+  color: #E31E24;
   font-size: 32px;
   margin-bottom: 15px;
   font-weight: 500;
@@ -90,7 +90,7 @@
 
 .seo-left p,
 .seo-right p {
-  color: #555;
+  color: #4B5563;
   font-size: 18px;
   line-height: 1.9;
   margin-bottom: 30px;
@@ -151,7 +151,7 @@
 .ppc-process-line {
   width: 60px;
   height: 4px;
-  background: #ef7d12;
+  background: #E31E24;
   margin: 0 auto 20px;
   border-radius: 20px;
 }
@@ -159,7 +159,7 @@
 .ppc-process-heading h2 {
   font-size: 42px;
   font-weight: 700;
-  color: #ef7d12;
+  color: #E31E24;
   margin-bottom: 25px;
   text-transform: uppercase;
 }
@@ -167,7 +167,7 @@
 .ppc-process-heading p {
   font-size: 18px;
   line-height: 1.9;
-  color: #555;
+  color: #4B5563;
   margin-bottom: 15px;
 }
 
@@ -190,7 +190,7 @@
 }
 
 .ppc-item span {
-  color: #ef7d12;
+  color: #E31E24;
   font-size: 22px;
   flex-shrink: 0;
   margin-top: 2px;
@@ -198,13 +198,13 @@
 
 .ppc-item p {
   margin: 0;
-  color: #444;
+  color: #4B5563;
   line-height: 1.9;
   font-size: 17px;
 }
 
 .ppc-item strong {
-  color: #222;
+  color: #2B2B2E;
 }
 
 @media (max-width: 768px) {

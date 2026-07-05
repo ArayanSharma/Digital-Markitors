@@ -20,21 +20,21 @@
   align-items: center;
   gap: 8px;
   background: none;
-  border: 2px solid #e2e2e2;
+  border: 2px solid #E5E7EB;
   padding: 10px 22px;
   border-radius: 30px;
   font-size: 14px;
   font-weight: 600;
-  color: #003366;
+  color: #E31E24;
   cursor: pointer;
   transition: all 0.3s ease;
   margin-bottom: 30px;
 }
 
 .blog-back-btn:hover {
-  background: #003366;
+  background: #C4151A;
   color: #ffffff;
-  border-color: #003366;
+  border-color: #C4151A;
 }
 
 .blog-back-btn svg {
@@ -73,7 +73,7 @@
   right: 0;
   bottom: 0;
   height: 100px;
-  background: linear-gradient(transparent, rgba(0, 51, 102, 0.15));
+  background: linear-gradient(transparent, rgba(28, 28, 30, 0.15));
   pointer-events: none;
 }
 
@@ -91,7 +91,7 @@
 .blog-meta-author,
 .blog-meta-date {
   font-size: 14px;
-  color: #777;
+  color: #4B5563;
   font-weight: 500;
 }
 
@@ -99,12 +99,12 @@
   width: 5px;
   height: 5px;
   border-radius: 50%;
-  background: #ccc;
+  background: #E5E7EB;
 }
 
 .blog-meta-category {
   display: inline-block;
-  background: linear-gradient(135deg, #003366, #1a5c99);
+  background: linear-gradient(135deg, #E31E24, #8B0000);
   color: #ffffff;
   padding: 4px 14px;
   border-radius: 20px;
@@ -119,7 +119,7 @@
 .blog-details-title {
   font-size: 36px;
   font-weight: 700;
-  color: #003366;
+  color: #1C1C1E;
   line-height: 1.3;
   margin-bottom: 28px;
   animation: blogFadeUp 0.8s ease forwards;
@@ -130,7 +130,7 @@
 .blog-details-content {
   font-size: 16px;
   line-height: 1.9;
-  color: #444;
+  color: #4B5563;
   white-space: pre-line;
   margin-bottom: 60px;
   animation: blogFadeUp 0.9s ease forwards;
@@ -145,7 +145,7 @@
 .blog-details-divider {
   width: 100%;
   height: 1px;
-  background: linear-gradient(to right, transparent, #e0e0e0, transparent);
+  background: linear-gradient(to right, transparent, #E5E7EB, transparent);
   margin: 0 0 40px;
 }
 
@@ -165,14 +165,14 @@
 .blog-recent-header h2 {
   font-size: 32px;
   font-weight: 600;
-  color: #003366;
+  color: #2B2B2E;
   margin-bottom: 10px;
 }
 
 .blog-recent-line {
   width: 55px;
   height: 4px;
-  background: #ea8215;
+  background: #E31E24;
   margin: 0 auto 20px;
   border-radius: 20px;
 }
@@ -202,8 +202,8 @@
 }
 
 .blog-recent-viewall-btn:hover {
-  background: #003366;
-  border-color: #003366;
+  background: #C4151A;
+  border-color: #C4151A;
   color: white;
 }
 
@@ -221,8 +221,8 @@
 .blog-loading-spinner {
   width: 40px;
   height: 40px;
-  border: 4px solid #e2e2e2;
-  border-top-color: #003366;
+  border: 4px solid #E5E7EB;
+  border-top-color: #E31E24;
   border-radius: 50%;
   animation: blogSpin 0.8s linear infinite;
 }
@@ -241,12 +241,12 @@
 
 .blog-not-found h2 {
   font-size: 28px;
-  color: #003366;
+  color: #2B2B2E;
   margin-bottom: 12px;
 }
 
 .blog-not-found p {
-  color: #777;
+  color: #4B5563;
   font-size: 15px;
   margin-bottom: 24px;
 }

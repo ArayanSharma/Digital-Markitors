@@ -20,21 +20,21 @@
   align-items: center;
   gap: 8px;
   background: none;
-  border: 2px solid #e2e2e2;
+  border: 2px solid #E5E7EB;
   padding: 10px 22px;
   border-radius: 30px;
   font-size: 14px;
   font-weight: 600;
-  color: #003366;
+  color: #E31E24;
   cursor: pointer;
   transition: all 0.3s ease;
   margin-bottom: 30px;
 }
 
 .cs-back-btn:hover {
-  background: #003366;
+  background: #E31E24;
   color: #ffffff;
-  border-color: #003366;
+  border-color: #E31E24;
 }
 
 .cs-back-btn svg {
@@ -73,7 +73,7 @@
   right: 0;
   bottom: 0;
   height: 100px;
-  background: linear-gradient(transparent, rgba(0, 51, 102, 0.15));
+  background: linear-gradient(transparent, rgba(28, 28, 30, 0.15));
   pointer-events: none;
 }
 
@@ -90,7 +90,7 @@
 
 .cs-meta-client {
   font-size: 14px;
-  color: #777;
+  color: #4B5563;
   font-weight: 500;
 }
 
@@ -103,7 +103,7 @@
 
 .cs-meta-category {
   display: inline-block;
-  background: linear-gradient(135deg, #003366, #1a5c99);
+  background: linear-gradient(135deg, #E31E24, #C4151A);
   color: #ffffff;
   padding: 4px 14px;
   border-radius: 20px;
@@ -118,7 +118,7 @@
 .cs-details-title {
   font-size: 36px;
   font-weight: 700;
-  color: #003366;
+  color: #E31E24;
   line-height: 1.3;
   margin-bottom: 20px;
   animation: csFadeUp 0.8s ease forwards;
@@ -126,7 +126,7 @@
 
 .cs-details-lead {
   font-size: 18px;
-  color: #444;
+  color: #4B5563;
   line-height: 1.7;
   font-weight: 500;
   margin-bottom: 24px;
@@ -138,7 +138,7 @@
 .cs-details-content {
   font-size: 16px;
   line-height: 1.9;
-  color: #444;
+  color: #4B5563;
   white-space: pre-line;
   margin-bottom: 32px;
   animation: csFadeUp 0.9s ease forwards;
@@ -155,9 +155,9 @@
 
 .cs-tech-chip {
   display: inline-block;
-  background: #f2f4f8;
-  color: #003366;
-  border: 1px solid #dde3ec;
+  background: #F4F4F5;
+  color: #E31E24;
+  border: 1px solid #E5E7EB;
   padding: 6px 16px;
   border-radius: 20px;
   font-size: 13px;
@@ -175,7 +175,7 @@
 
 .cs-details-block {
   background: #f8fafc;
-  border-left: 4px solid #003366;
+  border-left: 4px solid #E31E24;
   border-radius: 8px;
   padding: 22px 24px;
 }
@@ -183,7 +183,7 @@
 .cs-details-block h4 {
   font-size: 15px;
   font-weight: 700;
-  color: #003366;
+  color: #E31E24;
   text-transform: uppercase;
   letter-spacing: 0.5px;
   margin-bottom: 10px;
@@ -191,7 +191,7 @@
 
 .cs-details-block p {
   font-size: 15px;
-  color: #555;
+  color: #4B5563;
   line-height: 1.7;
 }
 
@@ -228,7 +228,7 @@
 .cs-details-divider {
   width: 100%;
   height: 1px;
-  background: linear-gradient(to right, transparent, #e0e0e0, transparent);
+  background: linear-gradient(to right, transparent, #E5E7EB, transparent);
   margin: 0 0 40px;
 }
 
@@ -248,14 +248,14 @@
 .cs-recent-header h2 {
   font-size: 32px;
   font-weight: 600;
-  color: #003366;
+  color: #E31E24;
   margin-bottom: 10px;
 }
 
 .cs-recent-line {
   width: 55px;
   height: 4px;
-  background: #ea8215;
+  background: #E31E24;
   margin: 0 auto 20px;
   border-radius: 20px;
 }
@@ -273,7 +273,7 @@
 }
 
 .cs-recent-viewall-btn {
-  border: 2px solid #222;
+  border: 2px solid #2B2B2E;
   background: white;
   padding: 12px 32px;
   border-radius: 30px;
@@ -281,12 +281,12 @@
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
-  color: #222;
+  color: #2B2B2E;
 }
 
 .cs-recent-viewall-btn:hover {
-  background: #003366;
-  border-color: #003366;
+  background: #E31E24;
+  border-color: #E31E24;
   color: white;
 }
 
@@ -304,14 +304,14 @@
 .cs-loading-spinner {
   width: 40px;
   height: 40px;
-  border: 4px solid #e2e2e2;
-  border-top-color: #003366;
+  border: 4px solid #E5E7EB;
+  border-top-color: #E31E24;
   border-radius: 50%;
   animation: csSpin 0.8s linear infinite;
 }
 
 .cs-details-loading p {
-  color: #888;
+  color: #4B5563;
   font-size: 15px;
 }
 
@@ -324,12 +324,12 @@
 
 .cs-not-found h2 {
   font-size: 28px;
-  color: #003366;
+  color: #E31E24;
   margin-bottom: 12px;
 }
 
 .cs-not-found p {
-  color: #777;
+  color: #4B5563;
   font-size: 15px;
   margin-bottom: 24px;
 }

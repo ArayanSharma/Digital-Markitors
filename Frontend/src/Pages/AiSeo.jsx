@@ -370,28 +370,28 @@ const AiSeo = () => {
         </div>
       </section>
 
-      <section className="discover-services">
-        <div className="discover-container">
-          <div className="divider"></div>
-          <h2>
+      <section className="w-full py-[100px] px-5 bg-[#f4f4f5] text-center border-b border-[#e5e7eb]">
+        <div className="max-w-[1200px] mx-auto px-5">
+          <div className="w-[60px] h-[4px] bg-[#e31e24] mx-auto mb-[25px] rounded-[10px] max-[769px]:w-[50px] max-[769px]:mb-[20px]"></div>
+
+          <h2 className="text-[48px] max-[993px]:text-[38px] max-[769px]:text-[30px] leading-[1.1] text-[#1c1c1e] mb-[25px] font-heading font-extrabold">
             {discover?.heading || "Our AI SEO Services"}
           </h2>
-          <p>
+
+          <p className="text-[17px] leading-[1.8] text-[#4b5563] max-w-[850px] mx-auto mb-[60px]">
             {discover?.description || "SEO is not just limited to Google Search at Digicore Inc.. We help business unlock their brand’s full digital potential by using AI-powered strategies and help them connect, engage and inspire their audience the right way and at the right platform."}
           </p>
         </div>
 
-        <div className="services-cards">
-          <div className="services-grid">
+        <div className="max-w-[1200px] mx-auto px-5">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[30px]">
             {displayServices.map((service, index) => (
-              <div key={service.id || index} className="services-card">
-                <div className="service-icon">
-                  <img src={service.icon} alt={service.title} />
-                </div>
-                <h3>{service.title}</h3>
-                <p>{service.description}</p>
-                <div className="service-arrow">→</div>
-              </div>
+              <ServiceCard
+                key={service.id || index}
+                icon={service.icon}
+                title={service.title}
+                description={service.description}
+              />
             ))}
           </div>
         </div>

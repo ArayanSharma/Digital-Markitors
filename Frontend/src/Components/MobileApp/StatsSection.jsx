@@ -29,12 +29,12 @@ function StatTile({ value, suffix = "", label, decimals = 0 }) {
   }, [value, decimals]);
 
   return (
-    <div ref={ref} className="relative rounded-3xl bg-white/10 border border-white/15 backdrop-blur-md px-5 py-8 text-center">
-      <p className="text-3xl md:text-4xl font-extrabold text-white">
+    <div ref={ref} className="relative rounded-3xl bg-white border border-[#e5e7eb] shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_12px_25px_rgba(0,0,0,0.06)] hover:-translate-y-1 transition-all duration-300 px-5 py-8 text-center">
+      <p className="text-3xl md:text-4xl font-extrabold text-[#e31e24]">
         {display}
         {suffix}
       </p>
-      <p className="mt-2 text-xs md:text-sm font-medium text-slate-300">{label}</p>
+      <p className="mt-2 text-xs md:text-sm font-medium text-[#4b5563]">{label}</p>
     </div>
   );
 }
@@ -50,13 +50,13 @@ export default function StatsSection({ statistics }) {
   ];
 
   return (
-    <section className="relative py-20 md:py-24 bg-gradient-to-br from-[#020617] via-[#071a33] to-[#0b2a4d] overflow-hidden">
-      <div className="mp-blob absolute w-[320px] h-[320px] rounded-full bg-blue-500/20 blur-[110px]" style={{ top: "-70px", left: "8%" }} />
-      <div className="mp-blob-alt absolute w-[320px] h-[320px] rounded-full bg-sky-400/20 blur-[110px]" style={{ bottom: "-90px", right: "8%" }} />
+    <section className="relative py-20 md:py-24 bg-[#f4f4f5] border-t border-b border-[#e5e7eb] overflow-hidden">
+      <div className="mp-blob absolute w-[320px] h-[320px] rounded-full bg-[#e31e24]/6 blur-[110px]" style={{ top: "-70px", left: "8%" }} />
+      <div className="mp-blob-alt absolute w-[320px] h-[320px] rounded-full bg-[#f5a623]/6 blur-[110px]" style={{ bottom: "-90px", right: "8%" }} />
       <div className="relative container-custom">
         <div className="mp-reveal text-center max-w-xl mx-auto mb-12">
-          <span className="text-blue-300 font-bold tracking-[0.2em] text-[11px] uppercase">By The Numbers</span>
-          <h2 className="text-2xl md:text-3xl font-extrabold text-white mt-3">Results That Speak For Themselves</h2>
+          <span className="text-[#e31e24] font-bold tracking-[0.2em] text-[11px] uppercase">By The Numbers</span>
+          <h2 className="text-2xl md:text-3xl font-extrabold text-[#2b2b2e] mt-3 font-heading">Results That Speak For Themselves</h2>
         </div>
         <div className="grid grid-cols-2 lg:grid-cols-6 gap-5">
           {tiles.map((t, i) => (

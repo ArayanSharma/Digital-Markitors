@@ -41,7 +41,7 @@ export default function TechStackSection({ technologies }) {
             return (
               <div
                 key={tech.id || tech.name}
-                className="group relative rounded-2xl p-6 bg-white border border-slate-200 shadow-[0_4px_16px_rgba(15,23,42,0.04)] hover:shadow-[0_18px_40px_rgba(59,130,246,0.18)] hover:-translate-y-1.5 hover:border-blue-200 transition-all duration-300"
+                className="group relative rounded-2xl p-6 bg-white border border-slate-200 shadow-[0_4px_16px_rgba(15,23,42,0.04)] hover:shadow-[0_18px_40px_rgba(227,30,36,0.12)] hover:-translate-y-1.5 hover:border-[#e31e24]/30 transition-all duration-300"
               >
                 <div
                   className="w-[3.25rem] h-[3.25rem] rounded-xl flex items-center justify-center mb-4 transition-transform duration-300 group-hover:scale-110"

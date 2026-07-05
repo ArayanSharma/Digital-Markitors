@@ -20,21 +20,21 @@
   align-items: center;
   gap: 8px;
   background: none;
-  border: 2px solid #e2e2e2;
+  border: 2px solid #E5E7EB;
   padding: 10px 22px;
   border-radius: 30px;
   font-size: 14px;
   font-weight: 600;
-  color: #1b3a6b;
+  color: #E31E24;
   cursor: pointer;
   transition: all 0.3s ease;
   margin-bottom: 30px;
 }
 
 .ind-back-btn:hover {
-  background: #2563eb;
+  background: #E31E24;
   color: #ffffff;
-  border-color: #2563eb;
+  border-color: #E31E24;
 }
 
 .ind-back-btn svg {
@@ -73,7 +73,7 @@
   right: 0;
   bottom: 0;
   height: 100px;
-  background: linear-gradient(transparent, rgba(27, 58, 107, 0.2));
+  background: linear-gradient(transparent, rgba(28, 28, 30, 0.2));
   pointer-events: none;
 }
 
@@ -82,7 +82,7 @@
 .ind-details-title {
   font-size: 36px;
   font-weight: 700;
-  color: #1b3a6b;
+  color: #E31E24;
   line-height: 1.3;
   margin-bottom: 24px;
   animation: indDetailsFadeUp 0.7s ease forwards;
@@ -93,7 +93,7 @@
 .ind-details-content {
   font-size: 16px;
   line-height: 1.9;
-  color: #444;
+  color: #4B5563;
   white-space: pre-line;
   margin-bottom: 40px;
   animation: indDetailsFadeUp 0.8s ease forwards;
@@ -109,7 +109,7 @@
 .ind-services-section h4 {
   font-size: 18px;
   font-weight: 700;
-  color: #1b3a6b;
+  color: #E31E24;
   text-transform: uppercase;
   letter-spacing: 0.5px;
   margin-bottom: 18px;
@@ -126,25 +126,25 @@
   align-items: center;
   gap: 10px;
   background: #f8fafc;
-  border-left: 4px solid #2563eb;
+  border-left: 4px solid #E31E24;
   border-radius: 8px;
   padding: 14px 18px;
   font-size: 14.5px;
-  color: #333;
+  color: #4B5563;
   font-weight: 500;
 }
 
 .ind-service-item svg {
   width: 18px;
   height: 18px;
-  color: #2563eb;
+  color: #E31E24;
   flex-shrink: 0;
 }
 
 /* ─── CTA ─── */
 
 .ind-cta-box {
-  background: linear-gradient(135deg, #1b3a6b, #2563eb);
+  background: linear-gradient(135deg, #8B0000, #E31E24);
   border-radius: 16px;
   padding: 40px;
   text-align: center;
@@ -162,7 +162,7 @@
 .ind-cta-btn {
   display: inline-block;
   background: #ffffff;
-  color: #1b3a6b;
+  color: #E31E24;
   border: none;
   padding: 14px 36px;
   border-radius: 50px;
@@ -184,7 +184,7 @@
 .ind-details-divider {
   width: 100%;
   height: 1px;
-  background: linear-gradient(to right, transparent, #e0e0e0, transparent);
+  background: linear-gradient(to right, transparent, #E5E7EB, transparent);
   margin: 0 0 40px;
 }
 
@@ -204,14 +204,14 @@
 .ind-related-header h2 {
   font-size: 32px;
   font-weight: 600;
-  color: #1b3a6b;
+  color: #E31E24;
   margin-bottom: 10px;
 }
 
 .ind-related-line {
   width: 70px;
   height: 5px;
-  background: #2563eb;
+  background: #E31E24;
   margin: 0 auto 20px;
   border-radius: 50px;
 }
@@ -229,7 +229,7 @@
 }
 
 .ind-related-viewall-btn {
-  border: 2px solid #222;
+  border: 2px solid #2B2B2E;
   background: white;
   padding: 12px 32px;
   border-radius: 30px;
@@ -237,12 +237,12 @@
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
-  color: #222;
+  color: #2B2B2E;
 }
 
 .ind-related-viewall-btn:hover {
-  background: #2563eb;
-  border-color: #2563eb;
+  background: #E31E24;
+  border-color: #E31E24;
   color: white;
 }
 
@@ -260,14 +260,14 @@
 .ind-loading-spinner {
   width: 40px;
   height: 40px;
-  border: 4px solid #e2e2e2;
-  border-top-color: #2563eb;
+  border: 4px solid #E5E7EB;
+  border-top-color: #E31E24;
   border-radius: 50%;
   animation: indDetailsSpin 0.8s linear infinite;
 }
 
 .ind-details-loading p {
-  color: #888;
+  color: #4B5563;
   font-size: 15px;
 }
 
@@ -280,12 +280,12 @@
 
 .ind-not-found h2 {
   font-size: 28px;
-  color: #1b3a6b;
+  color: #E31E24;
   margin-bottom: 12px;
 }
 
 .ind-not-found p {
-  color: #777;
+  color: #4B5563;
   font-size: 15px;
   margin-bottom: 24px;
 }

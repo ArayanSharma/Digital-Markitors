@@ -525,57 +525,31 @@ const Hospitality = () => {
       </section>
 
 
-      <section className="discover-services">
+      <section className="w-full py-[100px] px-5 bg-[#f4f4f5] text-center border-b border-[#e5e7eb]">
+        <div className="max-w-[1200px] mx-auto px-5">
+          <div className="w-[60px] h-[4px] bg-[#e31e24] mx-auto mb-[25px] rounded-[10px] max-[769px]:w-[50px] max-[769px]:mb-[20px]"></div>
 
-        <div className="discover-container">
-
-          <div className="divider"></div>
-
-          <h2>
+          <h2 className="text-[48px] max-[993px]:text-[38px] max-[769px]:text-[30px] leading-[1.1] text-[#1c1c1e] mb-[25px] font-heading font-extrabold">
             {discover?.heading || "Hospitality SEO Services"}
           </h2>
 
-          <p>
+          <p className="text-[17px] leading-[1.8] text-[#4b5563] max-w-[850px] mx-auto mb-[60px]">
             {discover?.description || "With the customized level of optimization, scope of improving the online visibility, and the efforts required to cater to industry-specific objectives, Digicore Inc. plans SEO services. From boosting the conversion and clickthrough rates to driving potential customers through organic traffic, our Hospitality SEO services deliver the measurable results backed by detailed report."}
           </p>
-
         </div>
 
-        <div className="services-cards">
-
-          <div className="services-grid">
-
+        <div className="max-w-[1200px] mx-auto px-5">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[30px]">
             {displayServices.map((service, index) => (
-
-              <div
+              <ServiceCard
                 key={service.id || index}
-                className="services-card"
-              >
-
-                {/* KEEP YOUR EXISTING ICON */}
-                <div className="service-icon">
-                  <img
-                    src={service.icon}
-                    alt={service.title}
-                  />
-                </div>
-
-                <h3>{service.title}</h3>
-
-                <p>{service.description}</p>
-
-                <div className="service-arrow">
-                  →
-                </div>
-
-              </div>
-
+                icon={service.icon}
+                title={service.title}
+                description={service.description}
+              />
             ))}
-
           </div>
-
         </div>
-
       </section>
 
       <section className="why-choose-sec" style={{

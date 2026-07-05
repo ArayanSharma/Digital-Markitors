@@ -1,5 +1,5 @@
 .workindustry-section {
-  background: #F8FAFC;
+  background: #F4F4F5;
   padding: 80px 0;
   padding-bottom: -150px;
   overflow: hidden;
@@ -13,14 +13,14 @@
 .workindustry-heading h2 {
   font-size: 44px;
   font-weight: 500;
-  color: #003366;
+  color: #2B2B2E;
   margin-bottom: 18px;
 }
 
 .workindustry-line {
   width: 70px;
   height: 5px;
-  background: #003366;
+  background: #E31E24;
   margin: auto;
   border-radius: 50px;
 }
@@ -62,9 +62,9 @@
 
   min-height: 520px;
 
-  border-top: 5px solid #2563EB;
+  border-top: 5px solid #E31E24;
 
-  color: #111827;
+  color: #2B2B2E;
 
   display: flex;
   flex-direction: column;
@@ -76,7 +76,7 @@
 
 .workindustry-card:hover {
   transform: translateY(-8px);
-  box-shadow: 0 15px 35px rgba(234, 130, 21, 0.2);
+  box-shadow: 0 15px 35px rgba(227, 30, 36, 0.2);
 }
 
 /* ICON */
@@ -87,7 +87,7 @@
 
   border-radius: 50%;
 
-  background: #3c70d1;
+  background: #E31E24;
 
   display: flex;
   align-items: center;
@@ -95,7 +95,7 @@
 
   font-size: 42px;
 
-  color: #2563EB;
+  color: #E31E24;
 
   margin-bottom: 28px;
   overflow: hidden;
@@ -113,7 +113,7 @@
   font-size: 34px;
   font-weight: 700;
 
-  color: #1B3A6B;
+  color: #2B2B2E;
 
   margin-bottom: 22px;
 
@@ -137,12 +137,12 @@
   width: 180px;
   height: 62px;
 
-  border: 2px solid #2563EB;
+  border: 2px solid #E31E24;
   border-radius: 50px;
 
   background: transparent;
 
-  color: #2563EB;
+  color: #E31E24;
 
   font-size: 20px;
   font-weight: 600;
@@ -153,7 +153,7 @@
 }
 
 .workindustry-read-btn:hover {
-  background: #2563EB;
+  background: #C4151A;
   color: #FFFFFF;
 }
 
@@ -167,11 +167,11 @@
   height: 64px;
 
   border-radius: 50%;
-  border: 2px solid #2563EB;
+  border: 2px solid #E31E24;
 
   background: #FFFFFF;
 
-  color: #2563EB;
+  color: #E31E24;
   font-size: 26px;
 
   cursor: pointer;
@@ -180,13 +180,13 @@
   align-items: center;
   justify-content: center;
 
-  box-shadow: 0 8px 20px rgba(37, 99, 235, 0.12);
+  box-shadow: 0 8px 20px rgba(227, 30, 36, 0.12);
 
   transition: all 0.3s ease;
 }
 
 .workindustry-slider-btn:hover {
-  background: #2563EB;
+  background: #C4151A;
   color: #FFFFFF;
 }
 
@@ -206,9 +206,9 @@
 }
 
 .workindustry-viewall-btn {
-  border: 2px solid #2563eb;
+  border: 2px solid #E31E24;
   background: transparent;
-  color: #2563eb;
+  color: #E31E24;
   padding: 14px 36px;
   border-radius: 50px;
   font-size: 16px;
@@ -218,7 +218,7 @@
 }
 
 .workindustry-viewall-btn:hover {
-  background: #2563eb;
+  background: #C4151A;
   color: #ffffff;
 }
 

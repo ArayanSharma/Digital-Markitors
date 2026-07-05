@@ -20,14 +20,14 @@
 .case-heading h2 {
   font-size: 32px;
   font-weight: 500;
-  color: #003366;
+  color: #2B2B2E;
   text-transform: uppercase;
   margin-bottom: 15px;
 }
 
 .case-heading .divider {
   width: 60px;
-  background: #003366;
+  background: #E31E24;
   border-radius: 10px;
   margin: 0 auto;
 }
@@ -44,7 +44,7 @@
 }
 
 .case-content h3 {
-  color: #003366;
+  color: #2B2B2E;
   font-size: 22px;
   font-weight: 700;
   line-height: 1;
@@ -53,7 +53,7 @@
 
 .case-content p {
   font-size: 16px;
-  color: #555;
+  color: #4B5563;
   margin-bottom: 15px;
 }
 
@@ -64,7 +64,7 @@
 }
 
 .case-btn {
-  background: #003366;
+  background: #E31E24;
   color: #fff;
   border: none;
   padding: 14px 28px;
@@ -76,7 +76,7 @@
 }
 
 .outline-btn {
-  background: #003366;
+  background: #E31E24;
 }
 
 /* IMAGE SECTION */
@@ -86,7 +86,7 @@
   min-width: 400px;
   max-width: 400px;
   height: 360px;
-  border-left: 1px solid #ddd;
+  border-left: 1px solid #E5E7EB;
   padding-left: 40px;
 
   display: flex;
@@ -112,13 +112,13 @@
 .dot {
   width: 40px;
   height: 10px;
-  border: 2px solid #003366;
+  border: 2px solid #E31E24;
   border-radius: 30px;
   cursor: pointer;
 }
 
 .dot.active {
-  background: #003366;
+  background: #E31E24;
 }
 
 /* ARROWS */

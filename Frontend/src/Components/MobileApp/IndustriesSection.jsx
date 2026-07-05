@@ -43,14 +43,14 @@ export default function IndustriesSection() {
           {INDUSTRIES.map((ind, i) => (
             <div
               key={i}
-              className="group relative rounded-3xl bg-white border border-slate-200 p-7 overflow-hidden aspect-square flex flex-col justify-between hover:-translate-y-1.5 hover:shadow-[0_20px_46px_rgba(59,130,246,0.16)] hover:border-blue-300 transition-all duration-400"
+              className="group relative rounded-3xl bg-white border border-slate-200 p-7 overflow-hidden aspect-square flex flex-col justify-between hover:-translate-y-1.5 hover:shadow-[0_20px_46px_rgba(227,30,36,0.12)] hover:border-[#e31e24]/30 transition-all duration-400"
             >
               <ind.icon
                 size={90}
                 strokeWidth={1}
-                className="absolute -right-4 -bottom-4 text-blue-500/5 group-hover:text-blue-500/10 group-hover:scale-110 transition-all duration-500"
+                className="absolute -right-4 -bottom-4 text-[#e31e24]/5 group-hover:text-[#e31e24]/10 group-hover:scale-110 transition-all duration-500"
               />
-              <div className="relative w-12 h-12 rounded-2xl bg-gradient-to-br from-blue-500 to-sky-400 text-white flex items-center justify-center transition-transform duration-300 group-hover:-translate-y-1 group-hover:rotate-6">
+              <div className="relative w-12 h-12 rounded-2xl bg-gradient-to-br from-[#e31e24] to-[#c4151a] text-white flex items-center justify-center transition-transform duration-300 group-hover:-translate-y-1 group-hover:rotate-6">
                 <ind.icon size={22} />
               </div>
               <div className="relative">

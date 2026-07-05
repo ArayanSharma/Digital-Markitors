@@ -18,7 +18,7 @@ export default function MobileFAQ({ faqs }) {
             <div
               key={item.id || i}
               className={`mp-reveal rounded-2xl border bg-white overflow-hidden transition-all duration-300 ${
-                isOpen ? "border-blue-300 shadow-[0_12px_32px_rgba(59,130,246,0.12)]" : "border-slate-200 hover:border-blue-200"
+                isOpen ? "border-[#e31e24]/30 shadow-[0_12px_32px_rgba(227,30,36,0.08)]" : "border-slate-200 hover:border-[#e31e24]/20"
               }`}
             >
               <button
@@ -29,7 +29,7 @@ export default function MobileFAQ({ faqs }) {
                 <span className="font-semibold text-slate-900">{item.question}</span>
                 <span
                   className={`shrink-0 w-8 h-8 rounded-full flex items-center justify-center transition-colors duration-300 ${
-                    isOpen ? "bg-blue-600 text-white" : "bg-blue-50 text-blue-600"
+                    isOpen ? "bg-[#e31e24] text-white" : "bg-[#e31e24]/8 text-[#e31e24]"
                   }`}
                 >
                   {isOpen ? <Minus size={15} /> : <Plus size={15} />}

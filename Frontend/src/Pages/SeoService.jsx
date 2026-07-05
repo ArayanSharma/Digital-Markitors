@@ -606,57 +606,32 @@ const faqData = [
 </section>
 
 
- <section>
+ <section className="w-full py-[100px] px-5 bg-[#f4f4f5] text-center border-b border-[#e5e7eb]">
+        <div className="max-w-[1200px] mx-auto px-5">
+          <div className="w-[60px] h-[4px] bg-[#e31e24] mx-auto mb-[25px] rounded-[10px] max-[769px]:w-[50px] max-[769px]:mb-[20px]"></div>
 
-  <div className="max-w-[1500px] mx-auto [text-align:center]">
+          <h2 className="text-[48px] max-[993px]:text-[38px] max-[769px]:text-[30px] leading-[1.1] text-[#1c1c1e] mb-[25px] font-heading font-extrabold">
+            {discover?.heading || "SEO Services in Delhi"}
+          </h2>
 
-    <div className="w-[60px] h-1 bg-[#e67e22] mx-auto mb-[25px] rounded-[10px] max-[769px]:w-[50px] max-[769px]:mb-5"></div>
-
-    <h2 className="text-[60px] max-[993px]:text-[42px] uppercase text-[#003366] font-bold mb-[40px] leading-[1.2] max-[993px]:leading-[1.3]">
-{discover?.heading || "SEO Services in Delhi"}
-    </h2>
-
-    <p className="text-[22px] max-[993px]:text-[19px] max-[769px]:text-[16px] leading-[1.9] max-[769px]:leading-[1.8] text-[#444] [text-align:center]">
- {discover?.description || "At Digicore Inc., we don’t just offer SEO services—we become your trusted digital growth partner. As pioneers in the digital marketing landscape, we’ve been empowering brands with our AI-powered, data-driven SEO services and helping them connect and engage the right audience."}
-    </p>
-
-  </div>
-
-  <div>
-
-    <div className="grid grid-cols-3 max-[993px]:grid-cols-2 max-[769px]:grid-cols-1 gap-[24px]">
-
-      {displayServices.map((service, index) => (
-
-       <div
-  key={service.id || index}
->
-
-          {/* KEEP YOUR EXISTING ICON */}
-          <div className="w-[55px] h-[55px] object-contain mb-[18px]">
-            <img
-              src={service.icon}
-              alt={service.title}
-            />
-          </div>
-
-          <h3>{service.title}</h3>
-
-          <p>{service.description}</p>
-
-          <div>
-            →
-          </div>
-
+          <p className="text-[17px] leading-[1.8] text-[#4b5563] max-w-[850px] mx-auto mb-[60px]">
+            {discover?.description || "At Digicore Inc., we don’t just offer SEO services—we become your trusted digital growth partner. As pioneers in the digital marketing landscape, we’ve been empowering brands with our AI-powered, data-driven SEO services and helping them connect and engage the right audience."}
+          </p>
         </div>
 
-      ))}
-
-    </div>
-
-  </div>
-
-</section>
+        <div className="max-w-[1200px] mx-auto px-5">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[30px]">
+            {displayServices.map((service, index) => (
+              <ServiceCard
+                key={service.id || index}
+                icon={service.icon}
+                title={service.title}
+                description={service.description}
+              />
+            ))}
+          </div>
+        </div>
+      </section>
 
  <section className="why-choose-sec"   style={{
     backgroundImage: `url(${whyChoose?.backgroundImage ? resolveImage(whyChoose.backgroundImage) : bgIcon})`,

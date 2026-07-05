@@ -18,7 +18,7 @@ export default function ServicesSection({ services }) {
           return (
             <div
               key={service.id}
-              className={`group relative rounded-3xl bg-white border border-slate-200 p-6 flex flex-col overflow-hidden transition-all duration-400 hover:-translate-y-1.5 hover:border-blue-300 hover:shadow-[0_20px_46px_rgba(59,130,246,0.16)] ${
+              className={`group relative rounded-3xl bg-white border border-slate-200 p-6 flex flex-col overflow-hidden transition-all duration-400 hover:-translate-y-1.5 hover:border-[#e31e24]/30 hover:shadow-[0_20px_46px_rgba(227,30,36,0.12)] ${
                 service.featured ? "lg:col-span-2" : ""
               }`}
             >
@@ -27,7 +27,7 @@ export default function ServicesSection({ services }) {
                 style={{ background: meta.color }}
               />
               {service.featured && (
-                <span className="absolute top-5 right-5 text-[10px] font-bold uppercase tracking-wide text-blue-600 bg-blue-50 px-2 py-0.5 rounded-full">
+                <span className="absolute top-5 right-5 text-[10px] font-bold uppercase tracking-wide text-[#e31e24] bg-[#e31e24]/8 px-2 py-0.5 rounded-full">
                   Popular
                 </span>
               )}
@@ -41,7 +41,7 @@ export default function ServicesSection({ services }) {
               <p className="relative text-sm text-slate-500 mt-2 leading-relaxed flex-1">{service.description}</p>
               <a
                 href="/contact"
-                className="relative inline-flex items-center gap-1.5 text-sm font-semibold text-blue-600 mt-5 group-hover:gap-2.5 transition-all duration-300"
+                className="relative inline-flex items-center gap-1.5 text-sm font-semibold text-[#e31e24] mt-5 group-hover:gap-2.5 transition-all duration-300"
               >
                 Learn More <ArrowUpRight size={14} />
               </a>

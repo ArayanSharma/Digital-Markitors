@@ -44,7 +44,7 @@
 .seo-line {
   width: 40px;
   height: 4px;
-  background: #003366;
+  background: #E31E24;
   margin: 0 auto 15px;
   border-radius: 20px;
 }
@@ -52,7 +52,7 @@
 .seo-heading h2 {
   font-size: 42px;
   font-weight: 700;
-  color: #003366;
+  color: #E31E24;
   margin-bottom: 20px;
   text-transform: uppercase;
 }
@@ -62,7 +62,7 @@
   margin: auto;
   font-size: 16px;
   line-height: 1.8;
-  color: #555;
+  color: #4B5563;
 }
 
 .seo-content {
@@ -72,7 +72,7 @@
 }
 
 .seo-left h3 {
-  color: #003366;
+  color: #E31E24;
   font-size: 32px;
   margin-bottom: 15px;
   font-weight: 700;
@@ -80,7 +80,7 @@
 
 .seo-left p,
 .seo-right p {
-  color: #555;
+  color: #4B5563;
   font-size: 17px;
   line-height: 1.9;
   margin-bottom: 30px;

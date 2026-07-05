@@ -4,7 +4,7 @@
 
 .all-ind-page {
   padding: 50px 20px 70px;
-  background: #f8fafc;
+  background: #F4F4F5;
   min-height: 100vh;
 }
 
@@ -24,7 +24,7 @@
 .all-ind-header h1 {
   font-size: 42px;
   font-weight: 600;
-  color: #1b3a6b;
+  color: #2B2B2E;
   text-transform: uppercase;
   margin-bottom: 10px;
 }
@@ -32,7 +32,7 @@
 .all-ind-header-line {
   width: 70px;
   height: 5px;
-  background: #2563eb;
+  background: #E31E24;
   margin: 0 auto 18px;
   border-radius: 50px;
 }
@@ -58,18 +58,18 @@
   max-width: 420px;
   padding: 14px 24px;
   border-radius: 50px;
-  border: 2px solid #dde3ec;
+  border: 2px solid #E5E7EB;
   font-size: 15px;
   font-family: inherit;
   background: #ffffff;
-  color: #1b3a6b;
+  color: #2B2B2E;
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .all-ind-search:focus {
   outline: none;
-  border-color: #2563eb;
-  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.12);
+  border-color: #E31E24;
+  box-shadow: 0 0 0 4px rgba(227, 30, 36, 0.12);
 }
 
 /* ─── Grid ─── */
@@ -103,8 +103,8 @@
 .all-ind-spinner {
   width: 40px;
   height: 40px;
-  border: 4px solid #e2e2e2;
-  border-top-color: #2563eb;
+  border: 4px solid #E5E7EB;
+  border-top-color: #E31E24;
   border-radius: 50%;
   animation: indSpin 0.8s linear infinite;
 }
