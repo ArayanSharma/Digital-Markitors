@@ -110,15 +110,11 @@ const PPC = () => {
   const displayRightItems = ppcManagementSection?.rightItems?.length ? ppcManagementSection.rightItems : rightItems;
 
   const helpCards = [
-    { icon: Icon1, title: "Targeted Advertising", desc: "We ensure your business get more and more leads through our expertly managed digital marketing services" },
-    { icon: Icon2, title: "Leveraging Insights", desc: "We help you convert maximum possible leads into sales and grow your business faster" },
-    { icon: Icon3, title: "Continuous Optimization", desc: "We help your brand gain strong recognition across digital platforms globally" },
-    { icon: Icon4, title: "Maximizing ROI", desc: "Improve your team capabilities with advanced marketing strategies and guidance" },
+    { icon: Icon1, title: "Get More Leads", desc: "We ensure your business get more and more leads through our expertly managed digital marketing services" },
+    { icon: Icon2, title: "Make More Sales", desc: "We help you convert maximum possible leads into sales and grow your business faster" },
+    { icon: Icon3, title: "Build Brand Awareness", desc: "We help your brand gain strong recognition across digital platforms globally" },
+    { icon: Icon4, title: "Upskill Your Team", desc: "Improve your team capabilities with advanced marketing strategies and guidance" },
   ];
-
-  const displayHelpCards = helpCardsSection?.helpCards?.length
-    ? helpCardsSection.helpCards.map((h) => ({ ...h, icon: resolveImage(h.iconUrl) }))
-    : helpCards;
 
   const faqData = [
     { question: "Does social media marketing work for all businesses?", answer: "Social media marketing is beneficial for all-sized businesses, but results are variable based on goals, target audience, nature of business, and constant strategy execution." },
@@ -204,7 +200,7 @@ const PPC = () => {
 
           <div className="min-h-[390px] max-[992px]:min-h-[350px] max-[769px]:min-h-[250px] overflow-hidden">
             <img
-              src={performanceSection?.imageUrl ? resolveImage(performanceSection.imageUrl) : seoRimg}
+              src={seoRimg}
               alt="SEO Performance"
               className="w-full h-full block object-cover"
             />
@@ -302,12 +298,12 @@ const PPC = () => {
           <div className="flex justify-center items-center gap-5 max-[769px]:flex-col">
             <a
               href={whyChooseSection?.buttons?.[0]?.link || "#"}
-              className="flex items-center justify-center gap-[10px] bg-white hover:bg-[#f0fdf4] hover:scale-[1.03] transition-all duration-300 text-[#22c55e] h-12 px-7 rounded-lg text-base font-bold no-underline shadow-[0_4px_15px_rgba(34,197,94,0.16)] border border-[#22c55e]/25"
+              className="flex items-center justify-center gap-[10px] bg-white hover:bg-red-50/30 hover:scale-[1.03] transition-all duration-300 text-[#e31e24] h-12 px-7 rounded-lg text-base font-bold no-underline shadow-[0_4px_15px_rgba(227,30,36,0.12)] border border-[#e31e24]/25"
             >
               <img
                 src="https://tataresearch.besthr.in/digital-marketar/assets/icon/whatsapp.png"
                 alt="whatsapp"
-                className="w-[20px] h-[20px] invert brightness-200"
+                className="w-[20px] h-[20px]"
               />
               {whyChooseSection?.buttons?.[0]?.text || "+91 98188 88064"}
             </a>
@@ -399,32 +395,34 @@ const PPC = () => {
       </section>
 
       {/* Dominate Section */}
-      <section className="w-full py-24 px-5 bg-white border-b border-[#e5e7eb]">
+      <section className="w-full py-24 px-5 bg-[#f4f4f5] border-b border-[#e5e7eb] text-center">
         <div className="max-w-[1200px] mx-auto">
           <div className="w-[60px] h-[4px] bg-[#e31e24] mx-auto mb-[25px] rounded-[10px]"></div>
 
-          <h2 className="text-center text-[38px] max-[769px]:text-[28px] font-heading font-extrabold text-[#1c1c1e] mb-4">
+          <h2 className="text-center text-[48px] max-[993px]:text-[38px] max-[769px]:text-[30px] font-heading font-extrabold text-[#1c1c1e] mb-[15px] uppercase">
             {helpCardsSection?.heading || "How Can We Help You Grow"}
           </h2>
 
           <p className="text-center text-[17px] leading-[1.8] text-[#4b5563] max-w-[900px] mx-auto mb-16">
             Digicore Inc. is the top PPC company in Delhi and our PPC solutions are beneficial for all-sized businesses to maximize brand exposure in a short time span. We offer a strategically tailored solution to our client through exclusively planned campaigns and boost our PPC services while keeping in mind the budget allocation. Based on client’s budget limit, we strategize PPC campaigns that can boost up your advertisements on various search engines and ultimately attract targeted traffic.
           </p>
+        </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {displayHelpCards.map((item, index) => (
-              <div
-                className="group bg-white rounded-3xl p-8 border border-[#e5e7eb] shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:-translate-y-2 hover:shadow-[0_15px_30px_rgba(227,30,36,0.1)] hover:border-[#e31e24]/20 transition-all duration-300 flex flex-col items-center text-center"
-                key={index}
-              >
-                <div className="w-16 h-16 rounded-full bg-[#fee2e2] flex items-center justify-center mb-6 transition-transform duration-300 group-hover:scale-110">
-                  <img src={item.icon} alt={item.title} className="w-8 h-8 object-contain" />
-                </div>
-                <h3 className="text-[18px] font-bold text-[#2b2b2e] mb-3">{item.title}</h3>
-                <p className="text-[14px] leading-relaxed text-[#4b5563]">{item.desc}</p>
+        <div className="flex justify-center gap-10 flex-wrap mt-[30px]">
+          {helpCards.map((item, index) => (
+            <div
+              className="group w-[260px] h-[260px] max-[769px]:w-[220px] max-[769px]:h-[220px] rounded-full bg-white border border-[#e5e7eb] flex flex-col items-center justify-center text-center p-6 box-border relative overflow-hidden cursor-pointer shadow-sm transition-all duration-300 hover:bg-[#e31e24] hover:border-[#e31e24] hover:shadow-[0_12px_25px_rgba(227,30,36,0.25)] hover:-translate-y-1.5"
+              key={index}
+            >
+              <div className="relative z-[2] w-12 h-12 mb-4 flex items-center justify-center transition-colors duration-300">
+                <img src={item.icon} alt={item.title} className="w-full h-full object-contain filter group-hover:brightness-0 group-hover:invert transition-all duration-300" />
               </div>
-            ))}
-          </div>
+
+              <h3 className="relative z-[2] text-[18px] max-[769px]:text-[15px] font-heading font-bold text-[#2b2b2e] leading-tight m-0 transition-colors duration-300 group-hover:text-white group-hover:mb-[10px]">{item.title}</h3>
+
+              <p className="relative z-[2] mt-0 text-[12px] leading-[1.5] text-white opacity-0 max-h-0 overflow-hidden transition-all duration-300 group-hover:opacity-90 group-hover:max-h-[120px]">{item.desc}</p>
+            </div>
+          ))}
         </div>
       </section>
 
@@ -433,7 +431,7 @@ const PPC = () => {
         <div className="max-w-[1200px] mx-auto">
           <div className="w-[60px] h-[4px] bg-[#e31e24] mx-auto mb-[25px] rounded-[10px]"></div>
 
-          <h2 className="text-center text-[36px] max-[769px]:text-[28px] font-heading font-extrabold text-[#1c1c1e] mb-6 uppercase">
+          <h2 className="text-center text-[48px] max-[993px]:text-[38px] max-[769px]:text-[30px] font-heading font-extrabold text-[#1c1c1e] mb-6 uppercase">
             {whyChooseDigicoreSection?.title || (<>Why Choose Digicore Inc. as YOUR<br />PPC AGENCY IN DELHI</>)}
           </h2>
 
@@ -509,9 +507,8 @@ const PPC = () => {
               return (
                 <div
                   key={faq.id || index}
-                  className={`bg-white border rounded-2xl overflow-hidden shadow-[0_2px_10px_rgba(0,0,0,0.01)] transition-all duration-300 ${
-                    isOpen ? "border-[#e31e24]/30 shadow-[0_12px_32px_rgba(227,30,36,0.08)]" : "border-slate-200 hover:border-[#e31e24]/20"
-                  }`}
+                  className={`bg-white border rounded-2xl overflow-hidden shadow-[0_2px_10px_rgba(0,0,0,0.01)] transition-all duration-300 ${isOpen ? "border-[#e31e24]/30 shadow-[0_12px_32px_rgba(227,30,36,0.08)]" : "border-slate-200 hover:border-[#e31e24]/20"
+                    }`}
                 >
                   <button
                     className="w-full flex items-center justify-between gap-4 text-left px-6 py-5 cursor-pointer bg-transparent border-0 select-none"
@@ -519,9 +516,8 @@ const PPC = () => {
                   >
                     <span className="font-semibold text-slate-900 text-[15px]">{faq.question}</span>
                     <span
-                      className={`shrink-0 w-8 h-8 rounded-full flex items-center justify-center transition-colors duration-300 ${
-                        isOpen ? "bg-[#e31e24] text-white" : "bg-[#e31e24]/8 text-[#e31e24]"
-                      }`}
+                      className={`shrink-0 w-8 h-8 rounded-full flex items-center justify-center transition-colors duration-300 ${isOpen ? "bg-[#e31e24] text-white" : "bg-[#e31e24]/8 text-[#e31e24]"
+                        }`}
                     >
                       {isOpen ? <Minus size={16} /> : <Plus size={16} />}
                     </span>
