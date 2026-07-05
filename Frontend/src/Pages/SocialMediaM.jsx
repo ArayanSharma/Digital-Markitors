@@ -1,4 +1,4 @@
-import React, { useEffect, useState ,useRef} from "react";
+import React, { useEffect, useState, useRef } from "react";
 
 
 import Banner from "../Components/Cards/Seohero";
@@ -37,13 +37,13 @@ import Icon2 from "../assets/h2.png";
 import Icon3 from "../assets/h3.png";
 import Icon4 from "../assets/h4.png";
 import eimage from "../assets/BannerImg/SocialMediaListening&ResponseManagement.png";
-  import i1 from "../assets/i1.png";
- import i2 from "../assets/i2.png";
- import i3 from "../assets/i3.png";
- import { usePageContent, resolveImage } from "../hooks/usePageContent";
+import i1 from "../assets/i1.png";
+import i2 from "../assets/i2.png";
+import i3 from "../assets/i3.png";
+import { usePageContent, resolveImage } from "../hooks/usePageContent";
 
 
-const SocialMediaM  = () => {
+const SocialMediaM = () => {
   const { content: c } = usePageContent("SocialMediaM");
   const banner = c?.banner;
   const about = c?.about;
@@ -77,284 +77,284 @@ const SocialMediaM  = () => {
   };
 
   const sliderRef = useRef(null);
-      const scrollLeft = () => {
-  const card = sliderRef.current.querySelector(".workindustry-card");
+  const scrollLeft = () => {
+    const card = sliderRef.current.querySelector(".workindustry-card");
 
-  if (card) {
-    const cardWidth = card.offsetWidth + 40;
-    sliderRef.current.scrollBy({
-      left: -(cardWidth * 3),
-      behavior: "smooth",
-    });
-  }
-};
+    if (card) {
+      const cardWidth = card.offsetWidth + 40;
+      sliderRef.current.scrollBy({
+        left: -(cardWidth * 3),
+        behavior: "smooth",
+      });
+    }
+  };
 
-const scrollRight = () => {
-  const card = sliderRef.current.querySelector(".workindustry-card");
+  const scrollRight = () => {
+    const card = sliderRef.current.querySelector(".workindustry-card");
 
-  if (card) {
-    const cardWidth = card.offsetWidth + 40; // 40 = gap
-    sliderRef.current.scrollBy({
-      left: cardWidth * 3,
-      behavior: "smooth",
-    });
-  }
-};
-
-
+    if (card) {
+      const cardWidth = card.offsetWidth + 40; // 40 = gap
+      sliderRef.current.scrollBy({
+        left: cardWidth * 3,
+        behavior: "smooth",
+      });
+    }
+  };
 
 
 
-    
-      useEffect(() => {
 
-        let start = 0;
-        const max = Math.max(counterTargets.count1, counterTargets.count2, counterTargets.count3, counterTargets.count4);
 
-        const interval = setInterval(() => {
 
-          start += 1;
+  useEffect(() => {
 
-          setCounts({
-            count1: start <= counterTargets.count1 ? start : counterTargets.count1,
-            count2: start <= counterTargets.count2 ? start : counterTargets.count2,
-            count3: start <= counterTargets.count3 ? start : counterTargets.count3,
-            count4: start <= counterTargets.count4 ? start : counterTargets.count4,
-          });
+    let start = 0;
+    const max = Math.max(counterTargets.count1, counterTargets.count2, counterTargets.count3, counterTargets.count4);
 
-          if (start >= max) {
-            clearInterval(interval);
-          }
+    const interval = setInterval(() => {
 
-        }, 30);
+      start += 1;
 
-        return () => clearInterval(interval);
+      setCounts({
+        count1: start <= counterTargets.count1 ? start : counterTargets.count1,
+        count2: start <= counterTargets.count2 ? start : counterTargets.count2,
+        count3: start <= counterTargets.count3 ? start : counterTargets.count3,
+        count4: start <= counterTargets.count4 ? start : counterTargets.count4,
+      });
 
-      }, [counterTargets.count1, counterTargets.count2, counterTargets.count3, counterTargets.count4]);
+      if (start >= max) {
+        clearInterval(interval);
+      }
 
-const [currentCase, setCurrentCase] = useState(0);
+    }, 30);
 
-const nextCase = () => {
-  setCurrentCase((prev) =>
-    prev === caseStudies.length - 1 ? 0 : prev + 1
-  );
-};
+    return () => clearInterval(interval);
 
-const prevCase = () => {
-  setCurrentCase((prev) =>
-    prev === 0 ? caseStudies.length - 1 : prev - 1
-  );
-};
+  }, [counterTargets.count1, counterTargets.count2, counterTargets.count3, counterTargets.count4]);
 
-const caseStudies = [
-  {
-    title: "The Moto Men Car Detailing Meta Ads Case Study: From 40% to 100% Location-Relevant Leads",
-    image: seocase,
-    descriptions: [
-   "When The Moto Men approached us for Meta Ads, the challenge wasn’t lead volume – it was lead relevance. Many enquiries were coming from outside serviceable locations, impacting conversions and efficiency. The objective was to improve lead quality without increasing budgets or volumes. By implementing a location-first Meta Ads strategy and refining targeting and creatives, the campaigns began delivering only location-relevant, high-intent enquiries. As a result, lead quality improved significantly, conversions increased, and advertising spend became far more efficient with reduced wastage."   ]
-  },
+  const [currentCase, setCurrentCase] = useState(0);
 
-  {
-    title: "Book My Laundry Brand Awareness & Franchise Lead Generation Case Study (Delhi NCR)",
-    image: seocase,
-    descriptions: [
-     "When Book My Laundry partnered with us, the goal was to build strong brand awareness and generate high-quality franchise enquiries across Delhi NCR, including Noida, Ghaziabad, and Greater Noida. Earlier campaigns faced lead relevancy issues, with many accidental or low-intent enquiries. We executed a customised Meta Ads strategy using reel and static formats, supported by a custom-built lead form to filter genuine franchise interest. Alongside paid campaigns, we managed complete social media marketing to strengthen brand recall and trust across target locations. The result was a significant improvement in enquiry quality, ensuring leads were relevant, intentional, and aligned with franchise expansion goals." ]
-  },
+  const nextCase = () => {
+    setCurrentCase((prev) =>
+      prev === caseStudies.length - 1 ? 0 : prev + 1
+    );
+  };
 
-  {
-    title: "My Plate Manage (Dietician Binny) Meta Ads Case Study: 80% Lead Relevancy & Improved Conversions",
-    image: seocase,
-    descriptions: [
-     "My Plate Manage partnered with us to improve lead quality for Meta Ads campaigns after facing issues with high lead costs and low relevancy from earlier setups. While enquiries were coming in, most lacked intent and did not convert. We restructured the Meta Ads strategy with a quality-first approach, refining targeting, messaging, and lead filtering to attract genuinely interested users instead of accidental submissions. The campaign delivered stronger lead relevancy, improved conversion rates, and a more cost-effective acquisition process, helping the brand connect with the right audience consistently."    ]
-  }
-];
-      const services = [
-    
-        {
-          icon: seoIcon,
-          title: "ESocial Media Advertising",
-          description:
-            "ODigicore Inc. empowers robust data-driven social media marketing services aimed at improving brand’s visibility in national search results. Our best SMM practices attract high-quality traffic and address conversion goals.",
-        },
-    
-        {
-          icon: socialIcon,
-          title: "Instagram Marketing Services",
-          description:
-            "With AI-powered keyword research, insights and other technical social media marketing strategies, we drive real-time engagement for Instagram.",
-        },
-    
-        {
-          icon: ppcIcon,
-          title: "Meta Marketing Services",
-          description:
-            "Keeping in mind, the metrics of Facebook, trends, analytics, and the latest social media marketing strategies, we recommend the result-driven solution to clients.",
-        },
-    
-        {
-          icon: webIcon,
-          title: "LinkedIn Marketing Services",
-          description:
-            "From creating LinkedIn ad campaigns, executing the ads, audience targeting and segmentation to achieving measurable goals, our best social media marketing services in Delhi make brand’s growth simplified.",
-        },
-    
-        {
-          icon: contentIcon,
-          title: "Video Marketing",
-          description:
-            "Delivering high-quality technical SEO to improve site speed, mobile performance and site architecture to help brands stand out in search visibility.",
-        },
-    
-        ,{
-          icon: ormIcon,
-          title: "Influencer Marketing",
-          description:
-            "Helping brands tell their story in a unique way and forge deeper connections with audiences through our high-quality content marketing services.",
-        }  
-        ,{
-          icon: ormIcon,
-          title: "E-commerce Meta Ads",
-          description:
-            "Whether you want to promote your e-commerce business, boost sales or uncover the top strategies to attract target audience to your online store, our e-commerce social media marketing services will deliver a customized solution",
-        }  
-        ,{
-          icon: ormIcon,
-          title: "Social Listening Services",
-          description:
-            "Manage your brand’s reputation, evaluate the reviews of users regarding your business, and know how to implement the reputation management plan with our SMM experts. Based on the assessment, we offer you the customized solution.",
-        }  
-        ,{
-          icon: ormIcon,
-          title: "CPerformance Tracking & Analytics",
-          description:
-            "Our best social media marketing services are focused on telling brand’s story and connecting the brand with the wider audience through performance tracking & analytics",
-        }
+  const prevCase = () => {
+    setCurrentCase((prev) =>
+      prev === 0 ? caseStudies.length - 1 : prev - 1
+    );
+  };
 
-      ];
+  const caseStudies = [
+    {
+      title: "The Moto Men Car Detailing Meta Ads Case Study: From 40% to 100% Location-Relevant Leads",
+      image: seocase,
+      descriptions: [
+        "When The Moto Men approached us for Meta Ads, the challenge wasn’t lead volume – it was lead relevance. Many enquiries were coming from outside serviceable locations, impacting conversions and efficiency. The objective was to improve lead quality without increasing budgets or volumes. By implementing a location-first Meta Ads strategy and refining targeting and creatives, the campaigns began delivering only location-relevant, high-intent enquiries. As a result, lead quality improved significantly, conversions increased, and advertising spend became far more efficient with reduced wastage."]
+    },
+
+    {
+      title: "Book My Laundry Brand Awareness & Franchise Lead Generation Case Study (Delhi NCR)",
+      image: seocase,
+      descriptions: [
+        "When Book My Laundry partnered with us, the goal was to build strong brand awareness and generate high-quality franchise enquiries across Delhi NCR, including Noida, Ghaziabad, and Greater Noida. Earlier campaigns faced lead relevancy issues, with many accidental or low-intent enquiries. We executed a customised Meta Ads strategy using reel and static formats, supported by a custom-built lead form to filter genuine franchise interest. Alongside paid campaigns, we managed complete social media marketing to strengthen brand recall and trust across target locations. The result was a significant improvement in enquiry quality, ensuring leads were relevant, intentional, and aligned with franchise expansion goals."]
+    },
+
+    {
+      title: "My Plate Manage (Dietician Binny) Meta Ads Case Study: 80% Lead Relevancy & Improved Conversions",
+      image: seocase,
+      descriptions: [
+        "My Plate Manage partnered with us to improve lead quality for Meta Ads campaigns after facing issues with high lead costs and low relevancy from earlier setups. While enquiries were coming in, most lacked intent and did not convert. We restructured the Meta Ads strategy with a quality-first approach, refining targeting, messaging, and lead filtering to attract genuinely interested users instead of accidental submissions. The campaign delivered stronger lead relevancy, improved conversion rates, and a more cost-effective acquisition process, helping the brand connect with the right audience consistently."]
+    }
+  ];
+  const services = [
+
+    {
+      icon: seoIcon,
+      title: "ESocial Media Advertising",
+      description:
+        "ODigicore Inc. empowers robust data-driven social media marketing services aimed at improving brand’s visibility in national search results. Our best SMM practices attract high-quality traffic and address conversion goals.",
+    },
+
+    {
+      icon: socialIcon,
+      title: "Instagram Marketing Services",
+      description:
+        "With AI-powered keyword research, insights and other technical social media marketing strategies, we drive real-time engagement for Instagram.",
+    },
+
+    {
+      icon: ppcIcon,
+      title: "Meta Marketing Services",
+      description:
+        "Keeping in mind, the metrics of Facebook, trends, analytics, and the latest social media marketing strategies, we recommend the result-driven solution to clients.",
+    },
+
+    {
+      icon: webIcon,
+      title: "LinkedIn Marketing Services",
+      description:
+        "From creating LinkedIn ad campaigns, executing the ads, audience targeting and segmentation to achieving measurable goals, our best social media marketing services in Delhi make brand’s growth simplified.",
+    },
+
+    {
+      icon: contentIcon,
+      title: "Video Marketing",
+      description:
+        "Delivering high-quality technical SEO to improve site speed, mobile performance and site architecture to help brands stand out in search visibility.",
+    },
+
+    , {
+      icon: ormIcon,
+      title: "Influencer Marketing",
+      description:
+        "Helping brands tell their story in a unique way and forge deeper connections with audiences through our high-quality content marketing services.",
+    }
+    , {
+      icon: ormIcon,
+      title: "E-commerce Meta Ads",
+      description:
+        "Whether you want to promote your e-commerce business, boost sales or uncover the top strategies to attract target audience to your online store, our e-commerce social media marketing services will deliver a customized solution",
+    }
+    , {
+      icon: ormIcon,
+      title: "Social Listening Services",
+      description:
+        "Manage your brand’s reputation, evaluate the reviews of users regarding your business, and know how to implement the reputation management plan with our SMM experts. Based on the assessment, we offer you the customized solution.",
+    }
+    , {
+      icon: ormIcon,
+      title: "CPerformance Tracking & Analytics",
+      description:
+        "Our best social media marketing services are focused on telling brand’s story and connecting the brand with the wider audience through performance tracking & analytics",
+    }
+
+  ];
 
   const displayServices = c?.services?.length
     ? c.services.map((s) => ({ ...s, icon: resolveImage(s.icon) }))
     : services;
 
 
-    const industries = [
-  {
-    image: i1,
-    title: "Healthcare",
-    desc: "We provide specialized digital marketing solutions to hospitals, clinics and other health institutions to help them build trust and grow their brand.",
-  },
+  const industries = [
+    {
+      image: i1,
+      title: "Healthcare",
+      desc: "We provide specialized digital marketing solutions to hospitals, clinics and other health institutions to help them build trust and grow their brand.",
+    },
 
-  {
-    image: i2,
-    title: "E-Commerce",
-    desc: "We help online retailers and marketplaces with robust strategies to elevate their online presence and turn casual browsers into loyal customers.",
-  },
+    {
+      image: i2,
+      title: "E-Commerce",
+      desc: "We help online retailers and marketplaces with robust strategies to elevate their online presence and turn casual browsers into loyal customers.",
+    },
 
-  {
-    image: i3,
-    title: "Travel",
-    desc: "We offer a complete suite of digital marketing solutions for travel brands, helping them showcase their offerings in a unique way and drive bookings.",
-  },
-  {
-    image: i1,
-    title: "Healthcare",
-    desc: "We provide specialized digital marketing solutions to hospitals, clinics and other health institutions to help them build trust and grow their brand.",
-  },
+    {
+      image: i3,
+      title: "Travel",
+      desc: "We offer a complete suite of digital marketing solutions for travel brands, helping them showcase their offerings in a unique way and drive bookings.",
+    },
+    {
+      image: i1,
+      title: "Healthcare",
+      desc: "We provide specialized digital marketing solutions to hospitals, clinics and other health institutions to help them build trust and grow their brand.",
+    },
 
-  {
-    image: i2,
-    title: "E-Commerce",
-    desc: "We help online retailers and marketplaces with robust strategies to elevate their online presence and turn casual browsers into loyal customers.",
-  },
+    {
+      image: i2,
+      title: "E-Commerce",
+      desc: "We help online retailers and marketplaces with robust strategies to elevate their online presence and turn casual browsers into loyal customers.",
+    },
 
-  {
-    image: i3,
-    title: "Travel",
-    desc: "We offer a complete suite of digital marketing solutions for travel brands, helping them showcase their offerings in a unique way and drive bookings.",
-  },
-];
+    {
+      image: i3,
+      title: "Travel",
+      desc: "We offer a complete suite of digital marketing solutions for travel brands, helping them showcase their offerings in a unique way and drive bookings.",
+    },
+  ];
 
- const helpCards = [
+  const helpCards = [
 
-  {
-    icon: Icon1,
-    title: "Improve Brand Awareness",
-    desc: "We ensure your business get more and more leads through our expertly managed digital marketing services",
-  },
+    {
+      icon: Icon1,
+      title: "Improve Brand Awareness",
+      desc: "We ensure your business get more and more leads through our expertly managed digital marketing services",
+    },
 
-  {
-    icon: Icon2 ,
-    title: "Drive Website Traffic",
-    desc: "We help you convert maximum possible leads into sales and grow your business faster",
-  },
+    {
+      icon: Icon2,
+      title: "Drive Website Traffic",
+      desc: "We help you convert maximum possible leads into sales and grow your business faster",
+    },
 
-  {
-    icon: Icon3 ,
-    title: "Generate Leads",
-    desc: "We help your brand gain strong recognition across digital platforms globally",
-  },
+    {
+      icon: Icon3,
+      title: "Generate Leads",
+      desc: "We help your brand gain strong recognition across digital platforms globally",
+    },
 
-  {
-    icon: Icon4,
-    title: "Increase Measurable ROI",
-    desc: "Improve your team capabilities with advanced marketing strategies and guidance",
-  },
+    {
+      icon: Icon4,
+      title: "Increase Measurable ROI",
+      desc: "Improve your team capabilities with advanced marketing strategies and guidance",
+    },
 
-];
+  ];
 
   const displayDominateCards = c?.dominate?.cards?.length
     ? c.dominate.cards.map((card) => ({ ...card, icon: resolveImage(card.icon) }))
     : helpCards;
 
-const faqData = [
-  {
-    question: "Does social media marketing work for all businesses?",
-    answer:
-      "Social media marketing is beneficial for all-sized businesses, but results are variable based on goals, target audience, nature of business, and constant strategy execution.",
-  },
-  {
-    question:
-      "Does social media marketing work for Delhi-based businesses?",
-    answer:
-      "Yes! But, it depends on the audience targeting, content approach, industry, business goals, and the type of industry.",
-  },
-  {
-    question:
-      "Can social media help me get local leads in Delhi?",
-    answer:
-      "Yes, local leads based in Delhi can be generated through social media through location-specific content, local engagement with nearby customers and targeted ads.",
-  },
-  {
-    question:
-      "Which platforms work best for Delhi businesses?",
-    answer:
-      "Instagram, Google Business Profile, Facebook, and WhatsApp are ideal for Delhi-based businesses for improving local visibility and lead generation.",
-  },
-  {
-    question:
-      "Why do I need social media marketing for my business?",
-    answer:
-      "Customer engagement and brand visibility increase while building trust and generating quality leads in a cost-effective manner through social media marketing. ROI also increases through professional SMM services.",
-  },
-  {
-    question:
-      "How can social media marketing add value to my business?",
-    answer:
-      "The increased leads & conversion rate, improved credibility, brand awareness and attracting targeted customers are some of the benefits of social medial marketing that add value to your business.",
-  },
-  {
-    question:
-      "What are the real benefits of social media marketing?",
-    answer:
-      "From strategic planning, content creation, performance assessment to optimization of campaigns, the social media marketing agency offers customized services to achieve clients’ business goals.",
+  const faqData = [
+    {
+      question: "Does social media marketing work for all businesses?",
+      answer:
+        "Social media marketing is beneficial for all-sized businesses, but results are variable based on goals, target audience, nature of business, and constant strategy execution.",
     },
     {
-    question:
-      "How does a social media marketing agency actually work?",
-    answer:
-      "With our customized social media marketing services, we help businesses in reaching targeted audiences, drive website traffic, strengthen brand credibility and boost sales effectively.",
-  }
-];
+      question:
+        "Does social media marketing work for Delhi-based businesses?",
+      answer:
+        "Yes! But, it depends on the audience targeting, content approach, industry, business goals, and the type of industry.",
+    },
+    {
+      question:
+        "Can social media help me get local leads in Delhi?",
+      answer:
+        "Yes, local leads based in Delhi can be generated through social media through location-specific content, local engagement with nearby customers and targeted ads.",
+    },
+    {
+      question:
+        "Which platforms work best for Delhi businesses?",
+      answer:
+        "Instagram, Google Business Profile, Facebook, and WhatsApp are ideal for Delhi-based businesses for improving local visibility and lead generation.",
+    },
+    {
+      question:
+        "Why do I need social media marketing for my business?",
+      answer:
+        "Customer engagement and brand visibility increase while building trust and generating quality leads in a cost-effective manner through social media marketing. ROI also increases through professional SMM services.",
+    },
+    {
+      question:
+        "How can social media marketing add value to my business?",
+      answer:
+        "The increased leads & conversion rate, improved credibility, brand awareness and attracting targeted customers are some of the benefits of social medial marketing that add value to your business.",
+    },
+    {
+      question:
+        "What are the real benefits of social media marketing?",
+      answer:
+        "From strategic planning, content creation, performance assessment to optimization of campaigns, the social media marketing agency offers customized services to achieve clients’ business goals.",
+    },
+    {
+      question:
+        "How does a social media marketing agency actually work?",
+      answer:
+        "With our customized social media marketing services, we help businesses in reaching targeted audiences, drive website traffic, strengthen brand credibility and boost sales effectively.",
+    }
+  ];
 
   const displayFaq = c?.faqSection?.items?.length ? c.faqSection.items : faqData;
 
@@ -373,7 +373,7 @@ const faqData = [
       <section className="w-full py-24 px-5 bg-white">
         <div className="max-w-[1200px] mx-auto text-center">
           <div className="w-[60px] h-[4px] bg-[#e31e24] mx-auto mb-[25px] rounded-[10px]"></div>
-          
+
           <h1 className="text-[40px] max-[769px]:text-[30px] font-heading font-extrabold text-[#1c1c1e] mb-6 leading-tight">
             {about?.heading || "The Best Social Media Marketing Services in Delhi"}
           </h1>
@@ -395,8 +395,8 @@ const faqData = [
             <div className="text-[16px] leading-[1.8] text-[#4b5563] space-y-6">
               <p>
                 {visibility?.body || (<>With the increase SMM preferences, businesses need to keep their SMM campaigns updated and optimized. Besides, to address the SMM, easily navigable and productive browsing SMM, the new-age SMM services need to be availed.
-                <br /><br />
-                Digicore Inc., the top SMM agency based in Delhi NCR instils SMM in SMM practices. SMM comprehensive strategies SMM, improving engagement and providing real-time support make SMM SMM services SMM.</>)}
+                  <br /><br />
+                  Digicore Inc., the top SMM agency based in Delhi NCR instils SMM in SMM practices. SMM comprehensive strategies SMM, improving engagement and providing real-time support make SMM SMM services SMM.</>)}
               </p>
             </div>
 
@@ -404,10 +404,10 @@ const faqData = [
           </div>
 
           <div className="relative rounded-3xl overflow-hidden shadow-[0_15px_30px_rgba(0,0,0,0.05)] border border-slate-200">
-            <img 
-              src={visibility?.image ? resolveImage(visibility.image) : graphImg} 
-              alt="Graph" 
-              className="w-full h-full object-cover" 
+            <img
+              src={visibility?.image ? resolveImage(visibility.image) : graphImg}
+              alt="Graph"
+              className="w-full h-full object-cover"
             />
           </div>
         </div>
@@ -417,7 +417,7 @@ const faqData = [
       <section className="w-full py-20 px-5 bg-white text-center border-b border-[#e5e7eb]">
         <div className="max-w-[1200px] mx-auto">
           <div className="w-[60px] h-[4px] bg-[#e31e24] mx-auto mb-[25px] rounded-[10px]"></div>
-          
+
           <h2 className="text-[36px] max-[769px]:text-[28px] font-heading font-extrabold text-[#1c1c1e] mb-12">
             {workSection?.title || "We balance visual aesthetics with strategic insights to build digital solutions that truly perform."}
           </h2>
@@ -453,10 +453,10 @@ const faqData = [
           </div>
 
           <div className="min-h-[390px] max-[992px]:min-h-[350px] max-[769px]:min-h-[250px] overflow-hidden">
-            <img 
-              src={performance?.image ? resolveImage(performance.image) : seoRimg} 
-              alt="SEO Performance" 
-              className="w-full h-full block object-cover" 
+            <img
+              src={performance?.image ? resolveImage(performance.image) : seoRimg}
+              alt="SEO Performance"
+              className="w-full h-full block object-cover"
             />
           </div>
         </div>
@@ -541,8 +541,8 @@ const faqData = [
           </h2>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <a 
-              href={whyChoose?.button1?.link || "#"} 
+            <a
+              href={whyChoose?.button1?.link || "#"}
               className="relative overflow-hidden inline-flex items-center gap-2 text-[#22c55e] font-bold px-[34px] py-[15px] rounded-lg bg-white border border-[#22c55e]/25 shadow-[0_6px_20px_rgba(34,197,94,0.16)] transition-all duration-300 hover:bg-[#f0fdf4] hover:text-[#16a34a] hover:scale-[1.03] cursor-pointer"
             >
               <img
@@ -553,8 +553,8 @@ const faqData = [
               <span>{whyChoose?.button1?.text || "+91 98188 88064"}</span>
             </a>
 
-            <a 
-              href={whyChoose?.button2?.link || "#"} 
+            <a
+              href={whyChoose?.button2?.link || "#"}
               className="relative overflow-hidden inline-flex items-center gap-2 bg-transparent border border-white text-white font-bold px-[34px] py-[15px] rounded-lg transition-all duration-300 hover:bg-white/10 hover:scale-[1.03] cursor-pointer"
             >
               <span>{whyChoose?.button2?.text || "REQUEST A CALLBACK"}</span>
@@ -614,8 +614,8 @@ const faqData = [
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {displayDominateCards.map((item, index) => (
-              <div 
-                className="group bg-white rounded-3xl p-8 border border-[#e5e7eb] shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:-translate-y-2 hover:shadow-[0_15px_30px_rgba(227,30,36,0.1)] hover:border-[#e31e24]/20 transition-all duration-300 flex flex-col items-center text-center" 
+              <div
+                className="group bg-white rounded-3xl p-8 border border-[#e5e7eb] shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:-translate-y-2 hover:shadow-[0_15px_30px_rgba(227,30,36,0.1)] hover:border-[#e31e24]/20 transition-all duration-300 flex flex-col items-center text-center"
                 key={item.id || index}
               >
                 <div className="w-16 h-16 rounded-full bg-[#fee2e2] flex items-center justify-center mb-6 transition-transform duration-300 group-hover:scale-110">

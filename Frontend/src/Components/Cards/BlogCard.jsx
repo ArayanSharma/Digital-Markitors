@@ -69,15 +69,15 @@ const LatestBlogs = () => {
 
         <div className="[text-align:center] mb-[50px]">
 
-          <h2 className="text-[38px] max-[769px]:text-[30px] font-heading font-extrabold text-[#2b2b2e] uppercase mb-[10px]">Latest Blogs</h2>
+
 
           <div className="w-[55px] h-[4px] bg-[#e31e24] mx-auto mb-5 rounded-[20px]"></div>
           <h6 className="text-[22px] max-[993px]:text-[20px] max-[769px]:text-[17px] font-semibold text-[#4b5563] mb-[25px] leading-[1.5] max-[769px]:leading-[1.6] whitespace-pre-line">
             {section.description}
           </h6>
 
-          <button 
-            className="border-2 border-[#e31e24] bg-transparent text-[#e31e24] py-3 px-8 max-[769px]:py-[10px] max-[769px]:px-[22px] rounded-[30px] text-[15px] max-[769px]:text-[14px] font-bold cursor-pointer transition-all duration-300 hover:bg-[#e31e24] hover:text-white hover:scale-[1.03]" 
+          <button
+            className="border-2 border-[#e31e24] bg-transparent text-[#e31e24] py-3 px-8 max-[769px]:py-[10px] max-[769px]:px-[22px] rounded-[30px] text-[15px] max-[769px]:text-[14px] font-bold cursor-pointer transition-all duration-300 hover:bg-[#e31e24] hover:text-white hover:scale-[1.03]"
             onClick={() => navigate("/blogs")}
           >
             {section.buttonText || "View All Blogs"}
@@ -85,7 +85,7 @@ const LatestBlogs = () => {
 
         </div>
 
-        <div className="flex flex-wrap gap-[35px] max-[769px]:gap-[25px] justify-start max-[993px]:justify-center">
+        <div className="flex flex-wrap gap-[35px] max-[769px]:gap-[25px] justify-center">
 
           {blogs.map((blog, index) => {
             const blogSlug = blog.slug || slugify(blog.title);

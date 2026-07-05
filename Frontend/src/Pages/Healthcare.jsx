@@ -420,6 +420,7 @@ const Healthcare = () => {
   ];
 
   const displayFaqData = c?.faqData?.length ? c.faqData : faqData;
+  const faqTitle = c?.faqTitle || "FAQ";
 
 
   return (
@@ -771,7 +772,7 @@ const Healthcare = () => {
 
       <section className="faq-section">
         <div className="faq-header">
-          <h2>FAQ</h2>
+          <h2>{faqTitle}</h2>
           <div className="faq-line"></div>
         </div>
 

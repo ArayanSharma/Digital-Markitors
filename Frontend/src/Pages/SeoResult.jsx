@@ -17,6 +17,7 @@ import seoIcon from "../assets/seo1.webp";
 import missionImg from "../assets/mission.webp";
 import visionImg from "../assets/vision.webp";
 import { usePageContent, resolveImage } from "../hooks/usePageContent";
+import MissionVision from "../Components/Sections/MissionVision";
 
 
 
@@ -79,6 +80,17 @@ const industries = [
     },
 ];
 
+const renderDynamicHeading = (text, defaultJsx) => {
+    if (!text) return defaultJsx;
+    const words = text.split(" ");
+    if (words.length <= 1) return text;
+    const lastWord = words.pop();
+    return (
+        <>
+            {words.join(" ")} <span className="text-[#e31e24]">{lastWord}</span>
+        </>
+    );
+};
 
 const SeoResult = () => {
     const { content: c } = usePageContent("seo-results");
@@ -104,7 +116,10 @@ const SeoResult = () => {
                 <div className="max-w-[1200px] mx-auto">
                     <div className="w-[60px] h-[4px] bg-[#e31e24] mx-auto mb-[25px] rounded-[10px]"></div>
 
-                    <h2 className="text-center text-[40px] max-[769px]:text-[30px] font-heading font-extrabold text-[#1c1c1e] mb-6 leading-tight">
+                    <h2
+                        className="text-center font-heading font-extrabold text-[#1c1c1e] mb-6"
+                        style={{ fontSize: "clamp(36px, 5vw, 64px)", lineHeight: "1.2" }}
+                    >
                         {aboutSection?.heading || "SEO Results Overview"}
                     </h2>
 
@@ -131,9 +146,9 @@ const SeoResult = () => {
                             )}
                         </div>
                         <div className="relative rounded-3xl overflow-hidden shadow-[0_15px_30px_rgba(0,0,0,0.05)] border border-slate-100">
-                            <img 
-                                src={aboutSection?.image ? resolveImage(aboutSection.image) : aboutImg} 
-                                alt="Company Overview" 
+                            <img
+                                src={aboutSection?.image ? resolveImage(aboutSection.image) : aboutImg}
+                                alt="Company Overview"
                                 className="w-full h-full object-cover"
                             />
                         </div>
@@ -144,8 +159,11 @@ const SeoResult = () => {
             {/* Stats / Better Section */}
             <section className="w-full py-24 px-5 bg-[#f4f4f5] border-t border-b border-[#e5e7eb]">
                 <div className="max-w-[1200px] mx-auto">
-                    <h2 className="text-center text-[38px] max-[769px]:text-[28px] font-heading font-extrabold text-[#1c1c1e] mb-5">
-                        What Makes Us <span className="text-[#e31e24]">{betterSection?.heading || "Better than Others?"}</span>
+                    <h2
+                        className="text-center font-heading font-extrabold text-[#1c1c1e] mb-5"
+                        style={{ fontSize: "clamp(36px, 5vw, 64px)", lineHeight: "1.2" }}
+                    >
+                        <span className="text-[#e31e24]">{betterSection?.heading || "Better than Others?"}</span>
                     </h2>
 
                     <p className="text-center text-[17px] leading-[1.8] text-[#4b5563] max-w-[800px] mx-auto mb-16">
@@ -154,14 +172,14 @@ const SeoResult = () => {
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
                         {displayStats.map((item, index) => (
-                            <div 
-                                className="group bg-white rounded-[24px] p-8 border border-[#e5e7eb] shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:-translate-y-2 hover:shadow-[0_15px_30px_rgba(227,30,36,0.1)] hover:border-[#e31e24]/20 transition-all duration-300 flex flex-col items-center text-center" 
+                            <div
+                                className="group bg-white rounded-[24px] p-8 border border-[#e5e7eb] shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:-translate-y-2 hover:shadow-[0_15px_30px_rgba(227,30,36,0.1)] hover:border-[#e31e24]/20 transition-all duration-300 flex flex-col items-center text-center"
                                 key={item.id || index}
                             >
                                 <div className="w-16 h-16 rounded-full bg-[#fee2e2] flex items-center justify-center mb-6 transition-transform duration-300 group-hover:scale-110">
-                                    <img 
-                                        src={item.icon || [dm1, dm2, dm3, dm4][index % 4]} 
-                                        alt={item.title} 
+                                    <img
+                                        src={item.icon || [dm1, dm2, dm3, dm4][index % 4]}
+                                        alt={item.title}
                                         className="w-8 h-8 object-contain"
                                     />
                                 </div>
@@ -177,8 +195,8 @@ const SeoResult = () => {
             {/* Contact Banner */}
             <section className="w-full bg-[#1c1c1e] py-12 px-5 border-t border-b border-[#2b2b2e]">
                 <div className="max-w-[1200px] mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
-                    <a 
-                        href={`tel:${contactBanner?.phone || "9818888064"}`} 
+                    <a
+                        href={`tel:${contactBanner?.phone || "9818888064"}`}
                         className="flex items-center gap-3 text-white text-[18px] hover:text-[#e31e24] transition-colors duration-200 font-semibold"
                     >
                         <FaPhoneAlt className="text-[#e31e24] text-xl" />
@@ -186,15 +204,15 @@ const SeoResult = () => {
                     </a>
 
                     <div className="flex items-center justify-center bg-white rounded-lg px-6 py-3">
-                        <img 
-                            src={contactBanner?.logo ? resolveImage(contactBanner.logo) : logo} 
-                            alt="logo" 
+                        <img
+                            src={contactBanner?.logo ? resolveImage(contactBanner.logo) : logo}
+                            alt="logo"
                             className="h-24 object-contain w-auto"
                         />
                     </div>
 
-                    <a 
-                        href={`mailto:${contactBanner?.email || "support@digicore.co.in"}`} 
+                    <a
+                        href={`mailto:${contactBanner?.email || "support@digicore.co.in"}`}
                         className="flex items-center gap-3 text-white text-[18px] hover:text-[#e31e24] transition-colors duration-200 font-semibold"
                     >
                         <FaEnvelope className="text-[#e31e24] text-xl" />
@@ -208,14 +226,17 @@ const SeoResult = () => {
                 <div className="max-w-[1200px] mx-auto">
                     <div className="w-[60px] h-[4px] bg-[#e31e24] mx-auto mb-[25px] rounded-[10px]"></div>
 
-                    <h2 className="text-center text-[38px] max-[769px]:text-[28px] font-heading font-extrabold text-[#1c1c1e] mb-16">
+                    <h2
+                        className="text-center font-heading font-extrabold text-[#1c1c1e] mb-16"
+                        style={{ fontSize: "clamp(36px, 5vw, 64px)", lineHeight: "1.2" }}
+                    >
                         {industriesTitle}
                     </h2>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                         {displayIndustries.map((item, index) => (
-                            <div 
-                                className="bg-[#f8f9fa] rounded-2xl p-6 border border-slate-100 hover:-translate-y-1.5 hover:shadow-[0_15px_30px_rgba(0,0,0,0.05)] hover:border-[#e31e24]/10 transition-all duration-300" 
+                            <div
+                                className="bg-[#f8f9fa] rounded-2xl p-6 border border-slate-100 hover:-translate-y-1.5 hover:shadow-[0_15px_30px_rgba(0,0,0,0.05)] hover:border-[#e31e24]/10 transition-all duration-300"
                                 key={item.id || index}
                             >
                                 <div className="flex items-center gap-4 mb-4">
@@ -238,54 +259,21 @@ const SeoResult = () => {
             {/* Mission & Vision Section */}
             <section className="w-full py-24 px-5 bg-[#f4f4f5] border-t border-[#e5e7eb]">
                 <div className="max-w-[1200px] mx-auto space-y-24">
-                    
-                    {/* Mission Box */}
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                        <div className="relative rounded-3xl overflow-hidden shadow-[0_15px_30px_rgba(0,0,0,0.05)] border border-slate-200">
-                            <img 
-                                src={missionSection?.image ? resolveImage(missionSection.image) : missionImg} 
-                                alt="Mission" 
-                                className="w-full h-full object-cover"
-                            />
-                        </div>
-                        <div>
-                            <h2 className="text-[36px] max-[769px]:text-[28px] font-heading font-extrabold text-[#1c1c1e] mb-4">
-                                Our <span className="text-[#e31e24]">Mission</span>
-                            </h2>
 
-                            <p className="text-[18px] font-semibold text-[#2b2b2e] leading-relaxed mb-6">
-                                {missionSection?.intro || "It is an obvious fact that professional digital marketing services are not always expensive and expensive services are not always good."}
-                            </p>
+                    {/* Mission & Vision Boxes (refactored) */}
+                    <MissionVision
+                        section={missionSection}
+                        fallbackImage={missionImg}
+                        imageFirst={true}
+                        defaultHeadingJsx={<>Our <span className="text-[#e31e24]">Mission</span></>}
+                    />
 
-                            <p className="text-[16px] leading-[1.8] text-[#4b5563]">
-                                {missionSection?.body || `We strive quite hard towards striking just the right balance between affordability and quality. Digicore Inc. believes in utilizing the best of both worlds – manual and automation. With a manual approach, we bring personal touch and logic behind every strategy while the other approach helps us evaluate and compare the results achieved.`}
-                            </p>
-                        </div>
-                    </div>
-
-                    {/* Vision Box */}
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                        <div className="order-2 lg:order-1">
-                            <h2 className="text-[36px] max-[769px]:text-[28px] font-heading font-extrabold text-[#1c1c1e] mb-4">
-                                Our <span className="text-[#e31e24]">Vision</span>
-                            </h2>
-
-                            <p className="text-[18px] font-semibold text-[#2b2b2e] leading-relaxed mb-6">
-                                {visionSection?.intro || "With evolving reliance on virtual platforms, every business wants to create a robust foothold in their respective market."}
-                            </p>
-
-                            <p className="text-[16px] leading-[1.8] text-[#4b5563]">
-                                {visionSection?.body || `Getting new customers and captivating their attention all the time is the key to success in the market. Hence, it becomes even more important for you to rank on the top of popular search engines. The highly professional and dedicated team of Digicore Inc. has a vision of helping their clients achieve the best search engine ranking.`}
-                            </p>
-                        </div>
-                        <div className="order-1 lg:order-2 relative rounded-3xl overflow-hidden shadow-[0_15px_30px_rgba(0,0,0,0.05)] border border-slate-200">
-                            <img 
-                                src={visionSection?.image ? resolveImage(visionSection.image) : visionImg} 
-                                alt="Vision" 
-                                className="w-full h-full object-cover"
-                            />
-                        </div>
-                    </div>
+                    <MissionVision
+                        section={visionSection}
+                        fallbackImage={visionImg}
+                        imageFirst={false}
+                        defaultHeadingJsx={<>Our <span className="text-[#e31e24]">Vision</span></>}
+                    />
 
                 </div>
             </section>

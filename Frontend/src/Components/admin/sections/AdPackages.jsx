@@ -117,6 +117,7 @@ export default function AdPackages() {
   ]);
 
   const [video, setVideo] = useState({ url: "", upload: "" });
+  const [testimonialsTitle, setTestimonialsTitle] = useState("Testimonials");
   const [testimonialsHeading, setTestimonialsHeading] = useState("");
   const [featuresMeta, setFeaturesMeta] = useState({ heading1: "", heading2: "", mobile: "" });
 
@@ -178,6 +179,7 @@ export default function AdPackages() {
       if (data.contactBanner) setContactBanner(data.contactBanner);
       if (data.testimonials) setTestimonials(data.testimonials);
       if (data.video) setVideo(data.video);
+      if (data.testimonialsTitle) setTestimonialsTitle(data.testimonialsTitle);
       if (data.testimonialsHeading) setTestimonialsHeading(data.testimonialsHeading);
     }
     setLoading(false);
@@ -201,6 +203,7 @@ export default function AdPackages() {
       contactBanner,
       testimonials,
       video,
+      testimonialsTitle,
       testimonialsHeading,
     };
     setStatus("saving");
@@ -364,6 +367,9 @@ export default function AdPackages() {
         </Section>
 
         <Section title="7. Testimonials" open={openSection === "testimonials"} onToggle={() => toggle("testimonials")}>
+          <Field label="Title">
+            <TextInput value={testimonialsTitle} onChange={(e) => setTestimonialsTitle(e.target.value)} />
+          </Field>
           <Field label="Section Heading">
             <TextInput value={testimonialsHeading} onChange={(e) => setTestimonialsHeading(e.target.value)} />
           </Field>

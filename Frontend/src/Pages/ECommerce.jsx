@@ -759,7 +759,7 @@ const ECommerce = () => {
 
       <section className="faq-section">
         <div className="faq-header">
-          <h2>FAQ</h2>
+          <h2>{c?.faqHeading || "FAQ"}</h2>
           <div className="faq-line"></div>
         </div>
 

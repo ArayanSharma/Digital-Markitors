@@ -55,6 +55,10 @@ const initialData = {
     solutionTitle: "The Solution",
     solutionText:
       "From Google, Instagram and YouTube to marketplaces like Amazon and Flipkart, consumers are searching everywhere, and that's why it is important for your brand to be visible everywhere.",
+    rightText1:
+      "AI has brought a lot of change in the way people search, discover, and buy. However, with it, the need to strengthen visibility has increased. Today, ranking should not be only about Google; it should be about visibility wherever audiences are looking—like Google, Instagram, YouTube, LinkedIn, marketplaces, or even AI-generated results.",
+    rightText2:
+      "From Google, Instagram and YouTube to markeplaces like Amazon and Flipkart, consumers are searching everywhere, and that's why it is important for your brand to be visible everywhere. As we see Gen Z discovering brands first on social media and AI reshaping how people find and evaluate products, belonging to the future means that your brand is visible in the moment—wherever your consumer is.",
   },
   discover: {
     heading: "B2B SEO Services",
@@ -204,6 +208,7 @@ const initialData = {
       { text: "Hassle-free accessibility to the new-age SEO practices offered at a competitive price" },
     ],
   },
+  faqHeading: "FAQ",
   faq: [
     {
       question: "How long will it take for my website to start ranking on Google?",
@@ -375,6 +380,12 @@ export default function ADB2b() {
           <Field label="Solution text">
             <TextArea rows={5} value={pageData.seoAgency.solutionText} onChange={(e) => updateSection("seoAgency", "solutionText", e.target.value)} />
           </Field>
+          <Field label="Right paragraph 1">
+            <TextArea rows={5} value={pageData.seoAgency.rightText1} onChange={(e) => updateSection("seoAgency", "rightText1", e.target.value)} />
+          </Field>
+          <Field label="Right paragraph 2">
+            <TextArea rows={5} value={pageData.seoAgency.rightText2} onChange={(e) => updateSection("seoAgency", "rightText2", e.target.value)} />
+          </Field>
         </Section>
 
         <Section title="Discover Services Section" open={openSection === "discover"} onToggle={() => toggle("discover")}>
@@ -470,6 +481,9 @@ export default function ADB2b() {
         </Section>
 
         <Section title="FAQ Section" open={openSection === "faq"} onToggle={() => toggle("faq")}>
+          <Field label="FAQ Heading">
+            <TextInput value={pageData.faqHeading} onChange={(e) => updateArray("faqHeading", e.target.value)} />
+          </Field>
           <LeadForm
             title="FAQ Items"
             addLabel="Add FAQ"

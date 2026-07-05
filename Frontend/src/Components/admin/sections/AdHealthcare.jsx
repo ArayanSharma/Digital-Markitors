@@ -213,6 +213,7 @@ export default function AdHealthcare() {
     items: [{ id: uid(), title: "", description: "", image: "", link: "" }],
   });
 
+  const [faqTitle, setFaqTitle] = useState("FAQ");
   const [faqData, setFaqData] = useState([
     {
       id: uid(),
@@ -290,6 +291,7 @@ export default function AdHealthcare() {
       if (data.toolsSection) setToolsSection(data.toolsSection);
       if (data.brandsSection) setBrandsSection(data.brandsSection);
       if (data.blogsSection) setBlogsSection(data.blogsSection);
+      if (data.faqTitle) setFaqTitle(data.faqTitle);
       if (data.faqData) setFaqData(data.faqData);
     }
     setLoading(false);
@@ -321,6 +323,7 @@ export default function AdHealthcare() {
       toolsSection,
       brandsSection,
       blogsSection,
+      faqTitle,
       faqData,
     };
     setStatus("saving");
@@ -532,6 +535,9 @@ export default function AdHealthcare() {
         </Section>
 
         <Section title="17. FAQ" open={openSection === "faq"} onToggle={() => toggle("faq")}>
+          <Field label="Title">
+            <TextInput value={faqTitle} onChange={(e) => setFaqTitle(e.target.value)} />
+          </Field>
           <LeadForm
             title="FAQ Items"
             addLabel="Add FAQ"

@@ -113,6 +113,7 @@ const initialData = {
       { id: uid(), text: "Increase search friendliness of your business with SEO services!" },
     ],
   },
+  faqHeading: "FAQ",
   faq: [
     { id: uid(), question: "How long will it take for my website to start ranking on Google?", answer: "The time a website takes to rank on Google varies between 3 – 6 months. The major components that affect your website ranking and timeline include your industry competition, SEO efforts and content quality." },
   ],
@@ -378,6 +379,9 @@ export default function AdFinancial() {
 
         {/* FAQ */}
         <Section title="15. FAQ Section" open={openSection === "faq"} onToggle={() => toggle("faq")}>
+          <Field label="FAQ Heading">
+            <TextInput value={pageData.faqHeading} onChange={(e) => setPageData((current) => ({ ...current, faqHeading: e.target.value }))} />
+          </Field>
           <LeadForm
             title="FAQ Items"
             addLabel="Add FAQ"

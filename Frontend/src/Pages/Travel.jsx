@@ -528,11 +528,11 @@ const Travel = () => {
             <div className="seo-right">
 
               <p>
-                AI has brought a lot of change in the way people search, discover, and buy. However, with it, the need to strengthen visibility has increased. Today, ranking should not be only about Google; it should be about visibility wherever audiences are looking—like Google, Instagram, YouTube, LinkedIn, marketplaces, or even AI-generated results.
+                {seoAgency?.rightText1 || "AI has brought a lot of change in the way people search, discover, and buy. However, with it, the need to strengthen visibility has increased. Today, ranking should not be only about Google; it should be about visibility wherever audiences are looking—like Google, Instagram, YouTube, LinkedIn, marketplaces, or even AI-generated results."}
               </p>
 
               <p>
-                From Google, Instagram and YouTube to markeplaces like Amazon and Flipkart, consumers are searching everywhere, and that's why it is important for your brand to be visible everywhere. As we see Gen Z discovering brands first on social media and AI reshaping how people find and evaluate products, belonging to the future means that your brand is visible in the moment—wherever your consumer is.
+                {seoAgency?.rightText2 || "From Google, Instagram and YouTube to markeplaces like Amazon and Flipkart, consumers are searching everywhere, and that's why it is important for your brand to be visible everywhere. As we see Gen Z discovering brands first on social media and AI reshaping how people find and evaluate products, belonging to the future means that your brand is visible in the moment—wherever your consumer is."}
               </p>
 
             </div>
@@ -786,7 +786,7 @@ const Travel = () => {
 
       <section className="faq-section">
         <div className="faq-header">
-          <h2>FAQ</h2>
+          <h2>{c?.faqHeading || "FAQ"}</h2>
           <div className="faq-line"></div>
         </div>
 

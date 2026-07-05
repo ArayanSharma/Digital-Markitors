@@ -137,6 +137,7 @@ export default function AdECommerce() {
     image: "",
   });
 
+  const [faqHeading, setFaqHeading] = useState("FAQ");
   const [faqData, setFaqData] = useState([{ id: uid(), question: "", answer: "" }]);
 
   const toggle = (key) => setOpenSection(openSection === key ? "" : key);
@@ -176,6 +177,7 @@ export default function AdECommerce() {
       if (d.platformsSection) setPlatformsSection(d.platformsSection);
       if (d.dominateSection) setDominateSection(d.dominateSection);
       if (d.whyChooseSection) setWhyChooseSection(d.whyChooseSection);
+      if (d.faqHeading) setFaqHeading(d.faqHeading);
       if (d.faqData) setFaqData(d.faqData);
     }
     setLoading(false);
@@ -204,6 +206,7 @@ export default function AdECommerce() {
       platformsSection,
       dominateSection,
       whyChooseSection,
+      faqHeading,
       faqData,
     };
     setStatus("saving");
@@ -415,6 +418,9 @@ export default function AdECommerce() {
         </Section>
 
         <Section title="14. FAQ" open={openSection === "faq"} onToggle={() => toggle("faq")}>
+          <Field label="FAQ Heading">
+            <TextInput value={faqHeading} onChange={(e) => setFaqHeading(e.target.value)} />
+          </Field>
           <LeadForm
             title="FAQ Items"
             addLabel="Add FAQ"
