@@ -263,7 +263,7 @@ const [activeFAQ, setActiveFAQ] = useState(null);
 
       <div className="top-content">
             <h1>
-              What Kind Of <strong>{topContent?.title || "Website Do You Need?"}</strong>
+             <strong>{topContent?.title || "Website Do You Need?"}</strong>
 
 
             </h1>
@@ -323,13 +323,7 @@ const [activeFAQ, setActiveFAQ] = useState(null);
 
             <div className="text-section">
               <h2>
-                {webDesign?.title2 || (
-                  <>
-                    Add Value to Your Business with
-                    <br />
-                    Our Web Design Services
-                  </>
-                )}
+                {webDesign?.title2  }
               </h2>
 
               <p>
@@ -349,7 +343,7 @@ const [activeFAQ, setActiveFAQ] = useState(null);
         <div className="container">
           <div className="cms-header">
             <h2>
-              Choose CMS that{" "}
+              {" "}
               <span>{cmsSection?.title || "Best Fits Your Web Designing Needs"}</span>
             </h2>
 
@@ -383,7 +377,7 @@ const [activeFAQ, setActiveFAQ] = useState(null);
   <div className="container">
     <div className="work-header">
       <h2>
-        Our <span>{ourWork?.title || "Work"}</span>
+       <span>{ourWork?.title || "Work"}</span>
       </h2>
 
       <p>
@@ -426,7 +420,7 @@ const [activeFAQ, setActiveFAQ] = useState(null);
 <section className="built-section">
   <div className="built-container">
     <h2>
-      Our Work Includes <span>{builtSection?.title || "600+ Websites Built"}</span>
+      <span>{builtSection?.title || "600+ Websites Built"}</span>
     </h2>
 
     <p>
@@ -450,7 +444,7 @@ const [activeFAQ, setActiveFAQ] = useState(null);
   <div className="container">
     <div className="process-header">
       <h2>
-        Our Website Designing <span>{processHeader?.title || "Process"}</span>
+         <span>{processHeader?.title || "Process"}</span>
       </h2>
 
       <p>

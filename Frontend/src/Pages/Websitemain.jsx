@@ -260,7 +260,7 @@ const [activeFAQ, setActiveFAQ] = useState(null);
             <h1>
               {topContent?.h1 || (
                 <>
-                  Complete WordPress Website Development Services <strong>for Every Business</strong>
+                  <strong>for Every Business</strong>
                 </>
               )}
 
@@ -307,11 +307,7 @@ const [activeFAQ, setActiveFAQ] = useState(null);
                 {webDesignSection?.span || "with Our Affordable Website Designing Services"}
               </span>
             </h1>
-            <p>
-              Digital marketing efforts begin with a modern and beautifully
-              designed website. We deliver cutting-edge web designing and
-              development solutions to our clients.
-            </p>
+             
           </div>
 
           <div className="content-grid">
@@ -344,7 +340,7 @@ const [activeFAQ, setActiveFAQ] = useState(null);
           <div className="cms-header">
             <h2>
               {cmsSection?.h2 || "Flexible WordPress Development"}{" "}
-              <span>{cmsSection?.span || "With The Best Tools & Builders"}</span>
+          
             </h2>
 
             <p>
@@ -377,7 +373,7 @@ const [activeFAQ, setActiveFAQ] = useState(null);
   <div className="container">
     <div className="work-header">
       <h2>
-        {ourWorkSection?.h2 || "Our"} <span>{ourWorkSection?.span || "Work"}</span>
+        {ourWorkSection?.h2 || "Our"} 
       </h2>
 
       <p>
@@ -444,7 +440,7 @@ const [activeFAQ, setActiveFAQ] = useState(null);
   <div className="container">
     <div className="process-header">
       <h2>
-        {processSection?.h2 || "Our Website Designing"} <span>{processSection?.span || "Process"}</span>
+        {processSection?.h2 || "Our Website Designing"} 
       </h2>
 
       <p>

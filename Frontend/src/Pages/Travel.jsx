@@ -609,28 +609,18 @@ const Travel = () => {
 
         <div className="impact-container">
 
-
-          <div className="impact-image"
-          >
-
-            <div className="impact-circle" ></div>
-
+          <div className="impact-image bg-white rounded-[24px] shadow-[0_15px_35px_rgba(0,0,0,0.06)] border border-[#e5e7eb]/80 p-5 md:p-6 flex items-center justify-center max-w-[500px] w-full">
             <img
               src={impactSection?.image ? resolveImage(impactSection.image) : impact}
               alt="Impact"
-              style={{
-                width: "700px",
-                height: "600px",
-
-              }}
+              className="w-full h-auto object-cover rounded-2xl"
             />
-
           </div>
-
 
           <div className="timeline-section">
 
-            <div className="timeline">
+            <div className="timeline relative">
+              <div className="absolute left-[8px] top-2 bottom-2 w-[2px] bg-[#e31e24] z-[1]"></div>
 
               {(impactSection?.timeline?.length ? impactSection.timeline : [
                 { title: "Marketing companies", description: "We are currently rated Top 5 App Marketing Companies in 2019 by Clutch.co" },
@@ -638,23 +628,17 @@ const Travel = () => {
                 { title: "Google Premier Partner", description: "We are a Google Premier Partner since 2017. This means we’re are one of Top 50 PPC Companies in India from 4000 odd Digital Marketing agencies that have partnered with Google." },
                 { title: "Search engine optimization", description: "Our SEO professionals have decades of experience providing results to clients and sound knowledge of the latest search engine optimization trends." },
               ]).map((item, index) => (
-
-                <div className={`timeline-item ${index === 0 ? "active" : ""}`} key={item.id || index}>
-
-                  <div className="timeline-dot"></div>
-
+                <div className="timeline-item" key={item.id || index}>
+                  <div className="relative z-[2] mt-2 flex items-center justify-center w-[18px] h-[18px] rounded-full border-2 border-[#e31e24] bg-white shrink-0">
+                    <div className="w-[6px] h-[6px] rounded-full bg-[#e31e24]"></div>
+                  </div>
                   <div className="timeline-content">
-
-                    <h3>{item.title}</h3>
-
-                    <p>
+                    <h3 className="text-[20px] font-heading font-extrabold text-[#2b2b2e] mb-1">{item.title}</h3>
+                    <p className="text-[#4b5563] text-[15px] leading-relaxed">
                       {item.description}
                     </p>
-
                   </div>
-
                 </div>
-
               ))}
 
             </div>

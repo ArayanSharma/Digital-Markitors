@@ -258,7 +258,7 @@ const ShopifyDev = () => {
 
       <div className="top-content">
         <h1>
-          Complete WordPress Website Development Services <strong>{topContent?.title || "for Every Business"}</strong>
+           <strong>{topContent?.title || "for Every Business"}</strong>
 
 
         </h1>
@@ -299,9 +299,7 @@ const ShopifyDev = () => {
             <h1>
               {webDesign?.title || "Take Your Business Success on Another Level"}
               <br />
-              <span>
-                with Our Affordable Website Designing Services
-              </span>
+              
             </h1>
             <p>
               {webDesign?.description || "Digital marketing efforts begin with a modern and beautifully designed website. We deliver cutting-edge web designing and development solutions to our clients."}
@@ -337,7 +335,7 @@ const ShopifyDev = () => {
         <div className="container">
           <div className="cms-header">
             <h2>
-              Flexible WordPress Development{" "}
+ {" "}
               <span>{cmsSection?.title || "With The Best Tools & Builders"}</span>
             </h2>
 
@@ -371,7 +369,7 @@ const ShopifyDev = () => {
         <div className="container">
           <div className="work-header">
             <h2>
-              Our <span>{ourWork?.title || "Work"}</span>
+             <span>{ourWork?.title || "Work"}</span>
             </h2>
 
             <p>
@@ -414,7 +412,7 @@ const ShopifyDev = () => {
       <section className="built-section">
         <div className="built-container">
           <h2>
-            Our Work Includes <span>{builtSection?.title || "600+ Websites Built"}</span>
+            <span>{builtSection?.title || "600+ Websites Built"}</span>
           </h2>
 
           <p>
@@ -438,7 +436,7 @@ const ShopifyDev = () => {
         <div className="container">
           <div className="process-header">
             <h2>
-              Our Website Designing <span>{processHeader?.title || "Process"}</span>
+              <span>{processHeader?.title || "Process"}</span>
             </h2>
 
             <p>

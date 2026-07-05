@@ -63,21 +63,23 @@ const LatestBlogs = () => {
   }, []);
 
   return (
-    <section className="py-[50px] px-5 max-[769px]:px-[15px] bg-white">
+    <section className="py-[60px] px-5 max-[769px]:px-[15px] bg-[#fdfdfd]">
 
       <div className="max-w-[1300px] mx-auto">
 
-        <div className="[text-align:center] mb-[60px]">
+        <div className="[text-align:center] mb-[50px]">
 
+          <h2 className="text-[38px] max-[769px]:text-[30px] font-heading font-extrabold text-[#2b2b2e] uppercase mb-[10px]">Latest Blogs</h2>
 
-          <h2 className="text-[38px] max-[769px]:text-[30px] font-medium text-[#003366] uppercase mb-[10px]">Latest Blogs</h2>
-
-          <div className="w-[55px] h-[4px] bg-[#ea8215] mx-auto mb-5 rounded-[20px]"></div>
-          <h6 className="text-[25px] max-[993px]:text-[22px] max-[769px]:text-[18px] font-semibold text-[#003366] mb-[25px] leading-[1.5] max-[769px]:leading-[1.6] whitespace-pre-line">
+          <div className="w-[55px] h-[4px] bg-[#e31e24] mx-auto mb-5 rounded-[20px]"></div>
+          <h6 className="text-[22px] max-[993px]:text-[20px] max-[769px]:text-[17px] font-semibold text-[#4b5563] mb-[25px] leading-[1.5] max-[769px]:leading-[1.6] whitespace-pre-line">
             {section.description}
           </h6>
 
-          <button className="border-2 border-[#222] bg-white py-3 px-7 max-[769px]:py-[10px] max-[769px]:px-[22px] rounded-[30px] text-[15px] max-[769px]:text-[14px] cursor-pointer transition-colors duration-300 hover:bg-black hover:text-white" onClick={() => navigate("/blogs")}>
+          <button 
+            className="border-2 border-[#e31e24] bg-transparent text-[#e31e24] py-3 px-8 max-[769px]:py-[10px] max-[769px]:px-[22px] rounded-[30px] text-[15px] max-[769px]:text-[14px] font-bold cursor-pointer transition-all duration-300 hover:bg-[#e31e24] hover:text-white hover:scale-[1.03]" 
+            onClick={() => navigate("/blogs")}
+          >
             {section.buttonText || "View All Blogs"}
           </button>
 
@@ -89,7 +91,7 @@ const LatestBlogs = () => {
             const blogSlug = blog.slug || slugify(blog.title);
             return (
               <div
-                className="group relative bg-white border border-[#e6e6e6] rounded-[14px] overflow-hidden shadow-[0_4px_14px_rgba(0,34,68,0.08)] transition-[transform,box-shadow] duration-[400ms] ease-[cubic-bezier(0.22,1,0.36,1)] will-change-transform w-[360px] h-[460px] flex flex-col animate-blog-card-in hover:-translate-y-[10px] hover:shadow-[0_22px_40px_rgba(0,34,68,0.18)]"
+                className="group relative bg-white border-t-[5px] border-t-[#e31e24] border border-[#e6e6e6] rounded-[20px] overflow-hidden shadow-[0_10px_30px_rgba(0,0,0,0.04)] transition-[transform,box-shadow] duration-[400ms] ease-[cubic-bezier(0.22,1,0.36,1)] will-change-transform w-[360px] h-[480px] flex flex-col animate-blog-card-in hover:-translate-y-2 hover:shadow-[0_15px_35px_rgba(227,30,36,0.12)]"
                 key={blog.id || index}
                 style={{ animationDelay: `${index * 0.15}s` }}
               >
@@ -99,7 +101,7 @@ const LatestBlogs = () => {
                   aria-hidden="true"
                 ></span>
 
-                <div className="relative h-[220px] max-[769px]:h-[200px] p-0 overflow-hidden">
+                <div className="relative h-[200px] p-0 overflow-hidden bg-[#fee2e2]/20">
 
                   <div className="w-full h-full p-0 m-0 [text-align:center] border-0">
 
@@ -112,25 +114,25 @@ const LatestBlogs = () => {
 
                   </div>
 
-                  <div className="absolute left-0 right-0 bottom-[18px] [text-align:center] z-[2] mx-5">
-
-                    <h5 className="text-[#f4a300] text-[15px] max-[769px]:text-[14px] font-semibold leading-[1.4]">{blog.title}</h5>
-
-                  </div>
-
-                  <div className="absolute left-0 right-0 bottom-0 h-[60px] bg-[linear-gradient(transparent,rgba(0,0,0,0.65))] z-[1] pointer-events-none"></div>
-
                 </div>
 
                 <div className="p-5 flex-[1_1_auto] flex flex-col justify-between">
 
-                  <p className="text-[#555] text-[15px] max-[769px]:text-[14px] leading-[1.6] max-[769px]:leading-[1.8] mb-3 [display:-webkit-box] [-webkit-line-clamp:4] max-[769px]:[-webkit-line-clamp:3] [-webkit-box-orient:vertical] overflow-hidden text-ellipsis break-words">{blog.desc}</p>
+                  <div>
+                    <h3 className="text-[19px] font-heading font-extrabold text-[#2b2b2e] mb-3 leading-[1.3] group-hover:text-[#e31e24] transition-colors duration-300 [display:-webkit-box] [-webkit-line-clamp:2] [-webkit-box-orient:vertical] overflow-hidden text-ellipsis">
+                      {blog.title}
+                    </h3>
+
+                    <p className="text-[#4b5563] text-[14.5px] leading-[1.6] [display:-webkit-box] [-webkit-line-clamp:3] [-webkit-box-orient:vertical] overflow-hidden text-ellipsis break-words">
+                      {blog.desc}
+                    </p>
+                  </div>
 
                   <button
-                    className="group/btn bg-[#1f1978] text-white border-0 py-3 px-[22px] rounded-[30px] cursor-pointer text-sm inline-flex items-center gap-2 transition-[background-color,transform,box-shadow] duration-300 ease-in-out hover:bg-black hover:text-white hover:translate-x-1 hover:shadow-[0_8px_18px_rgba(0,0,0,0.25)] max-[769px]:w-full"
+                    className="group/btn bg-[#e31e24] text-white border-0 py-3 px-6 rounded-[30px] cursor-pointer text-sm font-bold inline-flex items-center gap-2 transition-[background-color,transform,box-shadow] duration-300 ease-in-out hover:bg-[#c4151a] hover:translate-x-1 hover:shadow-[0_6px_15px_rgba(227,30,36,0.3)] max-[769px]:w-full justify-center"
                     onClick={() => navigate(`/blog/${blogSlug}`)}
                   >
-                    {blog.buttonText}
+                    {blog.buttonText || "Read More"}
                     <span className="inline-block transition-transform duration-300 group-hover/btn:translate-x-1">&rarr;</span>
                   </button>
 

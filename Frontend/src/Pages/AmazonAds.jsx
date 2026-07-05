@@ -539,137 +539,91 @@ const displayFaq = faqSection?.faqItems?.length ? faqSection.faqItems : faqData;
 
         <div className="impact-container">
 
-        
-          <div className="impact-image"  
->
-
-            <div className="impact-circle" ></div>
-
+          <div className="impact-image bg-white rounded-[24px] shadow-[0_15px_35px_rgba(0,0,0,0.06)] border border-[#e5e7eb]/80 p-5 md:p-6 flex items-center justify-center max-w-[500px] w-full">
             <img
               src={timelineSection?.imageUrl ? resolveImage(timelineSection.imageUrl) : impact}
               alt="Impact"
-               style={{
-    width: "700px",
-    height: "600px",
-
-  }}
+              className="w-full h-auto object-cover rounded-2xl"
             />
-
           </div>
 
-    
           <div className="timeline-section">
 
-            <div className="timeline">
+            <div className="timeline relative">
+              <div className="absolute left-[8px] top-2 bottom-2 w-[2px] bg-[#e31e24] z-[1]"></div>
 
               {timelineSection?.items?.length ? (
                 timelineSection.items.map((step, i) => (
-                  <div className={`timeline-item ${i === 0 ? "active" : ""}`} key={step.id || i}>
-                    <div className="timeline-dot"></div>
+                  <div className="timeline-item" key={step.id || i}>
+                    <div className="relative z-[2] mt-2 flex items-center justify-center w-[18px] h-[18px] rounded-full border-2 border-[#e31e24] bg-white shrink-0">
+                      <div className="w-[6px] h-[6px] rounded-full bg-[#e31e24]"></div>
+                    </div>
                     <div className="timeline-content">
-                      <h3>{step.title}</h3>
-                      <p>{step.description}</p>
+                      <h3 className="text-[20px] font-heading font-extrabold text-[#2b2b2e] mb-1">{step.title}</h3>
+                      <p className="text-[#4b5563] text-[15px] leading-relaxed">{step.description}</p>
                     </div>
                   </div>
                 ))
               ) : (
                 <>
-                  <div className="timeline-item active">
-
-                    <div className="timeline-dot"></div>
-
-                    <div className="timeline-content">
-
-                      <h3>Contact Us</h3>
-
-                      <p>
-                        Reach out to us via email, phone or our website.
-                      </p>
-
+                  <div className="timeline-item">
+                    <div className="relative z-[2] mt-2 flex items-center justify-center w-[18px] h-[18px] rounded-full border-2 border-[#e31e24] bg-white shrink-0">
+                      <div className="w-[6px] h-[6px] rounded-full bg-[#e31e24]"></div>
                     </div>
-
+                    <div className="timeline-content">
+                      <h3 className="text-[20px] font-heading font-extrabold text-[#2b2b2e] mb-1">Contact Us</h3>
+                      <p className="text-[#4b5563] text-[15px] leading-relaxed">
+                        Get in touch with us via email, phone or website.
+                      </p>
+                    </div>
                   </div>
 
                   <div className="timeline-item">
-
-                    <div className="timeline-dot"></div>
-
-                    <div className="timeline-content">
-
-                      <h3>SEO and PPC</h3>
-
-                      <p>
-                       We were rated the Top SEO and PPC Company of the Year in 2014 by CIO Review.
-                      </p>
-
+                    <div className="relative z-[2] mt-2 flex items-center justify-center w-[18px] h-[18px] rounded-full border-2 border-[#e31e24] bg-white shrink-0">
+                      <div className="w-[6px] h-[6px] rounded-full bg-[#e31e24]"></div>
                     </div>
-
+                    <div className="timeline-content">
+                      <h3 className="text-[20px] font-heading font-extrabold text-[#2b2b2e] mb-1">Share Your Goals</h3>
+                      <p className="text-[#4b5563] text-[15px] leading-relaxed">
+                        Tell us about your business and marketing goals.
+                      </p>
+                    </div>
                   </div>
 
                   <div className="timeline-item">
-
-                    <div className="timeline-dot"></div>
-
-                    <div className="timeline-content">
-
-                      <h3>Share Your Goals:</h3>
-
-                      <p>
-                       Share your challenges and objectives.
-                      </p>
-
+                    <div className="relative z-[2] mt-2 flex items-center justify-center w-[18px] h-[18px] rounded-full border-2 border-[#e31e24] bg-white shrink-0">
+                      <div className="w-[6px] h-[6px] rounded-full bg-[#e31e24]"></div>
                     </div>
-
+                    <div className="timeline-content">
+                      <h3 className="text-[20px] font-heading font-extrabold text-[#2b2b2e] mb-1">Consultation</h3>
+                      <p className="text-[#4b5563] text-[15px] leading-relaxed">
+                        Our expert will discuss strategies tailored to your business.
+                      </p>
+                    </div>
                   </div>
 
                   <div className="timeline-item">
-
-                    <div className="timeline-dot"></div>
-
-                    <div className="timeline-content">
-
-                      <h3>
-Consultation:</h3>
-
-                      <p>
-                   Our experts will craft SEO strategies tailored to your needs.
-                      </p>
-
+                    <div className="relative z-[2] mt-2 flex items-center justify-center w-[18px] h-[18px] rounded-full border-2 border-[#e31e24] bg-white shrink-0">
+                      <div className="w-[6px] h-[6px] rounded-full bg-[#e31e24]"></div>
                     </div>
-
+                    <div className="timeline-content">
+                      <h3 className="text-[20px] font-heading font-extrabold text-[#2b2b2e] mb-1">Proposal & Plan</h3>
+                      <p className="text-[#4b5563] text-[15px] leading-relaxed">
+                        We provide a customized strategy and roadmap.
+                      </p>
+                    </div>
                   </div>
 
                   <div className="timeline-item">
-
-                    <div className="timeline-dot"></div>
-
-                    <div className="timeline-content">
-
-                      <h3>
-Tailored Plan:</h3>
-
-                      <p>
-                  Get a customized plan with clear strategies and outcomes.
-                      </p>
-
+                    <div className="relative z-[2] mt-2 flex items-center justify-center w-[18px] h-[18px] rounded-full border-2 border-[#e31e24] bg-white shrink-0">
+                      <div className="w-[6px] h-[6px] rounded-full bg-[#e31e24]"></div>
                     </div>
-
-                  </div>
-                  <div className="timeline-item">
-
-                    <div className="timeline-dot"></div>
-
                     <div className="timeline-content">
-
-                      <h3>
-Out Turn:</h3>
-
-                      <p>
-                Achieve measurable results in record time.
+                      <h3 className="text-[20px] font-heading font-extrabold text-[#2b2b2e] mb-1">Partner & Grow</h3>
+                      <p className="text-[#4b5563] text-[15px] leading-relaxed">
+                        Drive high-impact traffic and measurable growth.
                       </p>
-
                     </div>
-
                   </div>
                 </>
               )}

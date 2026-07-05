@@ -62,7 +62,7 @@ export default function Casestudy() {
 
   return (
     <section className="case-study bg-[#f4f4f5] py-[100px] border-b border-[#e5e7eb] font-body">
-      <div className="case-container max-w-[1250px] mx-auto px-5">
+      <div className="case-container max-w-[1250px] mx-auto px-5 md:px-12">
         
         <div className="case-heading text-center mb-12">
           <h2 className="text-[42px] max-[769px]:text-[32px] font-heading font-extrabold text-[#2b2b2e] mb-4 uppercase">Case Studies</h2>
@@ -74,7 +74,7 @@ export default function Casestudy() {
           onMouseEnter={() => { isPaused.current = true; }}
           onMouseLeave={() => { isPaused.current = false; }}
         >
-          <button className="hidden md:flex absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 items-center justify-center rounded-full border border-[#e31e24]/40 text-[#e31e24] bg-white text-xl cursor-pointer hover:bg-[#e31e24] hover:text-white transition-all duration-300 z-10 shadow-sm" onClick={prevCase}>
+          <button className="hidden md:flex absolute -left-6 top-1/2 -translate-y-1/2 w-12 h-12 items-center justify-center rounded-full border border-[#e31e24]/40 text-[#e31e24] bg-white text-xl cursor-pointer hover:bg-[#e31e24] hover:text-white transition-all duration-300 z-10 shadow-sm" onClick={prevCase}>
             ←
           </button>
 
@@ -108,7 +108,7 @@ export default function Casestudy() {
             />
           </div>
 
-          <button className="hidden md:flex absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 items-center justify-center rounded-full border border-[#e31e24]/40 text-[#e31e24] bg-white text-xl cursor-pointer hover:bg-[#e31e24] hover:text-white transition-all duration-300 z-10 shadow-sm" onClick={nextCase}>
+          <button className="hidden md:flex absolute -right-6 top-1/2 -translate-y-1/2 w-12 h-12 items-center justify-center rounded-full border border-[#e31e24]/40 text-[#e31e24] bg-white text-xl cursor-pointer hover:bg-[#e31e24] hover:text-white transition-all duration-300 z-10 shadow-sm" onClick={nextCase}>
             →
           </button>
         </div>

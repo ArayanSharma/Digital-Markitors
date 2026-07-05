@@ -89,6 +89,7 @@ import {
   FaBullseye,
   FaFilter,
   FaArrowUp,
+  FaWhatsapp,
 } from "react-icons/fa";
 import { usePageContent, resolveImage } from "../hooks/usePageContent";
 
@@ -528,9 +529,12 @@ const Reseller = () => {
 
           <div className="shrink-0">
             <a 
-              href={dmBanner?.button?.link || "tel:+919818888064"} 
+              href={dmBanner?.button?.link || "https://wa.me/919818888064"} 
               className="relative overflow-hidden inline-flex items-center gap-2 text-[#22c55e] font-bold px-[38px] py-[16px] rounded-lg bg-white border border-[#22c55e]/25 shadow-[0_6px_20px_rgba(34,197,94,0.16)] transition-all duration-300 hover:bg-[#f0fdf4] hover:text-[#16a34a] hover:scale-[1.03] cursor-pointer"
+              target="_blank"
+              rel="noopener noreferrer"
             >
+              <FaWhatsapp className="text-xl" />
               <span>{dmBanner?.button?.text || "+91 9818888064"}</span>
             </a>
           </div>
@@ -814,9 +818,12 @@ const Reseller = () => {
 
           <div className="shrink-0">
             <a 
-              href={additionalBanner?.button?.link || "tel:+919818888064"} 
+              href={additionalBanner?.button?.link || "https://wa.me/919818888064"} 
               className="relative overflow-hidden inline-flex items-center gap-2 text-[#22c55e] font-bold px-[34px] py-[15px] rounded-lg bg-white border border-[#22c55e]/25 shadow-[0_6px_20px_rgba(34,197,94,0.16)] transition-all duration-300 hover:bg-[#f0fdf4] hover:text-[#16a34a] hover:scale-[1.03] cursor-pointer"
+              target="_blank"
+              rel="noopener noreferrer"
             >
+              <FaWhatsapp className="text-xl" />
               <span>{additionalBanner?.button?.text || "+91 9818888064"}</span>
             </a>
           </div>

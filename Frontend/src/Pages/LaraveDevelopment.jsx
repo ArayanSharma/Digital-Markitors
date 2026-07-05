@@ -257,7 +257,7 @@ const [activeFAQ, setActiveFAQ] = useState(null);
 
       <div className="top-content">
             <h1>
-              Complete WordPress Website Development Services <strong>{topContent?.title || "for Every Business"}</strong>
+               <strong>{topContent?.title || "for Every Business"}</strong>
 
 
             </h1>
@@ -299,7 +299,7 @@ const [activeFAQ, setActiveFAQ] = useState(null);
                     {webDesign?.title || "Take Your Business Success on Another Level"}
                     <br />
                     <span>
-                      with Our Affordable Website Designing Services
+                  
                     </span>
                   </h1>
                   <p>
@@ -336,7 +336,7 @@ const [activeFAQ, setActiveFAQ] = useState(null);
         <div className="container">
           <div className="cms-header">
             <h2>
-              Flexible WordPress Development{" "}
+          {" "}
               <span>{cmsSection?.title || "with the Best tools & platforms"}</span>
             </h2>
 
@@ -370,7 +370,7 @@ const [activeFAQ, setActiveFAQ] = useState(null);
   <div className="container">
     <div className="work-header">
       <h2>
-        Our <span>{ourWork?.title || "Work"}</span>
+       <span>{ourWork?.title || "Work"}</span>
       </h2>
 
       <p>
@@ -413,7 +413,7 @@ const [activeFAQ, setActiveFAQ] = useState(null);
 <section className="built-section">
   <div className="built-container">
     <h2>
-      Our Work Includes <span>{builtSection?.title || "600+ Websites Built"}</span>
+    <span>{builtSection?.title || "600+ Websites Built"}</span>
     </h2>
 
     <p>
@@ -437,7 +437,7 @@ const [activeFAQ, setActiveFAQ] = useState(null);
   <div className="container">
     <div className="process-header">
       <h2>
-        Our Website Designing <span>{processHeader?.title || "Process"}</span>
+         <span>{processHeader?.title || "Process"}</span>
       </h2>
 
       <p>

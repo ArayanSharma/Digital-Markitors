@@ -405,11 +405,11 @@ const rows = getTotalRows();
             <span>{contactBanner?.phone || "9818888064"}</span>
           </a>
 
-          <div className="flex items-center justify-center">
+          <div className="flex items-center justify-center bg-white rounded-lg px-6 py-3">
             <img 
               src={contactBanner?.logo ? resolveImage(contactBanner.logo) : logo} 
               alt="logo" 
-              className="h-10 object-contain w-auto brightness-0 invert"
+              className="h-24 object-contain w-auto"
             />
           </div>
 
