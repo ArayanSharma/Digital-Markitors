@@ -542,52 +542,39 @@ const handlePlay = () => {
 
 <Industry />
     <Casestudy />
-<section className="why-business-section">
-
-  <div className="why-business-container">
-
-  
-    <div className="why-business-heading">
-
-      <div className="divider"></div>
-
-      <h2>
-{whyChooseDigicoreSection?.title || "Why Choose  Digicore Inc as YOUR PPC AGENCY IN DELHI"}      </h2>
-
-      <p>
- {whyChooseDigicoreSection?.description || "Digicore Inc is a leading PPC company serving businesses across Delhi NCR. We help brands generate qualified leads and conversions through carefully planned, data-driven paid advertising strategies. We don’t believe in running ads randomly or chasing short term goals. Every PPC campaign is built around business goals, audience intent, and measurable outcomes. From keyword selection to bid optimisation and conversion tracking, our approach is structured, transparent, and performance-led. Our PPC strategies are designed to maximise returns, manage ad spend, and deliver consistent results across platforms like Google Ads and social media advertising. Here’s why businesses trust  Digicore Inc for PPC management:  "}</p>
+<section className="bg-white py-16 sm:py-20">
+  <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8">
+    <div className="max-w-3xl mx-auto text-center mb-12">
+      <div className="mx-auto mb-4 h-1.5 w-20 rounded-full bg-[#e31e24]"></div>
+      <h2 className="text-3xl sm:text-4xl font-heading font-extrabold text-slate-900 leading-tight">
+        {whyChooseDigicoreSection?.title || "Why Choose Digicore Inc as YOUR PPC AGENCY IN DELHI"}
+      </h2>
+      <p className="mt-5 text-base sm:text-lg text-slate-600 leading-8">
+        {whyChooseDigicoreSection?.description || "Digicore Inc is a leading PPC company serving businesses across Delhi NCR. We help brands generate qualified leads and conversions through carefully planned, data-driven paid advertising strategies. We don’t believe in running ads randomly or chasing short term goals. Every PPC campaign is built around business goals, audience intent, and measurable outcomes. From keyword selection to bid optimisation and conversion tracking, our approach is structured, transparent, and performance-led. Our PPC strategies are designed to maximise returns, manage ad spend, and deliver consistent results across platforms like Google Ads and social media advertising. Here’s why businesses trust Digicore Inc for PPC management:"}
+      </p>
     </div>
 
-
-    <div className="why-business-content">
-
-
-      <div className="why-left">
-
-        <ul>
-
+    <div className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr] items-start">
+      <div>
+        <ul className="space-y-4 text-base sm:text-lg text-slate-700">
           {displayPoints.map((point, index) => (
-            <li key={index}>✔ {point}</li>
+            <li key={index} className="flex gap-3 items-start">
+              <span className="mt-1 text-[#e31e24]">✔</span>
+              <span>{point}</span>
+            </li>
           ))}
-
         </ul>
-
       </div>
 
-
-      <div className="why-right">
-
+      <div className="rounded-[32px] bg-slate-50 p-5 shadow-sm">
         <img
+          className="w-full rounded-[28px] object-cover"
           src={whyChooseDigicoreSection?.imageUrl ? resolveImage(whyChooseDigicoreSection.imageUrl) : graphImg}
           alt="Graph"
         />
-
       </div>
-
     </div>
-
   </div>
-
 </section>
 
  <div className="divider"></div>

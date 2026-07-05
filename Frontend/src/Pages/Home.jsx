@@ -471,11 +471,11 @@ const Home = () => {
           </h1>
 
           <div className="flex justify-center items-center gap-5 max-[769px]:flex-col">
-            <a href={pageData?.whyChoose?.whatsappBtn?.link || "#"} className="flex items-center justify-center gap-[10px] bg-[#e31e24] hover:bg-[#c4151a] hover:scale-[1.03] transition-all duration-300 text-white h-12 px-7 rounded-lg text-base font-bold no-underline shadow-[0_4px_15px_rgba(227,30,36,0.35)]">
+            <a href={pageData?.whyChoose?.whatsappBtn?.link || "#"} className="flex items-center justify-center gap-[10px] bg-white hover:bg-[#f0fdf4] hover:scale-[1.03] transition-all duration-300 text-[#22c55e] h-12 px-7 rounded-lg text-base font-bold no-underline shadow-[0_4px_15px_rgba(34,197,94,0.16)] border border-[#22c55e]/25">
               <img
                 src="https://tataresearch.besthr.in/digital-marketar/assets/icon/whatsapp.png"
                 alt="whatsapp"
-                className="w-[20px] h-[20px] invert brightness-200"
+                className="w-[20px] h-[20px] rounded-full bg-[#22c55e] p-[3px] object-contain"
               />
               {pageData?.whyChoose?.whatsappBtn?.text || "+91 98188 88064"}
             </a>

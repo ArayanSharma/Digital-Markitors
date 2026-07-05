@@ -686,89 +686,76 @@ const Healthcare = () => {
         </section>
       </div>
 
-      <section className="dominate-section">
-        <div className="dominate-heading">
-          <h2>{dominateSection?.heading || "How to Grow Sales & Revenue with Healthcare SEO agency"}</h2>
+      <section className="py-[100px] px-[6%] bg-[#f4f4f5] text-center border-b border-[#e5e7eb]">
+        <div className="max-w-[1200px] mx-auto px-5">
+          <h2 className="text-[42px] max-[769px]:text-[30px] text-[#1c1c1e] font-heading font-extrabold mb-[15px]">
+            {dominateSection?.heading || "How to Grow Sales & Revenue with Healthcare SEO agency"}
+          </h2>
 
-          <div className="dominate-line"></div>
+          <div className="w-[70px] h-[4px] bg-[#e31e24] mx-auto mb-[30px] rounded-[20px]"></div>
 
-          <p>
-            {dominateSection?.description || (<>Digicore Inc., the best healthcare SEO agency based in Delhi enables businesses achieve their sales and revenue growth goals by working on their website’s visibility. All the platforms which are being used by patients frequently to reach healthcare website are considered in the custom healthcare SEO services. From the optimal use of high-intent medical keywords, trust-building content, optimization of web pages to local SEO, we utilize white hat practices to drive more traffic to client’s website.
-              <br /> <br />
-              Additionally, HIPAA-compliant SEO practices, technical SEO, and sustainable conversion-based strategies are used by our professionals to improve ranking of the healthcare business. At Digicore Inc., we believe in improving appointment booking prospects, increase business credibility and improve revenue growth through best-in-class SEO practices.</>)}</p>
+          <p className="max-w-[850px] mx-auto text-[17px] leading-[1.8] text-[#4b5563] mb-[60px]">
+            {dominateSection?.description || (
+              <>Digicore Inc., the best healthcare SEO agency based in Delhi enables businesses achieve their sales and revenue growth goals by working on their website’s visibility. All the platforms which are being used by patients frequently to reach healthcare website are considered in the custom healthcare SEO services. From the optimal use of high-intent medical keywords, trust-building content, optimization of web pages to local SEO, we utilize white hat practices to drive more traffic to client’s website.
+                <br /><br />
+                Additionally, HIPAA-compliant SEO practices, technical SEO, and sustainable conversion-based strategies are used by our professionals to improve ranking of the healthcare business. At Digicore Inc., we believe in improving appointment booking prospects, increase business credibility and improve revenue growth through best-in-class SEO practices.</>
+            )}
+          </p>
         </div>
 
-        <div className="dominate-cards">
+        <div className="flex justify-center gap-10 flex-wrap mt-[30px]">
           {displayDominateCards.map((item, index) => (
-            <div className="dominate-card" key={item.id || index}>
-
-              <div className="dominate-icon">
-                <img
-                  src={item.icon}
-                  alt={item.title}
-                  className="dominate-icon-img"
-                />
+            <div
+              className="group w-[260px] h-[260px] max-[769px]:w-[220px] max-[769px]:h-[220px] rounded-full bg-white border border-[#e5e7eb] flex flex-col items-center justify-center text-center p-6 box-border relative overflow-hidden cursor-pointer shadow-sm transition-all duration-300 hover:bg-[#e31e24] hover:border-[#e31e24] hover:shadow-[0_12px_25px_rgba(227,30,36,0.25)] hover:-translate-y-1.5"
+              key={item.id || index}
+            >
+              <div className="relative z-[2] w-12 h-12 mb-4 flex items-center justify-center transition-colors duration-300">
+                <img src={item.icon} alt={item.title} className="w-full h-full object-contain filter group-hover:brightness-0 group-hover:invert transition-all duration-300" />
               </div>
 
-              <h3>{item.title}</h3>
+              <h3 className="relative z-[2] text-[18px] max-[769px]:text-[15px] font-heading font-bold text-[#2b2b2e] leading-tight m-0 transition-colors duration-300 group-hover:text-white group-hover:mb-[10px]">{item.title}</h3>
 
-              <p>{item.desc}</p>
-
+              <p className="relative z-[2] mt-0 text-[12px] leading-[1.5] text-white opacity-0 max-h-0 overflow-hidden transition-all duration-300 group-hover:opacity-90 group-hover:max-h-[120px]">{item.desc}</p>
             </div>
           ))}
         </div>
       </section>
 
+      <section className="py-[100px] px-[6%] bg-white border-b border-[#e5e7eb]">
+        <div className="max-w-[1200px] mx-auto px-5">
+          <div className="text-center mb-[60px]">
+            <div className="w-[60px] h-[4px] bg-[#e31e24] mx-auto mb-[25px] rounded-[10px] max-[769px]:w-[50px] max-[769px]:mb-[20px]"></div>
 
-      <section className="why-business-section" style={{ backgroundColor: "#fff" }}>
-
-        <div className="why-business-container">
-
-
-          <div className="why-business-heading">
-
-            <div className="divider"></div>
-
-            <h2>
-              {clientsSection?.heading || (<>Why Clients Choose Digicore Inc. for Healthcare SEO <br />
-                services?</>)}
+            <h2 className="text-[42px] max-[769px]:text-[30px] font-heading font-extrabold text-[#1c1c1e] mb-[20px]">
+              {clientsSection?.heading || "Why Clients Choose Digicore Inc. for Healthcare SEO services?"}
             </h2>
 
-            <p>
-              {clientsSection?.description || "With utmost transparency, customized, and credible SEO practices aligned with the medical business requirements, Digicore Inc. provides the results-driven strategies to the all-sized healthcare institutes. Trusted by diverse industries for proven excellence in improving the visibility, revenue, and conversion rate, we have excelled as the best healthcare SEO agency. Our comprehensive approach of boosting the rankings and credibility of healthcare boosts is backed by AI and advanced SEO practices. We blend problem-solving skills with the next-gen SEO services to help patients easily find the client’s website on the top health-based platforms.  "}</p>
-
+            <p className="max-w-[850px] mx-auto text-[17px] leading-[1.8] text-[#4b5563]">
+              {clientsSection?.description || "With utmost transparency, customized, and credible SEO practices aligned with the medical business requirements, Digicore Inc. provides the results-driven strategies to the all-sized healthcare institutes. Trusted by diverse industries for proven excellence in improving the visibility, revenue, and conversion rate, we have excelled as the best healthcare SEO agency. Our comprehensive approach of boosting the rankings and credibility of healthcare boosts is backed by AI and advanced SEO practices. We blend problem-solving skills with the next-gen SEO services to help patients easily find the client’s website on the top health-based platforms."}
+            </p>
           </div>
 
-
-          <div className="why-business-content">
-
-
-            <div className="why-left">
-
-              <ul>
-
+          <div className="flex items-center gap-[60px] max-[993px]:flex-col">
+            <div className="flex-1 w-full">
+              <ul className="list-none p-0 flex flex-col gap-4">
                 {displayClientsBullets.map((bullet, index) => (
-                  <li key={index}>✔ {bullet}</li>
+                  <li key={index} className="text-[16px] leading-[1.6] bg-white p-5 rounded-xl shadow-[0_4px_15px_rgba(0,0,0,0.03)] border border-[#e5e7eb]/60 transition-all duration-300 hover:translate-x-[8px] flex items-start">
+                    <span className="text-[#e31e24] font-bold mr-3 shrink-0">✔</span>
+                    <span className="text-[#4b5563]">{bullet}</span>
+                  </li>
                 ))}
-
               </ul>
-
             </div>
 
-
-            <div className="why-right">
-
+            <div className="flex-1 text-center w-full">
               <img
                 src={clientsSection?.image ? resolveImage(clientsSection.image) : graphImg}
                 alt="Graph"
+                className="w-full max-w-[500px] rounded-2xl shadow-[0_15px_35px_rgba(0,0,0,0.05)] mx-auto border border-[#e5e7eb]"
               />
-
             </div>
-
           </div>
-
         </div>
-
       </section>
 
       <div className="divider"></div>

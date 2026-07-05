@@ -694,115 +694,84 @@ Out Turn:</h3>
       </section>
 
     
-<section className="dominate-section">
-  <div className="dominate-heading">
-    <h2>{helpCardsSection?.heading || "How Can We Help You Grow"}</h2>
-
-    <div className="dominate-line"></div>
-
-    <p>
-     Digicore Inc. is a leading SEO agency in Delhi. We help businesses evolve by providing them with the best SEO strategies and solutions designed specifically to improve visibility to the people who matter most. We combine cutting-edge SEO strategies, including technical SEO, high-quality content and strategic link building to deliver results that help brands outspace the competition and remain relevant for longer than they can imagine. We utilize a data-driven approach to ensure you:
-    </p>
-  </div>
-
-   <div className="dominate-cards">
-  {((helpCardsSection?.helpCards && helpCardsSection.helpCards.length > 0) ? helpCardsSection.helpCards : helpCards).map((item, index) => (
-    <div className="dominate-card" key={index}>
-      
-      <div className="dominate-icon">
-        <img
-          src={resolveImage(item.iconUrl) || item.icon}
-          alt={item.title}
-          className="dominate-icon-img"
-        />
-      </div>
-
-      <h3>{item.title}</h3>
-
-      <p>{item.desc || item.description}</p>
-
-    </div>
-  ))}
-</div>
-</section>
-<section className="why-business-section" style={{ backgroundColor: "#fff" }}>
-
-  <div className="why-business-container">
-
-  
-    <div className="why-business-heading">
-
-      <div className="divider"></div>
-
-      <h2>
-{whyChooseDigicoreSection?.title || "How Do We Manage Amazon Seller Account"}
+<section className="bg-slate-50 py-16 sm:py-20">
+  <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8">
+    <div className="max-w-3xl mx-auto text-center mb-10">
+      <h2 className="text-3xl sm:text-4xl font-heading font-extrabold text-slate-900 leading-tight">
+        {helpCardsSection?.heading || "How Can We Help You Grow"}
       </h2>
-
-      <p>
- {whyChooseDigicoreSection?.description || "At Digicore Inc., we ensure structured, and performance driven approach is employed to manage Amazon seller accounts. With the objective to adhere to the marketplace compliance and uninterrupted business growth, our dedicated account managers begin with the complete account setup and optimization. As a part of optimization, listings, storefront design, and brand registry support are aligned with the keyword research and product visibility. The consistent account optimization adheres to the updated algorithm, thereby, monitoring the account health, policy level and customer feedback to prevent revenue loss and suspensions. Apart from the seller account management, we also manage Amazon PPC campaigns with data-driven approach to control ad spend."}</p>
-
+      <div className="mx-auto mt-4 h-1.5 w-20 rounded-full bg-[#e31e24]"></div>
+      <p className="mt-6 text-base sm:text-lg text-slate-600 leading-8">
+        Digicore Inc. is a leading SEO agency in Delhi. We help businesses evolve by providing them with the best SEO strategies and solutions designed specifically to improve visibility to the people who matter most. We combine cutting-edge SEO strategies, including technical SEO, high-quality content and strategic link building to deliver results that help brands outspace the competition and remain relevant for longer than they can imagine. We utilize a data-driven approach to ensure you:
+      </p>
     </div>
 
-  
-    <div className="why-business-content">
+    <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {((helpCardsSection?.helpCards && helpCardsSection.helpCards.length > 0) ? helpCardsSection.helpCards : helpCards).map((item, index) => (
+        <div key={index} className="rounded-[32px] bg-white p-6 shadow-sm border border-slate-200 hover:shadow-md transition-shadow duration-300">
+          <div className="mb-5 h-16 w-16 flex items-center justify-center rounded-3xl bg-[#f7f7fb]">
+            <img
+              src={resolveImage(item.iconUrl) || item.icon}
+              alt={item.title}
+              className="h-10 w-10 object-contain"
+            />
+          </div>
+          <h3 className="text-xl font-semibold text-slate-900 mb-3">{item.title}</h3>
+          <p className="text-slate-600 leading-7">{item.desc || item.description}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
 
-  
-      <div className="why-left">
+<section className="bg-white py-16 sm:py-20">
+  <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8">
+    <div className="max-w-3xl mx-auto text-center mb-10">
+      <div className="mx-auto mb-4 h-1.5 w-20 rounded-full bg-[#e31e24]"></div>
+      <h2 className="text-3xl sm:text-4xl font-heading font-extrabold text-slate-900 leading-tight">
+        {whyChooseDigicoreSection?.title || "How Do We Manage Amazon Seller Account"}
+      </h2>
+      <p className="mt-5 text-base sm:text-lg text-slate-600 leading-8">
+        {whyChooseDigicoreSection?.description || "At Digicore Inc., we ensure structured, and performance driven approach is employed to manage Amazon seller accounts. With the objective to adhere to the marketplace compliance and uninterrupted business growth, our dedicated account managers begin with the complete account setup and optimization. As a part of optimization, listings, storefront design, and brand registry support are aligned with the keyword research and product visibility. The consistent account optimization adheres to the updated algorithm, thereby, monitoring the account health, policy level and customer feedback to prevent revenue loss and suspensions. Apart from the seller account management, we also manage Amazon PPC campaigns with data-driven approach to control ad spend."}
+      </p>
+    </div>
 
-        <ul>
-
+    <div className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr] items-start">
+      <div>
+        <ul className="space-y-4 text-base sm:text-lg text-slate-700">
           {whyChooseDigicoreSection?.points?.length ? (
-            whyChooseDigicoreSection.points.map((point, i) => <li key={i}>✔ {point}</li>)
-          ) : (
-            <>
-              <li>
-                ✔ Our seasoned professionals with profound experience tailors and execute Google shopping ad campaigns
+            whyChooseDigicoreSection.points.map((point, i) => (
+              <li key={i} className="flex gap-3 items-start">
+                <span className="mt-1 text-[#e31e24]">✔</span>
+                <span>{point}</span>
               </li>
-
-              <li>
-                ✔ We prioritize growth-mindset to deliver data-driven and consistent advertising results for all-sized businesses
+            ))
+          ) : ([
+              "Our seasoned professionals with profound experience tailors and execute Google shopping ad campaigns",
+              "We prioritize growth-mindset to deliver data-driven and consistent advertising results for all-sized businesses",
+              "Our reporting system maintains clarity and transparency to execute all the Google display ad campaigns according to competitor analysis",
+              "We focus on client-centric and result-driven approach to target advertising goals in a specified time span",
+              "All our Google display ad management services are sustainable and aimed at consistent business growth",
+              "Our proven expertise of Google display ad management has helped businesses of diverse segments to achieve their advertising objectives.",
+              "Partner with us to improve the engagement rate, visibility and performance of your business with our cost-effective Google Display ad management services",
+            ].map((bullet, index) => (
+              <li key={index} className="flex gap-3 items-start">
+                <span className="mt-1 text-[#e31e24]">✔</span>
+                <span>{bullet}</span>
               </li>
-
-              <li>
-                ✔  Our reporting system maintains clarity and transparency to execute all the Google display ad campaigns according to competitor analysis
-              </li>
-
-              <li>
-                ✔  We focus on client-centric and result-driven approach to target advertising goals in a specified time span
-              </li>
-
-              <li>
-                ✔ All our Google display ad management services are sustainable and aimed at consistent business growth
-              </li>
-
-              <li>
-                ✔ Our proven expertise of Google display ad management has helped businesses of diverse segments to achieve their advertising objectives.
-              </li>
-
-              <li>
-                ✔ Partner with us to improve the engagement rate, visibility and performance of your business with our cost-effective Google Display ad management services
-              </li>
-            </>
-          )}
-
+            )))}
         </ul>
-
       </div>
 
-
-      <div className="why-right">
-
+      <div className="rounded-[32px] bg-slate-50 p-5 shadow-sm">
         <img
+          className="w-full rounded-[28px] object-cover"
           src={whyChooseDigicoreSection?.imageUrl ? resolveImage(whyChooseDigicoreSection.imageUrl) : graphImg}
           alt="Graph"
         />
-
       </div>
-
     </div>
-
   </div>
-
 </section>
 
  <div className="divider"></div>

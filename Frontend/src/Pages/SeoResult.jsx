@@ -96,211 +96,201 @@ const SeoResult = () => {
     const visionSection = c?.visionSection;
 
     return (
-        <div>
-
+        <div className="bg-white">
             <Hero2 hero={c?.hero || {}} />
-            <section className="sectionone">
-                <div className="container">
 
-                    <h1 className="topheading">
-                        {aboutSection?.heading || "Hello"}
-                    </h1>
+            {/* Overview Section */}
+            <section className="w-full py-24 px-5 bg-white">
+                <div className="max-w-[1200px] mx-auto">
+                    <div className="w-[60px] h-[4px] bg-[#e31e24] mx-auto mb-[25px] rounded-[10px]"></div>
 
-                    <div className="shrtdesc">
-                        {aboutSection?.body ? (
-                            <>
-                                <p className="text-center">{aboutSection.body}</p>
-
-                            </>
-                        ) : (
-                            <p className="text-center">
-                                {`Digicore Inc. is one of the top Digital Marketing companies in India
-                            based in Kanpur. We are a complete digital marketing company that
-                            discusses and expertly applies all your strategies. Our top-notch
-                            services include everything, right from designing your business website
-                            and the best SEO services to mobile app development and online
-                            reputation management to engage your targeted and potential customers.`}
-                            </p>
-                        )}
-                    </div>
-
-                    <div className="space"></div>
-
-                    <div className="overview-row">
-
-
-                        <div className="overview-content">
-
-                            {aboutSection?.body ? (
-                                <>
-
-                                    {aboutSection.paragraph1 ? <p className="text-center">{aboutSection.paragraph1}</p> : null}
-                                    {aboutSection.paragraph2 ? <p className="text-center">{aboutSection.paragraph2}</p> : null}
-                                </>
-                            ) : (
-                                <p className="text-center">
-                                    {`Digicore Inc. is one of the top Digital Marketing companies in India
-                            based in Kanpur. We are a complete digital marketing company that
-                            discusses and expertly applies all your strategies. Our top-notch
-                            services include everything, right from designing your business website
-                            and the best SEO services to mobile app development and online
-                            reputation management to engage your targeted and potential customers.`}
-                                </p>
-                            )}
-                        </div>
-
-
-                        <div className="overview-image">
-                            <img src={aboutSection?.image ? resolveImage(aboutSection.image) : aboutImg} alt="Company Overview" />
-                        </div>
-
-                    </div>
-
-                </div>
-            </section>
-
-
-
-            <section className="wydmbc">
-                <div className="container">
-
-                    <h2 className="wydm-title">
-                        <span>{betterSection?.heading || "Better than Others?"}</span>
+                    <h2 className="text-center text-[40px] max-[769px]:text-[30px] font-heading font-extrabold text-[#1c1c1e] mb-6 leading-tight">
+                        {aboutSection?.heading || "SEO Results Overview"}
                     </h2>
 
-                    <p className="wydm-desc">
-                        {betterSection?.description || `Digicore Inc. has been creating value for its domestic and global
-                        clients from the last many years. Our team of highly dedicated
-                        professionals trained in digital marketing caters to countless projects
-                        every month.`}
+                    <p className="text-center text-[17px] leading-[1.8] text-[#4b5563] max-w-[850px] mx-auto mb-16">
+                        {aboutSection?.body || `Digicore Inc. is one of the top Digital Marketing companies in India based in Kanpur. We are a complete digital marketing company that discusses and expertly applies all your strategies. Our top-notch services include everything, right from designing your business website and the best SEO services to mobile app development and online reputation management to engage your targeted and potential customers.`}
                     </p>
 
-                    <div className="wydm-grid">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                        <div className="space-y-6 text-[16px] leading-[1.8] text-[#4b5563]">
+                            {aboutSection?.body ? (
+                                <>
+                                    {aboutSection.paragraph1 && <p>{aboutSection.paragraph1}</p>}
+                                    {aboutSection.paragraph2 && <p>{aboutSection.paragraph2}</p>}
+                                </>
+                            ) : (
+                                <>
+                                    <p>
+                                        {`If you are here, you already know the power and usefulness of digital marketing and SEO. With us, you can multiply that power and write a new story of success for your business. It is a fact that many times even a single glance is all you need to convert a visitor into a buyer. Here at Digicore Inc., one of the leading and affordable digital marketing service providers, we are always ready to help you leverage that opportunity.`}
+                                    </p>
+                                    <p>
+                                        {`As a top-notch SEO company in Kanpur NCR, we consist of a team of highly dedicated professionals with many years of experience in digital marketing, SEO, SMO, content, website designing and development, and more. Our team is passionate about helping you make your business grow with leaps and bounds and giving your business website NUMBER #1 spot on the search engine results.`}
+                                    </p>
+                                </>
+                            )}
+                        </div>
+                        <div className="relative rounded-3xl overflow-hidden shadow-[0_15px_30px_rgba(0,0,0,0.05)] border border-slate-100">
+                            <img 
+                                src={aboutSection?.image ? resolveImage(aboutSection.image) : aboutImg} 
+                                alt="Company Overview" 
+                                className="w-full h-full object-cover"
+                            />
+                        </div>
+                    </div>
+                </div>
+            </section>
 
+            {/* Stats / Better Section */}
+            <section className="w-full py-24 px-5 bg-[#f4f4f5] border-t border-b border-[#e5e7eb]">
+                <div className="max-w-[1200px] mx-auto">
+                    <h2 className="text-center text-[38px] max-[769px]:text-[28px] font-heading font-extrabold text-[#1c1c1e] mb-5">
+                        What Makes Us <span className="text-[#e31e24]">{betterSection?.heading || "Better than Others?"}</span>
+                    </h2>
+
+                    <p className="text-center text-[17px] leading-[1.8] text-[#4b5563] max-w-[800px] mx-auto mb-16">
+                        {betterSection?.description || `Digicore Inc. has been creating value for its domestic and global clients from the last many years. Our team of highly dedicated professionals trained in digital marketing caters to countless projects every month.`}
+                    </p>
+
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
                         {displayStats.map((item, index) => (
-                            <div className="wydm-item" key={item.id || index}>
-                                <img src={item.icon || [dm1, dm2, dm3, dm4][index % 4]} alt={item.title} />
-                                <h3>{item.title}</h3>
-                                <div className="count-box">{item.count}</div>
-                                <p>{item.desc}</p>
+                            <div 
+                                className="group bg-white rounded-[24px] p-8 border border-[#e5e7eb] shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:-translate-y-2 hover:shadow-[0_15px_30px_rgba(227,30,36,0.1)] hover:border-[#e31e24]/20 transition-all duration-300 flex flex-col items-center text-center" 
+                                key={item.id || index}
+                            >
+                                <div className="w-16 h-16 rounded-full bg-[#fee2e2] flex items-center justify-center mb-6 transition-transform duration-300 group-hover:scale-110">
+                                    <img 
+                                        src={item.icon || [dm1, dm2, dm3, dm4][index % 4]} 
+                                        alt={item.title} 
+                                        className="w-8 h-8 object-contain"
+                                    />
+                                </div>
+                                <h3 className="text-[18px] font-bold text-[#2b2b2e] mb-2">{item.title}</h3>
+                                <div className="text-[36px] font-heading font-extrabold text-[#e31e24] mb-2">{item.count}</div>
+                                <p className="text-[14px] leading-relaxed text-[#6b7280]">{item.desc}</p>
                             </div>
                         ))}
-
                     </div>
-
                 </div>
             </section>
 
-
-
-            <section className="contact-banner">
-                <div className="contact-wrapper">
-
-                    <div className="contact-left">
-                        <FaPhoneAlt />
+            {/* Contact Banner */}
+            <section className="w-full bg-[#1c1c1e] py-12 px-5 border-t border-b border-[#2b2b2e]">
+                <div className="max-w-[1200px] mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
+                    <a 
+                        href={`tel:${contactBanner?.phone || "9818888064"}`} 
+                        className="flex items-center gap-3 text-white text-[18px] hover:text-[#e31e24] transition-colors duration-200 font-semibold"
+                    >
+                        <FaPhoneAlt className="text-[#e31e24] text-xl" />
                         <span>{contactBanner?.phone || "9818888064"}</span>
+                    </a>
+
+                    <div className="flex items-center justify-center">
+                        <img 
+                            src={contactBanner?.logo ? resolveImage(contactBanner.logo) : logo} 
+                            alt="logo" 
+                            className="h-10 object-contain w-auto brightness-0 invert"
+                        />
                     </div>
 
-                    <div className="contact-center">
-                        <img src={contactBanner?.logo ? resolveImage(contactBanner.logo) : logo} alt="logo" />
-                    </div>
-
-                    <div className="contact-right">
-                        <FaEnvelope />
+                    <a 
+                        href={`mailto:${contactBanner?.email || "support@digicore.co.in"}`} 
+                        className="flex items-center gap-3 text-white text-[18px] hover:text-[#e31e24] transition-colors duration-200 font-semibold"
+                    >
+                        <FaEnvelope className="text-[#e31e24] text-xl" />
                         <span>{contactBanner?.email || "support@digicore.co.in"}</span>
-                    </div>
-
+                    </a>
                 </div>
             </section>
 
+            {/* Industries Section */}
+            <section className="w-full py-24 px-5 bg-white">
+                <div className="max-w-[1200px] mx-auto">
+                    <div className="w-[60px] h-[4px] bg-[#e31e24] mx-auto mb-[25px] rounded-[10px]"></div>
 
-            <section className="industries-section">
-                <div className="container">
-                    <h2 className="section-title">
+                    <h2 className="text-center text-[38px] max-[769px]:text-[28px] font-heading font-extrabold text-[#1c1c1e] mb-16">
                         {industriesTitle}
                     </h2>
 
-                    <div className="industries-grid ">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                         {displayIndustries.map((item, index) => (
-                            <div className="industry-card" key={item.id || index}>
-                                <div className="industry-header">
-                                    <img
-                                        src={item.icon || seoIcon}
-                                        alt={item.title}
-                                        className="industry-icon"
-                                    />
-                                    <h3>{item.title}</h3>
+                            <div 
+                                className="bg-[#f8f9fa] rounded-2xl p-6 border border-slate-100 hover:-translate-y-1.5 hover:shadow-[0_15px_30px_rgba(0,0,0,0.05)] hover:border-[#e31e24]/10 transition-all duration-300" 
+                                key={item.id || index}
+                            >
+                                <div className="flex items-center gap-4 mb-4">
+                                    <div className="w-12 h-12 rounded-xl bg-[#fee2e2] flex items-center justify-center shrink-0">
+                                        <img
+                                            src={item.icon || seoIcon}
+                                            alt={item.title}
+                                            className="w-6 h-6 object-contain"
+                                        />
+                                    </div>
+                                    <h3 className="text-[18px] font-bold text-[#2b2b2e]">{item.title}</h3>
                                 </div>
-
-                                <p>{item.desc}</p>
+                                <p className="text-[14px] leading-relaxed text-[#4b5563]">{item.desc}</p>
                             </div>
                         ))}
                     </div>
                 </div>
             </section>
 
-            <section className="ourmission">
-                <div className="mission-wrapper">
+            {/* Mission & Vision Section */}
+            <section className="w-full py-24 px-5 bg-[#f4f4f5] border-t border-[#e5e7eb]">
+                <div className="max-w-[1200px] mx-auto space-y-24">
+                    
+                    {/* Mission Box */}
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                        <div className="relative rounded-3xl overflow-hidden shadow-[0_15px_30px_rgba(0,0,0,0.05)] border border-slate-200">
+                            <img 
+                                src={missionSection?.image ? resolveImage(missionSection.image) : missionImg} 
+                                alt="Mission" 
+                                className="w-full h-full object-cover"
+                            />
+                        </div>
+                        <div>
+                            <h2 className="text-[36px] max-[769px]:text-[28px] font-heading font-extrabold text-[#1c1c1e] mb-4">
+                                Our <span className="text-[#e31e24]">Mission</span>
+                            </h2>
 
-                    <div className="mission-box">
-                        <h2>
-                            Our <span>Mission</span>
-                        </h2>
+                            <p className="text-[18px] font-semibold text-[#2b2b2e] leading-relaxed mb-6">
+                                {missionSection?.intro || "It is an obvious fact that professional digital marketing services are not always expensive and expensive services are not always good."}
+                            </p>
 
-                        <p className="intro">
-                            {missionSection?.intro || "It is an obvious fact that professional digital marketing services are not always expensive and expensive services are not always good."}
-                        </p>
-
-                        <div className="content-row">
-                            <div className="image-box">
-                                <img src={missionSection?.image ? resolveImage(missionSection.image) : missionImg} alt="Mission" />
-                            </div>
-
-                            <div className="text-box">
-                                <p>
-                                    {missionSection?.body || `We strive quite hard towards striking just the right balance
-                                    between affordability and quality. Digicore Inc. believes
-                                    in utilizing the best of both worlds – manual and automation.
-                                    With a manual approach, we bring personal touch and logic
-                                    behind every strategy while the other approach helps us
-                                    evaluate and compare the results achieved.`}
-                                </p>
-                            </div>
+                            <p className="text-[16px] leading-[1.8] text-[#4b5563]">
+                                {missionSection?.body || `We strive quite hard towards striking just the right balance between affordability and quality. Digicore Inc. believes in utilizing the best of both worlds – manual and automation. With a manual approach, we bring personal touch and logic behind every strategy while the other approach helps us evaluate and compare the results achieved.`}
+                            </p>
                         </div>
                     </div>
 
-                    <div className="vision-box">
-                        <h2>
-                            Our <span>Vision</span>
-                        </h2>
+                    {/* Vision Box */}
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                        <div className="order-2 lg:order-1">
+                            <h2 className="text-[36px] max-[769px]:text-[28px] font-heading font-extrabold text-[#1c1c1e] mb-4">
+                                Our <span className="text-[#e31e24]">Vision</span>
+                            </h2>
 
-                        <p className="intro">
-                            {visionSection?.intro || "With evolving reliance on virtual platforms, every business wants to create a robust foothold in their respective market."}
-                        </p>
+                            <p className="text-[18px] font-semibold text-[#2b2b2e] leading-relaxed mb-6">
+                                {visionSection?.intro || "With evolving reliance on virtual platforms, every business wants to create a robust foothold in their respective market."}
+                            </p>
 
-                        <div className="content-row">
-                            <div className="text-box">
-                                <p>
-                                    {visionSection?.body || `Getting new customers and captivating their attention all the
-                                    time is the key to success in the market. Hence, it becomes
-                                    even more important for you to rank on the top of popular
-                                    search engines. The highly professional and dedicated team of
-                                    Digicore Inc. has a vision of helping their clients
-                                    achieve the best search engine ranking.`}
-                                </p>
-                            </div>
-
-                            <div className="image-box">
-                                <img src={visionSection?.image ? resolveImage(visionSection.image) : visionImg} alt="Vision" />
-                            </div>
+                            <p className="text-[16px] leading-[1.8] text-[#4b5563]">
+                                {visionSection?.body || `Getting new customers and captivating their attention all the time is the key to success in the market. Hence, it becomes even more important for you to rank on the top of popular search engines. The highly professional and dedicated team of Digicore Inc. has a vision of helping their clients achieve the best search engine ranking.`}
+                            </p>
+                        </div>
+                        <div className="order-1 lg:order-2 relative rounded-3xl overflow-hidden shadow-[0_15px_30px_rgba(0,0,0,0.05)] border border-slate-200">
+                            <img 
+                                src={visionSection?.image ? resolveImage(visionSection.image) : visionImg} 
+                                alt="Vision" 
+                                className="w-full h-full object-cover"
+                            />
                         </div>
                     </div>
 
                 </div>
             </section>
-
         </div>
-    )
-}
+    );
+};
 
 export default SeoResult

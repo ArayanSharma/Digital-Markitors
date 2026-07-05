@@ -363,8 +363,7 @@ const Reseller = () => {
   const mapData = pc?.map;
 
   return (
-    <div>
-
+    <div className="bg-white">
       <Banner
         subtitle={banner?.subtitle || "We make your brand UNMISSABLE"}
         title={banner?.title || "Turning Visibility into Growth. Turning Brands into Market Leaders"}
@@ -374,17 +373,20 @@ const Reseller = () => {
         backgroundImage={banner?.backgroundImage ? resolveImage(banner.backgroundImage) : eimage}
       />
 
-      <section className="seo-reseller-section">
-        <div className="seo-reseller-container">
-          <h2 className="seo-title">
+      {/* SEO Reseller Section */}
+      <section className="w-full py-24 px-5 bg-white">
+        <div className="max-w-[1200px] mx-auto text-center">
+          <div className="w-[60px] h-[4px] bg-[#e31e24] mx-auto mb-[25px] rounded-[10px]"></div>
+          
+          <h2 className="text-[38px] max-[769px]:text-[28px] font-heading font-extrabold text-[#1c1c1e] mb-2 leading-tight">
             {seoResellerIntro?.title || "SEO Reseller Services & Program Available for Agencies"}
           </h2>
 
-          <p className="seo-subtitle">
+          <p className="text-[17px] leading-[1.8] text-[#e31e24] font-semibold max-w-[850px] mx-auto mb-10">
             {seoResellerIntro?.subtitle || "Join our White Label SEO Services Program to Become a 'Reseller'"}
           </p>
 
-          <div className="seo-content">
+          <div className="text-[16px] leading-[1.8] text-[#4b5563] space-y-6 text-left max-w-[950px] mx-auto">
             {seoResellerIntro?.paragraphs?.length ? (
               seoResellerIntro.paragraphs.map((para, i) => <p key={i}>{para}</p>)
             ) : (
@@ -429,49 +431,56 @@ const Reseller = () => {
         </div>
       </section>
 
+      {/* Reseller Section */}
+      <section className="w-full py-24 px-5 bg-[#f4f4f5] border-t border-[#e5e7eb]">
+        <div className="max-w-[1200px] mx-auto">
+          <div className="w-[60px] h-[4px] bg-[#e31e24] mx-auto mb-[25px] rounded-[10px]"></div>
 
-      <section className="reseller-section">
-        <div className="reseller-container">
-          <h2>
+          <h2 className="text-center text-[36px] max-[769px]:text-[28px] font-heading font-extrabold text-[#1c1c1e] mb-10 leading-tight">
             {resellerSection?.heading || "How Can We Help You Expand Your Business With Our SEO Reseller Services?"}
           </h2>
 
-          {resellerSection?.paragraphs?.length ? (
-            resellerSection.paragraphs.map((para, i) => <p key={i}>{para}</p>)
-          ) : (
-            <>
-              <p>
-                When looking for a partner to provide your SEO reseller services in India, picking someone genuine and trustworthy is essential. The market is swamped with innumerable SEO reseller service providers, with all of them claiming to be the best in the business. Nevertheless, picking a business associate that you can rely on to do what's right for both of you is the best choice you can make for your company. After all, you are looking for high-quality SEO reseller services that help you achieve your goals. When it comes to the best SEO Reseller company, Digicore Inc. tops the list. Digicore Inc. is one of the leading SEO reseller companies in India. We provide the most all-encompassing SEO reseller services
-              </p>
+          <div className="text-[16px] leading-[1.8] text-[#4b5563] space-y-6 max-w-[950px] mx-auto mb-16">
+            {resellerSection?.paragraphs?.length ? (
+              resellerSection.paragraphs.map((para, i) => <p key={i}>{para}</p>)
+            ) : (
+              <>
+                <p>
+                  When looking for a partner to provide your SEO reseller services in India, picking someone genuine and trustworthy is essential. The market is swamped with innumerable SEO reseller service providers, with all of them claiming to be the best in the business. Nevertheless, picking a business associate that you can rely on to do what's right for both of you is the best choice you can make for your company. After all, you are looking for high-quality SEO reseller services that help you achieve your goals. When it comes to the best SEO Reseller company, Digicore Inc. tops the list. Digicore Inc. is one of the leading SEO reseller companies in India. We provide the most all-encompassing SEO reseller services.
+                </p>
 
-              <p>
-                Now, you can focus on expanding your SEO agency without worrying about meeting your clients' vast SEO requirements because we will handle all of that for you. We can help your newly founded SEO agency reach new heights in its development. We provide first-rate SEO services to a wide range of companies in a variety of industry sectors. We offer the best SEO reseller packages and services that are Reliable, Profitable, and Hassle-Free.
-              </p>
+                <p>
+                  Now, you can focus on expanding your SEO agency without worrying about meeting your clients' vast SEO requirements because we will handle all of that for you. We can help your newly founded SEO agency reach new heights in its development. We provide first-rate SEO services to a wide range of companies in a variety of industry sectors. We offer the best SEO reseller packages and services that are Reliable, Profitable, and Hassle-Free.
+                </p>
 
-              <p>
-                Digicore Inc.' team consists of qualified specialists who operate in the background to offer customers high-quality outcomes while they remain unaware of their involvement. With Digicore Inc., you'll have access to the very best writers, editors, and publishers. If you wish to utilize first-rate white label SEO services in India, then Digicore Inc. should be your go-to company! We can help you fulfill all your customers' needs at the most competitive prices!
-              </p>
-            </>
-          )}
+                <p>
+                  Digicore Inc.' team consists of qualified specialists who operate in the background to offer customers high-quality outcomes while they remain unaware of their involvement. With Digicore Inc., you'll have access to the very best writers, editors, and publishers. If you wish to utilize first-rate white label SEO services in India, then Digicore Inc. should be your go-to company! We can help you fulfill all your customers' needs at the most competitive prices!
+                </p>
+              </>
+            )}
 
-          <div className="benefits-grid">
-            {displayBenefits.map((item, index) => (
-              <div
-                key={index}
-                className={`benefit-card ${item.active ? "active" : ""}`}
-              >
-                <div className="icon">{item.icon}</div>
-                <h4>{item.title}</h4>
-              </div>
-            ))}
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 pt-10">
+              {displayBenefits.map((item, index) => (
+                <div
+                  key={index}
+                  className={`group flex flex-col items-center justify-center p-6 bg-white rounded-2xl border border-slate-200 shadow-[0_4px_15px_rgba(0,0,0,0.02)] transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_15px_30px_rgba(227,30,36,0.12)] hover:border-[#e31e24]/20 ${
+                    item.active ? "border-[#e31e24]/30 shadow-[0_10px_25px_rgba(227,30,36,0.08)]" : ""
+                  }`}
+                >
+                  <div className="text-[#e31e24] text-3xl mb-4 group-hover:scale-110 transition-transform duration-300">
+                    {item.icon}
+                  </div>
+                  <h4 className="text-center font-bold text-slate-800 text-[14px] leading-tight">
+                    {item.title}
+                  </h4>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
 
-
-
-
-
+      {/* Services Grid Section */}
       <section className="w-full py-[100px] px-5 bg-[#f4f4f5] text-center border-b border-[#e5e7eb]">
         <div className="max-w-[1200px] mx-auto px-5">
           <div className="w-[60px] h-[4px] bg-[#e31e24] mx-auto mb-[25px] rounded-[10px] max-[769px]:w-[50px] max-[769px]:mb-[20px]"></div>
@@ -499,58 +508,64 @@ const Reseller = () => {
         </div>
       </section>
 
-
-      <section className="dm-banner" style={{ backgroundImage: dmBanner?.image ? `url(${resolveImage(dmBanner.image)})` : undefined }}>
-        <div className="dm-banner-content">
-          <div className="dm-left">
-            <h2>
+      {/* CTA Banner Section */}
+      <section className="relative overflow-hidden w-full py-20 px-5 bg-gradient-to-br from-[#1c1c1e] to-slate-900 border-t border-b border-[#2b2b2e]">
+        <div className="max-w-[1200px] mx-auto flex flex-col lg:flex-row items-center justify-between gap-8 relative z-10">
+          <div className="text-center lg:text-left space-y-4">
+            <h2 className="text-[36px] max-[769px]:text-[28px] font-heading font-extrabold text-white leading-tight">
               {dmBanner?.heading ? (
                 dmBanner.heading
               ) : (
                 <>
-                  We are <span>Digicore Inc.</span>
+                  We are <span className="text-[#e31e24]">Digicore Inc.</span>
                 </>
               )}
             </h2>
-
-            <p>
+            <p className="text-[17px] text-slate-300 max-w-2xl leading-relaxed">
               {dmBanner?.description || "We Help Businesses Reach Their Full DIGITAL Potential by Implementing Customized Yet Robust SEO Services"}
             </p>
           </div>
 
-          <div className="dm-right">
-            <a href={dmBanner?.button?.link || "tel:+919818888064"} className="dm-call-btn">
-              {dmBanner?.button?.text || "+91 9818888064"}
+          <div className="shrink-0">
+            <a 
+              href={dmBanner?.button?.link || "tel:+919818888064"} 
+              className="relative overflow-hidden inline-flex items-center gap-2 text-[#22c55e] font-bold px-[38px] py-[16px] rounded-lg bg-white border border-[#22c55e]/25 shadow-[0_6px_20px_rgba(34,197,94,0.16)] transition-all duration-300 hover:bg-[#f0fdf4] hover:text-[#16a34a] hover:scale-[1.03] cursor-pointer"
+            >
+              <span>{dmBanner?.button?.text || "+91 9818888064"}</span>
             </a>
           </div>
         </div>
       </section>
 
+      {/* SEO Team Section */}
+      <section className="w-full py-24 px-5 bg-white">
+        <div className="max-w-[1200px] mx-auto">
+          <div className="w-[60px] h-[4px] bg-[#e31e24] mx-auto mb-[25px] rounded-[10px]"></div>
 
-
-
-      <section className="seo-team-section">
-        <div className="seo-team-container">
-          <h2 className="seo-team-heading">
+          <h2 className="text-center text-[38px] max-[769px]:text-[28px] font-heading font-extrabold text-[#1c1c1e] mb-6 leading-tight">
             {seoTeam?.heading ? (
               seoTeam.heading
             ) : (
               <>
-                We Have an <span>Expert and Specialized SEO Team</span>
+                We Have an <span className="text-[#e31e24]">Expert and Specialized SEO Team</span>
               </>
             )}
           </h2>
 
-          <p className="seo-team-intro">
+          <p className="text-center text-[17px] leading-[1.8] text-[#4b5563] max-w-[950px] mx-auto mb-16">
             {seoTeam?.intro || "Our SEO Reseller team consists of highly seasoned industry professionals, content writers, editors, and publishers who can provide significant value to your company. Google search algorithms are always being improved to provide the greatest possible experience for users. Our SEO specialists stay current on all of the most recent algorithm upgrades to provide your clients with the best outcomes and help you STAND OUT! We only hire experts and seasoned SEO specialists, content writers, and editors in our team. Also, we conduct proper training so as to make sure they are well-versed with the minutest of the upgrades in Google algorithms. With us, you can be certain of 100% result driven SEO Reseller Services and Complete Transparency."}
           </p>
 
-          <div className="seo-team-content">
-            <div className="seo-team-image">
-              <img src={seoTeam?.image ? resolveImage(seoTeam.image) : img} alt="SEO Team" />
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div className="relative rounded-3xl overflow-hidden shadow-[0_15px_30px_rgba(0,0,0,0.05)] border border-slate-100">
+              <img 
+                src={seoTeam?.image ? resolveImage(seoTeam.image) : img} 
+                alt="SEO Team" 
+                className="w-full h-full object-cover" 
+              />
             </div>
 
-            <div className="seo-team-text">
+            <div className="text-[16px] leading-[1.8] text-[#4b5563] space-y-6">
               {seoTeam?.paragraphs?.length ? (
                 seoTeam.paragraphs.map((para, i) => <p key={i}>{para}</p>)
               ) : (
@@ -576,91 +591,110 @@ const Reseller = () => {
         </div>
       </section>
 
+      {/* SEO Solutions Section */}
+      <section className="w-full py-24 px-5 bg-[#f4f4f5] border-t border-b border-[#e5e7eb]">
+        <div className="max-w-[1200px] mx-auto">
+          <div className="w-[60px] h-[4px] bg-[#e31e24] mx-auto mb-[25px] rounded-[10px]"></div>
 
-      <section className="seo-solutions">
-        <div className="container">
-          <h2 className="solutions-heading">
+          <h2 className="text-center text-[38px] max-[769px]:text-[28px] font-heading font-extrabold text-[#1c1c1e] mb-4">
             {solutionsSection?.heading ? (
               solutionsSection.heading
             ) : (
               <>
-                OUR 360-DEGREE <span>SEO RESELLER SOLUTIONS</span>
+                OUR 360-DEGREE <span className="text-[#e31e24]">SEO RESELLER SOLUTIONS</span>
               </>
             )}
           </h2>
 
-          <p className="solutions-subtitle">
+          <p className="text-center text-[17px] leading-[1.8] text-[#4b5563] max-w-[900px] mx-auto mb-16">
             {solutionsSection?.subtitle || "We offer customized SEO Reseller solutions that are unique, industry-focused, and efficient in terms of cost. We have a team of specialists who work hard to ensure that they meet the needs of your precious customers in every possible way."}
           </p>
 
-          <div className="solutions-grid">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {displaySolutions.map((item, index) => (
-              <div className="solution-card" key={index}>
-                <div className="solution-header">
-                  <img src={item.icon} alt={item.title} />
-                  <h3>{item.title}</h3>
+              <div 
+                className="group bg-white rounded-3xl p-8 border border-[#e5e7eb] shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:-translate-y-2 hover:shadow-[0_15px_30px_rgba(227,30,36,0.1)] hover:border-[#e31e24]/20 transition-all duration-300 flex flex-col items-start text-left" 
+                key={index}
+              >
+                <div className="flex items-center gap-4 mb-6">
+                  <div className="w-14 h-14 rounded-full bg-[#fee2e2] flex items-center justify-center shrink-0 transition-transform duration-300 group-hover:scale-110">
+                    <img
+                      src={item.icon}
+                      alt={item.title}
+                      className="w-7 h-7 object-contain"
+                    />
+                  </div>
+                  <h3 className="text-[18px] font-bold text-[#2b2b2e] leading-tight">{item.title}</h3>
                 </div>
-
-                <p>{item.description}</p>
+                <p className="text-[14px] leading-relaxed text-[#4b5563]">{item.description}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="seo-case-section">
-        <div className="seo-case-container">
-          <h2 className="seo-case-heading">{seoCase?.heading || "Case Studies"}</h2>
+      {/* SEO Case Section */}
+      <section className="w-full py-24 px-5 bg-white">
+        <div className="max-w-[1200px] mx-auto">
+          <div className="w-[60px] h-[4px] bg-[#e31e24] mx-auto mb-[25px] rounded-[10px]"></div>
 
-          <p className="seo-case-description">
+          <h2 className="text-center text-[38px] max-[769px]:text-[28px] font-heading font-extrabold text-[#1c1c1e] mb-4">
+            {seoCase?.heading || "Case Studies"}
+          </h2>
+
+          <p className="text-center text-[17px] leading-[1.8] text-[#4b5563] max-w-[900px] mx-auto mb-12">
             {seoCase?.description || "We have used the best SEO practices to help our clients succeed in organic search marketing. Our dedicated support all round the year, aligned with robust SEO efforts has made it easier for their target customers to find them online."}
           </p>
 
-          <div className="seo-case-logos">
+          <div className="flex flex-wrap justify-center gap-6 mb-16">
             {displayCaseStudies.map((item, index) => (
               <div
                 key={index}
-                className={`seo-logo-circle ${currentCase === index ? "active" : ""
-                  }`}
+                className={`relative w-20 h-20 rounded-full border flex items-center justify-center p-3 cursor-pointer transition-all duration-300 ${
+                  currentCase === index 
+                    ? "border-[#e31e24] bg-white shadow-[0_8px_20px_rgba(227,30,36,0.15)] scale-110" 
+                    : "border-slate-200 bg-slate-50 hover:border-[#e31e24]/40 hover:bg-white"
+                }`}
                 onClick={() => setCurrentCase(index)}
               >
-                <img src={item.logo} alt={`logo-${index}`} />
-
+                <img src={item.logo} alt={`logo-${index}`} className="max-w-full max-h-full object-contain" />
                 {currentCase === index && (
-                  <div className="seo-active-pointer"></div>
+                  <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-3 h-3 bg-[#e31e24] rotate-45"></div>
                 )}
               </div>
             ))}
           </div>
 
           {displayCaseStudies[currentCase] && (
-            <div className="seo-case-content">
-              <div className="seo-case-table">
-                <h3>Rankings</h3>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center bg-slate-50 rounded-3xl p-8 sm:p-12 border border-slate-100 shadow-[0_4px_20px_rgba(0,0,0,0.02)]">
+              <div className="space-y-6">
+                <h3 className="text-[24px] font-bold text-slate-800 border-b border-slate-200 pb-3">Rankings</h3>
 
-                <table>
-                  <thead>
-                    <tr>
-                      <th>Keywords</th>
-                      <th>Ranking</th>
-                    </tr>
-                  </thead>
-
-                  <tbody>
-                    {displayCaseStudies[currentCase].rankings?.map((item, index) => (
-                      <tr key={index}>
-                        <td>{item.keyword}</td>
-                        <td>{item.rank}</td>
+                <div className="overflow-hidden rounded-2xl border border-slate-200 bg-white">
+                  <table className="w-full text-left border-collapse">
+                    <thead>
+                      <tr className="bg-slate-50 border-b border-slate-200 text-slate-600 font-bold text-[14px]">
+                        <th className="px-6 py-4">Keywords</th>
+                        <th className="px-6 py-4">Ranking</th>
                       </tr>
-                    ))}
-                  </tbody>
-                </table>
+                    </thead>
+                    <tbody className="divide-y divide-slate-100">
+                      {displayCaseStudies[currentCase].rankings?.map((item, index) => (
+                        <tr key={index} className="text-slate-700 text-sm hover:bg-slate-50/50 transition-colors duration-200">
+                          <td className="px-6 py-3.5 font-medium">{item.keyword}</td>
+                          <td className="px-6 py-3.5 text-[#e31e24] font-bold">{item.rank}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
               </div>
 
-              <div className="seo-case-image">
+              <div className="relative rounded-3xl overflow-hidden shadow-[0_15px_30px_rgba(0,0,0,0.08)] border border-slate-200/60 aspect-[16/10]">
                 <img
                   src={displayCaseStudies[currentCase].poster}
                   alt="Case Study"
+                  className="w-full h-full object-cover"
                 />
               </div>
             </div>
@@ -668,47 +702,54 @@ const Reseller = () => {
         </div>
       </section>
 
-      <section className="seo-outsourcing-section">
-        <div className="seo-outsourcing-container">
-          <h2>
+      {/* SEO Outsourcing Section */}
+      <section className="w-full py-24 px-5 bg-[#f4f4f5] border-t border-b border-[#e5e7eb]">
+        <div className="max-w-[1200px] mx-auto text-center">
+          <div className="w-[60px] h-[4px] bg-[#e31e24] mx-auto mb-[25px] rounded-[10px]"></div>
+
+          <h2 className="text-center text-[38px] max-[769px]:text-[28px] font-heading font-extrabold text-[#1c1c1e] mb-10 leading-tight">
             {outsourcing?.heading || "Save Your Time and Agency Cost with SEO Outsourcing"}
           </h2>
 
-          {outsourcing?.paragraphs?.length ? (
-            outsourcing.paragraphs.map((para, i) => <p key={i}>{para}</p>)
-          ) : (
-            <>
-              <p>
-                Every business wants to be on the top of search engine results. But how
-                many of them actually get that spot? Maybe very little! It is because
-                your presence on the 1st page completely depends on your SEO efforts and
-                strategies. SEO is the most essential part of any digital marketing plan.
-                It includes several things including keyword research, content
-                optimization, On-page SEO, link building, analytics, and much more.
-                Our industry-focused and ROI-oriented SEO services are the best to
-                increase your website visibility, traffic, conversions, and revenue.
-                Simply put, our SEO services will help you tell search engines who you
-                are, what you are selling, why your products/services matter, etc.
-              </p>
+          <div className="text-[17px] leading-[1.8] text-[#4b5563] space-y-6 max-w-[950px] mx-auto text-left">
+            {outsourcing?.paragraphs?.length ? (
+              outsourcing.paragraphs.map((para, i) => <p key={i}>{para}</p>)
+            ) : (
+              <>
+                <p>
+                  Every business wants to be on the top of search engine results. But how
+                  many of them actually get that spot? Maybe very little! It is because
+                  your presence on the 1st page completely depends on your SEO efforts and
+                  strategies. SEO is the most essential part of any digital marketing plan.
+                  It includes several things including keyword research, content
+                  optimization, On-page SEO, link building, analytics, and much more.
+                  Our industry-focused and ROI-oriented SEO services are the best to
+                  increase your website visibility, traffic, conversions, and revenue.
+                  Simply put, our SEO services will help you tell search engines who you
+                  are, what you are selling, why your products/services matter, etc.
+                </p>
 
-              <p>
-                No other digital marketing tactic is better than SEO if done correctly.
-                We are saying this because your conversion rate can be between 14% and
-                28% if you choose professional SEO agency just like Digicore Inc..
-                Opt for our services and we will help you leave your competitors behind
-                by getting the spot on the 1st page. If you do not want to harm your
-                business, drop current ranking, and keep technical issues at bay, it is
-                important to stay away from wrong SEO strategies and plan.
-              </p>
-            </>
-          )}
+                <p>
+                  No other digital marketing tactic is better than SEO if done correctly.
+                  We are saying this because your conversion rate can be between 14% and
+                  28% if you choose professional SEO agency just like Digicore Inc..
+                  Opt for our services and we will help you leave your competitors behind
+                  by getting the spot on the 1st page. If you do not want to harm your
+                  business, drop current ranking, and keep technical issues at bay, it is
+                  important to stay away from wrong SEO strategies and plan.
+                </p>
+              </>
+            )}
+          </div>
         </div>
       </section>
 
+      {/* Other Reseller Services Section */}
+      <section className="w-full py-24 px-5 bg-white">
+        <div className="max-w-[1200px] mx-auto">
+          <div className="w-[60px] h-[4px] bg-[#e31e24] mx-auto mb-[25px] rounded-[10px]"></div>
 
-      <section className="other-reseller-services">
-        <div className="container">
-          <h2>
+          <h2 className="text-center text-[36px] max-[769px]:text-[28px] font-heading font-extrabold text-[#1c1c1e] mb-4 leading-tight">
             {otherServices?.heading ? (
               otherServices.heading
             ) : (
@@ -720,220 +761,228 @@ const Reseller = () => {
             )}
           </h2>
 
-          <p className="section-subtitle">
+          <p className="text-center text-[17px] leading-[1.8] text-[#e31e24] font-semibold max-w-[850px] mx-auto mb-16">
             {otherServices?.subtitle || "There are unlimited benefits to opting for SEO Resellers; here are the TOP ONES:"}
           </p>
 
-          <div className="services-content">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
             {/* Left Side */}
-            <div className="left-column">
-              <img src={otherServices?.image ? resolveImage(otherServices.image) : meetingImg} alt="Meeting" />
+            <div className="space-y-8">
+              <div className="relative rounded-3xl overflow-hidden shadow-[0_15px_30px_rgba(0,0,0,0.05)] border border-slate-100 mb-8">
+                <img 
+                  src={otherServices?.image ? resolveImage(otherServices.image) : meetingImg} 
+                  alt="Meeting" 
+                  className="w-full h-full object-cover" 
+                />
+              </div>
 
-              {displayLeftItems.map((item, i) => (
-                <div className="service-item" key={i}>
-                  <span>☑</span>
-                  <p>
-                    <strong>{item.title}</strong> – {item.desc}
-                  </p>
-                </div>
-              ))}
+              <ul className="space-y-4">
+                {displayLeftItems.map((item, i) => (
+                  <li className="flex items-start gap-3 text-[15px] leading-relaxed text-[#4b5563]" key={i}>
+                    <span className="text-[#e31e24] text-lg font-bold shrink-0 mt-0.5">✔</span>
+                    <span>
+                      <strong className="text-slate-800 font-bold">{item.title}</strong> – {item.desc}
+                    </span>
+                  </li>
+                ))}
+              </ul>
             </div>
 
             {/* Right Side */}
-            <div className="right-column">
+            <ul className="space-y-4 lg:pt-2">
               {displayRightItems.map((item, i) => (
-                <div className="service-item" key={i}>
-                  <span>☑</span>
-                  <p>
-                    <strong>{item.title}</strong> – {item.desc}
-                  </p>
-                </div>
+                <li className="flex items-start gap-3 text-[15px] leading-relaxed text-[#4b5563]" key={i}>
+                  <span className="text-[#e31e24] text-lg font-bold shrink-0 mt-0.5">✔</span>
+                  <span>
+                    <strong className="text-slate-800 font-bold">{item.title}</strong> – {item.desc}
+                  </span>
+                </li>
               ))}
-            </div>
+            </ul>
           </div>
         </div>
       </section>
 
-      <section className="dm-banner" style={{ backgroundImage: additionalBanner?.image ? `url(${resolveImage(additionalBanner.image)})` : undefined }}>
-        <div className="dm-banner-content">
-          <div className="dm-left">
-
-            <p>
+      {/* Additional CTA Banner Section */}
+      <section className="relative overflow-hidden w-full py-20 px-5 bg-gradient-to-br from-[#1c1c1e] to-slate-900 border-t border-b border-[#2b2b2e]">
+        <div className="max-w-[1200px] mx-auto flex flex-col lg:flex-row items-center justify-between gap-8 relative z-10">
+          <div className="text-center lg:text-left space-y-4">
+            <p className="text-[20px] font-bold text-white max-w-3xl leading-relaxed">
               {additionalBanner?.description || "We Help Businesses Reach Their Full DIGITAL Potential by Implementing Customized Yet Robust SEO Services"}
             </p>
           </div>
 
-          <div className="dm-right">
-            <a href={additionalBanner?.button?.link || "tel:+919818888064"} className="dm-call-btn">
-              {additionalBanner?.button?.text || "+91 9818888064"}
+          <div className="shrink-0">
+            <a 
+              href={additionalBanner?.button?.link || "tel:+919818888064"} 
+              className="relative overflow-hidden inline-flex items-center gap-2 text-[#22c55e] font-bold px-[34px] py-[15px] rounded-lg bg-white border border-[#22c55e]/25 shadow-[0_6px_20px_rgba(34,197,94,0.16)] transition-all duration-300 hover:bg-[#f0fdf4] hover:text-[#16a34a] hover:scale-[1.03] cursor-pointer"
+            >
+              <span>{additionalBanner?.button?.text || "+91 9818888064"}</span>
             </a>
           </div>
         </div>
       </section>
 
+      {/* Benefits Program Section */}
+      <section className="w-full py-24 px-5 bg-white border-b border-[#e5e7eb]">
+        <div className="max-w-[1200px] mx-auto">
+          <div className="w-[60px] h-[4px] bg-[#e31e24] mx-auto mb-[25px] rounded-[10px]"></div>
 
-      <section className="benefits-program-section">
-        <div className="container">
-          <h2 className="benefits-heading">
+          <h2 className="text-center text-[38px] max-[769px]:text-[28px] font-heading font-extrabold text-[#1c1c1e] mb-4">
             {benefitsProgram?.heading ? (
               benefitsProgram.heading
             ) : (
               <>
-                THE BENEFITS OF OUR <span>SEO RESELLER PROGRAM</span>
+                THE BENEFITS OF OUR <span className="text-[#e31e24]">SEO RESELLER PROGRAM</span>
               </>
             )}
           </h2>
 
-          <p className="benefits-subtitle">
+          <p className="text-center text-[17px] leading-[1.8] text-[#4b5563] max-w-[900px] mx-auto mb-16">
             {benefitsProgram?.subtitle || "Digicore Inc. offer \"on-demand\" SEO Reseller services. This means that you only pay for what you require when you require it. This, in turn, leads to reduced overhead expenses and increased profitability."}
           </p>
 
-          <div className="benefits-content">
-            <div className="benefits-left">
-              {benefitsProgram?.items?.length ? (
-                benefitsProgram.items.map((item, i) => (
-                  <div className="benefit-item" key={i}>
-                    <span>☑</span>
-                    <p>{item.text}</p>
-                  </div>
-                ))
-              ) : (
-                <>
-                  <div className="benefit-item">
-                    <span>☑</span>
-                    <p>
-                      <strong>Emphasis on Quality SEO Services:</strong> Quality speaks
-                      loudly for itself. So, we not only provide you with measurable
-                      results but deliver high-quality results to boost your organic
-                      search rankings.
-                    </p>
-                  </div>
-
-                  <div className="benefit-item">
-                    <span>☑</span>
-                    <p>
-                      <strong>No Technical Jargons:</strong> We do not bore our clients
-                      by giving them boring lectures. Rather, we let our work do the
-                      talking.
-                    </p>
-                  </div>
-
-                  <div className="benefit-item">
-                    <span>☑</span>
-                    <p>
-                      <strong>Fair and Clear Costing:</strong> Our services are affordable
-                      and you always get what you have paid for. We don’t believe in
-                      ‘sticker-shocking’ hidden charges.
-                    </p>
-                  </div>
-
-                  <div className="benefit-item">
-                    <span>☑</span>
-                    <p>
-                      <strong>Reliability and Transparency:</strong> In our opinion, you
-                      must always be in the loop to how we are propagating and
-                      establishing things for your business. Hence, we keep you updated
-                      with everything.
-                    </p>
-                  </div>
-
-                  <div className="benefit-item">
-                    <span>☑</span>
-                    <p>
-                      <strong>360-Degree Solutions:</strong> For us, SEO is a combination
-                      of art and science. Hence, we balance various things to provide you
-                      with the best yet long-lasting results.
-                    </p>
-                  </div>
-                </>
-              )}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div className="space-y-4">
+              <ul className="space-y-4">
+                {benefitsProgram?.items?.length ? (
+                  benefitsProgram.items.map((item, i) => (
+                    <li className="flex items-start gap-3 text-[15px] leading-relaxed text-[#4b5563]" key={i}>
+                      <span className="text-[#e31e24] text-lg font-bold shrink-0 mt-0.5">✔</span>
+                      <span>{item.text}</span>
+                    </li>
+                  ))
+                ) : (
+                  <>
+                    <li className="flex items-start gap-3 text-[15px] leading-relaxed text-[#4b5563]">
+                      <span className="text-[#e31e24] text-lg font-bold shrink-0 mt-0.5">✔</span>
+                      <span>
+                        <strong className="text-slate-800 font-bold">Emphasis on Quality SEO Services:</strong> Quality speaks loudly for itself. So, we not only provide you with measurable results but deliver high-quality results to boost your organic search rankings.
+                      </span>
+                    </li>
+                    <li className="flex items-start gap-3 text-[15px] leading-relaxed text-[#4b5563]">
+                      <span className="text-[#e31e24] text-lg font-bold shrink-0 mt-0.5">✔</span>
+                      <span>
+                        <strong className="text-slate-800 font-bold">No Technical Jargons:</strong> We do not bore our clients by giving them boring lectures. Rather, we let our work do the talking.
+                      </span>
+                    </li>
+                    <li className="flex items-start gap-3 text-[15px] leading-relaxed text-[#4b5563]">
+                      <span className="text-[#e31e24] text-lg font-bold shrink-0 mt-0.5">✔</span>
+                      <span>
+                        <strong className="text-slate-800 font-bold">Fair and Clear Costing:</strong> Our services are affordable and you always get what you have paid for. We don’t believe in ‘sticker-shocking’ hidden charges.
+                      </span>
+                    </li>
+                    <li className="flex items-start gap-3 text-[15px] leading-relaxed text-[#4b5563]">
+                      <span className="text-[#e31e24] text-lg font-bold shrink-0 mt-0.5">✔</span>
+                      <span>
+                        <strong className="text-slate-800 font-bold">Reliability and Transparency:</strong> In our opinion, you must always be in the loop to how we are propagating and establishing things for your business. Hence, we keep you updated with everything.
+                      </span>
+                    </li>
+                    <li className="flex items-start gap-3 text-[15px] leading-relaxed text-[#4b5563]">
+                      <span className="text-[#e31e24] text-lg font-bold shrink-0 mt-0.5">✔</span>
+                      <span>
+                        <strong className="text-slate-800 font-bold">360-Degree Solutions:</strong> For us, SEO is a combination of art and science. Hence, we balance various things to provide you with the best yet long-lasting results.
+                      </span>
+                    </li>
+                  </>
+                )}
+              </ul>
             </div>
 
-            <div className="benefits-right">
-              <img src={benefitsProgram?.image ? resolveImage(benefitsProgram.image) : benefitsImg} alt="SEO Reseller Benefits" />
+            <div className="relative rounded-3xl overflow-hidden shadow-[0_15px_30px_rgba(0,0,0,0.05)] border border-slate-100">
+              <img 
+                src={benefitsProgram?.image ? resolveImage(benefitsProgram.image) : benefitsImg} 
+                alt="SEO Reseller Benefits" 
+                className="w-full h-full object-cover" 
+              />
             </div>
           </div>
         </div>
       </section>
 
+      {/* Testimonials Section */}
+      <section className="w-full py-24 px-5 bg-[#f4f4f5]">
+        <div className="max-w-[1200px] mx-auto">
+          <h2 className="text-center text-[38px] max-[769px]:text-[28px] font-heading font-extrabold text-[#1c1c1e] mb-4">
+            {testimonialsData?.title || "Testimonials"}
+          </h2>
 
-      <section className="testimonials">
-        <div className="container">
-          <h2 className="title">{testimonialsData?.title || "Testimonials"}</h2>
-
-          <p className="subtitle">
+          <p className="text-center text-[17px] leading-[1.8] text-[#4b5563] max-w-[900px] mx-auto mb-16">
             {testimonialsData?.subtitle || "Check out what our clients say about our top digital marketing solutions"}
           </p>
 
-          <div className="testimonial-wrapper">
-
-            <div className="video-box">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center bg-white rounded-3xl p-8 sm:p-12 border border-slate-200/60 shadow-[0_4px_25px_rgba(0,0,0,0.02)]">
+            <div className="relative rounded-3xl overflow-hidden shadow-[0_15px_30px_rgba(0,0,0,0.05)] border border-slate-200 aspect-[16/10]">
               <img
                 src={testimonialsData?.videoImage ? resolveImage(testimonialsData.videoImage) : video}
                 alt="Video"
+                className="w-full h-full object-cover"
               />
             </div>
 
-
-            <div className="testimonial-content">
-              <div className="profile-card">
-                <div className="profile-image">
+            <div className="space-y-8">
+              <div className="flex items-center gap-4 border-b border-slate-100 pb-6">
+                <div className="w-20 h-20 rounded-full overflow-hidden border-2 border-[#e31e24] shadow-[0_4px_15px_rgba(227,30,36,0.15)]">
                   <img
                     src={displayTestimonials[active].image}
                     alt={displayTestimonials[active].name}
+                    className="w-full h-full object-cover"
                   />
                 </div>
-
-                <h4>{displayTestimonials[active].name}</h4>
-
-                <p>{displayTestimonials[active].designation}</p>
+                <div>
+                  <h4 className="text-[20px] font-bold text-slate-800 leading-tight">{displayTestimonials[active].name}</h4>
+                  <p className="text-sm text-[#e31e24] mt-1 font-semibold">{displayTestimonials[active].designation}</p>
+                </div>
               </div>
 
-              <div className="quote-box">
-                <span className="quote-left">❝</span>
+              <div className="relative pt-6">
+                <span className="absolute -top-3 left-0 text-[60px] text-[#e31e24]/10 font-serif leading-none select-none">“</span>
+                <p className="text-[16px] leading-[1.8] text-slate-600 relative z-10 italic pl-6">{displayTestimonials[active].text}</p>
+                <span className="absolute bottom-0 right-0 text-[60px] text-[#e31e24]/10 font-serif leading-none select-none translate-y-6">”</span>
+              </div>
 
-                <p>{displayTestimonials[active].text}</p>
-
-                <span className="quote-right">❞</span>
-
-                <div className="dots">
-                  {displayTestimonials.map((_, index) => (
-                    <span
-                      key={index}
-                      className={active === index ? "active" : ""}
-                      onClick={() => setActive(index)}
-                    />
-                  ))}
-                </div>
+              <div className="flex justify-center gap-2 pt-6">
+                {displayTestimonials.map((_, index) => (
+                  <button
+                    key={index}
+                    className={`w-2.5 h-2.5 rounded-full transition-all duration-300 cursor-pointer ${
+                      active === index ? "bg-[#e31e24] w-6" : "bg-[#e31e24]/20 hover:bg-[#e31e24]/40"
+                    }`}
+                    onClick={() => setActive(index)}
+                    aria-label={`Go to testimonial ${index + 1}`}
+                  />
+                ))}
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      <section className="brands-section">
-        <div className="container">
-          <h2 className="brands-heading">
+      {/* Brands Section */}
+      <section className="w-full py-16 px-5 bg-white border-b border-slate-100">
+        <div className="max-w-[1200px] mx-auto">
+          <h2 className="text-center text-[30px] font-heading font-extrabold text-[#1c1c1e] mb-12">
             {brandsData?.heading ? (
               brandsData.heading
             ) : (
               <>
-                SOME OF THE BRANDS <span>WE WORK WITH</span>
+                SOME OF THE BRANDS <span className="text-[#e31e24]">WE WORK WITH</span>
               </>
             )}
           </h2>
 
-          <div className="brands-grid">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 items-center justify-items-center opacity-60 hover:opacity-100 transition-opacity duration-300">
             {displayBrands.map((brand, index) => (
-              <div className="brand-card" key={index}>
-                <img src={brand} alt={`brand-${index + 1}`} />
+              <div className="h-12 flex items-center justify-center" key={index}>
+                <img src={brand} alt={`brand-${index + 1}`} className="max-h-full max-w-full object-contain filter grayscale hover:grayscale-0 transition-all duration-300" />
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      <div className="map-container">
+      {/* Map Section */}
+      <div className="w-full h-[450px] relative border-t border-slate-200">
         <iframe
           src={mapData?.embedUrl || "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15249885.318783779!2d82.75252935!3d21.0680074!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30635ff06b92b791%3A0xd78c4fa1854213a6!2sIndia!5e0!3m2!1sen!2sus!4v1781175524873!5m2!1sen!2sus"}
           width="100%"
@@ -943,12 +992,11 @@ const Reseller = () => {
           loading="lazy"
           referrerPolicy="no-referrer-when-downgrade"
           title="Google Map"
+          className="w-full h-full block"
         />
       </div>
-
-
     </div>
-  )
+  );
 }
 
-export default Reseller
+export default Reseller;

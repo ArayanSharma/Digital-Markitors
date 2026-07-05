@@ -267,25 +267,29 @@ const [activeFAQ, setActiveFAQ] = useState(null);
             </p>
           </div>
 
-     <div className="dominate-cards">
-  {displayHelpCards.map((item, index) => (
-    <div className="dominate-card" key={item.id || index}>
+     <section className="bg-[#f8fafc] py-16 sm:py-20">
+  <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8">
+    <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+      {displayHelpCards.map((item, index) => (
+        <div
+          className="rounded-[24px] border border-slate-200 bg-white p-7 shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-lg"
+          key={item.id || index}
+        >
+          <div className="mb-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-[#fff5f5]">
+            <img
+              src={item.icon}
+              alt={item.title}
+              className="h-8 w-8 object-contain"
+            />
+          </div>
 
-      <div className="dominate-icon">
-        <img
-          src={item.icon}
-          alt={item.title}
-          className="dominate-icon-img"
-        />
-      </div>
-
-      <h3>{item.title}</h3>
-
-      <p>{item.desc}</p>
-
+          <h3 className="text-xl font-semibold text-slate-900">{item.title}</h3>
+          <p className="mt-3 text-sm leading-7 text-slate-600">{item.desc}</p>
+        </div>
+      ))}
     </div>
-  ))}
-</div>
+  </div>
+</section>
 
       {/* WEB DESIGN SECTION */}
       <section className="web-design">

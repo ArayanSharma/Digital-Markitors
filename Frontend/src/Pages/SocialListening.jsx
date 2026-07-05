@@ -352,105 +352,129 @@ const SocialListening = () => {
 
 
   return (
-    <>
-
+    <div className="bg-white">
       <Banner
-
-        title={banner?.title || "Google Display Ads Management Agency"}
-        description={banner?.description || "At Digicore Inc., we help you display ads in front of your audience based on their browsing preferences. Experience the business growth through our strategically planned Google Display ads management services."}
-        primaryBtnText={banner?.primaryBtn?.text || "Speak to an SEO Expert"}
+        title={banner?.title || "Social Media Listening & Response Management"}
+        description={banner?.description || "Understand what your customers are saying about your brand online in real-time. Digicore Inc. tracks brand mentions, sentiments, and conversations to manage your reputation and drive customer satisfaction."}
+        primaryBtnText={banner?.primaryBtn?.text || "Speak to SMM Expert"}
         secondaryBtnText={banner?.secondaryBtn?.text || "Our Services"}
         backgroundImage={banner?.backgroundImage ? resolveImage(banner.backgroundImage) : eimage}
       />
 
+      {/* About Section */}
+      <section className="w-full py-24 px-5 bg-white">
+        <div className="max-w-[1200px] mx-auto text-center">
+          <div className="w-[60px] h-[4px] bg-[#e31e24] mx-auto mb-[25px] rounded-[10px]"></div>
 
-
-
-      <section className="about-section">
-        <div className="divider"></div>
-        <div className="about-container">
-
-          <h1>
-            {about?.heading || "Best Google Display Ads Management Services Agency"}
+          <h1 className="text-[40px] max-[769px]:text-[30px] font-heading font-extrabold text-[#1c1c1e] mb-6 leading-tight">
+            {about?.heading || "Real-time Social Media Listening & Reputation Management"}
           </h1>
 
-
-
-          <p>
-            {about?.body || "Digicore Inc. is the best Google Display Ads Management Agency that offers comprehensive display advertising plan to improve ROI of your digital marketing campaigns. We address the customized business goals of our clients while targeting the right audience. Experience the exceptional results to scale up your business with our result-driven display advertising services. Being the premier Google partner, Digicore Inc. focuses on your consistent success in the ecommerce segment and drive quality traffic to your website. Our seasoned professionals prepare captivating ads to attract high-intent shoppers according to their browsing preferences."}
+          <p className="text-[17px] leading-[1.8] text-[#4b5563] max-w-[900px] mx-auto">
+            {about?.body || "Digicore Inc. is the leading Social Media Listening & Response Management agency that tracks brand feedback, customer opinions, and industry trends across all platforms. We help you listen to your audience, analyze their sentiment, scale your responses, and repeat the strategy to build customer loyalty and manage your online reputation effectively."}
           </p>
-
         </div>
-
       </section>
 
-      <section className="visibility-section">
-
-        <div className="visibility-container">
-
-          <div className="visibility-content">
-
-            <h2>
-              {visibility?.heading || "Why Google Display Ad management agency is a must for businesses?"}
-
-
+      {/* Visibility Section */}
+      <section className="w-full py-24 px-5 bg-[#f4f4f5] border-t border-[#e5e7eb]">
+        <div className="max-w-[1200px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div>
+            <h2 className="text-[36px] max-[769px]:text-[28px] font-heading font-extrabold text-[#1c1c1e] mb-6 leading-tight">
+              {visibility?.heading || "Why Social Media Listening is Crucial for Modern Brands?"}
             </h2>
 
-            <p>
-              {visibility?.body || "Get your brand noticed with Digicore Inc.’ top Google display ad management services customized according to your long-term advertising goals. At every stage of digital marketing, our display advertising campaigns help you in identifying new prospects, increasing brand awareness, and addressing the requirements of potential buyers. Being the trusted Google Display Ad management agency, we create uniquely tailored ad message and creative according to the search intent, user behaviour and the browsing history of your audience. These ads are targeted to reach potential customers wherever they have been looking for your services."}
+            <div className="text-[16px] leading-[1.8] text-[#4b5563] space-y-6">
+              <p>
+                {visibility?.body || "Listening to customer feedback across social networks, review sites, and forums is essential to protect and grow your brand. With the help of Digicore Inc.'s advanced social listening tools and experts, we gather real-time data on how consumers perceive your business, allowing you to respond instantly to inquiries, handle reviews, and intercept potential PR crises before they escalate."}
+              </p>
+            </div>
 
-            </p>
-
-            <div className="orange-line" style={{ marginBottom: "50px" }}></div>
-
+            <div className="w-[120px] h-[4px] bg-[#e31e24] mt-10"></div>
           </div>
 
-          <div className="visibility-image">
-            <img src={visibility?.image ? resolveImage(visibility.image) : graphImg} alt="Graph" />
-          </div>
-
-        </div>
-
-
-      </section>
-
-
-
-
-      <section className="performance-section">
-        <div className="performance-container">
-          <div className="performance-left">
-            <h2>{performance?.label1 || "TRACK"}</h2>
-            <h2>{performance?.label2 || "ANALYZE"}</h2>
-            <h2>{performance?.label3 || "SCALE"}</h2>
-            <h2>{performance?.label4 || "REPEAT"}</h2>
-          </div>
-
-          <div className="performance-right">
-            <img src={performance?.image ? resolveImage(performance.image) : seoRimg} alt="SEO Performance" />
+          <div className="relative rounded-3xl overflow-hidden shadow-[0_15px_30px_rgba(0,0,0,0.05)] border border-slate-200">
+            <img
+              src={visibility?.image ? resolveImage(visibility.image) : graphImg}
+              alt="Graph"
+              className="w-full h-full object-cover"
+            />
           </div>
         </div>
       </section>
 
-
-
-      <section className="seo-agency-section">
-        <div className="seo-container">
-
-          <div className="seo-heading">
-            <div className="seo-line"></div>
-
-            <h2>
-              {seoAgency?.heading || "Why do I need Google Display Ad management services?"}</h2>
-            <p>{seoAgency?.body || "At Digicore Inc., we prioritize improved visibility and clarity of advertising. With our 360-degrees’ Google Display ad management services, we engage your targeted audience and captivate them right where they browse the most. Whether it is any specific application, website, search engine, YouTube, multiple platforms are covered in addressing the display advertising goals. Our seasoned display ad specialists play a vital role in boosting brand awareness, attracting engagement, driving conversion and nurture prospects. Digicore Inc. utilizes data-driven optimization to ensure ads perform in an exceptional manner and complements your paid media strategy. Besides, our display advertising management services offer sustainable business growth and improved ROI."}</p>
+      {/* Performance Section */}
+      <section className="w-full p-0 m-0 bg-white">
+        <div className="grid grid-cols-1 lg:grid-cols-[40%_60%] gap-0 w-full">
+          <div className="bg-gradient-to-br from-[#8b0000] to-[#1c1c1e] min-h-[350px] flex flex-col justify-center px-12 py-[80px] lg:pl-[120px]">
+            <h2 className="m-0 font-heading font-extrabold text-[60px] leading-[75px] max-[992px]:text-[48px] max-[992px]:leading-[58px] max-[769px]:text-[36px] max-[769px]:leading-[46px] text-white uppercase tracking-tight">
+              {performance?.label1 || "TRACK"}
+            </h2>
+            <h2 className="m-0 font-heading font-extrabold text-[60px] leading-[75px] max-[992px]:text-[48px] max-[992px]:leading-[58px] max-[769px]:text-[36px] max-[769px]:leading-[46px] text-white uppercase tracking-tight">
+              {performance?.label2 || "ANALYZE"}
+            </h2>
+            <h2 className="m-0 font-heading font-extrabold text-[60px] leading-[75px] max-[992px]:text-[48px] max-[992px]:leading-[58px] max-[769px]:text-[36px] max-[769px]:leading-[46px] text-white uppercase tracking-tight">
+              {performance?.label3 || "SCALE"}
+            </h2>
+            <h2 className="m-0 font-heading font-extrabold text-[60px] leading-[75px] max-[992px]:text-[48px] max-[992px]:leading-[58px] max-[769px]:text-[36px] max-[769px]:leading-[46px] text-white uppercase tracking-tight">
+              {performance?.label4 || "REPEAT"}
+            </h2>
           </div>
 
-
-
+          <div className="min-h-[390px] max-[992px]:min-h-[350px] max-[769px]:min-h-[250px] overflow-hidden">
+            <img
+              src={performance?.image ? resolveImage(performance.image) : seoRimg}
+              alt="SEO Performance"
+              className="w-full h-full block object-cover"
+            />
+          </div>
         </div>
       </section>
 
+      {/* SEO Agency Section */}
+      <section className="w-full py-24 px-5 bg-white">
+        <div className="max-w-[1200px] mx-auto">
+          <div className="w-[55px] h-1 bg-[#e31e24] mx-auto mb-[18px] rounded-[10px]"></div>
 
+          <h2 className="text-center text-[38px] max-[769px]:text-[28px] font-heading font-extrabold text-[#1c1c1e] mb-8 uppercase leading-tight">
+            {seoAgency?.heading || "Why Choose an Expert Social Listening & Response Agency?"}
+          </h2>
+
+          <p className="text-center text-[17px] leading-[1.8] text-[#4b5563] max-w-[1000px] mx-auto mb-16">
+            {seoAgency?.body || "Tracking brand mentions manually is impossible in today's multi-platform ecosystem. Digicore Inc. uses state-of-the-art listening platforms to monitor and manage conversations on Instagram, LinkedIn, Facebook, X, and WhatsApp. Our dedicated response team ensures that customer concerns are resolved quickly, improving brand credibility and customer lifetime value."}
+          </p>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start mt-12">
+            <div className="space-y-8">
+              <div>
+                <h3 className="text-[26px] max-[769px]:text-[20px] text-[#e31e24] font-heading font-extrabold mb-3">
+                  The Problem
+                </h3>
+                <p className="text-[16px] leading-[1.8] text-[#4b5563]">
+                  Most brands do not realize what their target audience or customers are discussing about their products or support online. Unanswered complaints, negative tweets, or low-star reviews build up silently, dragging down your brand value and conversion rates.
+                </p>
+              </div>
+
+              <div>
+                <h3 className="text-[26px] max-[769px]:text-[20px] text-emerald-600 font-heading font-extrabold mb-3">
+                  The Solution
+                </h3>
+                <p className="text-[16px] leading-[1.8] text-[#4b5563]">
+                  Avail professional Social Media Listening & Response Management services to track brand mentions 24/7. Digicore Inc. intercepts negative mentions, engages positive reviews, resolves support tickets, and analyzes sentiment patterns.
+                </p>
+              </div>
+            </div>
+
+            <div className="space-y-6 text-[16px] leading-[1.8] text-[#4b5563] lg:pt-2">
+              <p>
+                Our social listening experts utilize AI platforms to crawl keywords, brand tags, and competitor data. By responding rapidly and empathetically, we transition customer complaints into positive brand interactions, improving brand credibility and sentiment scores.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Services Grid Section */}
       <section className="w-full py-[100px] px-5 bg-[#f4f4f5] text-center border-b border-[#e5e7eb]">
         <div className="max-w-[1200px] mx-auto px-5">
           <div className="w-[60px] h-[4px] bg-[#e31e24] mx-auto mb-[25px] rounded-[10px] max-[769px]:w-[50px] max-[769px]:mb-[20px]"></div>
@@ -460,197 +484,169 @@ const SocialListening = () => {
           </h2>
 
           <p className="text-[17px] leading-[1.8] text-[#4b5563] max-w-[850px] mx-auto mb-[60px]">
-            {discover?.description || "Digicore Inc. offers you a cost-effective of reaching your potential customers and increase ROI through multi-layered Google display ad management services. Being the trusted paid media agency, we ensure targeting, ad placement, bidding and optimization, all the segments of display advertising are addressed by our professionals."}
+            {discover?.description || "We provide comprehensive social listening and sentiment analysis solutions to monitor brand reputation, track competitors, and engage customers effectively."}
           </p>
         </div>
 
         <div className="max-w-[1200px] mx-auto px-5">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[30px]">
-            {displayServices.map((service, index) => (
-              <ServiceCard
-                key={service.id || index}
-                icon={service.icon}
-                title={service.title}
-                description={service.description}
-              />
-            ))}
+            {displayServices.map((service, index) => {
+              // Map customized descriptions for social listening
+              const customServices = [
+                {
+                  title: "Brand Mention Monitoring",
+                  desc: "We track every mention of your brand, products, and key executives across social platforms and websites."
+                },
+                {
+                  title: "Sentiment Analysis",
+                  desc: "We analyze customer feedback to determine positive, neutral, or negative sentiments to optimize brand health."
+                },
+                {
+                  title: "Competitor Intelligence",
+                  desc: "Track competitor mentions and strategy updates to discover new market opportunities."
+                },
+                {
+                  title: "Crisis Management & Prevention",
+                  desc: "Instant alerts and response protocols to prevent negative comments or issues from scaling into public relations crises."
+                },
+                {
+                  title: "Review Management",
+                  desc: "Professional and swift responses to user reviews on Google Business, Yelp, and social profiles."
+                },
+                {
+                  title: "Customer Support Routing",
+                  desc: "Route product inquiries and complaints to support teams for immediate resolution."
+                }
+              ];
+              const customItem = customServices[index % customServices.length];
+              return (
+                <ServiceCard
+                  key={service.id || index}
+                  icon={service.icon}
+                  title={service.title || customItem.title}
+                  description={service.description || customItem.desc}
+                />
+              );
+            })}
           </div>
         </div>
       </section>
 
+      {/* CTA Why Choose Section */}
+      <section className="relative overflow-hidden w-full py-20 px-5 bg-gradient-to-br from-[#1c1c1e] to-slate-900 text-center border-t border-b border-[#2b2b2e]">
+        <div className="max-w-[1200px] mx-auto text-center space-y-8 relative z-10">
+          <h2 className="text-[36px] max-[769px]:text-[28px] font-heading font-extrabold text-white max-w-3xl mx-auto leading-tight">
+            {whyChoose?.heading || "Ready to Protect & Grow Your Brand Reputation? Get Started Today."}
+          </h2>
 
-
-      <section className="why-choose-sec" style={{
-        backgroundImage: `url(${whyChoose?.backgroundImage ? resolveImage(whyChoose.backgroundImage) : bgIcon})`,
-        backgroundSize: "100% 100%",
-        backgroundPosition: "center",
-        backgroundRepeat: "no-repeat",
-      }}>
-
-        <div className="div-content">
-
-          <h1 style={{ fontSize: "28px" }}>
-            {whyChoose?.heading || "Ready for More Traffic, Leads & Sales? Start SEO Now."}
-          </h1>
-
-          <div className="choose-btns">
-
-            <a href={whyChoose?.button1?.link || "#"} className="light-btn">
-
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <a
+              href={whyChoose?.button1?.link || "#"}
+              className="relative overflow-hidden inline-flex items-center gap-2 text-[#22c55e] font-bold px-[34px] py-[15px] rounded-lg bg-white border border-[#22c55e]/25 shadow-[0_6px_20px_rgba(34,197,94,0.16)] transition-all duration-300 hover:bg-[#f0fdf4] hover:text-[#16a34a] hover:scale-[1.03] cursor-pointer"
+            >
               <img
                 src="https://tataresearch.besthr.in/digital-marketar/assets/icon/whatsapp.png"
                 alt="whatsapp"
+                className="w-5 h-5 object-contain"
               />
-
-              {whyChoose?.button1?.text || "+91 98188 88064"}
-
+              <span>{whyChoose?.button1?.text || "+91 98188 88064"}</span>
             </a>
 
-            <a href={whyChoose?.button2?.link || "#"} className="light-btn">
-              {whyChoose?.button2?.text || "REQUEST A CALLBACK"}
+            <a
+              href={whyChoose?.button2?.link || "#"}
+              className="relative overflow-hidden inline-flex items-center gap-2 bg-transparent border border-white text-white font-bold px-[34px] py-[15px] rounded-lg transition-all duration-300 hover:bg-white/10 hover:scale-[1.03] cursor-pointer"
+            >
+              <span>{whyChoose?.button2?.text || "REQUEST A CALLBACK"}</span>
             </a>
-
           </div>
-
         </div>
-
       </section>
 
-
-      <section className="impact-sec" style={{ backgroundColor: "#fff" }}>
-
-        <div className="impact-container">
-
-
-          <div className="impact-image"
-          >
-
-            <div className="impact-circle" ></div>
-
+      {/* Impact Section */}
+      <section className="w-full py-24 px-5 bg-white border-b border-[#e5e7eb]">
+        <div className="max-w-[1200px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div className="relative flex justify-center items-center">
+            <div className="absolute w-[350px] h-[350px] rounded-full bg-[#fee2e2] -z-10 animate-pulse"></div>
             <img
               src={impactData?.image ? resolveImage(impactData.image) : impact}
               alt="Impact"
-              style={{
-                width: "700px",
-                height: "600px",
-
-              }}
+              className="max-w-full h-auto rounded-3xl shadow-[0_15px_30px_rgba(0,0,0,0.05)] border border-slate-100 object-cover"
             />
-
           </div>
 
-
-          <div className="timeline-section">
-
-            <div className="timeline">
-
+          <div className="space-y-8">
+            <div className="relative pl-8 border-l-2 border-[#e5e7eb] space-y-8">
               {(impactData?.items?.length ? impactData.items : [
-                { title: "Contact Us", desc: "Reach out to us via email, phone or our website." },
-                { title: "SEO and PPC", desc: "We were rated the Top SEO and PPC Company of the Year in 2014 by CIO Review." },
-                { title: "Share Your Goals:", desc: "Share your challenges and objectives." },
-                { title: "Consultation:", desc: "Our experts will craft SEO strategies tailored to your needs." },
-                { title: "Tailored Plan:", desc: "Get a customized plan with clear strategies and outcomes." },
-                { title: "Out Turn:", desc: "Achieve measurable results in record time." },
+                { title: "Monitor Mentions", desc: "We deploy tools to capture every brand tag and keyword online." },
+                { title: "Sentiment Assessment", desc: "NLP engines classify mentions as positive, negative, or neutral." },
+                { title: "Crisis Mitigation", desc: "Flag escalations instantly and isolate negative feedback paths." },
+                { title: "Active Engagement", desc: "Empathetic, brand-aligned customer communications." },
+                { title: "Analytics Reporting", desc: "Understand customer satisfaction scores over time." }
               ]).map((item, index) => (
-                <div className={`timeline-item${index === 0 ? " active" : ""}`} key={item.id || index}>
-
-                  <div className="timeline-dot"></div>
-
-                  <div className="timeline-content">
-
-                    <h3>{item.title}</h3>
-
-                    <p>
-                      {item.desc}
-                    </p>
-
-                  </div>
-
+                <div className="relative group" key={item.id || index}>
+                  <div className="absolute -left-[37px] top-1.5 w-[10px] h-[10px] rounded-full bg-slate-300 group-hover:bg-[#e31e24] group-hover:scale-125 transition-all duration-300"></div>
+                  <h3 className="text-lg font-bold text-slate-800 group-hover:text-[#e31e24] transition-colors duration-300 mb-1">{item.title}</h3>
+                  <p className="text-sm leading-relaxed text-slate-500">{item.desc}</p>
                 </div>
               ))}
-
             </div>
-
           </div>
-
         </div>
-
       </section>
+
       <Industry />
       <Casestudy />
 
+      {/* Why Choose Section with Checklists */}
+      <section className="w-full py-24 px-5 bg-white">
+        <div className="max-w-[1200px] mx-auto">
+          <div className="w-[60px] h-[4px] bg-[#e31e24] mx-auto mb-[25px] rounded-[10px]"></div>
 
+          <h2 className="text-center text-[36px] max-[769px]:text-[28px] font-heading font-extrabold text-[#1c1c1e] mb-6 uppercase">
+            {whyBusiness?.heading || "Why choose Digicore Inc. for SMM Listening and response management?"}
+          </h2>
 
+          <p className="text-center text-[17px] leading-[1.8] text-[#4b5563] max-w-[950px] mx-auto mb-16">
+            {whyBusiness?.description || "At Digicore Inc., we use advanced listening setups to secure, protect, and scale your brand sentiment. From dedicated response matrices to transparent reporting dashboards, our SMM systems are designed for optimal reputation security."}
+          </p>
 
-
-
-
-      <section className="why-business-section" style={{ backgroundColor: "#fff" }}>
-
-        <div className="why-business-container">
-
-
-          <div className="why-business-heading">
-
-            <div className="divider"></div>
-
-            <h2>
-              {whyBusiness?.heading || "Why choose Digicore Inc. for Google Display ad management services?"}
-            </h2>
-
-            <p>
-              {whyBusiness?.description || "At Digicore Inc., we employ data driven approach to implement Google Display ad management campaigns. We optimally utilize audience insights, performance analytics and conversion tracking to reach targeted users at the right time across relevant platforms. Our seasoned professionals consistently monitor clicks, impressions, and conversions to optimize creatives, ad placements and bids to attract maximum ROI. From remarkable expertise, transparent reporting and strategic A/B testing, Digicore Inc. assures improved brand visibility, measurable growth and consistent performance in the current ad spend according to your business goals."}</p>
-
-          </div>
-
-
-          <div className="why-business-content">
-
-
-            <div className="why-left">
-
-              <ul>
-
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div className="why-left space-y-4">
+              <ul className="space-y-3.5">
                 {(whyBusiness?.features?.length ? whyBusiness.features : [
-                  { text: "Our team of seasoned professionals with in-depth knowledge of Google display advertising customizes campaigns for measurable growth" },
-                  { text: "We prioritize growth-mindset to deliver data-driven and consistent advertising results for all-sized businesses" },
-                  { text: "Our reporting system maintains clarity and transparency to execute all the Google display ad campaigns according to competitor analysis" },
-                  { text: "We focus on client-centric and result-driven approach to target advertising goals in a specified time span" },
-                  { text: "All our Google display ad management services are sustainable and aimed at consistent business growth" },
-                  { text: "Our proven expertise of Google display ad management has helped businesses of diverse segments to achieve their advertising objectives." },
-                  { text: "Partner with us to improve the engagement rate, visibility and performance of your business with our cost-effective Google Display ad management services" },
+                  { text: "Experienced team of reputation managers and SMM communication experts." },
+                  { text: "Real-time alerts and dashboard analytics for instant brand health monitoring." },
+                  { text: "Crisis prevention protocols to safeguard your brand's digital presence." },
+                  { text: "Sentiment analysis powered by advanced NLP tools." },
+                  { text: "Tailored response templates for transparent and empathetic communication." },
+                  { text: "Comprehensive competitor intelligence and benchmark reporting." },
+                  { text: "Proven experience managing reputation for diverse corporate segments." }
                 ]).map((item, index) => (
-                  <li key={item.id || index}>✔ {item.text}</li>
+                  <li key={item.id || index} className="flex items-start gap-3 text-[15px] leading-relaxed text-[#4b5563]">
+                    <span className="text-[#e31e24] text-lg font-bold shrink-0 mt-0.5">✔</span>
+                    <span>{item.text}</span>
+                  </li>
                 ))}
-
               </ul>
-
             </div>
 
-
-            <div className="why-right">
-
+            <div className="relative rounded-3xl overflow-hidden shadow-[0_15px_30px_rgba(0,0,0,0.05)] border border-slate-100">
               <img
                 src={whyBusiness?.image ? resolveImage(whyBusiness.image) : graphImg}
                 alt="Graph"
+                className="w-full h-full object-cover"
               />
-
             </div>
-
           </div>
-
         </div>
-
       </section>
 
+      {/* Testimonials Section */}
       <div>
-
-
         <TestimonialSection />
-
-
       </div>
 
+      {/* Brand Logos and Tools */}
       <div>
         <Brands />
       </div>
@@ -659,63 +655,61 @@ const SocialListening = () => {
         <Tools />
       </div>
 
-
-
-
+      {/* Blogs Showcase */}
       <div>
-
         <Blogs />
       </div>
 
+      {/* Accordion FAQ Section */}
+      <section className="w-full py-24 px-5 bg-[#f4f4f5] border-t border-b border-[#e5e7eb]">
+        <div className="max-w-[850px] mx-auto">
+          <div className="text-center mb-12">
+            <div className="w-[60px] h-[4px] bg-[#e31e24] mx-auto mb-[25px] rounded-[10px]"></div>
+            <h2 className="text-[36px] font-heading font-extrabold text-[#1c1c1e] uppercase">
+              {c?.faqSection?.heading || "SOCIAL MEDIA LISTENING FAQS"}
+            </h2>
+          </div>
 
+          <div className="space-y-4">
+            {displayFaq.map((faq, index) => {
+              const isOpen = activeIndex === index;
+              return (
+                <div
+                  key={index}
+                  className={"bg-white border rounded-2xl overflow-hidden shadow-[0_2px_10px_rgba(0,0,0,0.01)] transition-all duration-300 " + (
+                    isOpen ? "border-[#e31e24]/30 shadow-[0_12px_32px_rgba(227,30,36,0.08)]" : "border-slate-200 hover:border-[#e31e24]/20"
+                  )}
+                >
+                  <button
+                    className="w-full flex items-center justify-between gap-4 text-left px-6 py-5 cursor-pointer bg-transparent border-0 select-none"
+                    onClick={() => toggleFAQ(index)}
+                  >
+                    <span className="font-semibold text-slate-900 text-[15px]">{faq.question}</span>
+                    <span className={"shrink-0 w-8 h-8 rounded-full flex items-center justify-center transition-colors duration-300 " + (
+                      isOpen ? "bg-[#e31e24] text-white" : "bg-[#e31e24]/8 text-[#e31e24]"
+                    )}>
+                      {isOpen ? <Minus size={16} /> : <Plus size={16} />}
+                    </span>
+                  </button>
 
-      <section className="faq-section">
-        <div className="faq-header">
-          <h2>{c?.faqSection?.heading || "SEO AGENCY DELHI FAQS"}</h2>
-          <div className="faq-line"></div>
-        </div>
-
-        <div className="faq-container">
-          {displayFaq.map((faq, index) => (
-            <div
-              key={index}
-              className={`faq-item ${activeIndex === index ? "active" : ""
-                }`}
-            >
-              <button
-                className="faq-question"
-                onClick={() => toggleFAQ(index)}
-              >
-                <span>{faq.question}</span>
-
-                {activeIndex === index ? (
-                  <Minus size={28} />
-                ) : (
-                  <Plus size={28} />
-                )}
-              </button>
-
-              <div
-                className={`faq-answer ${activeIndex === index ? "show" : ""
-                  }`}
-              >
-                <p>{faq.answer}</p>
-              </div>
-            </div>
-          ))}
+                  <div className="grid transition-all duration-300 ease-in-out" style={{ gridTemplateRows: isOpen ? "1fr" : "0fr" }}>
+                    <div className="overflow-hidden">
+                      <p className="px-6 pb-5 text-sm text-slate-500 leading-relaxed">{faq.answer}</p>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
         </div>
       </section>
 
-
-
+      {/* Contacts Form footer */}
       <div>
         <Contacts />
       </div>
-
-
-
-    </>
-  )
+    </div>
+  );
 }
 
-export default SocialListening
+export default SocialListening;

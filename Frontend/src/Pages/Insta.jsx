@@ -639,84 +639,54 @@ Out Turn:</h3>
  
 
  
-<section className="why-business-section" style={{ backgroundColor: "#fff" }}>
-
-  <div className="why-business-container">
-
-  
-    <div className="why-business-heading">
-
-      <div className="divider"></div>
-
-      <h2>
-{whyChooseDigicoreSection?.title || (<>Why choose Digicore Inc. for Google Display ad <br />management services?</>)}
+<section className="bg-white py-16 sm:py-20">
+  <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8">
+    <div className="max-w-3xl mx-auto text-center mb-12">
+      <div className="mx-auto mb-4 h-1.5 w-20 rounded-full bg-[#e31e24]"></div>
+      <h2 className="text-3xl sm:text-4xl font-heading font-extrabold text-slate-900 leading-tight">
+        {whyChooseDigicoreSection?.title || (<>Why choose Digicore Inc. for Google Display ad <br />management services?</>)}
       </h2>
-
-      <p>
-{whyChooseDigicoreSection?.description || "At Digicore Inc., we employ data driven approach to implement Google Display ad management campaigns. We optimally utilize audience insights, performance analytics and conversion tracking to reach targeted users at the right time across relevant platforms. Our seasoned professionals consistently monitor clicks, impressions, and conversions to optimize creatives, ad placements and bids to attract maximum ROI. From remarkable expertise, transparent reporting and strategic A/B testing, Digicore Inc. assures improved brand visibility, measurable growth and consistent performance in the current ad spend according to your business goals."}</p>
-
+      <p className="mt-5 text-base sm:text-lg text-slate-600 leading-8">
+        {whyChooseDigicoreSection?.description || "At Digicore Inc., we employ data driven approach to implement Google Display ad management campaigns. We optimally utilize audience insights, performance analytics and conversion tracking to reach targeted users at the right time across relevant platforms. Our seasoned professionals consistently monitor clicks, impressions, and conversions to optimize creatives, ad placements and bids to attract maximum ROI. From remarkable expertise, transparent reporting and strategic A/B testing, Digicore Inc. assures improved brand visibility, measurable growth and consistent performance in the current ad spend according to your business goals."}
+      </p>
     </div>
 
-  
-    <div className="why-business-content">
-
-  
-      <div className="why-left">
-
-        <ul>
-
+    <div className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr] items-start">
+      <div>
+        <ul className="space-y-4 text-base sm:text-lg text-slate-700">
           {whyChooseDigicoreSection?.points?.length ? (
-            whyChooseDigicoreSection.points.map((point, i) => <li key={i}>✔ {point}</li>)
-          ) : (
-            <>
-              <li>
-                ✔ Our team of seasoned professionals with in-depth knowledge of Google display advertising customizes campaigns for measurable growth
+            whyChooseDigicoreSection.points.map((point, i) => (
+              <li key={i} className="flex gap-3 items-start">
+                <span className="mt-1 text-[#e31e24]">✔</span>
+                <span>{point}</span>
               </li>
-
-              <li>
-                ✔ We prioritize growth-mindset to deliver data-driven and consistent advertising results for all-sized businesses
+            ))
+          ) : ([
+              "Our team of seasoned professionals with in-depth knowledge of Google display advertising customizes campaigns for measurable growth",
+              "We prioritize growth-mindset to deliver data-driven and consistent advertising results for all-sized businesses",
+              "Our reporting system maintains clarity and transparency to execute all the Google display ad campaigns according to competitor analysis",
+              "We focus on client-centric and result-driven approach to target advertising goals in a specified time span",
+              "All our Google display ad management services are sustainable and aimed at consistent business growth",
+              "Our proven expertise of Google display ad management has helped businesses of diverse segments to achieve their advertising objectives.",
+              "Partner with us to improve the engagement rate, visibility and performance of your business with our cost-effective Google Display ad management services",
+            ].map((bullet, index) => (
+              <li key={index} className="flex gap-3 items-start">
+                <span className="mt-1 text-[#e31e24]">✔</span>
+                <span>{bullet}</span>
               </li>
-
-              <li>
-                ✔ Our reporting system maintains clarity and transparency to execute all the Google display ad campaigns according to competitor analysis
-              </li>
-
-              <li>
-                ✔ We focus on client-centric and result-driven approach to target advertising goals in a specified time span
-              </li>
-
-              <li>
-                ✔  All our Google display ad management services are sustainable and aimed at consistent business growth
-              </li>
-
-              <li>
-                ✔ Our proven expertise of Google display ad management has helped businesses of diverse segments to achieve their advertising objectives.
-              </li>
-
-              <li>
-                ✔ Partner with us to improve the engagement rate, visibility and performance of your business with our cost-effective Google Display ad management services
-              </li>
-            </>
-          )}
-
+            )))}
         </ul>
-
       </div>
 
-
-      <div className="why-right">
-
+      <div className="rounded-[32px] bg-slate-50 p-5 shadow-sm">
         <img
+          className="w-full rounded-[28px] object-cover"
           src={whyChooseDigicoreSection?.imageUrl ? resolveImage(whyChooseDigicoreSection.imageUrl) : graphImg}
           alt="Graph"
         />
-
       </div>
-
     </div>
-
   </div>
-
 </section>
 
  <div className="divider"></div>

@@ -718,84 +718,72 @@ Out Turn:</h3>
  
 
 
-<section className="why-business-section" style={{ backgroundColor: "#fff" }}>
-
-  <div className="why-business-container">
-
-  
-    <div className="why-business-heading">
-
-      <div className="divider"></div>
-
-      <h2>
-    {whyChooseDigicoreSection?.title || (<>Why choose Digicore Inc. as your <br />LinkedIn Marketing agency in India?</>)}
+<section className="bg-white py-16 sm:py-20">
+  <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8">
+    <div className="max-w-3xl mx-auto text-center mb-12">
+      <div className="mx-auto mb-4 h-1.5 w-20 rounded-full bg-[#e31e24]"></div>
+      <h2 className="text-3xl sm:text-4xl font-heading font-extrabold text-slate-900 leading-tight">
+        {whyChooseDigicoreSection?.title || (<>Why choose Digicore Inc. as your <br className="hidden sm:block" />LinkedIn Marketing agency in India?</>)}
       </h2>
-
-      <p>
-     {whyChooseDigicoreSection?.description || "Experience the power of results-driven and focused approach of LinkedIn marketing services by choosing Digicore Inc.. Our highly qualified and experienced professionals help you in reaching the right audience, generate quality B2B and build credibility. Besides, we create compelling and meaningful content while optimizing LinkedIn company profile aligned with business growth objectives. From managing ad campaigns to tracking the performance and optimizing the content, we have turned out to be the best LinkedIn marketing agency in India known for simple yet strategic methodology.  "}</p>
-
+      <p className="mt-5 text-base sm:text-lg text-slate-600 leading-8">
+        {whyChooseDigicoreSection?.description || "Experience the power of results-driven and focused approach of LinkedIn marketing services by choosing Digicore Inc.. Our highly qualified and experienced professionals help you in reaching the right audience, generate quality B2B and build credibility. Besides, we create compelling and meaningful content while optimizing LinkedIn company profile aligned with business growth objectives. From managing ad campaigns to tracking the performance and optimizing the content, we have turned out to be the best LinkedIn marketing agency in India known for simple yet strategic methodology."}
+      </p>
     </div>
 
-  
-    <div className="why-business-content">
-
-  
-      <div className="why-left">
-
-        <ul>
-
+    <div className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr] items-start">
+      <div>
+        <ul className="space-y-4 text-base sm:text-lg text-slate-700">
           {whyChooseDigicoreSection?.points?.length ? (
-            whyChooseDigicoreSection.points.map((point, i) => <li key={i}>✔ {point}</li>)
+            whyChooseDigicoreSection.points.map((point, i) => (
+              <li key={i} className="flex gap-3 items-start">
+                <span className="mt-1 text-[#e31e24]">✔</span>
+                <span>{point}</span>
+              </li>
+            ))
           ) : (
             <>
-              <li>
-                ✔ Our highly qualified and experienced professionals tailor and execute LinkedIn marketing campaigns
+              <li className="flex gap-3 items-start">
+                <span className="mt-1 text-[#e31e24]">✔</span>
+                <span>Our highly qualified and experienced professionals tailor and execute LinkedIn marketing campaigns.</span>
               </li>
-
-              <li>
-                ✔ With our growth-first mindset, we cater to the advanced LinkedIn marketing goals of all-sized businesses
+              <li className="flex gap-3 items-start">
+                <span className="mt-1 text-[#e31e24]">✔</span>
+                <span>With our growth-first mindset, we cater to the advanced LinkedIn marketing goals of all-sized businesses.</span>
               </li>
-
-              <li>
-                ✔  We present detailed and factual report while maintaining transparency in the marketing plan to help businesses stay ahead in the market
+              <li className="flex gap-3 items-start">
+                <span className="mt-1 text-[#e31e24]">✔</span>
+                <span>We present detailed and factual reports while maintaining transparency in the marketing plan to help businesses stay ahead in the market.</span>
               </li>
-
-              <li>
-                ✔ Our result-driven and data-driven LinkedIn marketing strategies help them in maximizing ROI and boost sales
+              <li className="flex gap-3 items-start">
+                <span className="mt-1 text-[#e31e24]">✔</span>
+                <span>Our result-driven and data-driven LinkedIn marketing strategies help them maximize ROI and boost sales.</span>
               </li>
-
-              <li>
-                ✔  All our strategies are future-ready and address the sustainable business growth of clients
+              <li className="flex gap-3 items-start">
+                <span className="mt-1 text-[#e31e24]">✔</span>
+                <span>All our strategies are future-ready and address the sustainable business growth of clients.</span>
               </li>
-
-              <li>
-                ✔  With more than a decade’s excellence, we incorporate modern tactics to achieve bespoke marketing objectives
+              <li className="flex gap-3 items-start">
+                <span className="mt-1 text-[#e31e24]">✔</span>
+                <span>With more than a decade’s excellence, we incorporate modern tactics to achieve bespoke marketing objectives.</span>
               </li>
-
-              <li>
-                ✔ We identify and target the right audience, generate quality leads and build awareness to address long-term business goals of clients.
+              <li className="flex gap-3 items-start">
+                <span className="mt-1 text-[#e31e24]">✔</span>
+                <span>We identify and target the right audience, generate quality leads and build awareness to address long-term business goals of clients.</span>
               </li>
             </>
           )}
-
         </ul>
-
       </div>
 
-
-      <div className="why-right">
-
+      <div className="rounded-[32px] bg-slate-50 p-5 shadow-sm">
         <img
+          className="w-full rounded-[28px] object-cover"
           src={whyChooseDigicoreSection?.imageUrl ? resolveImage(whyChooseDigicoreSection.imageUrl) : graphImg}
           alt="Graph"
         />
-
       </div>
-
     </div>
-
   </div>
-
 </section>
 
  <div className="divider"></div>

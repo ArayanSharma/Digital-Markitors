@@ -668,66 +668,54 @@ const ECommerce = () => {
         </section>
       </div>
 
-      <section className="dominate-section">
-        <div className="dominate-heading">
-          <h2>{dominateSection?.heading || "How We Grow Your E-commerce Sales & Revenue"}</h2>
+      <section className="py-[100px] px-[6%] bg-[#f4f4f5] text-center border-b border-[#e5e7eb]">
+        <div className="max-w-[1200px] mx-auto px-5">
+          <h2 className="text-[42px] max-[769px]:text-[30px] text-[#1c1c1e] font-heading font-extrabold mb-[15px]">
+            {dominateSection?.heading || "How We Grow Your E-commerce Sales & Revenue"}
+          </h2>
 
-          <div className="dominate-line"></div>
+          <div className="w-[70px] h-[4px] bg-[#e31e24] mx-auto mb-[30px] rounded-[20px]"></div>
 
-          <p>
+          <p className="max-w-[850px] mx-auto text-[17px] leading-[1.8] text-[#4b5563] mb-[60px]">
             {dominateSection?.description || "At Digicore Inc., we ensure data-driven Ecommerce SEO services to increases sales and revenue of all-sized Ecommerce businesses. With an objective to improve visibility, enhance traffic quality, and boost conversion rate, we optimize product pages and categories while fixing the technical issues of the website. Our professionals utilize conversion based UX improvements to improve the user experience and help then find the right product. Connect with us to benefit from competitor analysis, performance tracking and scalable SEO strategies for consistent ecommerce revenue growth."}
           </p>
         </div>
 
-        <div className="dominate-cards">
+        <div className="flex justify-center gap-10 flex-wrap mt-[30px]">
           {displayDominateCards.map((item, index) => (
-            <div className="dominate-card" key={item.id || index}>
-
-              <div className="dominate-icon">
-                <img
-                  src={item.icon}
-                  alt={item.title}
-                  className="dominate-icon-img"
-                />
+            <div
+              className="group w-[260px] h-[260px] max-[769px]:w-[220px] max-[769px]:h-[220px] rounded-full bg-white border border-[#e5e7eb] flex flex-col items-center justify-center text-center p-6 box-border relative overflow-hidden cursor-pointer shadow-sm transition-all duration-300 hover:bg-[#e31e24] hover:border-[#e31e24] hover:shadow-[0_12px_25px_rgba(227,30,36,0.25)] hover:-translate-y-1.5"
+              key={item.id || index}
+            >
+              <div className="relative z-[2] w-12 h-12 mb-4 flex items-center justify-center transition-colors duration-300">
+                <img src={item.icon} alt={item.title} className="w-full h-full object-contain filter group-hover:brightness-0 group-hover:invert transition-all duration-300" />
               </div>
 
-              <h3>{item.title}</h3>
+              <h3 className="relative z-[2] text-[18px] max-[769px]:text-[15px] font-heading font-bold text-[#2b2b2e] leading-tight m-0 transition-colors duration-300 group-hover:text-white group-hover:mb-[10px]">{item.title}</h3>
 
-              <p>{item.desc}</p>
-
+              <p className="relative z-[2] mt-0 text-[12px] leading-[1.5] text-white opacity-0 max-h-0 overflow-hidden transition-all duration-300 group-hover:opacity-90 group-hover:max-h-[120px]">{item.desc}</p>
             </div>
           ))}
         </div>
       </section>
 
+      <section className="py-[100px] px-[6%] bg-white border-b border-[#e5e7eb]">
+        <div className="max-w-[1200px] mx-auto px-5">
+          <div className="text-center mb-[60px]">
+            <div className="w-[60px] h-[4px] bg-[#e31e24] mx-auto mb-[25px] rounded-[10px] max-[769px]:w-[50px] max-[769px]:mb-[20px]"></div>
 
-
-      <section className="why-business-section" style={{ backgroundColor: "#fff" }}>
-
-        <div className="why-business-container">
-
-
-          <div className="why-business-heading">
-
-            <div className="divider"></div>
-
-            <h2>
-              {whyChooseSection?.heading || (<>Why Business Choose Digicore Inc. for Ecommerce SEO <br />services?</>)}
+            <h2 className="text-[42px] max-[769px]:text-[30px] font-heading font-extrabold text-[#1c1c1e] mb-[20px]">
+              {whyChooseSection?.heading || "Why Business Choose Digicore Inc. for Ecommerce SEO services?"}
             </h2>
 
-            <p>
-              {whyChooseSection?.description || "Digicore Inc. has an extensive industrial experience in Ecommerce SEO services with a consistent record of providing tailored services. With a comprehensive Ecommerce SEO audit, we ensure all the aspects of store optimization are properly aligned with the business goals of clients. From technical website analysis, link building, on-page optimisation and category & product optimisation to consistent performance tracking, our best Ecommerce SEO services address all the aspects. Experience the maximum transparency, client centric approach and choose affordable Ecommerce SEO packages by partnering with us!"}</p>
-
+            <p className="max-w-[850px] mx-auto text-[17px] leading-[1.8] text-[#4b5563]">
+              {whyChooseSection?.description || "Digicore Inc. has an extensive industrial experience in Ecommerce SEO services with a consistent record of providing tailored services. With a comprehensive Ecommerce SEO audit, we ensure all the aspects of store optimization are properly aligned with the business goals of clients. From technical website analysis, link building, on-page optimisation and category & product optimisation to consistent performance tracking, our best Ecommerce SEO services address all the aspects. Experience the maximum transparency, client centric approach and choose affordable Ecommerce SEO packages by partnering with us!"}
+            </p>
           </div>
 
-
-          <div className="why-business-content">
-
-
-            <div className="why-left">
-
-              <ul>
-
+          <div className="flex items-center gap-[60px] max-[993px]:flex-col">
+            <div className="flex-1 w-full">
+              <ul className="list-none p-0 flex flex-col gap-4">
                 {(whyChooseSection?.bullets?.length ? whyChooseSection.bullets : [
                   "We provide customized Ecommerce SEO strategies",
                   "keeping in mind the business goals and target audience of clients",
@@ -739,27 +727,23 @@ const ECommerce = () => {
                   "Save time and money by availing our professional Ecommerce SEO services",
                   "Strengthen your brand presence and improve mobile friendliness of your website",
                 ]).map((bullet, index) => (
-                  <li key={index}>✔ {bullet}</li>
+                  <li key={index} className="text-[16px] leading-[1.6] bg-white p-5 rounded-xl shadow-[0_4px_15px_rgba(0,0,0,0.03)] border border-[#e5e7eb]/60 transition-all duration-300 hover:translate-x-[8px] flex items-start">
+                    <span className="text-[#e31e24] font-bold mr-3 shrink-0">✔</span>
+                    <span className="text-[#4b5563]">{bullet}</span>
+                  </li>
                 ))}
-
               </ul>
-
             </div>
 
-
-            <div className="why-right">
-
+            <div className="flex-1 text-center w-full">
               <img
                 src={whyChooseSection?.image ? resolveImage(whyChooseSection.image) : graphImg}
                 alt="Graph"
+                className="w-full max-w-[500px] rounded-2xl shadow-[0_15px_35px_rgba(0,0,0,0.05)] mx-auto border border-[#e5e7eb]"
               />
-
             </div>
-
           </div>
-
         </div>
-
       </section>
 
       <div className="divider"></div>

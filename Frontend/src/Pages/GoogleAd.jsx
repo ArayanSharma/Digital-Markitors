@@ -732,84 +732,54 @@ Out Turn:</h3>
  
 
 
-<section className="why-business-section" style={{ backgroundColor: "#fff" }}>
-
-  <div className="why-business-container">
-
-  
-    <div className="why-business-heading">
-
-      <div className="divider"></div>
-
-      <h2>
-  {whyChooseDigicore?.heading || (<>Why Choose Digicore Inc. for Google Shopping Ads<br /> Management Services?</>)}
+<section className="bg-white py-16 sm:py-20">
+  <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8">
+    <div className="max-w-3xl mx-auto text-center mb-12">
+      <div className="mx-auto mb-4 h-1.5 w-20 rounded-full bg-[#e31e24]"></div>
+      <h2 className="text-3xl sm:text-4xl font-heading font-extrabold text-slate-900 leading-tight">
+        {whyChooseDigicore?.heading || (<>Why Choose Digicore Inc. for Google Shopping Ads<br /> Management Services?</>)}
       </h2>
-
-      <p>
-     {whyChooseDigicore?.paragraph || "With the result-driven Google shopping ads management services, Digicore Inc. focuses on innovative and world-class techniques to scale your e-commerce business. Our campaign experts optimize product feeds, target shoppers with high-intent to purchase products from your online store, refine bidding strategies and lower cost per conversion. We ensure increased visibility, increased return on ad spend and align continuous data analysis and optimization for ecommerce business growth. At Digicore Inc., our seasoned professionals adhere to customized business results, product range and competition analysis backed by transparent reporting and constant performance. We help you in targeting the right customer, staying competitive in Google shopping marketplace while increasing sales. "}</p>
-
+      <p className="mt-5 text-base sm:text-lg text-slate-600 leading-8">
+        {whyChooseDigicore?.paragraph || "With the result-driven Google shopping ads management services, Digicore Inc. focuses on innovative and world-class techniques to scale your e-commerce business. Our campaign experts optimize product feeds, target shoppers with high-intent to purchase products from your online store, refine bidding strategies and lower cost per conversion. We ensure increased visibility, increased return on ad spend and align continuous data analysis and optimization for ecommerce business growth. At Digicore Inc., our seasoned professionals adhere to customized business results, product range and competition analysis backed by transparent reporting and constant performance. We help you in targeting the right customer, staying competitive in Google shopping marketplace while increasing sales."}
+      </p>
     </div>
 
-  
-    <div className="why-business-content">
-
-  
-      <div className="why-left">
-
-        <ul>
-
+    <div className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr] items-start">
+      <div>
+        <ul className="space-y-4 text-base sm:text-lg text-slate-700">
           {whyChooseDigicore?.points?.length ? (
-            whyChooseDigicore.points.map((point, i) => <li key={i}>✔ {point}</li>)
-          ) : (
-            <>
-              <li>
-                ✔ Our seasoned professionals with profound experience tailors and execute Google shopping ad campaigns
+            whyChooseDigicore.points.map((point, i) => (
+              <li key={i} className="flex gap-3 items-start">
+                <span className="mt-1 text-[#e31e24]">✔</span>
+                <span>{point}</span>
               </li>
-
-              <li>
-                ✔ We address the ad management requirements of all-sized business and deliver unmatched results
+            ))
+          ) : ([
+              "Our seasoned professionals with profound experience tailors and execute Google shopping ad campaigns",
+              "We address the ad management requirements of all-sized business and deliver unmatched results",
+              "Our Google shopping ads management services maintain transparency and clarity in the reporting system through competitor analysis insights",
+              "Our cost-effective ad management services are result-driven and focus on client-centric outcome",
+              "Our future-ready and dedicated ads management services contribute to the success of diverse ecommerce businesses",
+              "Our consistent ads management excellence and unmatched results have made us the right choice among the ecommerce business owners",
+              "Product visibility, business growth, and increased conversions are assured by our well-tailored Google shopping ads management services",
+            ].map((bullet, index) => (
+              <li key={index} className="flex gap-3 items-start">
+                <span className="mt-1 text-[#e31e24]">✔</span>
+                <span>{bullet}</span>
               </li>
-
-              <li>
-                ✔ Our Google shopping ads management services maintain transparency and clarity in the reporting system through competitor analysis insights
-              </li>
-
-              <li>
-                ✔ Our cost-effective ad management services are result-driven and focus on client-centric outcome
-              </li>
-
-              <li>
-                ✔ Our future-ready and dedicated ads management services contribute to the success of diverse ecommerce businesses
-              </li>
-
-              <li>
-                ✔   Our consistent ads management excellence and unmatched results have made us the right choice among the ecommerce business owners
-              </li>
-
-              <li>
-                ✔ Product visibility, business growth, and increased conversions are assured by our well-tailored Google shopping ads management services
-              </li>
-            </>
-          )}
-
+            )))}
         </ul>
-
       </div>
 
-
-      <div className="why-right">
-
+      <div className="rounded-[32px] bg-slate-50 p-5 shadow-sm">
         <img
+          className="w-full rounded-[28px] object-cover"
           src={whyChooseDigicore?.image ? resolveImage(whyChooseDigicore.image) : graphImg}
           alt="Graph"
         />
-
       </div>
-
     </div>
-
   </div>
-
 </section>
 
  <div className="divider"></div>

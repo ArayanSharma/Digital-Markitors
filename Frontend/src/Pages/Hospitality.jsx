@@ -670,66 +670,54 @@ const Hospitality = () => {
         </section>
       </div>
 
-      <section className="dominate-section">
-        <div className="dominate-heading">
-          <h2>{dominate?.heading || "How We Grow Your E-commerce Sales & Revenue"}</h2>
+      <section className="py-[100px] px-[6%] bg-[#f4f4f5] text-center border-b border-[#e5e7eb]">
+        <div className="max-w-[1200px] mx-auto px-5">
+          <h2 className="text-[42px] max-[769px]:text-[30px] text-[#1c1c1e] font-heading font-extrabold mb-[15px]">
+            {dominate?.heading || "How We Grow Your E-commerce Sales & Revenue"}
+          </h2>
 
-          <div className="dominate-line"></div>
+          <div className="w-[70px] h-[4px] bg-[#e31e24] mx-auto mb-[30px] rounded-[20px]"></div>
 
-          <p>
+          <p className="max-w-[850px] mx-auto text-[17px] leading-[1.8] text-[#4b5563] mb-[60px]">
             {dominate?.description || "Since we Live ‘Digital’, Think ‘Digital’, Breathe ‘Digital’, and Understand ‘Digital’, each of our digital marketing solution is designed around a few yet important key elements or we better call them ‘building blocks’ for the digital business plan of our clients. We evaluate things and customize our solutions keeping your business goals, the current stage of the digital presence, and competitive landscape in mind. With our creative and result-oriented solutions, we ensure that you will:"}
           </p>
         </div>
 
-        <div className="dominate-cards">
+        <div className="flex justify-center gap-10 flex-wrap mt-[30px]">
           {displayDominateCards.map((item, index) => (
-            <div className="dominate-card" key={item.id || index}>
-
-              <div className="dominate-icon">
-                <img
-                  src={item.icon}
-                  alt={item.title}
-                  className="dominate-icon-img"
-                />
+            <div
+              className="group w-[260px] h-[260px] max-[769px]:w-[220px] max-[769px]:h-[220px] rounded-full bg-white border border-[#e5e7eb] flex flex-col items-center justify-center text-center p-6 box-border relative overflow-hidden cursor-pointer shadow-sm transition-all duration-300 hover:bg-[#e31e24] hover:border-[#e31e24] hover:shadow-[0_12px_25px_rgba(227,30,36,0.25)] hover:-translate-y-1.5"
+              key={item.id || index}
+            >
+              <div className="relative z-[2] w-12 h-12 mb-4 flex items-center justify-center transition-colors duration-300">
+                <img src={item.icon} alt={item.title} className="w-full h-full object-contain filter group-hover:brightness-0 group-hover:invert transition-all duration-300" />
               </div>
 
-              <h3>{item.title}</h3>
+              <h3 className="relative z-[2] text-[18px] max-[769px]:text-[15px] font-heading font-bold text-[#2b2b2e] leading-tight m-0 transition-colors duration-300 group-hover:text-white group-hover:mb-[10px]">{item.title}</h3>
 
-              <p>{item.desc}</p>
-
+              <p className="relative z-[2] mt-0 text-[12px] leading-[1.5] text-white opacity-0 max-h-0 overflow-hidden transition-all duration-300 group-hover:opacity-90 group-hover:max-h-[120px]">{item.desc}</p>
             </div>
           ))}
         </div>
       </section>
 
+      <section className="py-[100px] px-[6%] bg-white border-b border-[#e5e7eb]">
+        <div className="max-w-[1200px] mx-auto px-5">
+          <div className="text-center mb-[60px]">
+            <div className="w-[60px] h-[4px] bg-[#e31e24] mx-auto mb-[25px] rounded-[10px] max-[769px]:w-[50px] max-[769px]:mb-[20px]"></div>
 
-
-      <section className="why-business-section" style={{ backgroundColor: "#fff" }}>
-
-        <div className="why-business-container">
-
-
-          <div className="why-business-heading">
-
-            <div className="divider"></div>
-
-            <h2>
+            <h2 className="text-[42px] max-[769px]:text-[30px] font-heading font-extrabold text-[#1c1c1e] mb-[20px]">
               {whyBusiness?.heading || "Why business choose Digicore Inc."}
             </h2>
 
-            <p>
-              {whyBusiness?.description || "Digicore Inc., the leading digital marketing agency in Delhi extends assistance and 360 degree digital marketing strategies to all sized businesses. We have mastered industry wise excellence to become the stellar company committed towards brand building. We have adopted effective, innovative and relevant approach implement digital marketing plan. With problem solving and result-driven methods, we help clients attain their goal. Here are some of the key features of our services which make us the trusted digital marketing company in Delhi, India."}</p>
-
+            <p className="max-w-[850px] mx-auto text-[17px] leading-[1.8] text-[#4b5563]">
+              {whyBusiness?.description || "Digicore Inc., the leading digital marketing agency in Delhi extends assistance and 360 degree digital marketing strategies to all sized businesses. We have mastered industry wise excellence to become the stellar company committed towards brand building. We have adopted effective, innovative and relevant approach implement digital marketing plan. With problem solving and result-driven methods, we help clients attain their goal. Here are some of the key features of our services which make us the trusted digital marketing company in Delhi, India."}
+            </p>
           </div>
 
-
-          <div className="why-business-content">
-
-
-            <div className="why-left">
-
-              <ul>
-
+          <div className="flex items-center gap-[60px] max-[993px]:flex-col">
+            <div className="flex-1 w-full">
+              <ul className="list-none p-0 flex flex-col gap-4">
                 {(whyBusiness?.features?.length ? whyBusiness.features : [
                   { text: "Provide your business with a dedicated account manager and team" },
                   { text: "Guidance for the betterment of startup!" },
@@ -740,27 +728,23 @@ const Hospitality = () => {
                   { text: "Expert guidance for strengthening brand presence of a startup!" },
                   { text: "Increase search friendliness of your business with SEO services!" },
                 ]).map((item, index) => (
-                  <li key={item.id || index}>✔ {item.text}</li>
+                  <li key={item.id || index} className="text-[16px] leading-[1.6] bg-white p-5 rounded-xl shadow-[0_4px_15px_rgba(0,0,0,0.03)] border border-[#e5e7eb]/60 transition-all duration-300 hover:translate-x-[8px] flex items-start">
+                    <span className="text-[#e31e24] font-bold mr-3 shrink-0">✔</span>
+                    <span className="text-[#4b5563]">{item.text}</span>
+                  </li>
                 ))}
-
               </ul>
-
             </div>
 
-
-            <div className="why-right">
-
+            <div className="flex-1 text-center w-full">
               <img
                 src={whyBusiness?.image ? resolveImage(whyBusiness.image) : graphImg}
                 alt="Graph"
+                className="w-full max-w-[500px] rounded-2xl shadow-[0_15px_35px_rgba(0,0,0,0.05)] mx-auto border border-[#e5e7eb]"
               />
-
             </div>
-
           </div>
-
         </div>
-
       </section>
 
       <div className="divider"></div>
