@@ -209,9 +209,7 @@ const scrollRight = () => {
 
       ];
 
-      const displayServices = discoverServices?.services?.length
-        ? discoverServices.services.map((s, i) => ({ ...s, icon: resolveImage(s.icon) || [seoIcon, socialIcon, ppcIcon, webIcon, contentIcon, ormIcon][i % 6] }))
-        : services;
+      const displayServices = services;
 
 
    const industries = [
@@ -489,93 +487,70 @@ const displayFaq = faqSection?.items?.length ? faqSection.items : faqData;
 </section>
 
 
- <section className="discover-services">
+  <section className="w-full py-24 px-5 bg-[#f4f4f5] text-center border-b border-[#e5e7eb]">
+    <div className="max-w-[1200px] mx-auto px-5">
+      <div className="w-[60px] h-[4px] bg-[#e31e24] mx-auto mb-[25px] rounded-[10px] max-[769px]:w-[50px] max-[769px]:mb-[20px]"></div>
 
-  <div className="discover-container">
+      <h2 className="text-[48px] max-[993px]:text-[38px] max-[769px]:text-[30px] leading-[1.1] text-[#1c1c1e] mb-[25px] font-heading font-extrabold uppercase">
+        {discoverServices?.heading || "Google Shopping Ads Services"}
+      </h2>
 
-    <div className="divider"></div>
-
-    <h2>
-{discoverServices?.heading || "Google Shopping Ads Services"}
-    </h2>
-
-    <p>
-{discoverServices?.paragraph || "At Digicore Inc., we provide tailored strategies related to Google shopping ads management services to increase conversions and maximize ROI. Our campaign management experts focus on boosting the product visibility, drive high-intent buyers and attract qualified users to your ecommerce store. Our methodology includes bid management, consistent performance tracking, product feed optimization and campaign setup. We target the right shoppers through our strategically planned ads management."}
-    </p>
-
-  </div>
-
-  <div className="services-cards">
-
-    <div className="services-grid">
-
-      {displayServices.map((service, index) => (
-
-       <div
-  key={service.id || index}
-  className="services-card"
->
-
-          {/* KEEP YOUR EXISTING ICON */}
-          <div className="service-icon">
-            <img
-              src={service.icon}
-              alt={service.title}
-            />
-          </div>
-
-          <h3>{service.title}</h3>
-
-          <p>{service.description}</p>
-
-          <div className="service-arrow">
-            →
-          </div>
-
-        </div>
-
-      ))}
-
+      <p className="text-[17px] leading-[1.8] text-[#4b5563] max-w-[850px] mx-auto mb-6">
+        {discoverServices?.paragraph || "At Digicore Inc., we provide tailored strategies related to Google shopping ads management services to increase conversions and maximize ROI. Our campaign management experts focus on boosting the product visibility, drive high-intent buyers and attract qualified users to your ecommerce store. Our methodology includes bid management, consistent performance tracking, product feed optimization and campaign setup. We target the right shoppers through our strategically planned ads management."}
+      </p>
     </div>
 
+  <div className="max-w-[1200px] mx-auto px-5 mt-16">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {displayServices.map((service, index) => (
+        <ServiceCard
+          key={service.id || index}
+          icon={service.icon}
+          title={service.title}
+          description={service.description}
+        />
+      ))}
+    </div>
   </div>
 
 </section>
 
- <section className="why-choose-sec"   style={{
-    backgroundImage: `url(${ctaSection?.backgroundImage ? resolveImage(ctaSection.backgroundImage) : bgIcon})`,
-    backgroundSize: "100% 100%",
-    backgroundPosition: "center",
-    backgroundRepeat: "no-repeat",
-  }}>
-
-        <div className="div-content">
-
-          <h1>
-          {ctaSection?.heading || "Ready for More Traffic, Leads & Sales? Start SEO Now."}
+      <section
+        className="relative py-[100px] px-5 bg-[#1c1c1e] text-center min-h-[300px] flex items-center justify-center overflow-hidden"
+        style={{
+          backgroundImage: `linear-gradient(rgba(28, 28, 30, 0.9), rgba(28, 28, 30, 0.95)), url(${ctaSection?.backgroundImage ? resolveImage(ctaSection.backgroundImage) : bgIcon})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+        }}
+      >
+        <div className="absolute inset-0 bg-gradient-to-br from-[#8b0000]/10 to-transparent pointer-events-none"></div>
+        <div className="relative z-10 text-center max-w-[1000px] mx-auto">
+          <h1 className="text-white text-[42px] max-[769px]:text-[30px] font-heading font-extrabold leading-[1.2] mb-[40px] uppercase">
+            {ctaSection?.heading || "Ready for More Traffic, Leads & Sales? Start SEO Now."}
           </h1>
 
-          <div className="choose-btns">
-
-            <a href={ctaSection?.whatsappLink || "#"} className="light-btn">
-
+          <div className="flex justify-center items-center gap-5 max-[769px]:flex-col">
+            <a
+              href={ctaSection?.whatsappLink || "#"}
+              className="flex items-center justify-center gap-[10px] bg-white hover:bg-[#f0fdf4] hover:scale-[1.03] transition-all duration-300 text-[#22c55e] h-12 px-7 rounded-lg text-base font-bold no-underline shadow-[0_4px_15px_rgba(34,197,94,0.16)] border border-[#22c55e]/25"
+            >
               <img
-                src={ctaSection?.whatsappIcon ? resolveImage(ctaSection.whatsappIcon) : "https://tataresearch.besthr.in/digital-marketar/assets/icon/whatsapp.png"}
+                src="https://tataresearch.besthr.in/digital-marketar/assets/icon/whatsapp.png"
                 alt="whatsapp"
+                className="w-[20px] h-[20px] rounded-full bg-[#22c55e] p-[3px] object-contain"
               />
-
               {ctaSection?.whatsappText || "+91 98188 88064"}
-
             </a>
 
-            <a href={ctaSection?.callbackBtnLink || "#"} className="light-btn">
+            <a
+              href={ctaSection?.callbackBtnLink || "#"}
+              className="flex items-center justify-center gap-[10px] bg-transparent hover:bg-white/10 hover:scale-[1.03] transition-all duration-300 text-white h-12 px-7 rounded-lg text-base font-bold no-underline border border-white"
+            >
               {ctaSection?.callbackBtnText || "REQUEST A CALLBACK"}
             </a>
-
           </div>
-
         </div>
-
       </section>
       <section className="impact-sec" style={{ backgroundColor: "#fff" }}>
 
@@ -782,11 +757,40 @@ Out Turn:</h3>
   </div>
 </section>
 
- <div className="divider"></div>
- <div>
+  {/* Dominate Section */}
+  <section className="w-full py-24 px-5 bg-[#f4f4f5] border-b border-[#e5e7eb] text-center">
+    <div className="max-w-[1200px] mx-auto">
+      <div className="w-[60px] h-[4px] bg-[#e31e24] mx-auto mb-[25px] rounded-[10px]"></div>
 
-  
-  <TestimonialSection />
+      <h2 className="text-center text-[48px] max-[993px]:text-[38px] max-[769px]:text-[30px] font-heading font-extrabold text-[#1c1c1e] mb-[15px] uppercase">
+        How Can We Help You Grow
+      </h2>
+
+      <p className="text-center text-[17px] leading-[1.8] text-[#4b5563] max-w-[900px] mx-auto mb-16">
+        We provide tailored Google Shopping Ads solutions to help businesses maximize brand exposure, drive high-intent buyer traffic, and scale digital campaigns efficiently.
+      </p>
+    </div>
+
+    <div className="flex justify-center gap-10 flex-wrap mt-[30px]">
+      {helpCards.map((item, index) => (
+        <div
+          className="group w-[260px] h-[260px] max-[769px]:w-[220px] max-[769px]:h-[220px] rounded-full bg-white border border-[#e5e7eb] flex flex-col items-center justify-center text-center p-6 box-border relative overflow-hidden cursor-pointer shadow-sm transition-all duration-300 hover:bg-[#e31e24] hover:border-[#e31e24] hover:shadow-[0_12px_25px_rgba(227,30,36,0.25)] hover:-translate-y-1.5"
+          key={index}
+        >
+          <div className="relative z-[2] w-12 h-12 mb-4 flex items-center justify-center transition-colors duration-300">
+            <img src={item.icon} alt={item.title} className="w-full h-full object-contain filter group-hover:brightness-0 group-hover:invert transition-all duration-300" />
+          </div>
+
+          <h3 className="relative z-[2] text-[18px] max-[769px]:text-[15px] font-heading font-bold text-[#2b2b2e] leading-tight m-0 transition-colors duration-300 group-hover:text-white group-hover:mb-[10px]">{item.title}</h3>
+
+          <p className="relative z-[2] mt-0 text-[12px] leading-[1.5] text-white opacity-0 max-h-0 overflow-hidden transition-all duration-300 group-hover:opacity-90 group-hover:max-h-[120px]">{item.desc}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <div>
+    <TestimonialSection />
 
 
  </div>

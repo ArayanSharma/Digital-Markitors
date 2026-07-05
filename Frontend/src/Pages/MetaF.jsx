@@ -434,53 +434,42 @@ const displayFaq = faqSection?.faqItems?.length ? faqSection.faqItems : faqData;
         </div>
       </section>
 
- <section className="why-choose-sec"   style={{
-    backgroundImage: `url(${whyChooseSection?.backgroundImageUrl ? resolveImage(whyChooseSection.backgroundImageUrl) : bgIcon})`,
-    backgroundSize: "100% 100%",
-    backgroundPosition: "center",
-    backgroundRepeat: "no-repeat",
-  }}>
-
-        <div className="div-content">
-
-          <h1>
-          {whyChooseSection?.title || "Ready for More Traffic, Leads & Sales? Start SEO Now."}
+      <section
+        className="relative py-[100px] px-5 bg-[#1c1c1e] text-center min-h-[300px] flex items-center justify-center overflow-hidden"
+        style={{
+          backgroundImage: `linear-gradient(rgba(28, 28, 30, 0.9), rgba(28, 28, 30, 0.95)), url(${whyChooseSection?.backgroundImageUrl ? resolveImage(whyChooseSection.backgroundImageUrl) : bgIcon})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+        }}
+      >
+        <div className="absolute inset-0 bg-gradient-to-br from-[#8b0000]/10 to-transparent pointer-events-none"></div>
+        <div className="relative z-10 text-center max-w-[1000px] mx-auto">
+          <h1 className="text-white text-[42px] max-[769px]:text-[30px] font-heading font-extrabold leading-[1.2] mb-[40px] uppercase">
+            {whyChooseSection?.title || "Ready for More Traffic, Leads & Sales? Start SEO Now."}
           </h1>
 
-          <div className="choose-btns">
+          <div className="flex justify-center items-center gap-5 max-[769px]:flex-col">
+            <a
+              href={whyChooseSection?.buttons?.[0]?.link || "https://wa.me/919818888064"}
+              className="flex items-center justify-center gap-[10px] bg-white hover:bg-[#f0fdf4] hover:scale-[1.03] transition-all duration-300 text-[#22c55e] h-12 px-7 rounded-lg text-base font-bold no-underline shadow-[0_4px_15px_rgba(34,197,94,0.16)] border border-[#22c55e]/25"
+            >
+              <img
+                src="https://tataresearch.besthr.in/digital-marketar/assets/icon/whatsapp.png"
+                alt="whatsapp"
+                className="w-[20px] h-[20px] rounded-full bg-[#22c55e] p-[3px] object-contain"
+              />
+              {whyChooseSection?.buttons?.[0]?.text || "+91 98188 88064"}
+            </a>
 
-            {whyChooseSection?.buttons?.length ? (
-              whyChooseSection.buttons.map((btn, i) => (
-                <a href={btn.link || "#"} className="light-btn" key={btn.id || i}>
-                  {btn.iconUrl && (
-                    <img src={resolveImage(btn.iconUrl)} alt="icon" />
-                  )}
-                  {btn.text}
-                </a>
-              ))
-            ) : (
-              <>
-                <a href="#" className="light-btn">
-
-                  <img
-                    src="https://tataresearch.besthr.in/digital-marketar/assets/icon/whatsapp.png"
-                    alt="whatsapp"
-                  />
-
-                  +91 98188 88064
-
-                </a>
-
-                <a href="#" className="light-btn">
-                  REQUEST A CALLBACK
-                </a>
-              </>
-            )}
-
+            <a
+              href={whyChooseSection?.buttons?.[1]?.link || "#"}
+              className="flex items-center justify-center gap-[10px] bg-transparent hover:bg-white/10 hover:scale-[1.03] transition-all duration-300 text-white h-12 px-7 rounded-lg text-base font-bold no-underline border border-white"
+            >
+              {whyChooseSection?.buttons?.[1]?.text || "REQUEST A CALLBACK"}
+            </a>
           </div>
-
         </div>
-
       </section>
       <section className="impact-sec" style={{ backgroundColor: "#fff" }}>
 

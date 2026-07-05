@@ -316,7 +316,7 @@ const Home = () => {
       {/* HERO SECTION */}
       <Banner
         subtitle={pageData?.hero?.subtitle || pageData?.hero?.heading}
-        heading={pageData?.hero?.heading}
+        
         title={pageData?.hero?.title || "B2B SEO Agency That Drives Traffic, Trust, and Conversions"}
         description={pageData?.hero?.description || "To address the challenges of B2B SEO, it is ideal to partner with the trusted digital marketing agency. In order to incorporate AI-driven SEO practices, improve visibility in the digital landscape, the B2B SEO agency helps clients in attracting qualified leads. At Digicore Inc., we provide tailored experience of marketing to our clients by applying the expertise and new-age SEO practices."}
         primaryBtnText={pageData?.hero?.primaryBtn?.text || "Speak to an SEO Expert"}

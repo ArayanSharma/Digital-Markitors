@@ -294,8 +294,8 @@ const Reseller = () => {
     : benefits;
   const servicesSection = pc?.servicesSection;
   const displayServices = pc?.services?.length
-    ? pc.services.map((s) => ({ ...s, image: resolveImage(s.image) }))
-    : services;
+    ? pc.services.map((s) => ({ ...s, icon: resolveImage(s.icon || s.image), description: s.description || s.desc }))
+    : services.map((s) => ({ ...s, icon: s.image, description: s.desc }));
   const dmBanner = pc?.dmBanner;
   const seoTeam = pc?.seoTeam;
   const solutionsSection = pc?.solutionsSection;
@@ -434,11 +434,11 @@ const Reseller = () => {
       {/* Reseller Section */}
       <section className="w-full py-24 px-5 bg-[#f4f4f5] border-t border-[#e5e7eb]">
         <div className="max-w-[1200px] mx-auto">
-          <div className="w-[60px] h-[4px] bg-[#e31e24] mx-auto mb-[25px] rounded-[10px]"></div>
-
-          <h2 className="text-center text-[36px] max-[769px]:text-[28px] font-heading font-extrabold text-[#1c1c1e] mb-10 leading-tight">
+          <h2 className="text-center text-[36px] max-[769px]:text-[28px] font-heading font-extrabold text-[#1c1c1e] mb-[15px] leading-tight">
             {resellerSection?.heading || "How Can We Help You Expand Your Business With Our SEO Reseller Services?"}
           </h2>
+
+          <div className="w-[70px] h-[4px] bg-[#e31e24] mx-auto mb-[30px] rounded-[20px]"></div>
 
           <div className="text-[16px] leading-[1.8] text-[#4b5563] space-y-6 max-w-[950px] mx-auto mb-16">
             {resellerSection?.paragraphs?.length ? (
@@ -458,24 +458,24 @@ const Reseller = () => {
                 </p>
               </>
             )}
+          </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 pt-10">
-              {displayBenefits.map((item, index) => (
-                <div
-                  key={index}
-                  className={`group flex flex-col items-center justify-center p-6 bg-white rounded-2xl border border-slate-200 shadow-[0_4px_15px_rgba(0,0,0,0.02)] transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_15px_30px_rgba(227,30,36,0.12)] hover:border-[#e31e24]/20 ${
-                    item.active ? "border-[#e31e24]/30 shadow-[0_10px_25px_rgba(227,30,36,0.08)]" : ""
-                  }`}
-                >
-                  <div className="text-[#e31e24] text-3xl mb-4 group-hover:scale-110 transition-transform duration-300">
-                    {item.icon}
-                  </div>
-                  <h4 className="text-center font-bold text-slate-800 text-[14px] leading-tight">
-                    {item.title}
-                  </h4>
+          <div className="flex justify-center gap-6 flex-wrap pt-4 max-w-[1100px] mx-auto">
+            {displayBenefits.map((item, index) => (
+              <div
+                key={index}
+                className={`group w-[190px] h-[190px] rounded-full bg-white border border-slate-200 flex flex-col items-center justify-center text-center p-4 box-border relative overflow-hidden cursor-pointer shadow-[0_4px_15px_rgba(0,0,0,0.02)] transition-all duration-300 hover:bg-[#e31e24] hover:border-[#e31e24] hover:shadow-[0_12px_25px_rgba(227,30,36,0.25)] hover:-translate-y-1.5 ${
+                  item.active ? "border-[#e31e24]/30 shadow-[0_10px_25px_rgba(227,30,36,0.08)]" : ""
+                }`}
+              >
+                <div className="relative z-[2] text-[#e31e24] text-3xl mb-3 group-hover:text-white group-hover:scale-110 transition-all duration-300">
+                  {item.icon}
                 </div>
-              ))}
-            </div>
+                <h4 className="relative z-[2] text-center font-bold text-slate-800 text-[14px] leading-tight m-0 transition-colors duration-300 group-hover:text-white">
+                  {item.title}
+                </h4>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -973,7 +973,7 @@ const Reseller = () => {
 
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 items-center justify-items-center opacity-60 hover:opacity-100 transition-opacity duration-300">
             {displayBrands.map((brand, index) => (
-              <div className="h-12 flex items-center justify-center" key={index}>
+              <div className="h-20 flex items-center justify-center" key={index}>
                 <img src={brand} alt={`brand-${index + 1}`} className="max-h-full max-w-full object-contain filter grayscale hover:grayscale-0 transition-all duration-300" />
               </div>
             ))}
