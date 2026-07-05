@@ -10,7 +10,6 @@ import {
   BarChart3,
   MessageSquareText,
   HelpCircle,
-  Megaphone,
   Search as SearchIcon,
   ChevronLeft,
   ChevronRight,
@@ -73,7 +72,6 @@ const TABS = [
   { value: "statistics", label: "Statistics", icon: BarChart3 },
   { value: "testimonials", label: "Testimonials", icon: MessageSquareText },
   { value: "faq", label: "FAQ", icon: HelpCircle },
-  { value: "cta", label: "CTA", icon: Megaphone },
   { value: "seo", label: "SEO", icon: SearchIcon },
 ];
 
@@ -177,11 +175,13 @@ export default function AdAndroidandIso() {
     title: "",
     description: "",
     heroImage: "",
+    heroImage2: "",
     backgroundImage: "",
     primaryBtn: { text: "", link: "" },
     secondaryBtn: { text: "", link: "" },
   });
 
+  const [servicesHeader, setServicesHeader] = useState({ heading: "", subheading: "" });
   const [services, setServices] = useState([]);
   const [serviceSearch, setServiceSearch] = useState("");
   const [serviceDragIndex, setServiceDragIndex] = useState(null);
@@ -205,19 +205,11 @@ export default function AdAndroidandIso() {
   const [testimonials, setTestimonials] = useState([]);
   const [faq, setFaq] = useState([]);
 
-  const [cta, setCta] = useState({
-    heading: "",
-    description: "",
-    primaryBtn: { text: "", link: "" },
-    secondaryBtn: { text: "", link: "" },
-    backgroundImage: "",
-  });
-
   const [seo, setSeo] = useState({ metaTitle: "", metaDescription: "", keywords: "", ogImage: "" });
 
   /* ---------- Services ---------- */
   const addService = () =>
-    setServices([...services, { id: uid(), icon: SERVICE_ICON_OPTIONS[0], title: "", description: "", featured: false, visible: true }]);
+    setServices([...services, { id: uid(), icon: SERVICE_ICON_OPTIONS[0], iconImage: "", title: "", description: "", featured: false, visible: true }]);
   const updateService = (id, field, value) => setServices(services.map((s) => (s.id === id ? { ...s, [field]: value } : s)));
   const removeService = (id, title) => {
     if (!window.confirm(`Remove "${title || "this service"}"?`)) return;
@@ -315,6 +307,7 @@ export default function AdAndroidandIso() {
     }
     if (data) {
       if (data.hero) setHero((prev) => ({ ...prev, ...data.hero }));
+      if (data.servicesHeader) setServicesHeader((prev) => ({ ...prev, ...data.servicesHeader }));
       if (data.services) setServices(data.services);
       if (data.technologies) setTechnologies(data.technologies);
       if (data.process) setProcess(data.process);
@@ -322,7 +315,6 @@ export default function AdAndroidandIso() {
       if (data.statistics) setStatistics((prev) => ({ ...prev, ...data.statistics }));
       if (data.testimonials) setTestimonials(data.testimonials);
       if (data.faq) setFaq(data.faq);
-      if (data.cta) setCta((prev) => ({ ...prev, ...data.cta }));
       if (data.seo) setSeo((prev) => ({ ...prev, ...data.seo }));
     }
     setLoading(false);
@@ -336,7 +328,7 @@ export default function AdAndroidandIso() {
 
   const handleSave = async (e) => {
     e?.preventDefault();
-    const payload = { hero, services, technologies, process, projects, statistics, testimonials, faq, cta, seo };
+    const payload = { hero, servicesHeader, services, technologies, process, projects, statistics, testimonials, faq, seo };
     setStatus("saving");
     try {
       await savePageContent(PAGE_SLUG, payload);
@@ -394,6 +386,7 @@ export default function AdAndroidandIso() {
                 <ButtonFields label="Primary Button" value={hero.primaryBtn} onChange={(v) => setHero({ ...hero, primaryBtn: v })} />
                 <ButtonFields label="Secondary Button" value={hero.secondaryBtn} onChange={(v) => setHero({ ...hero, secondaryBtn: v })} />
                 <ImageInput label="Hero Image (shown inside phone mockup)" value={hero.heroImage} onChange={(e) => setHero({ ...hero, heroImage: e.target.value })} />
+                <ImageInput label="Hero Image 2 (shown inside phone mockup)" value={hero.heroImage2} onChange={(e) => setHero({ ...hero, heroImage2: e.target.value })} />
                 <ImageInput label="Background Image (optional overlay)" value={hero.backgroundImage} onChange={(e) => setHero({ ...hero, backgroundImage: e.target.value })} />
               </TabPanel>
             </TabsContent>
@@ -402,6 +395,20 @@ export default function AdAndroidandIso() {
             <TabsContent value="services">
               <TabPanel>
                 <TabSectionHeader icon={Boxes} title="Services" description="The mobile app services grid shown on the public page." />
+                <Field label="Section Heading">
+                  <TextInput
+                    value={servicesHeader.heading}
+                    onChange={(e) => setServicesHeader({ ...servicesHeader, heading: e.target.value })}
+                    placeholder="Everything Your Mobile Product Needs"
+                  />
+                </Field>
+                <Field label="Section Subheading">
+                  <TextInput
+                    value={servicesHeader.subheading}
+                    onChange={(e) => setServicesHeader({ ...servicesHeader, subheading: e.target.value })}
+                    placeholder="From first sketch to store listing — a full-cycle mobile engineering team under one roof."
+                  />
+                </Field>
                 <ListHeader title="Service Cards" count={services.length} onAdd={addService} addLabel="Add Service" />
                 <SearchBox value={serviceSearch} onChange={setServiceSearch} placeholder="Search services by title..." />
 
@@ -435,6 +442,12 @@ export default function AdAndroidandIso() {
                             <TextInput value={service.title} onChange={(e) => updateService(service.id, "title", e.target.value)} placeholder="e.g. Native Android Development" />
                           </Field>
                         </div>
+
+                        <ImageInput
+                          label="Custom Icon Image (optional, overrides preset icon)"
+                          value={service.iconImage}
+                          onChange={(e) => updateService(service.id, "iconImage", e.target.value)}
+                        />
 
                         <Field label="Description">
                           <TextArea rows={2} value={service.description} onChange={(e) => updateService(service.id, "description", e.target.value)} />
@@ -674,22 +687,6 @@ export default function AdAndroidandIso() {
                     ))}
                   </div>
                 )}
-              </TabPanel>
-            </TabsContent>
-
-            {/* ================= CTA ================= */}
-            <TabsContent value="cta">
-              <TabPanel>
-                <TabSectionHeader icon={Megaphone} title="Call To Action" description="The gradient CTA banner shown before the footer." />
-                <Field label="Heading" full>
-                  <TextInput value={cta.heading} onChange={(e) => setCta({ ...cta, heading: e.target.value })} />
-                </Field>
-                <Field label="Description" full>
-                  <TextArea rows={3} value={cta.description} onChange={(e) => setCta({ ...cta, description: e.target.value })} />
-                </Field>
-                <ButtonFields label="Primary Button" value={cta.primaryBtn} onChange={(v) => setCta({ ...cta, primaryBtn: v })} />
-                <ButtonFields label="Secondary Button" value={cta.secondaryBtn} onChange={(v) => setCta({ ...cta, secondaryBtn: v })} />
-                <ImageInput label="Background Image" value={cta.backgroundImage} onChange={(e) => setCta({ ...cta, backgroundImage: e.target.value })} />
               </TabPanel>
             </TabsContent>
 

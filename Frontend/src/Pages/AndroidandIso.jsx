@@ -15,7 +15,6 @@ import IndustriesSection from "../Components/MobileApp/IndustriesSection";
 import ProjectsShowcase from "../Components/MobileApp/ProjectsShowcase";
 import MobileTestimonials from "../Components/MobileApp/MobileTestimonials";
 import MobileFAQ from "../Components/MobileApp/MobileFAQ";
-import CTASection from "../Components/MobileApp/CTASection";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -34,7 +33,13 @@ const defaultHero = {
   primaryBtn: { text: "Start Your App Project", link: "/contact" },
   secondaryBtn: { text: "View Mobile Portfolio", link: "#mobile-projects" },
   heroImage: "",
+  heroImage2: "",
   backgroundImage: "",
+};
+
+const defaultServicesHeader = {
+  heading: "Everything Your Mobile Product Needs",
+  subheading: "From first sketch to store listing — a full-cycle mobile engineering team under one roof.",
 };
 
 const defaultServices = [
@@ -162,14 +167,6 @@ const defaultFaq = [
   { id: "f6", question: "Do you provide maintenance after launch?", answer: "Every project includes an optional ongoing maintenance plan covering updates, monitoring, and support.", visible: true },
 ];
 
-const defaultCta = {
-  heading: "Ready to Launch Your Next Mobile App?",
-  description: "Let's turn your idea into a fast, secure, beautifully designed Android or iOS app with DigiCore.",
-  primaryBtn: { text: "Start Your Mobile Project", link: "/contact" },
-  secondaryBtn: { text: "Get Free Consultation", link: "/contact" },
-  backgroundImage: "",
-};
-
 const defaultSeo = {
   metaTitle: "Android & iOS App Development Services | DigiCore",
   metaDescription:
@@ -187,6 +184,10 @@ export default function AndroidandIso() {
   const rootRef = useRef(null);
 
   const hero = { ...defaultHero, ...(c?.hero || {}) };
+  const servicesHeader = {
+    heading: c?.servicesHeader?.heading || defaultServicesHeader.heading,
+    subheading: c?.servicesHeader?.subheading || defaultServicesHeader.subheading,
+  };
   const services = (c?.services?.length ? c.services : defaultServices).filter((s) => s.visible !== false);
   const technologies = (c?.technologies?.length ? c.technologies : defaultTechnologies).filter((t) => t.visible !== false);
   const processSteps = c?.process?.length ? c.process : defaultProcess;
@@ -199,7 +200,6 @@ export default function AndroidandIso() {
   };
   const testimonials = (c?.testimonials?.length ? c.testimonials : defaultTestimonials).filter((t) => t.visible !== false);
   const faqs = (c?.faq?.length ? c.faq : defaultFaq).filter((f) => f.visible !== false);
-  const cta = { ...defaultCta, ...(c?.cta || {}) };
   const seo = { ...defaultSeo, ...(c?.seo || {}) };
 
   /* SEO tags */
@@ -267,7 +267,7 @@ export default function AndroidandIso() {
 
       <PlatformsSection />
 
-      <ServicesSection services={services} />
+      <ServicesSection services={services} heading={servicesHeader.heading} subheading={servicesHeader.subheading} />
 
       <div id="mobile-process">
         <DevelopmentProcess steps={processSteps} />

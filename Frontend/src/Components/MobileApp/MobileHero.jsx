@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
-import { Bell, ShieldCheck, Zap, ArrowRight, PlayCircle, Star } from "lucide-react";
+import { Bell, ShieldCheck, Zap, ArrowRight, PlayCircle } from "lucide-react";
 import { FaAndroid, FaApple } from "react-icons/fa";
 import {
   SiKotlin,
@@ -118,23 +118,6 @@ export default function MobileHero({ hero }) {
             </RippleButton>
           </div>
 
-          <div className="mp-hero-fade flex items-center gap-4 mt-10">
-            <div className="flex -space-x-3">
-              {["bg-[#e31e24]", "bg-amber-500", "bg-slate-700"].map((c, i) => (
-                <div key={i} className={`w-9 h-9 rounded-full ${c} border-2 border-[#f4f4f5] flex items-center justify-center text-[10px] font-bold text-white`}>
-                  {["JD", "AK", "ML"][i]}
-                </div>
-              ))}
-            </div>
-            <div>
-              <div className="flex items-center gap-1">
-                {Array.from({ length: 5 }).map((_, i) => (
-                  <Star key={i} size={13} className="fill-amber-400 text-amber-400" />
-                ))}
-              </div>
-              <p className="text-xs text-[#4b5563] mt-0.5">Trusted by 80+ founders worldwide</p>
-            </div>
-          </div>
         </div>
 
         {/* Right: device scene */}
@@ -162,7 +145,7 @@ export default function MobileHero({ hero }) {
           </div>
 
           <div ref={phoneARef} className="mp-hero-phone-a absolute left-2 md:left-8 bottom-0 w-[185px] h-[370px] z-10 mp-phone-wobble">
-            <PhoneMockup os="android" className="w-full h-full">
+            <PhoneMockup os="android" image={hero.heroImage2} className="w-full h-full">
               <AppScreenSkeleton tone="slate" />
             </PhoneMockup>
           </div>

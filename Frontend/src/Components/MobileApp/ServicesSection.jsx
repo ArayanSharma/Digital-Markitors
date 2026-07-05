@@ -1,14 +1,19 @@
 import { ArrowUpRight } from "lucide-react";
 import { SERVICE_ICON_MAP } from "./iconMaps";
 import { SectionKicker } from "./shared";
+import { resolveImage } from "../../hooks/usePageContent";
 
-export default function ServicesSection({ services }) {
+export default function ServicesSection({
+  services,
+  heading = "Everything Your Mobile Product Needs",
+  subheading = "From first sketch to store listing — a full-cycle mobile engineering team under one roof.",
+}) {
   return (
     <section className="container-custom py-24 md:py-28">
       <SectionKicker
         eyebrow="App Development Services"
-        title="Everything Your Mobile Product Needs"
-        description="From first sketch to store listing — a full-cycle mobile engineering team under one roof."
+        title={heading}
+        description={subheading}
       />
 
       <div className="mp-stagger-group grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 auto-rows-[minmax(0,1fr)]">
@@ -32,10 +37,14 @@ export default function ServicesSection({ services }) {
                 </span>
               )}
               <div
-                className="relative w-[3.25rem] h-[3.25rem] rounded-2xl flex items-center justify-center mb-5 transition-transform duration-300 group-hover:scale-110 group-hover:-rotate-6"
-                style={{ background: `${meta.color}18` }}
+                className="relative w-[3.25rem] h-[3.25rem] rounded-2xl flex items-center justify-center mb-5 transition-transform duration-300 group-hover:scale-110 group-hover:-rotate-6 overflow-hidden"
+                style={{ background: service.iconImage ? undefined : `${meta.color}18` }}
               >
-                <Icon size={24} color={meta.color} />
+                {service.iconImage ? (
+                  <img src={resolveImage(service.iconImage)} alt="" className="w-full h-full object-cover" />
+                ) : (
+                  <Icon size={24} color={meta.color} />
+                )}
               </div>
               <h3 className="relative font-bold text-slate-900 text-lg">{service.title}</h3>
               <p className="relative text-sm text-slate-500 mt-2 leading-relaxed flex-1">{service.description}</p>

@@ -274,6 +274,8 @@ export default function HomeAdminForm() {
               <TextArea value={hero.description} onChange={(e) => setHero({ ...hero, description: e.target.value })} />
             </Field>
             <ImageInput label="Background Image" value={hero.backgroundImage} onChange={(e) => setHero({ ...hero, backgroundImage: e.target.value })} />
+            <ButtonFields label="Primary Button" value={hero.primaryBtn} onChange={(v) => setHero({ ...hero, primaryBtn: v })} />
+            <ButtonFields label="Secondary Button" value={hero.secondaryBtn} onChange={(v) => setHero({ ...hero, secondaryBtn: v })} />
           </Section>
 
           <Section title="2. About Section" open={openSection === "about"} onToggle={() => toggle("about")}>
