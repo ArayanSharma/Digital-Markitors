@@ -29,6 +29,7 @@ export default function AdSeoResult() {
         title: "Turning Visibility into Growth. Turning Brands into Market Leaders",
         description:
             "We are Digicore Inc – The Best SEO Company in Kanpur NCR. SEO runs in our DNA. We deliver powerful, sustainable organic traffic, relevant leads by choosing high intent commercial keywords for your business.",
+        backgroundImage: "",
         image: "",
         primaryBtn: { text: "Speak to Our Experts", link: "/contact" },
         secondaryBtn: { text: "Our Services", link: "/seo-results" },
@@ -234,7 +235,7 @@ export default function AdSeoResult() {
                     <Field label="Description">
                         <TextArea rows={5} value={hero.description} onChange={(e) => setHero({ ...hero, description: e.target.value })} />
                     </Field>
-                    <ImageInput label="Hero Image" value={hero.image} onChange={(e) => setHero({ ...hero, image: e.target.value })} />
+                    <ImageInput label="Hero Background Image" value={hero.backgroundImage} onChange={(e) => setHero({ ...hero, backgroundImage: e.target.value })} />
                     <ButtonFields label="Primary Button" value={hero.primaryBtn} onChange={(v) => setHero({ ...hero, primaryBtn: v })} />
                     <ButtonFields label="Secondary Button" value={hero.secondaryBtn} onChange={(v) => setHero({ ...hero, secondaryBtn: v })} />
                 </Section>

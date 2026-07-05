@@ -1,4 +1,4 @@
-import React, { useEffect, useState ,useRef} from "react";
+import React, { useEffect, useState, useRef } from "react";
 
 
 import Banner from "../Components/Cards/Seohero";
@@ -66,112 +66,112 @@ const B2B = () => {
   };
 
   const sliderRef = useRef(null);
-      const scrollLeft = () => {
-  const card = sliderRef.current.querySelector(".workindustry-card");
+  const scrollLeft = () => {
+    const card = sliderRef.current.querySelector(".workindustry-card");
 
-  if (card) {
-    const cardWidth = card.offsetWidth + 40;
-    sliderRef.current.scrollBy({
-      left: -(cardWidth * 3),
-      behavior: "smooth",
-    });
-  }
-};
+    if (card) {
+      const cardWidth = card.offsetWidth + 40;
+      sliderRef.current.scrollBy({
+        left: -(cardWidth * 3),
+        behavior: "smooth",
+      });
+    }
+  };
 
-const scrollRight = () => {
-  const card = sliderRef.current.querySelector(".workindustry-card");
+  const scrollRight = () => {
+    const card = sliderRef.current.querySelector(".workindustry-card");
 
-  if (card) {
-    const cardWidth = card.offsetWidth + 40; // 40 = gap
-    sliderRef.current.scrollBy({
-      left: cardWidth * 3,
-      behavior: "smooth",
-    });
-  }
-};
-
-
+    if (card) {
+      const cardWidth = card.offsetWidth + 40; // 40 = gap
+      sliderRef.current.scrollBy({
+        left: cardWidth * 3,
+        behavior: "smooth",
+      });
+    }
+  };
 
 
 
-    
-      useEffect(() => {
-    
-        let start = 0;
-    
-        const interval = setInterval(() => {
-    
-          start += 1;
-    
-          setCounts({
-            count1: start <= 50 ? start : 50,
-            count2: start <= 52 ? start : 52,
-            count3: start <= 61 ? start : 61,
-            count4: start <= 44 ? start : 44,
-          });
-    
-          if (start >= 61) {
-            clearInterval(interval);
-          }
-    
-        }, 30);
-    
-        return () => clearInterval(interval);
-    
-      }, []);
 
 
-      const services = [
-    
-        {
-          icon: seoIcon,
-          title: "SEO Audits",
-          description:
-            "The site health, performance, and structure are analyses to identify the scope of optimization & improvement.",
-        },
-    
-        {
-          icon: socialIcon,
-          title: "B2B SEO Strategy Development",
-          description:
-            "The long-term SEO plans of B2B businesses according to their objectives, complex sales funnels, and buyer personas are tailored.",
-        },
-    
-        {
-          icon: ppcIcon,
-          title: "Competitor Analysis",
-          description:
-            "The search visibility and content issues of competitors are analysed to formulate a strategic SEO plan",
-        },
-    
-        {
-          icon: webIcon,
-          title: "Keyword Research & Mapping",
-          description:
-            "The long-tail, high-intent, and industry-specific keywords used by decision-makers are identified.",
-        },
-    
-        {
-          icon: contentIcon,
-          title: "Content Optimization",
-          description:
-            "The SEO-friendly content of website is created or updated to improve relevance and rankings of the business.",
-        },
-    
-        {
-          icon: ormIcon,
-          title: "B2B Content Strategy & Creation",
-          description:
-            "A variety of content including whitepapers, blogs, guides, and case studies are created in accordance to buyer’s search intent.",
-        }
-      ];
+
+  useEffect(() => {
+
+    let start = 0;
+
+    const interval = setInterval(() => {
+
+      start += 1;
+
+      setCounts({
+        count1: start <= 50 ? start : 50,
+        count2: start <= 52 ? start : 52,
+        count3: start <= 61 ? start : 61,
+        count4: start <= 44 ? start : 44,
+      });
+
+      if (start >= 61) {
+        clearInterval(interval);
+      }
+
+    }, 30);
+
+    return () => clearInterval(interval);
+
+  }, []);
+
+
+  const services = [
+
+    {
+      icon: seoIcon,
+      title: "SEO Audits",
+      description:
+        "The site health, performance, and structure are analyses to identify the scope of optimization & improvement.",
+    },
+
+    {
+      icon: socialIcon,
+      title: "B2B SEO Strategy Development",
+      description:
+        "The long-term SEO plans of B2B businesses according to their objectives, complex sales funnels, and buyer personas are tailored.",
+    },
+
+    {
+      icon: ppcIcon,
+      title: "Competitor Analysis",
+      description:
+        "The search visibility and content issues of competitors are analysed to formulate a strategic SEO plan",
+    },
+
+    {
+      icon: webIcon,
+      title: "Keyword Research & Mapping",
+      description:
+        "The long-tail, high-intent, and industry-specific keywords used by decision-makers are identified.",
+    },
+
+    {
+      icon: contentIcon,
+      title: "Content Optimization",
+      description:
+        "The SEO-friendly content of website is created or updated to improve relevance and rankings of the business.",
+    },
+
+    {
+      icon: ormIcon,
+      title: "B2B Content Strategy & Creation",
+      description:
+        "A variety of content including whitepapers, blogs, guides, and case studies are created in accordance to buyer’s search intent.",
+    }
+  ];
 
   const displayServices = c?.services?.length
     ? c.services.map((s) => ({ ...s, icon: resolveImage(s.icon) }))
     : services;
 
 
-    const industries = [
+  const industries = [
 
     {
       icon: "⏱",
@@ -211,181 +211,181 @@ const scrollRight = () => {
 
   ];
 
- const helpCards = [
+  const helpCards = [
 
-  {
-    icon: Icon1,
-    title: "Get More Leads",
-    desc: "We ensure your business get more and more leads through our expertly managed digital marketing services",
-  },
+    {
+      icon: Icon1,
+      title: "Get More Leads",
+      desc: "We ensure your business get more and more leads through our expertly managed digital marketing services",
+    },
 
-  {
-    icon: Icon2 ,
-    title: "Make More Sales",
-    desc: "We help you convert maximum possible leads into sales and grow your business faster",
-  },
+    {
+      icon: Icon2,
+      title: "Make More Sales",
+      desc: "We help you convert maximum possible leads into sales and grow your business faster",
+    },
 
-  {
-    icon: Icon3 ,
-    title: "Build Brand Awareness",
-    desc: "We help your brand gain strong recognition across digital platforms globally",
-  },
+    {
+      icon: Icon3,
+      title: "Build Brand Awareness",
+      desc: "We help your brand gain strong recognition across digital platforms globally",
+    },
 
-  {
-    icon: Icon4,
-    title: "Upskill Your Team",
-    desc: "Improve your team capabilities with advanced marketing strategies and guidance",
-  },
+    {
+      icon: Icon4,
+      title: "Upskill Your Team",
+      desc: "Improve your team capabilities with advanced marketing strategies and guidance",
+    },
 
-];
+  ];
 
   const displayDominateCards = dominate?.cards?.length
     ? dominate.cards.map((card) => ({ ...card, icon: resolveImage(card.icon) }))
     : helpCards;
 
-const faqData = [
-  {
-    question: "How long will it take for my website to start ranking on Google?",
-    answer:
-      "The time a website to rank on Google varies between 3 – 6 months. The major components that affect your website ranking and timeline include, your industry competition, SEO efforts and content quality.",
-  },
-  {
-    question:
-      "How many keywords will you work on as part of my SEO campaign?",
-    answer:
-      "The number of keywords will depend on the type of your business, industry, market trends and your competitors. We choose ROI-driven and high-intent and commercial keywords for your site to attract high-quality traffic and convert it into lead. In addition, we keep on testing our keywords and optimize them according to the market scenario and Google trends so as to ensure your rankings on online platforms and visibility on social media handles stays consistently high.",
-  },
-  {
-    question:
-      "Do you offer monthly, quarterly, or custom SEO payment plans?",
-    answer:
-      "Yes, we have all sort of SEO payment plans. However, to understand our plans, you are advised to connect with us via email or phone. Our experts will first understand your business, digital marketing goals and challenges that you are facing to curate an appropriate payment plan according to your business needs and budget.",
-  },
-  {
-    question:
-      "What is the size of your in-house SEO and digital marketing team?",
-    answer:
-      "Our in-house SEO and digital marketing team comprises experienced professionals across strategy, content, social media, PPC, analytics, development and design, working hand-in-hand to deliver comprehensive digital solutions and help you achieve unforgettable outcomes.",
-  },
-  {
-    question:
-      "Which industries and types of clients do you primarily work with?",
-    answer:
-      "We work with diverse range of clients across industries, including education, finance, e-commerce, travel, B2B, B2B, and so on. We have a huge clientele across Pan India. We help both startups and already established brands elevate their online presence and achieve measurable results.",
-  },
-  {
-    question:
-      "Will my website be optimized to rank in AI-powered search platforms like ChatGPT and Google AI?",
-    answer:
-      "Yes, we utilize the most advanced tools and cutting-edge technology to ensure your website is optimized for AI-powered search platforms as well. Our team of experts will optimise your website for AI search like ChatGPT and Google AI by targeting high-intent customer queries and creating high-quality and high-authority content. Visit our site or connect with the AI First SEO team via email or phone for more details.",
-  },
-  {
-    question:
-      "Which is the best SEO agency in Delhi, and how do I choose the right one?",
-    answer:
-      "Digicore Inc. is a leading AI SEO agency in Delhi NCR with proven results. We offer comprehensive SEO marketing solutions to a diverse range of clients across industries. We utilize years of experience and cutting-edge tools and technology to help you achieve desired results. You can visit our site and go through our SEO case studies to know how we have helped our clients improve their digital presence and achieve ROI-driven results to make the right choice.",
+  const faqData = [
+    {
+      question: "How long will it take for my website to start ranking on Google?",
+      answer:
+        "The time a website to rank on Google varies between 3 – 6 months. The major components that affect your website ranking and timeline include, your industry competition, SEO efforts and content quality.",
     },
     {
-    question:
-      "Have you worked with clients from my industry before?",
-    answer:
-      "Yes, we have worked with clients from your industry and we are excited to serve you with our innovative digital marketing solutions to help you leave a lasting impression across all online platforms, including social media handles.",
-  },  
-  {
-    question:
-      "How do you share SEO performance reports and how frequently will I receive them?",
-    answer:
-      "We provide a bi-monthly SEO performance reports to help you track key metrics such as rankings, traffic, conversions and more. If you want, we can provide you report more frequently; however, we believe that a bi-monthly reporting system is more appropriate as you get enough insights to ponder on.",
-  }
-  ,{
-    question:
-      "Can you share real client case studies and past SEO results?",
-    answer:
-      "Yes, we can! Aside from that, you can also visit the SEO case studies section in our website to learn more about our existing and past clients’ experience with us.",
-  }
-    
-  ,{
-    question:
-      "Apart from SEO, what other digital marketing services do you provide?",
-    answer:
-      "We provide comprehensive digital marketing services, including SEO, SMM, PPC, Content Marketing, Performance Marketing, Website Design & Development, Online Reputation Marketing, Conversion Rate Optimisation, AEO+AIO+GEO, Display Advertising Services, Social Media Listing, Response Marketing and many more.",
-  }
-    
-  ,{
-    question:
-      "My website has a high spam score. How will you reduce and fix it?",
-    answer:
-      "Don’t worry about that. We will fix it! We will first conduct a thorough audit to identify the issues causing it, such as low-quality backlinks, thin content or technical SEO problems. After identifying the real cause, we will implement a comprehensive cleanup SEO strategy to eliminate the issue and restore your website’s credibility and improve its search engine trustworthiness.",
-  }
-    
-  ,{
-    question:
-      "I have been working with another SEO agency for over a year but my rankings haven’t improved. Can you fix this?",
-    answer:
-      "Well, we have no idea what strategies your previous SEO partner was using. But worry not! We will thoroughly audit your site and know what exactly is the reason for your site’s low ranking. After that, we would be in better position to tell you our exact course of action. But rest assured, Digicore Inc. is the best SEO company in Delhi. Our team of experts will help you achieve your digital marketing goals, including first page ranking & high-intent leads effortlessly. We will use the most advanced tools and technology to elevate your site’s ranking and drive measurable growth.",
-  }
-    
-  ,{
-    question:
-      "How much monthly traffic and how many leads can I realistically expect from SEO?",
-    answer:
-      "The monthly traffic and leads you can expect from SEO depend on various factors like your industry, competition, current website authority and the scope of SEO efforts. But you don’t need to worry. Our team of experts will craft specialized digital marketing strategies tailored to your brand to ensure increased targeted traffic and high-quality leads within 3-6 months.",
-  }
-    
-  ,{
-    question:
-      "If I stop SEO in the future, will my rankings remain stable?",
-    answer:
-      "Stopping in today’s scenario simply translates to falling behind fast. The moment you will stop implementing digital marketing strategies, your ranking will drop, let alone remaining stable. Digital marketing isn’t a one-time fix; it’s a continuous process of consistent effort and growth. With technological advancements and SEO evolution, your brand also evolves. If you will stop after a time being, you will lead to nowhere. Hence, you are advised to actively implement digital marketing effort to reap consistent outcomes. Partner with Digicore Inc. – the most reliable AI First SEO agency in Delhi to have stable ranking across platforms!",
-  }
-    
-  ,{
-    question:
-      "For how long will I need to continue SEO for my website to maintain results?",
-    answer:
-      "As said earlier, SEO is not a one-time fix; it is a continuous process. You need to keep implementing SEO strategies in order to maintain consisting results and stay ahead across online and social media platforms. With the best AI-first digital marketing company by your side you can ensure consistent online growth and robust outcomes!",
-  }
+      question:
+        "How many keywords will you work on as part of my SEO campaign?",
+      answer:
+        "The number of keywords will depend on the type of your business, industry, market trends and your competitors. We choose ROI-driven and high-intent and commercial keywords for your site to attract high-quality traffic and convert it into lead. In addition, we keep on testing our keywords and optimize them according to the market scenario and Google trends so as to ensure your rankings on online platforms and visibility on social media handles stays consistently high.",
+    },
+    {
+      question:
+        "Do you offer monthly, quarterly, or custom SEO payment plans?",
+      answer:
+        "Yes, we have all sort of SEO payment plans. However, to understand our plans, you are advised to connect with us via email or phone. Our experts will first understand your business, digital marketing goals and challenges that you are facing to curate an appropriate payment plan according to your business needs and budget.",
+    },
+    {
+      question:
+        "What is the size of your in-house SEO and digital marketing team?",
+      answer:
+        "Our in-house SEO and digital marketing team comprises experienced professionals across strategy, content, social media, PPC, analytics, development and design, working hand-in-hand to deliver comprehensive digital solutions and help you achieve unforgettable outcomes.",
+    },
+    {
+      question:
+        "Which industries and types of clients do you primarily work with?",
+      answer:
+        "We work with diverse range of clients across industries, including education, finance, e-commerce, travel, B2B, B2B, and so on. We have a huge clientele across Pan India. We help both startups and already established brands elevate their online presence and achieve measurable results.",
+    },
+    {
+      question:
+        "Will my website be optimized to rank in AI-powered search platforms like ChatGPT and Google AI?",
+      answer:
+        "Yes, we utilize the most advanced tools and cutting-edge technology to ensure your website is optimized for AI-powered search platforms as well. Our team of experts will optimise your website for AI search like ChatGPT and Google AI by targeting high-intent customer queries and creating high-quality and high-authority content. Visit our site or connect with the AI First SEO team via email or phone for more details.",
+    },
+    {
+      question:
+        "Which is the best SEO agency in Delhi, and how do I choose the right one?",
+      answer:
+        "Digicore Inc. is a leading AI SEO agency in Delhi NCR with proven results. We offer comprehensive SEO marketing solutions to a diverse range of clients across industries. We utilize years of experience and cutting-edge tools and technology to help you achieve desired results. You can visit our site and go through our SEO case studies to know how we have helped our clients improve their digital presence and achieve ROI-driven results to make the right choice.",
+    },
+    {
+      question:
+        "Have you worked with clients from my industry before?",
+      answer:
+        "Yes, we have worked with clients from your industry and we are excited to serve you with our innovative digital marketing solutions to help you leave a lasting impression across all online platforms, including social media handles.",
+    },
+    {
+      question:
+        "How do you share SEO performance reports and how frequently will I receive them?",
+      answer:
+        "We provide a bi-monthly SEO performance reports to help you track key metrics such as rankings, traffic, conversions and more. If you want, we can provide you report more frequently; however, we believe that a bi-monthly reporting system is more appropriate as you get enough insights to ponder on.",
+    }
+    , {
+      question:
+        "Can you share real client case studies and past SEO results?",
+      answer:
+        "Yes, we can! Aside from that, you can also visit the SEO case studies section in our website to learn more about our existing and past clients’ experience with us.",
+    }
 
-];
+    , {
+      question:
+        "Apart from SEO, what other digital marketing services do you provide?",
+      answer:
+        "We provide comprehensive digital marketing services, including SEO, SMM, PPC, Content Marketing, Performance Marketing, Website Design & Development, Online Reputation Marketing, Conversion Rate Optimisation, AEO+AIO+GEO, Display Advertising Services, Social Media Listing, Response Marketing and many more.",
+    }
+
+    , {
+      question:
+        "My website has a high spam score. How will you reduce and fix it?",
+      answer:
+        "Don’t worry about that. We will fix it! We will first conduct a thorough audit to identify the issues causing it, such as low-quality backlinks, thin content or technical SEO problems. After identifying the real cause, we will implement a comprehensive cleanup SEO strategy to eliminate the issue and restore your website’s credibility and improve its search engine trustworthiness.",
+    }
+
+    , {
+      question:
+        "I have been working with another SEO agency for over a year but my rankings haven’t improved. Can you fix this?",
+      answer:
+        "Well, we have no idea what strategies your previous SEO partner was using. But worry not! We will thoroughly audit your site and know what exactly is the reason for your site’s low ranking. After that, we would be in better position to tell you our exact course of action. But rest assured, Digicore Inc. is the best SEO company in Delhi. Our team of experts will help you achieve your digital marketing goals, including first page ranking & high-intent leads effortlessly. We will use the most advanced tools and technology to elevate your site’s ranking and drive measurable growth.",
+    }
+
+    , {
+      question:
+        "How much monthly traffic and how many leads can I realistically expect from SEO?",
+      answer:
+        "The monthly traffic and leads you can expect from SEO depend on various factors like your industry, competition, current website authority and the scope of SEO efforts. But you don’t need to worry. Our team of experts will craft specialized digital marketing strategies tailored to your brand to ensure increased targeted traffic and high-quality leads within 3-6 months.",
+    }
+
+    , {
+      question:
+        "If I stop SEO in the future, will my rankings remain stable?",
+      answer:
+        "Stopping in today’s scenario simply translates to falling behind fast. The moment you will stop implementing digital marketing strategies, your ranking will drop, let alone remaining stable. Digital marketing isn’t a one-time fix; it’s a continuous process of consistent effort and growth. With technological advancements and SEO evolution, your brand also evolves. If you will stop after a time being, you will lead to nowhere. Hence, you are advised to actively implement digital marketing effort to reap consistent outcomes. Partner with Digicore Inc. – the most reliable AI First SEO agency in Delhi to have stable ranking across platforms!",
+    }
+
+    , {
+      question:
+        "For how long will I need to continue SEO for my website to maintain results?",
+      answer:
+        "As said earlier, SEO is not a one-time fix; it is a continuous process. You need to keep implementing SEO strategies in order to maintain consisting results and stay ahead across online and social media platforms. With the best AI-first digital marketing company by your side you can ensure consistent online growth and robust outcomes!",
+    }
+
+  ];
 
   const displayFaqData = c?.faq?.length ? c.faq : faqData;
 
-const [currentCase, setCurrentCase] = useState(0);
+  const [currentCase, setCurrentCase] = useState(0);
 
-const nextCase = () => {
-  setCurrentCase((prev) =>
-    prev === displayCaseStudies.length - 1 ? 0 : prev + 1
-  );
-};
+  const nextCase = () => {
+    setCurrentCase((prev) =>
+      prev === displayCaseStudies.length - 1 ? 0 : prev + 1
+    );
+  };
 
-const prevCase = () => {
-  setCurrentCase((prev) =>
-    prev === 0 ? displayCaseStudies.length - 1 : prev - 1
-  );
-};
+  const prevCase = () => {
+    setCurrentCase((prev) =>
+      prev === 0 ? displayCaseStudies.length - 1 : prev - 1
+    );
+  };
 
-const caseStudies = [
-  {
-    title: "DHI International SEO Case Study: 190% Growth in Organic Traffic",
-    image: seocase,
-    descriptions: [
-   "When DHI International partnered with us, the objective was clear – strengthen organic visibility in a highly competitive healthcare segment and drive consistent, high-intent patient enquiries through search. The website faced multiple technical SEO challenges, limited page-one keyword presence, and underutilised organic demand. Our focus was on fixing SEO foundations, improving keyword rankings, and building long-term authority across non-branded healthcare searches. Through a structured SEO strategy, DHI International achieved strong growth in organic traffic, keyword rankings, and search visibility – transforming SEO into a reliable lead-generation channel." ]
-  },
+  const caseStudies = [
+    {
+      title: "DHI International SEO Case Study: 190% Growth in Organic Traffic",
+      image: seocase,
+      descriptions: [
+        "When DHI International partnered with us, the objective was clear – strengthen organic visibility in a highly competitive healthcare segment and drive consistent, high-intent patient enquiries through search. The website faced multiple technical SEO challenges, limited page-one keyword presence, and underutilised organic demand. Our focus was on fixing SEO foundations, improving keyword rankings, and building long-term authority across non-branded healthcare searches. Through a structured SEO strategy, DHI International achieved strong growth in organic traffic, keyword rankings, and search visibility – transforming SEO into a reliable lead-generation channel."]
+    },
 
-  {
-    title: "Rizaries SEO Case Study: 613% Growth in Organic Traffic",
-    image: seocase,
-    descriptions: [
-     "Rizaries is a Shopify-based home furnishings brand selling rugs, mats, and cushion covers. The objective was to increase organic traffic, improve keyword rankings, and scale SEO as a primary sales channel. At the start, organic visibility was limited and most keywords were ranking beyond the first page. We implemented a Shopify-focused SEO strategy to expand keyword coverage, strengthen collection and product page rankings, and capture high-intent non-branded searches. As a result, Rizaries saw a significant rise in organic traffic and page-one keyword dominance, helping organic search become a consistent revenue driver." ]
-  },
+    {
+      title: "Rizaries SEO Case Study: 613% Growth in Organic Traffic",
+      image: seocase,
+      descriptions: [
+        "Rizaries is a Shopify-based home furnishings brand selling rugs, mats, and cushion covers. The objective was to increase organic traffic, improve keyword rankings, and scale SEO as a primary sales channel. At the start, organic visibility was limited and most keywords were ranking beyond the first page. We implemented a Shopify-focused SEO strategy to expand keyword coverage, strengthen collection and product page rankings, and capture high-intent non-branded searches. As a result, Rizaries saw a significant rise in organic traffic and page-one keyword dominance, helping organic search become a consistent revenue driver."]
+    },
 
-  {
-    title: "Moti Mahal Delux SEO Case Study: 100% Keyword Visibility",
-    image: seocase,
-    descriptions: [
-     "When we started working on Moti Mahal Delux, none of the targeted franchise-related keywords were visible on Google. There were no dedicated SEO pages, limited content depth, and technical and on-page gaps restricting search visibility. Our team suggested new SEO-focused pages, created optimised content, fixed technical and on-page issues, and executed high-quality link building to strengthen authority. As a result, the website achieved 100% keyword visibility, with all targeted keywords now ranking on the first page of Google – most within the top 5 positions." ]
-  }
-];
+    {
+      title: "Moti Mahal Delux SEO Case Study: 100% Keyword Visibility",
+      image: seocase,
+      descriptions: [
+        "When we started working on Moti Mahal Delux, none of the targeted franchise-related keywords were visible on Google. There were no dedicated SEO pages, limited content depth, and technical and on-page gaps restricting search visibility. Our team suggested new SEO-focused pages, created optimised content, fixed technical and on-page issues, and executed high-quality link building to strengthen authority. As a result, the website achieved 100% keyword visibility, with all targeted keywords now ranking on the first page of Google – most within the top 5 positions."]
+    }
+  ];
 
   const displayCaseStudies = c?.caseStudies?.length
     ? c.caseStudies.map((s) => ({ ...s, image: resolveImage(s.image) }))
@@ -394,30 +394,30 @@ const caseStudies = [
   return (
     <>
 
-     <Banner
+      <Banner
 
-      title={hero?.title || "B2B SEO Agency That Drives Traffic, Trust, and Conversions"}
-      description={hero?.description || "To address the challenges of B2B SEO, it is ideal to partner with the trusted digital marketing agency. In order to incorporate AI-driven SEO practices, improve visibility in the digital landscape, the B2B SEO agency helps clients in attracting qualified leads. At Digicore Inc., we provide tailored experience of marketing to our clients by applying the expertise and new-age SEO practices."}
-      primaryBtnText={hero?.primaryBtn?.text || "Speak to an SEO Expert"}
-      secondaryBtnText={hero?.secondaryBtn?.text || "Our Services"}
-       backgroundImage={hero?.backgroundImage ? resolveImage(hero.backgroundImage) : eimage}
-    />
+        title={hero?.title || "B2B SEO Agency That Drives Traffic, Trust, and Conversions"}
+        description={hero?.description || "To address the challenges of B2B SEO, it is ideal to partner with the trusted digital marketing agency. In order to incorporate AI-driven SEO practices, improve visibility in the digital landscape, the B2B SEO agency helps clients in attracting qualified leads. At Digicore Inc., we provide tailored experience of marketing to our clients by applying the expertise and new-age SEO practices."}
+        primaryBtnText={hero?.primaryBtn?.text || "Speak to an SEO Expert"}
+        secondaryBtnText={hero?.secondaryBtn?.text || "Our Services"}
+        backgroundImage={hero?.backgroundImage ? resolveImage(hero.backgroundImage) : eimage}
+      />
 
 
 
 
       <section className="about-section">
- <div className="divider"></div>
+        <div className="divider"></div>
         <div className="about-container">
 
           <h1>
-        {about?.heading || "B2B SEO Company"}
+            {about?.heading || "B2B SEO Company"}
           </h1>
 
 
 
           <p>
-        {about?.body || "At Digicore Inc., a trusted B2B SEO agency we believe in generating organic traffic for B2B companies. In this journey of consistent growth, we address all the complexities of the marketplace, and tailor the suitable solution for clients. Our seasoned SEO professionals focus on increasing the visibility, boost revenue, and generate leads through white-hat and ethical marketing practices. We ensure that our industry-wise practice for applying B2B SEO strategies along with technical SEO proficiency, content marketing integration, on-page & off-page SEO optimization to communication & collaboration altogether help us in speeding up the growth of business in the digital landscape. Our creative approach towards B2B SEO, marketing tools, and realistic data-driven solutions address the objectives of clients in a short span. In this AI-driven world, Digicore Inc. ensures technical audit, keyword research, B2B content marketing, link building and AI SEO services are aligned with the business objectives of clients. From Answer Search Optimization (AEO), Generative Engine Optimization (GEO), and ChatGPT optimization to other AI-personalization gets planned in our B2B SEO practices."}
+            {about?.body || "At Digicore Inc., a trusted B2B SEO agency we believe in generating organic traffic for B2B companies. In this journey of consistent growth, we address all the complexities of the marketplace, and tailor the suitable solution for clients. Our seasoned SEO professionals focus on increasing the visibility, boost revenue, and generate leads through white-hat and ethical marketing practices. We ensure that our industry-wise practice for applying B2B SEO strategies along with technical SEO proficiency, content marketing integration, on-page & off-page SEO optimization to communication & collaboration altogether help us in speeding up the growth of business in the digital landscape. Our creative approach towards B2B SEO, marketing tools, and realistic data-driven solutions address the objectives of clients in a short span. In this AI-driven world, Digicore Inc. ensures technical audit, keyword research, B2B content marketing, link building and AI SEO services are aligned with the business objectives of clients. From Answer Search Optimization (AEO), Generative Engine Optimization (GEO), and ChatGPT optimization to other AI-personalization gets planned in our B2B SEO practices."}
           </p>
 
         </div>
@@ -431,13 +431,13 @@ const caseStudies = [
           <div className="visibility-content">
 
             <h2>
-            {visibility?.heading || (<>A client-centric and data-driven B2B SEO agency<br />for all-sized businesses</>)}
+              {visibility?.heading || (<>A client-centric and data-driven B2B SEO agency<br />for all-sized businesses</>)}
             </h2>
 
             <p>
-             {visibility?.paragraph1 || "Digicore Inc. has attained a decade’s excellence in catering to the tailored objectives of B2B market. We understand the target audience of our clients, hence, formulate effective SEO strategies to optimize their website. We being with comprehensive technical audit to identify the scope of website optimization, thereby, improving the visibility of business in SERPs. Apart from the traditional search, the new-age voice search optimization, AI-friendly search results, local SEO, customized PPC campaigns and well-planned digital marketing services altogether help B2B businesses in staying ahead of their competitors. Our SEO specialists play a vital role in analyzing the performance of the marketing activities and prepare transparent report. This report is shared with the client to know the level of optimization, rank of website in SERPs, and the plan ahead for further optimization."}
-<br /><br />
-{visibility?.paragraph2 || "Our proven strategies of B2B SEO services and digital marketing services improve the visibility of client’s website, thereby, enhancing the brand prominence. In fact, the other businesses can connect with the website that has been optimized according to products or services of their choice. At Digicore Inc. creates a practically-designed plan of B2B SEO to drive potential customers by focusing on content creation, landing page development, link profile management, technical website optimization, etc. As a result, the clients can engage businesses by clearly showcasing their products or services through optimized website ranked in the top search results. Being the trusted B2B SEO agency, we promise measurable growth results and provide detailed results in regular SEO report. We emphasize on improving leads, traffic, revenue for B2B, and sales to B2B businesses through our results-driven SEO services."}
+              {visibility?.paragraph1 || "Digicore Inc. has attained a decade’s excellence in catering to the tailored objectives of B2B market. We understand the target audience of our clients, hence, formulate effective SEO strategies to optimize their website. We being with comprehensive technical audit to identify the scope of website optimization, thereby, improving the visibility of business in SERPs. Apart from the traditional search, the new-age voice search optimization, AI-friendly search results, local SEO, customized PPC campaigns and well-planned digital marketing services altogether help B2B businesses in staying ahead of their competitors. Our SEO specialists play a vital role in analyzing the performance of the marketing activities and prepare transparent report. This report is shared with the client to know the level of optimization, rank of website in SERPs, and the plan ahead for further optimization."}
+              <br /><br />
+              {visibility?.paragraph2 || "Our proven strategies of B2B SEO services and digital marketing services improve the visibility of client’s website, thereby, enhancing the brand prominence. In fact, the other businesses can connect with the website that has been optimized according to products or services of their choice. At Digicore Inc. creates a practically-designed plan of B2B SEO to drive potential customers by focusing on content creation, landing page development, link profile management, technical website optimization, etc. As a result, the clients can engage businesses by clearly showcasing their products or services through optimized website ranked in the top search results. Being the trusted B2B SEO agency, we promise measurable growth results and provide detailed results in regular SEO report. We emphasize on improving leads, traffic, revenue for B2B, and sales to B2B businesses through our results-driven SEO services."}
             </p>
 
             <div className="orange-line"></div>
@@ -453,73 +453,73 @@ const caseStudies = [
       </section>
 
 
-     <section className="performance-section">
-  <div className="performance-container">
-    <div className="performance-left">
-      <h2>{performance?.labelTrack || "TRACK"}</h2>
-      <h2>{performance?.labelAnalyze || "ANALYZE"}</h2>
-      <h2>{performance?.labelScale || "SCALE"}</h2>
-      <h2>{performance?.labelRepeat || "REPEAT"}</h2>
-    </div>
+      <section className="performance-section">
+        <div className="performance-container">
+          <div className="performance-left">
+            <h2>{performance?.labelTrack || "TRACK"}</h2>
+            <h2>{performance?.labelAnalyze || "ANALYZE"}</h2>
+            <h2>{performance?.labelScale || "SCALE"}</h2>
+            <h2>{performance?.labelRepeat || "REPEAT"}</h2>
+          </div>
 
-    <div className="performance-right">
-      <img src={performance?.image ? resolveImage(performance.image) : seoRimg} alt="SEO Performance" />
-    </div>
-  </div>
-</section>
-
-
-
-            <section className="seo-agency-section">
-  <div className="seo-container">
-
-    <div className="seo-heading">
-      <div className="seo-line"></div>
-
-      <h2>{seoAgency?.heading || "Why Do I Need an Healthcare SEO Agency"}</h2>
-
-      <p>
-{seoAgency?.description || "Digicore Inc. is a 360 digital marketing agency in Delhi that is dedicated to helping brands develop, engage, and lead, while also supporting the success of your business. Over the years, we've been at the forefront of driving digital transformation through creativity, strategy, and technology to meet our clients' impactful requirements."}
-      </p>
-    </div>
-
-    <div className="seo-content">
-
-      <div className="seo-left">
-
-        <h3>{seoAgency?.problemTitle || "The Problem"}</h3>
-
-        <p>
-        {seoAgency?.problemText || "AI has brought a lot of change in the way people search, discover, and buy. However, with it, the need to strengthen visibility has increased."}
-        </p>
-
-        <h3>{seoAgency?.solutionTitle || "The Solution"}</h3>
-
-        <p>
-  {seoAgency?.solutionText || "From Google, Instagram and YouTube to markeplaces like Amazon and Flipkart, consumers are searching everywhere, and that's why it is important for your brand to be visible everywhere."}
-        </p>
-
-      </div>
-
-      <div className="seo-right">
-
-        <p>
-AI has brought a lot of change in the way people search, discover, and buy. However, with it, the need to strengthen visibility has increased. Today, ranking should not be only about Google; it should be about visibility wherever audiences are looking—like Google, Instagram, YouTube, LinkedIn, marketplaces, or even AI-generated results.
-        </p>
-
-        <p>
-   From Google, Instagram and YouTube to markeplaces like Amazon and Flipkart, consumers are searching everywhere, and that's why it is important for your brand to be visible everywhere. As we see Gen Z discovering brands first on social media and AI reshaping how people find and evaluate products, belonging to the future means that your brand is visible in the moment—wherever your consumer is.
-        </p>
-
-      </div>
-
-    </div>
-
-  </div>
-</section>
+          <div className="performance-right">
+            <img src={performance?.image ? resolveImage(performance.image) : seoRimg} alt="SEO Performance" />
+          </div>
+        </div>
+      </section>
 
 
- <section className="w-full py-[100px] px-5 bg-[#f4f4f5] text-center border-b border-[#e5e7eb]">
+
+      <section className="seo-agency-section">
+        <div className="seo-container">
+
+          <div className="seo-heading">
+            <div className="seo-line"></div>
+
+            <h2>{seoAgency?.heading || "Why Do I Need an Healthcare SEO Agency"}</h2>
+
+            <p>
+              {seoAgency?.description || "Digicore Inc. is a 360 digital marketing agency in Delhi that is dedicated to helping brands develop, engage, and lead, while also supporting the success of your business. Over the years, we've been at the forefront of driving digital transformation through creativity, strategy, and technology to meet our clients' impactful requirements."}
+            </p>
+          </div>
+
+          <div className="seo-content">
+
+            <div className="seo-left">
+
+              <h3>{seoAgency?.problemTitle || "The Problem"}</h3>
+
+              <p>
+                {seoAgency?.problemText || "AI has brought a lot of change in the way people search, discover, and buy. However, with it, the need to strengthen visibility has increased."}
+              </p>
+
+              <h3>{seoAgency?.solutionTitle || "The Solution"}</h3>
+
+              <p>
+                {seoAgency?.solutionText || "From Google, Instagram and YouTube to markeplaces like Amazon and Flipkart, consumers are searching everywhere, and that's why it is important for your brand to be visible everywhere."}
+              </p>
+
+            </div>
+
+            <div className="seo-right">
+
+              <p>
+                AI has brought a lot of change in the way people search, discover, and buy. However, with it, the need to strengthen visibility has increased. Today, ranking should not be only about Google; it should be about visibility wherever audiences are looking—like Google, Instagram, YouTube, LinkedIn, marketplaces, or even AI-generated results.
+              </p>
+
+              <p>
+                From Google, Instagram and YouTube to markeplaces like Amazon and Flipkart, consumers are searching everywhere, and that's why it is important for your brand to be visible everywhere. As we see Gen Z discovering brands first on social media and AI reshaping how people find and evaluate products, belonging to the future means that your brand is visible in the moment—wherever your consumer is.
+              </p>
+
+            </div>
+
+          </div>
+
+        </div>
+      </section>
+
+
+      <section className="w-full py-[100px] px-5 bg-[#f4f4f5] text-center border-b border-[#e5e7eb]">
         <div className="max-w-[1200px] mx-auto px-5">
           <div className="w-[60px] h-[4px] bg-[#e31e24] mx-auto mb-[25px] rounded-[10px] max-[769px]:w-[50px] max-[769px]:mb-[20px]"></div>
 
@@ -546,17 +546,17 @@ AI has brought a lot of change in the way people search, discover, and buy. Howe
         </div>
       </section>
 
- <section className="why-choose-sec"   style={{
-    backgroundImage: `url(${whyChoose?.backgroundImage ? resolveImage(whyChoose.backgroundImage) : bgIcon})`,
-    backgroundSize: "100% 100%",
-    backgroundPosition: "center",
-    backgroundRepeat: "no-repeat",
-  }}>
+      <section className="why-choose-sec" style={{
+        backgroundImage: `url(${whyChoose?.backgroundImage ? resolveImage(whyChoose.backgroundImage) : bgIcon})`,
+        backgroundSize: "100% 100%",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+      }}>
 
         <div className="div-content">
 
           <h1>
-           {whyChoose?.heading || "Scale Your Online Store with High-Performance E-commerce SEO."}
+            {whyChoose?.heading || "Scale Your Online Store with High-Performance E-commerce SEO."}
           </h1>
 
           <div className="choose-btns">
@@ -585,20 +585,20 @@ AI has brought a lot of change in the way people search, discover, and buy. Howe
 
         <div className="impact-container">
 
-        
-          <div className="impact-image"  
->
+
+          <div className="impact-image"
+          >
 
             <div className="impact-circle" ></div>
 
             <img
               src={impactSection?.image ? resolveImage(impactSection.image) : impact}
               alt="Impact"
-               style={{
-    width: "700px",
-    height: "600px",
+              style={{
+                width: "700px",
+                height: "600px",
 
-  }}
+              }}
             />
 
           </div>
@@ -737,76 +737,74 @@ AI has brought a lot of change in the way people search, discover, and buy. Howe
       </section>
 
       <div className="divider"></div>
- <div>
-
-  
-  <TestimonialSection />
+      <div>
 
 
- </div>
-
- <div>
-  <Brands />
- </div>
-
- <div>
-  <Tools />
- </div>
+        <TestimonialSection />
 
 
+      </div>
+
+      <div>
+        <Brands />
+      </div>
+
+      <div>
+        <Tools />
+      </div>
 
 
- <div>
-    
-    <Blogs />
- </div>
 
-  
 
-   <section className="faq-section">
-       <div className="faq-header">
-         <h2>FAQ</h2>
-         <div className="faq-line"></div>
-       </div>
- 
-       <div className="faq-container">
-         {displayFaqData.map((faq, index) => (
-           <div
-             key={faq.id || index}
-             className={`faq-item ${
-               activeIndex === index ? "active" : ""
-             }`}
-           >
-             <button
-               className="faq-question"
-               onClick={() => toggleFAQ(index)}
-             >
-               <span>{faq.question}</span>
- 
-               {activeIndex === index ? (
-                 <Minus size={28} />
-               ) : (
-                 <Plus size={28} />
-               )}
-             </button>
- 
-             <div
-               className={`faq-answer ${
-                 activeIndex === index ? "show" : ""
-               }`}
-             >
-               <p>{faq.answer}</p>
-             </div>
-           </div>
-         ))}
-       </div>
-     </section>
+      <div>
 
- 
+        <Blogs />
+      </div>
 
- <div>
-  <Contacts />
- </div>
+
+
+      <section className="faq-section">
+        <div className="faq-header">
+          <h2>FAQ</h2>
+          <div className="faq-line"></div>
+        </div>
+
+        <div className="faq-container">
+          {displayFaqData.map((faq, index) => (
+            <div
+              key={faq.id || index}
+              className={`faq-item ${activeIndex === index ? "active" : ""
+                }`}
+            >
+              <button
+                className="faq-question"
+                onClick={() => toggleFAQ(index)}
+              >
+                <span>{faq.question}</span>
+
+                {activeIndex === index ? (
+                  <Minus size={28} />
+                ) : (
+                  <Plus size={28} />
+                )}
+              </button>
+
+              <div
+                className={`faq-answer ${activeIndex === index ? "show" : ""
+                  }`}
+              >
+                <p>{faq.answer}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+
+
+      <div>
+        <Contacts />
+      </div>
 
 
 

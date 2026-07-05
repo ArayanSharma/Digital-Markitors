@@ -30,7 +30,7 @@ const Banner = ({
       className="relative overflow-hidden min-h-[450px] lg:min-h-[550px] py-[5px] bg-[#f4f4f5] flex items-center font-body border-b border-[#e5e7eb] w-full"
       style={{
         backgroundImage: backgroundImage
-          ? `linear-gradient(rgba(244, 244, 245, 0.85), rgba(244, 244, 245, 0.95)), url("${backgroundImage}")`
+          ? `linear-gradient(to right, rgba(244, 244, 245, 1) 35%, rgba(244, 244, 245, 0.7) 65%, rgba(244, 244, 245, 0.1) 100%), url("${backgroundImage}")`
           : "none",
         backgroundSize: "cover",
         backgroundPosition: "center 60%",

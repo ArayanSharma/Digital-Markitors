@@ -5,7 +5,6 @@ import Contacts from "../Components/Sections/Contact";
 import Testimonial from "../Components/Sections/Testimonials";
 
 import Banner from "../Components/Cards/Seohero";
-
 import Industry from "../Components/Sections/Industry";
 import Casestudy from "../Components/Sections/Casestudy";
 
@@ -22,7 +21,7 @@ import geoIcon from "../assets/aeo-o.webp";
 import seocase from "../assets/seo-case-study-rezaries.webp";
 import graphImg from "../assets/graph-l (1).webp";
 import impact from "../assets/impact.webp";
- 
+
 import seoRimg from "../assets/real-seo-result.webp";
 
 import Brands from "../Components/Sections/Brands";
@@ -86,9 +85,9 @@ const Home = () => {
           ...content,
           hero: content.hero
             ? {
-                ...content.hero,
-                backgroundImage: normalizeMediaUrl(content.hero.backgroundImage),
-              }
+              ...content.hero,
+              backgroundImage: normalizeMediaUrl(content.hero.backgroundImage),
+            }
             : undefined,
           visibility: content.visibility
             ? { ...content.visibility, image: normalizeMediaUrl(content.visibility.image) }
@@ -99,21 +98,21 @@ const Home = () => {
           impactImage: normalizeMediaUrl(content.impactImage),
           industries: content.industries
             ? content.industries.map((item) => ({
-                ...item,
-                image: normalizeMediaUrl(item.image),
-              }))
+              ...item,
+              image: normalizeMediaUrl(item.image),
+            }))
             : content.industries,
           caseStudies: content.caseStudies
             ? content.caseStudies.map((item) => ({
-                ...item,
-                image: normalizeMediaUrl(item.image),
-              }))
+              ...item,
+              image: normalizeMediaUrl(item.image),
+            }))
             : content.caseStudies,
           whyBusiness: content.whyBusiness
             ? {
-                ...content.whyBusiness,
-                image: normalizeMediaUrl(content.whyBusiness.image),
-              }
+              ...content.whyBusiness,
+              image: normalizeMediaUrl(content.whyBusiness.image),
+            }
             : undefined,
         };
         setPageData(normalizedData);
@@ -241,12 +240,12 @@ const Home = () => {
 
   const displayCaseStudies = pageData?.caseStudies?.length > 0
     ? pageData.caseStudies.map((c) => ({
-        ...c,
-        image: c.image || seocase,
-        descriptions: [c.description],
-        viewCaseStudyBtn: c.viewCaseStudyBtn || { text: "View Case Study", link: "#" },
-        viewLatestWorkBtn: c.viewLatestWorkBtn || { text: "View Our Latest Work", link: "#" },
-      }))
+      ...c,
+      image: c.image || seocase,
+      descriptions: [c.description],
+      viewCaseStudyBtn: c.viewCaseStudyBtn || { text: "View Case Study", link: "#" },
+      viewLatestWorkBtn: c.viewLatestWorkBtn || { text: "View Our Latest Work", link: "#" },
+    }))
     : defaultCaseStudies;
 
   const displayBullets = pageData?.whyBusinessBullets?.length > 0
@@ -316,12 +315,13 @@ const Home = () => {
       {/* HERO SECTION */}
       <Banner
         subtitle={pageData?.hero?.subtitle || pageData?.hero?.heading}
-        
         title={pageData?.hero?.title || "B2B SEO Agency That Drives Traffic, Trust, and Conversions"}
         description={pageData?.hero?.description || "To address the challenges of B2B SEO, it is ideal to partner with the trusted digital marketing agency. In order to incorporate AI-driven SEO practices, improve visibility in the digital landscape, the B2B SEO agency helps clients in attracting qualified leads. At Digicore Inc., we provide tailored experience of marketing to our clients by applying the expertise and new-age SEO practices."}
         primaryBtnText={pageData?.hero?.primaryBtn?.text || "Speak to an SEO Expert"}
+        primaryBtnLink={pageData?.hero?.primaryBtn?.link || "/contact"}
         secondaryBtnText={pageData?.hero?.secondaryBtn?.text || "Our Services"}
-        backgroundImage={heroBackgroundImage}
+        secondaryBtnLink={pageData?.hero?.secondaryBtn?.link || "/services"}
+        backgroundImage={pageData?.hero?.backgroundImage}
       />
 
       {/* About Section */}

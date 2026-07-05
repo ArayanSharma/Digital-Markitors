@@ -9,9 +9,13 @@ const Hero2 = ({ hero = {} }) => {
     title = "Turning Visibility into Growth. Turning Brands into Market Leaders",
     description = "We are Digicore Inc – The Best SEO Company in Kanpur NCR. SEO runs in our DNA. We deliver powerful, sustainable organic traffic, relevant leads by choosing high intent commercial keywords for your business.",
     image = heroImg,
+    backgroundImage,
     primaryBtn = { text: "Speak to Our Experts", link: "/contact" },
     secondaryBtn = { text: "Our Services", link: "/seo-results" },
   } = hero;
+
+  const resolvedImage = resolveImage(image);
+  const resolvedBackgroundImage = resolveImage(backgroundImage || image);
 
   const [counts, setCounts] = useState({
     count1: 0,
@@ -60,22 +64,29 @@ const Hero2 = ({ hero = {} }) => {
 
   return (
     <>
-      <section className="relative overflow-hidden flex items-center h-[550px] bg-[#f4f4f5] bg-no-repeat [background-position:right_center] bg-contain max-[769px]:h-[450px] max-[769px]:py-[70px] max-[769px]:px-5 max-[769px]:bg-center max-[769px]:bg-cover border-b border-[#e5e7eb] font-body">
+      <section
+        className="relative overflow-hidden flex items-center h-[550px] bg-[#f4f4f5] bg-no-repeat bg-cover [background-position:right_center] max-[769px]:h-[450px] max-[769px]:py-[70px] max-[769px]:px-5 max-[769px]:bg-center border-b border-[#e5e7eb] font-body"
+        style={{
+          backgroundImage: resolvedBackgroundImage
+            ? `linear-gradient(to right, rgba(244, 244, 245, 1) 35%, rgba(244, 244, 245, 0.7) 65%, rgba(244, 244, 245, 0.1) 100%), url("${resolvedBackgroundImage}")`
+            : "none",
+        }}
+      >
         {/* Energy blob */}
         <div className="absolute top-1/2 left-2/3 -translate-y-1/2 w-[400px] h-[400px] bg-[#e31e24]/8 rounded-full blur-[110px] pointer-events-none z-0"></div>
 
         <div className="w-full max-w-[1400px] h-full mx-auto px-[50px] flex items-center justify-between relative z-[2] max-[993px]:flex-col max-[993px]:[text-align:center] max-[993px]:gap-[50px] max-[993px]:px-[30px] max-[769px]:gap-[25px] max-[769px]:px-0 max-[769px]:h-auto">
 
-          <div className="flex-[0_0_50%] max-w-[50%] max-[993px]:flex-[0_0_100%] max-[993px]:max-w-full">
+          <div className="flex-[0_0_100%] max-w-[800px] max-[993px]:max-w-full">
             <p className="block text-xs md:text-sm text-[#e31e24] font-bold tracking-[2px] uppercase mb-[18px] font-heading">
               {subtitle}
             </p>
 
-            <h1 className="text-[#2b2b2e] text-[28px] leading-[1.2] min-[576px]:text-[36px] min-[992px]:text-[42px] min-[992px]:leading-[1.1] min-[1200px]:text-[52px] font-heading font-extrabold mb-6 tracking-tight max-w-[650px]">
+            <h1 className="text-[#2b2b2e] text-[28px] leading-[1.2] min-[576px]:text-[36px] min-[992px]:text-[42px] min-[992px]:leading-[1.1] min-[1200px]:text-[52px] font-heading font-extrabold mb-6 tracking-tight max-w-[750px]">
               {highlightTitle(title)}
             </h1>
 
-            <p className="max-w-[620px] mb-[35px] font-normal text-base md:text-lg leading-[1.8] text-[#4b5563] max-[993px]:text-base">
+            <p className="max-w-[700px] mb-[35px] font-normal text-base md:text-lg leading-[1.8] text-[#4b5563] max-[993px]:text-base">
               {description}
             </p>
 
@@ -88,10 +99,6 @@ const Hero2 = ({ hero = {} }) => {
                 {secondaryBtn.text}
               </button>
             </div>
-          </div>
-
-          <div className="block flex-[0_0_50%] max-w-[50%] max-[993px]:flex-[0_0_100%] max-[993px]:max-w-full max-[769px]:mt-5">
-            <img src={resolveImage(image)} alt="Digital Marketing" className="w-full max-w-[900px] h-auto object-contain [filter:drop-shadow(0_15px_35px_rgba(0,0,0,0.08))] max-[769px]:hidden rounded-2xl" />
           </div>
 
         </div>
